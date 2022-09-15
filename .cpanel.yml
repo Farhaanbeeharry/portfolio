@@ -1,5 +1,5 @@
 ---
 deployment:
-  tasks:
-    - export DEPLOYPATH=/home/farhtmed/public_html/
-    - /bin/cp -R * $DEPLOYPATH
+      tasks:
+        - export DEPLOYPATH=/home/<username>/public_html/<app_folder>
+        - /bin cp * $DEPLOYPATH
