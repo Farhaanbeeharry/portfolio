@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^farhaan\.info/umbrella/?$ /public_html/umbrella [L]
