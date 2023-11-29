@@ -3119,6 +3119,7 @@ blockquote {
 .download-icon {
   color: #5050f5;
   font-weight: bolder;
+  -webkit-text-stroke: 1px #5050f5;
 }
 
 .fa-stethoscope {
