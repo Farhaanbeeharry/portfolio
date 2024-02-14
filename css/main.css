@@ -3131,3 +3131,8 @@ blockquote {
   -webkit-text-stroke: 0.7px #444444;
   color: white !important;
 }
+
+.mini-text {
+  font-size: 12px;
+  font-weight: 300;
+}
