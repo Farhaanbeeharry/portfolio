@@ -3136,3 +3136,8 @@ blockquote {
   font-size: 12px;
   font-weight: 300;
 }
+
+.no-colour-link {
+  color: white;
+  font-weight: 300;
+}
