@@ -1,2 +1,3 @@
 RewriteEngine On
-RewriteRule ^farhaan\.info/umbrella/?$ /public_html/umbrella [L]
+RewriteRule ^umbrella$ /public_html/umbrella [L]
+RewriteRule ^javed-huda$ https://drive.google.com/drive/folders/1U2pgYCkNgTloCn4s5ECxV12KA_xjTz6Y?usp=sharing [R=301,L]
