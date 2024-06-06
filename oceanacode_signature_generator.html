@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Signature Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="checkbox"] {
+            margin-left: 10px;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .inline-group {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Oceana Code Ltd Email Signature Generator</h2>
+        <form id="signatureForm">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname:</label>
+                <input type="text" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group inline-group">
+                <label for="phone">Phone number (No + sign, no space and add country code):</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            <div class="form-group inline-group">
+                <input type="checkbox" id="whatsapp" name="whatsapp" style="margin-right: 10px;">
+                <label for="whatsapp" style="margin-top: 5px;">This phone number above has WhatsApp</label>
+            </div>
+            <div class="form-group">
+                <label for="filename">Output Filename:</label>
+                <input type="text" id="filename" name="filename" required>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="generateSignature()">Generate Signature</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function generateSignature() {
+            const firstName = document.getElementById('firstName').value;
+            const surname = document.getElementById('surname').value.toUpperCase();
+            const position = document.getElementById('position').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value.replace(/\s+/g, '');
+            const filename = document.getElementById('filename').value;
+            const hasWhatsapp = document.getElementById('whatsapp').checked;
+
+            const whatsappHtml = hasWhatsapp ? `
+                <a class="whatsapp" href="https://wa.me/${phone}" target="_blank"
+                    style="color: black; text-decoration: none; margin-left: 2px;">(WhatsApp)</a>` : '';
+
+            const signature = `
+                <div>
+                    <img alt="" src="https://farhaan.info/oceana_code/oceana_code_logo.png" width="220" />
+                    <div style="margin-top: 18px;"><strong>${firstName} ${surname}</strong></div>
+                    <div><b style="color:#646464">${position}, OceanaCode Ltd</b></div>
+                    <div style="margin-top: 15px;">Website:
+                        <a href="https://www.oceanacode.com" target="_blank"
+                            style="color: black; text-decoration: none;">oceanacode.com</a><br>
+                    </div>
+                    <div style="margin-top: 4px;">Email:
+                        <a href="mailto:${email}" target="_blank"
+                            style="color: black; text-decoration: none;">${email}</a><br>
+                    </div>
+                    <div style="margin-top: 4px;">Address:
+                        <a href="https://maps.google.com/?q=60%20ST%20Paul%20Road%20Vacoas%2C%2017312%2C%20Mauritius" target="_blank"
+                            style="color: black; text-decoration: none;">60 ST Paul
+                            Road Vacoas, 17312, Mauritius</a><br>
+                    </div>
+                    <div style="margin-top: 4px;">Phone:
+                        <a href="tel:+${phone}" target="_blank" style="color: black; text-decoration: none;">+${phone}</a>
+                        ${whatsappHtml}<br>
+                    </div>
+                    <hr style="max-width: 650px; margin: 20px 0 14px 0;">
+                    <div style="max-width: 650px; font-size: 12px; line-height: 18px;">IMPORTANT: The contents of this email and any
+                        attachments are
+                        confidential. They are
+                        intended for the named recipient(s) only. If you have received this email by mistake, please notify the sender
+                        immediately and do not disclose the contents to anyone or make copies thereof.</div>
+                </div>
+            `;
+
+            // Create a blob with the signature HTML content
+            const blob = new Blob([signature], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            // Create a link element and trigger a download
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename + '.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+
+</html>
