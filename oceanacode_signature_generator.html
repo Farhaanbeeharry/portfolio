@@ -108,8 +108,9 @@
             const filename = document.getElementById('filename').value;
             const hasWhatsapp = document.getElementById('whatsapp').checked;
             const whatsappHtml = hasWhatsapp ? `
+            <span> - </span>
                 <a class="whatsapp" href="https://wa.me/${phone}" target="_blank"
-                    style="color: black; text-decoration: none; margin-left: 2px;"> - Contacter par WhatsApp</a>` : '';
+                    style="color: black; text-decoration: underline; margin-left: 2px;">Contacter par WhatsApp</a>` : '';
 
             const signature = `
                 <div style="font-family: Arial, sans-serif; max-width: 100%;">
@@ -118,19 +119,19 @@
                     <div><b style="color:#646464">${position}, OceanaCode Ltd</b></div>
                     <div style="margin-top: 15px;">Website:
                         <a href="https://www.oceanacode.com" target="_blank"
-                            style="color: black; text-decoration: none;">oceanacode.com</a><br>
+                            style="color: black; text-decoration: underline;">oceanacode.com</a><br>
                     </div>
                     <div style="margin-top: 4px;">Email:
                         <a href="mailto:${email}" target="_blank"
-                            style="color: black; text-decoration: none;">${email}</a><br>
+                            style="color: black; text-decoration: underline;">${email}</a><br>
                     </div>
                     <div style="margin-top: 4px;">Address:
                         <a href="https://maps.google.com/?q=60%20ST%20Paul%20Road%20Vacoas%2C%2017312%2C%20Mauritius" target="_blank"
-                            style="color: black; text-decoration: none;">60 ST Paul
+                            style="color: black; text-decoration: underline;">60 ST Paul
                             Road Vacoas, 17312, Mauritius</a><br>
                     </div>
                     <div style="margin-top: 4px;">Phone:
-                        <a href="tel:+${phone}" target="_blank" style="color: black; text-decoration: none;">+${phone}</a>
+                        <a href="tel:+${phone}" target="_blank" style="color: black; text-decoration: underline;">+${phone}</a>
                         ${whatsappHtml}<br>
                     </div>
                     <hr style="max-width: 650px; margin: 20px 0 14px 0;">
