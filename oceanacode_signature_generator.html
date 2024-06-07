@@ -107,14 +107,13 @@
             const phone = document.getElementById('phone').value.replace(/\s+/g, '');
             const filename = document.getElementById('filename').value;
             const hasWhatsapp = document.getElementById('whatsapp').checked;
-
             const whatsappHtml = hasWhatsapp ? `
                 <a class="whatsapp" href="https://wa.me/${phone}" target="_blank"
-                    style="color: black; text-decoration: none; margin-left: 2px;">(WhatsApp)</a>` : '';
+                    style="color: black; text-decoration: none; margin-left: 2px;">&bnsp; - Contacter par WhatsApp</a>` : '';
 
             const signature = `
                 <div style="font-family: Arial, sans-serif; max-width: 100%;">
-                    <img alt="" src="https://farhaan.info/oceana_code/oceana_code_logo.png" width="220" />
+                    <a href="https://oceanacode.com" target="_blank"><img alt="" src="https://farhaan.info/oceana_code/oceana_code_logo.png" width="220" /></a>
                     <div style="margin-top: 18px;"><strong>${firstName} ${surname}</strong></div>
                     <div><b style="color:#646464">${position}, OceanaCode Ltd</b></div>
                     <div style="margin-top: 15px;">Website:
