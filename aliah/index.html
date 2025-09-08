@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>For Aliah, My Confessions & Promises 💌</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="confetti" aria-hidden="true"></div>
+
+    <!-- Header (sticky, card-styled like sidebar) -->
+    <header>
+      <div class="wrap small">
+        <div class="header-card">
+          <div class="row">
+            <div class="title">
+              <div class="logo" aria-hidden="true"></div>
+              <h1>For Aliah, My Confessions & Promises 💌</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile panel (shows only on mobile, scrolls with page) -->
+    <section class="mobile-panel" aria-label="Mobile controls" style="margin-top: 20px;">
+      <div class="portrait" style="padding-bottom: 6px">
+        <img src="selfie.jpeg" alt="Aliah & Me" />
+      </div>
+      <div class="controls" style="margin-bottom: 8px">
+        <button type="button" id="m_revealOne" class="btn-ghost" title="Reveal a random promise">🎲 Reveal one</button>
+        <button type="button" id="m_revealAll" class="btn-ghost" title="Reveal everything">✨ Reveal all</button>
+        <button type="button" id="m_resetAll" class="btn-ghost" title="Hide everything">🧹 Reset</button>
+        <button type="button" id="m_shuffle"  class="btn-ghost" title="Shuffle the cards">🔀 Shuffle</button>
+        <button type="button" id="m_pace"     class="btn-ghost" title="Our pace message">🌊 Pace</button>
+      </div>
+      <div class="hero">
+        <p class="lead">
+          Aliah, I fell for your voice, your smile, your sweetness, your cute
+          clumsy magic, and I want to cherish you with love, care and a
+          lifetime of little adventures. No pressure, no rushing, just us,
+          going with the flow, and when you’re ready, we dream and plan
+          together in shaa Allah. 🌸
+        </p>
+        <div class="progress" aria-live="polite">
+          <div class="bar"><div class="fill" id="m_fill"></div></div>
+          <div class="count"><span id="m_count">0</span>/<span id="m_total">0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout wrap">
+      <!-- Sidebar (desktop only, sticky) -->
+      <aside class="sidebar" aria-label="Controls">
+        <div class="portrait">
+          <img src="selfie.jpeg" alt="Aliah & Me" />
+        </div>
+        <h2>Controls</h2>
+        <div class="controls">
+          <button type="button" id="d_revealOne" class="btn-ghost" title="Reveal a random promise">🎲 Reveal one</button>
+          <button type="button" id="d_revealAll" class="btn-ghost" title="Reveal everything">✨ Reveal all</button>
+          <button type="button" id="d_resetAll"  class="btn-ghost" title="Hide everything">🧹 Reset</button>
+          <button type="button" id="d_shuffle"   class="btn-ghost" title="Shuffle the cards">🔀 Shuffle</button>
+          <button type="button" id="d_pace"      class="btn-ghost" title="Our pace message">🌊 Pace</button>
+        </div>
+        <div class="hero" style="padding: 12px 0 0">
+          <p class="lead">
+            Aliah, I fell for your voice, your smile, your sweetness, your cute
+            clumsy magic, and I want to cherish you with love, care and a
+            lifetime of little adventures. No pressure, no rushing, just us,
+            going with the flow, and when you’re ready, we dream and plan
+            together in shaa Allah. 🌸
+          </p>
+          <div class="progress" aria-live="polite">
+            <div class="bar"><div class="fill" id="fill"></div></div>
+            <div class="count"><span id="count">0</span>/<span id="total">0</span></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <main class="content">
+        <section class="grid" id="grid" aria-label="Promises grid"></section>
+        <p class="footer-note">
+          Tap a card to reveal, long press on mobile to feel the haptic pop, and
+          watch the confetti rain for our tiny celebrations 🎉
+        </p>
+      </main>
+    </div>
+
+    <!-- Beautiful Pace Modal -->
+    <div class="modal-scrim" id="paceScrim"></div>
+    <section class="modal" id="paceModal" role="dialog" aria-modal="true" aria-labelledby="paceTitle" aria-describedby="paceDesc">
+      <header>
+        <h2 class="modal-title" id="paceTitle">🌊 Our Pace</h2>
+      </header>
+      <p class="lead" id="paceDesc">
+        No pressure, no forcing, let’s go with the flow. When you feel ready to commit,
+        tell me and we’ll plan our future together, in shaa Allah. 💍
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" id="paceOk">Okay</button>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      Saved your progress 💾
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
