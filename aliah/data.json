@@ -84,6 +84,33 @@
     {
       "date": "08.09.2025",
       "textHTML": "<p>Today I did something very special. I created a whole website just for Aliah, to confess my feelings and to make promises to her.</p><p>The site opened with our selfie together, framed like a treasure. At the top, the title read, “For Aliah, My Confessions & Promises 💌”. The whole page was glowing in a dark starry theme with soft colors of pink, blue, and gold. Cards filled the screen, each one hiding a confession or a promise. When tapped, they would flip, reveal words from my heart, and sprinkle confetti, like little celebrations of love.</p><p>In the sidebar, I left her a message, “Aliah, I fell for your voice, your smile, your sweetness, your cute clumsy magic, and I want to cherish you with love, care and a lifetime of little adventures. No pressure, no rushing, just us, going with the flow, and when you’re ready, we dream and plan together in shaa Allah. 🌸”</p><p>There was also a modal called Our Pace with a reminder, “No pressure, no forcing, let’s go with the flow. When you feel ready to commit, tell me and we’ll plan our future together, in shaa Allah. 💍”</p><p>And then came the heart of it, my confessions and promises for her, one by one, decorated with emojis, they are all in this website, below !</p><p>That night, I felt like I had given her not just a website, but a piece of my soul, wrapped in words, colors, confetti, and love.</p>"
+    },
+    {
+      "date": "09.09.2025",
+      "textHTML": "<p>Today I made the website even more meaningful. I added a timeline, a path that shows our journey together, the moments and milestones that led me closer to her heart. From the first time I saw her smile, to our first conversation, our WhatsApp chats, our date at Maison de thé, and beyond.</p><p>The timeline tells our story in order, like chapters of a love book unfolding before us. It is not just a design, but a memory lane where every step is preserved, reminding us where we began and where we are heading, in shaa Allah.</p>"
+    }
+  ],
+  "places_map": [
+    {
+      "name": "Maison de thé, Telfair",
+      "latlng": [-20.2308852,57.5099414],
+      "emoji": "🍵",
+      "date": "06.09.2025",
+      "note": "Late lunch, chicken panini for her, perfect with her across the table."
+    },
+    {
+      "name": "MCiné Tribeca",
+      "latlng": [-20.2462265,57.495558],
+      "emoji": "🎬",
+      "date": "06.09.2025",
+      "note": "Saiyaara in the premium theatre, where our hands met."
+    },
+    {
+      "name": "Gift Stop",
+      "latlng": [-20.240229, 57.505139],
+      "emoji": "🎁",
+      "date": "06.09.2025",
+      "note": "Where I gave her chocolate, perfume, and a bracelet."
     }
   ]
 }

@@ -1,35 +1,37 @@
 // Boot the app after fetching data
 (async () => {
-  /* Sticky offset for sidebar */
-  function syncSidebarOffset(){
+  /* Sticky offset for sidebar + header canvas sizing */
+  function syncHeaderOffset(){
     const header = document.querySelector('header');
     if(!header) return;
     const h = header.offsetHeight || 0;
     document.documentElement.style.setProperty('--header-h', h + 'px');
+    sizeStars();
   }
-  window.addEventListener('load', syncSidebarOffset);
-  window.addEventListener('resize', syncSidebarOffset);
+  window.addEventListener('load', syncHeaderOffset);
+  window.addEventListener('resize', syncHeaderOffset);
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(syncSidebarOffset);
+    document.fonts.ready.then(syncHeaderOffset);
   }
 
   /* Load data */
   let promises = [];
   let emojis = [];
   let timeline = [];
+  let placesMap = [];
   try {
     const res = await fetch('data.json', { cache: 'no-store' });
     const data = await res.json();
-    promises = Array.isArray(data.promises) ? data.promises : [];
-    emojis = Array.isArray(data.emojis) ? data.emojis : [];
-    timeline = Array.isArray(data.timeline) ? data.timeline : [];
+    promises  = Array.isArray(data.promises) ? data.promises : [];
+    emojis    = Array.isArray(data.emojis) ? data.emojis : [];
+    timeline  = Array.isArray(data.timeline) ? data.timeline : [];
+    placesMap = Array.isArray(data.places_map) ? data.places_map : [];
   } catch (e) {
-    console.warn('data.json could not be loaded, using fallback data.');
-    promises = [
-      "I fell in love with your voice, your smile, your sweetness, your adorable little chaos, and the way time bends when I'm with you"
-    ];
-    emojis = ["💖","✨","🥰","🌸"];
+    console.warn('data.json could not be loaded, using fallback.');
+    promises = ["I fell in love with your voice, your smile, your sweetness, your adorable little chaos, and the way time bends when I'm with you"];
+    emojis   = ["💖","✨","🥰","🌸"];
     timeline = [];
+    placesMap = [];
   }
 
   /* Elements */
@@ -43,9 +45,68 @@
   const toast = document.getElementById("toast");
   const tlEl = document.getElementById("tl");
 
-  /* Timeline render */
+  /* ---------- Starry header ---------- */
+  const starCanvas = document.getElementById('starsCanvas');
+  const sctx = starCanvas.getContext('2d', { alpha: true });
+  let stars = [];
+  function sizeStars(){
+    if(!starCanvas) return;
+    const rect = starCanvas.getBoundingClientRect();
+    starCanvas.width  = Math.max(300, rect.width  * devicePixelRatio);
+    starCanvas.height = Math.max(80,  rect.height * devicePixelRatio);
+    const count = Math.floor((starCanvas.width * starCanvas.height) / 15000);
+    stars = new Array(count).fill(0).map(() => ({
+      x: Math.random()*starCanvas.width,
+      y: Math.random()*starCanvas.height,
+      r: Math.random()*1.5 + .4,
+      a: Math.random()*Math.PI*2,
+      v: (Math.random()*0.7 + 0.3) * 0.02
+    }));
+  }
+  function drawStars(){
+    sctx.clearRect(0,0,starCanvas.width, starCanvas.height);
+    sctx.globalCompositeOperation = 'lighter';
+    for(const st of stars){
+      st.a += st.v;
+      const alpha = 0.35 + 0.35*Math.sin(st.a);
+      sctx.beginPath();
+      sctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+      sctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      sctx.fill();
+    }
+    requestAnimationFrame(drawStars);
+  }
+  sizeStars(); drawStars();
+
+  /* ---------- Emoji dust (parallax) ---------- */
+  (function startEmojiDust(){
+    const host = document.getElementById('emojiDust');
+    if(!host) return;
+    const chars = ["💖","✨","🌸","💌","🫶","🌟","🎀","🧡"];
+    for(let i=0;i<18;i++){
+      const span = document.createElement('span');
+      span.textContent = chars[i % chars.length];
+      span.style.position = 'absolute';
+      span.style.left = Math.random()*100 + 'vw';
+      span.style.top = Math.random()*100 + 'vh';
+      span.style.fontSize = (12 + Math.random()*18) + 'px';
+      span.style.opacity = (0.15 + Math.random()*0.25).toFixed(2);
+      span.style.filter = 'blur(' + (Math.random()*0.5) + 'px)';
+      span.style.animation = `float${i%3} ${18 + Math.random()*12}s linear infinite`;
+      host.appendChild(span);
+    }
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes float0 { from { transform: translateY(10vh) } to { transform: translateY(-10vh) } }
+      @keyframes float1 { from { transform: translateY(-8vh) } to { transform: translateY(8vh) } }
+      @keyframes float2 { from { transform: translateY(12vh) } to { transform: translateY(-12vh) } }
+    `;
+    document.head.appendChild(style);
+  })();
+
+  /* ---------- Timeline render + scroll reveal ---------- */
   function renderTimeline(items){
-    if(!tlEl || !items.length) return;
+    if(!tlEl) return;
     tlEl.innerHTML = "";
     items.forEach(({ date, textHTML }) => {
       const li = document.createElement('li');
@@ -57,9 +118,103 @@
       `;
       tlEl.appendChild(li);
     });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add('revealed');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+    document.querySelectorAll('.tl-item').forEach(el => io.observe(el));
   }
 
-  /* Cards state */
+  /* ---------- Real map (Leaflet + OSM) ---------- */
+  async function initLeafletMap(list){
+    const mapNode = document.getElementById('realMap');
+    if(!mapNode || !window.L) return;
+
+    // Center on Mauritius roughly
+    const map = L.map(mapNode, {
+      zoomControl: true,
+      attributionControl: true
+    }).setView([-20.2, 57.5], 12);
+
+    // OSM tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // Cute emoji marker
+    const emojiIcon = (emoji='📍') =>
+      L.divIcon({
+        className: 'emoji-marker',
+        html: `<div style="
+          display:flex;align-items:center;justify-content:center;
+          width:34px;height:34px;border-radius:50%;
+          background: linear-gradient(180deg, var(--brand), var(--brand-2));
+          color:#fff;border:1px solid rgba(255,255,255,.4);
+          box-shadow:0 10px 24px rgba(0,0,0,.45);font-size:16px;
+          ">${emoji}</div>`,
+        iconSize: [34,34],
+        iconAnchor: [17, 34],
+        popupAnchor: [0, -30]
+      });
+
+    // Helper: geocode name → [lat,lng]
+    async function geocode(q){
+      const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q + ', Mauritius')}`;
+      const res = await fetch(url, { headers: { 'Accept-Language': 'en' }});
+      const js = await res.json();
+      if (Array.isArray(js) && js.length) {
+        return [parseFloat(js[0].lat), parseFloat(js[0].lon)];
+      }
+      return null;
+    }
+
+    // Add markers
+    const bounds = [];
+    for (const p of list) {
+      let latlng = null;
+      if (Array.isArray(p.latlng) && p.latlng.length === 2) {
+        latlng = p.latlng;
+      } else if (p.query) {
+        try { latlng = await geocode(p.query); } catch {}
+      }
+
+      if (!latlng) {
+        console.warn('Could not locate place:', p);
+        continue;
+      }
+
+      const m = L.marker(latlng, { icon: emojiIcon(p.emoji || '📍') }).addTo(map);
+      const popupHtml = `
+        <div style="min-width:190px">
+          <strong>${p.name || p.query}</strong><br/>
+          <span style="color:var(--muted)">${p.date || ''}</span>
+          <p style="margin:6px 0 0">${p.note || ''}</p>
+        </div>
+      `;
+      m.bindPopup(popupHtml, { closeButton: true });
+      bounds.push(latlng);
+    }
+
+    // Fit bounds if we have multiple points
+    if (bounds.length > 1) {
+      map.fitBounds(bounds, { padding: [20,20] });
+    } else if (bounds.length === 1) {
+      map.setView(bounds[0], 15);
+    }
+
+    // Ensure clicks go through on mobile (Leaflet already handles)
+    mapNode.style.pointerEvents = 'auto';
+  }
+
+  /* ---------- Cards ---------- */
   let order = [...promises.keys()].map((i) => i);
 
   function shuffleArray(arr){
@@ -91,12 +246,11 @@
       build();
       if(Array.isArray(revealed)) revealed.forEach(i => revealByIndex(i, false));
       updateProgress();
-    }catch{
-      build();
-    }
+    }catch{ build(); }
   }
 
   function build(){
+    const grid = document.getElementById("grid");
     grid.innerHTML = "";
     if(totalEl) totalEl.textContent = promises.length;
     if(mTotalEl) mTotalEl.textContent = promises.length;
@@ -120,6 +274,7 @@
         if(willReveal) celebrate(card);
         updateProgress();
         save();
+        if (navigator.vibrate) navigator.vibrate(10);
       }, { passive:true });
       grid.appendChild(card);
     });
@@ -210,35 +365,18 @@
   const paceModal = document.getElementById('paceModal');
   const paceScrim = document.getElementById('paceScrim');
   const paceOk = document.getElementById('paceOk');
-
-  function openPace(){
-    paceScrim.classList.add('show');
-    paceModal.classList.add('open');
-    const btn = paceOk || paceModal.querySelector('button');
-    if(btn) btn.focus();
-    document.body.classList.add('no-scroll');
-  }
-  function closePace(){
-    paceScrim.classList.remove('show');
-    paceModal.classList.remove('open');
-    document.body.classList.remove('no-scroll');
-  }
+  function openPace(){ paceScrim.classList.add('show'); paceModal.classList.add('open'); document.body.classList.add('no-scroll'); }
+  function closePace(){ paceScrim.classList.remove('show'); paceModal.classList.remove('open'); document.body.classList.remove('no-scroll'); }
   function handlePace(){ openPace(); }
   paceScrim.addEventListener('click', (e)=>{ e.stopPropagation(); closePace(); });
   paceOk.addEventListener('click', (e)=>{ e.stopPropagation(); closePace(); });
-  window.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape' && paceModal.classList.contains('open')) closePace();
-  });
+  window.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && paceModal.classList.contains('open')) closePace(); });
 
   /* Binding */
   function bindButton(id, handler){
     const el = document.getElementById(id);
     if(!el) return;
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      handler();
-    }, { passive: false });
+    el.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); handler(); }, { passive: false });
   }
   [
     ['d_revealOne', handleRevealOne], ['d_revealAll', handleRevealAll],
@@ -250,10 +388,10 @@
   ].forEach(([id, fn]) => bindButton(id, fn));
 
   /* Init */
-  syncSidebarOffset();
   renderTimeline(timeline);
   shuffleArray(order);
   build();
   updateProgress();
   load();
+  initLeafletMap(placesMap);
 })();

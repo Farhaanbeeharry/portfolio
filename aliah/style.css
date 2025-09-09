@@ -28,6 +28,16 @@ body{
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Emoji dust */
+#emojiDust{
+  position: fixed;
+  inset: 0;
+  z-index: 1;            /* BELOW main content & map */
+  pointer-events: none;  /* never blocks taps */
+  overflow: hidden;
+  opacity: .25;
+}
+
 /* Header */
 header{
   position: sticky;
@@ -41,6 +51,7 @@ header{
 .wrap.small{max-width:1100px}
 
 .header-card{
+  position: relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -49,9 +60,18 @@ header{
   background: var(--card);
   border-radius: 18px;
   box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
-  position: relative;
+  overflow: hidden;
 }
-.row{display:flex;align-items:center;gap:10px}
+.stars-canvas{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.15));
+}
+.row{display:flex;align-items:center;gap:10px; position: relative; z-index: 2;}
 .title{display:flex;align-items:center;gap:10px}
 .logo{
   width:34px;height:34px;border-radius:50%;
@@ -68,6 +88,8 @@ h1{font-size:1.1rem;margin:0}
   gap:18px;
   padding: 0 18px 28px;
   width:100%;
+  z-index: 2;           /* ABOVE emoji dust */
+  position: relative;
 }
 
 /* Sidebar */
@@ -89,11 +111,10 @@ h1{font-size:1.1rem;margin:0}
   border-radius: 18px;
   padding: 16px;
   box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
-  margin: 20px 18px 18px;
+  margin: 0 18px 18px;
+  z-index: 2;
 }
-.mobile-panel .portrait{
-  justify-content: center;
-}
+.mobile-panel .portrait{ justify-content: center; }
 
 /* Responsive */
 @media (max-width:900px){
@@ -121,9 +142,7 @@ button:hover,.btn-ghost:hover{
 button:active{ transform: translateY(0); filter: brightness(.98); }
 button:focus-visible,.btn-ghost:focus-visible{
   outline: none;
-  box-shadow:
-    0 0 0 3px rgba(255,255,255,.15),
-    0 0 0 5px var(--ring);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.15), 0 0 0 5px var(--ring);
 }
 
 .portrait{display:flex;justify-content:center;margin:6px 0 10px}
@@ -154,67 +173,69 @@ button:focus-visible,.btn-ghost:focus-visible{
   box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
   margin-bottom: 18px;
 }
-.tl{
-  list-style: none;
-  margin: 0;
-  padding: 6px 0 0 0;
-  position: relative;
-}
+.tl{ list-style:none; margin:0; padding:6px 0 0 0; position: relative; }
 .tl::before{
   content: "";
-  position: absolute;
-  left: 16px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+  position: absolute; left: 16px; top: 0; bottom: 0; width: 2px;
   background: linear-gradient(180deg, var(--brand), var(--brand-2));
-  opacity: .6;
-  border-radius: 2px;
+  opacity: .6; border-radius: 2px;
 }
 .tl-item{
   position: relative;
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 12px;
-  padding: 10px 0 18px 0;
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 12px; padding: 10px 0 18px 0;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .5s ease, transform .5s ease;
 }
+.tl-item.revealed{ opacity: 1; transform: none; }
 .tl-item:last-child{ padding-bottom: 6px; }
 .tl-dot{
-  position: absolute;
-  left: 10px;
-  top: 18px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
+  position: absolute; left: 10px; top: 18px;
+  width: 14px; height: 14px; border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 4px rgba(255,255,255,.06), 0 8px 18px rgba(0,0,0,.4);
 }
-.tl-date{
-  color: var(--muted);
-  font-weight: 700;
-  letter-spacing: .3px;
-  padding-left: 36px;
-  line-height: 1.2;
-}
+.tl-date{ color: var(--muted); font-weight: 700; letter-spacing: .3px; padding-left: 36px; line-height: 1.2; }
 .tl-card{
   background: rgba(255,255,255,.02);
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.06);
-  padding: 12px 14px;
-  box-shadow: 0 6px 16px rgba(0,0,0,.35);
+  border-radius: 14px; border: 1px solid rgba(255,255,255,.06);
+  padding: 12px 14px; box-shadow: 0 6px 16px rgba(0,0,0,.35);
 }
 .tl-card p{ margin: 0 0 8px 0; color: var(--ink); }
 .tl-card p:last-child{ margin-bottom: 0; }
 .tl-card .small{ color: var(--muted); font-size: .95rem; }
 
 @media (max-width:700px){
-  .tl-item{
-    grid-template-columns: 1fr;
-    padding-left: 36px;
-  }
+  .tl-item{ grid-template-columns: 1fr; padding-left: 36px; }
   .tl-date{ padding-left: 0; }
   .tl::before{ left: 18px; }
   .tl-dot{ left: 12px; }
+}
+
+/* Real map (Leaflet) */
+.places{
+  background: var(--card);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
+  margin-bottom: 18px;
+}
+.mapbox{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.45);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.leaflet-map{
+  height: 360px;
+  z-index: 3;          /* ABOVE any background layers */
+  touch-action: pan-x pan-y; /* proper gestures */
+}
+.places-hint{
+  margin: 8px 2px 0;
+  font-size: .95rem;
+  color: var(--muted);
 }
 
 /* Cards */
@@ -234,10 +255,7 @@ main.content{padding:0}
   box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
   background: var(--card);
 }
-.card.revealed .inner{
-  transform: rotateY(180deg);
-  box-shadow: 0 12px 28px rgba(0,0,0,.5), inset 0 0 0 1px var(--ring)
-}
+.card.revealed .inner{ transform: rotateY(180deg); box-shadow: 0 12px 28px rgba(0,0,0,.5), inset 0 0 0 1px var(--ring) }
 .face{
   position:absolute; inset:0; backface-visibility:hidden;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -276,13 +294,9 @@ main.content{padding:0}
   opacity: 0;
   transition: transform .25s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
   z-index: 70;
-  pointer-events: none;      /* important: don't block taps when closed */
+  pointer-events: none;
 }
-.modal.open{
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-  pointer-events: auto;      /* active only when open */
-}
+.modal.open{ opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
 .modal header{ position: static; padding: 0; border: 0; background: transparent; }
 .modal-title{ display:flex; align-items:center; gap:10px; margin: 0 0 6px 0; font-size: 1.1rem; }
 .modal .lead{ margin-top: 4px; }
@@ -298,9 +312,7 @@ main.content{padding:0}
   opacity:0;transition:opacity .25s, transform .25s;z-index:20;
   pointer-events: none;
 }
-.toast.show{
-  opacity:1;transform:translateX(-50%) translateY(-4px);
-}
+.toast.show{ opacity:1;transform:translateX(-50%) translateY(-4px); }
 
 /* Tap responsiveness */
 button, .card { touch-action: manipulation; }
