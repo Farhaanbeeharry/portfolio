@@ -1,6 +1,6 @@
-// Fetch data, then boot the app
+// Boot the app after fetching data
 (async () => {
-  // Helper: set sticky offset for sidebar
+  /* Sticky offset for sidebar */
   function syncSidebarOffset(){
     const header = document.querySelector('header');
     if(!header) return;
@@ -13,25 +13,26 @@
     document.fonts.ready.then(syncSidebarOffset);
   }
 
-  // Try to load promises/emojis from JSON, fall back to defaults if needed
+  /* Load data */
   let promises = [];
   let emojis = [];
+  let timeline = [];
   try {
     const res = await fetch('data.json', { cache: 'no-store' });
     const data = await res.json();
     promises = Array.isArray(data.promises) ? data.promises : [];
     emojis = Array.isArray(data.emojis) ? data.emojis : [];
+    timeline = Array.isArray(data.timeline) ? data.timeline : [];
   } catch (e) {
-    // Fallback (minimal) in case data.json isn't served
-    promises = [
-      "I fell in love with your voice, your smile, your sweetness, your adorable little chaos, and the way time bends when I'm with you",
-      "I love the way you look at me like I'm the only person in the room",
-      "I love that we laugh at the same silly things and have the same taste over stuffs"
-    ];
-    emojis = ["💖","✨","🥰","🎀","🌸","🍫","🫶","🌈"];
     console.warn('data.json could not be loaded, using fallback data.');
+    promises = [
+      "I fell in love with your voice, your smile, your sweetness, your adorable little chaos, and the way time bends when I'm with you"
+    ];
+    emojis = ["💖","✨","🥰","🌸"];
+    timeline = [];
   }
 
+  /* Elements */
   const grid = document.getElementById("grid");
   const countEl = document.getElementById("count");
   const totalEl = document.getElementById("total");
@@ -40,8 +41,25 @@
   const mTotalEl = document.getElementById("m_total");
   const mFill = document.getElementById("m_fill");
   const toast = document.getElementById("toast");
+  const tlEl = document.getElementById("tl");
 
-  // Build cards
+  /* Timeline render */
+  function renderTimeline(items){
+    if(!tlEl || !items.length) return;
+    tlEl.innerHTML = "";
+    items.forEach(({ date, textHTML }) => {
+      const li = document.createElement('li');
+      li.className = 'tl-item';
+      li.innerHTML = `
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div class="tl-date">${date}</div>
+        <article class="tl-card">${textHTML}</article>
+      `;
+      tlEl.appendChild(li);
+    });
+  }
+
+  /* Cards state */
   let order = [...promises.keys()].map((i) => i);
 
   function shuffleArray(arr){
@@ -188,7 +206,7 @@
     save();
   }
 
-  /* Custom Pace Modal */
+  /* Pace modal */
   const paceModal = document.getElementById('paceModal');
   const paceScrim = document.getElementById('paceScrim');
   const paceOk = document.getElementById('paceOk');
@@ -212,7 +230,7 @@
     if(e.key === 'Escape' && paceModal.classList.contains('open')) closePace();
   });
 
-  /* CLICK BINDING ONLY */
+  /* Binding */
   function bindButton(id, handler){
     const el = document.getElementById(id);
     if(!el) return;
@@ -222,20 +240,18 @@
       handler();
     }, { passive: false });
   }
-
-  /* Wire buttons (desktop + mobile) */
   [
     ['d_revealOne', handleRevealOne], ['d_revealAll', handleRevealAll],
     ['d_resetAll',  handleReset],     ['d_shuffle',   handleShuffle],
     ['d_pace',      handlePace],
-
     ['m_revealOne', handleRevealOne], ['m_revealAll', handleRevealAll],
     ['m_resetAll',  handleReset],     ['m_shuffle',   handleShuffle],
     ['m_pace',      handlePace],
   ].forEach(([id, fn]) => bindButton(id, fn));
 
-  // Init
+  /* Init */
   syncSidebarOffset();
+  renderTimeline(timeline);
   shuffleArray(order);
   build();
   updateProgress();
