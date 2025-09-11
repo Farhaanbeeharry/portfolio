@@ -58,7 +58,57 @@
     "I promise to love you in words, in actions, and in all the quiet in betweens"
   ],
   "emojis": [
-    "💖","✨","🥰","🎀","🌸","🍫","🫶","🌈","🎬","📸","🍰","☕","🌙","🌊","🌻","🎁","😂","👩‍❤️‍👨","🧁","🧣","🧸","🎈","🌟","💐","📝","🎶","🛐","🏡","👶","✈️","🏖️","🍿","📚","🥞","🍦","🧭","🎡","🌆","🌧️","🚗","🧺","🫖","📱","🔋","💤","🛏️","🕯️","🐣","🍵","💌","🧡"
+    "💖",
+    "✨",
+    "🥰",
+    "🎀",
+    "🌸",
+    "🍫",
+    "🫶",
+    "🌈",
+    "🎬",
+    "📸",
+    "🍰",
+    "☕",
+    "🌙",
+    "🌊",
+    "🌻",
+    "🎁",
+    "😂",
+    "👩‍❤️‍👨",
+    "🧁",
+    "🧣",
+    "🧸",
+    "🎈",
+    "🌟",
+    "💐",
+    "📝",
+    "🎶",
+    "🛐",
+    "🏡",
+    "👶",
+    "✈️",
+    "🏖️",
+    "🍿",
+    "📚",
+    "🥞",
+    "🍦",
+    "🧭",
+    "🎡",
+    "🌆",
+    "🌧️",
+    "🚗",
+    "🧺",
+    "🫖",
+    "📱",
+    "🔋",
+    "💤",
+    "🛏️",
+    "🕯️",
+    "🐣",
+    "🍵",
+    "💌",
+    "🧡"
   ],
   "timeline": [
     {
@@ -88,29 +138,87 @@
     {
       "date": "09.09.2025",
       "textHTML": "<p>Today I made the website even more meaningful. I added a timeline, a path that shows our journey together, the moments and milestones that led me closer to her heart. From the first time I saw her smile, to our first conversation, our WhatsApp chats, our date at Maison de thé, and beyond.</p><p>The timeline tells our story in order, like chapters of a love book unfolding before us. It is not just a design, but a memory lane where every step is preserved, reminding us where we began and where we are heading, in shaa Allah.</p>"
+    },
+    {
+      "date": "11.09.2025",
+      "textHTML": "<p>Today carried a special sweetness. I brought her a box of macarons, and as we sat together in the car, I gently fed her a chocolate one, its taste melting into the moment. Her cousin accompanied her, for she could not leave the house alone, and together they quietly slipped away just to meet me. In that precious time, I leaned in and placed my very first kiss upon her forehead, a tender promise in silence, a blessing pressed softly against her skin.</p>"
     }
   ],
   "places_map": [
     {
+      "name": "Farhaan's House",
+      "latlng": [
+        -20.1561602,
+        57.5160043
+      ],
+      "emoji": "🏠",
+      "note": "Where Farhaan lives"
+    },
+    {
+      "name": "First Saw Her",
+      "latlng": [
+        -20.160225,
+        57.5120762
+      ],
+      "emoji": "👀",
+      "date": "16.08.2025",
+      "note": "The moment I first saw her smile, time stopped."
+    },
+    {
       "name": "Maison de thé, Telfair",
-      "latlng": [-20.2308852,57.5099414],
+      "latlng": [
+        -20.2308852,
+        57.5099414
+      ],
       "emoji": "🍵",
       "date": "06.09.2025",
       "note": "Late lunch, chicken panini for her, perfect with her across the table."
     },
     {
       "name": "MCiné Tribeca",
-      "latlng": [-20.2462265,57.495558],
+      "latlng": [
+        -20.2462265,
+        57.495558
+      ],
       "emoji": "🎬",
       "date": "06.09.2025",
       "note": "Saiyaara in the premium theatre, where our hands met."
     },
     {
       "name": "Gift Stop",
-      "latlng": [-20.240229, 57.505139],
+      "latlng": [
+        -20.240229,
+        57.505139
+      ],
       "emoji": "🎁",
       "date": "06.09.2025",
       "note": "Where I gave her chocolate, perfume, and a bracelet."
+    },
+    {
+      "name": "First Forehead Kiss",
+      "latlng": [
+        -20.161037,
+        57.517044
+      ],
+      "emoji": "😘",
+      "date": "11.09.2025",
+      "note": "A tender kiss on her forehead, a silent promise."
+    }
+  ],
+  "food_places": [
+    {
+      "name": "Maison de thé",
+      "location": "Telfair",
+      "visited": true,
+      "date": "06.09.2025",
+      "note": "Our first date — chicken panini, mango ice tea, beef steak, mochaccino 💕"
+    },
+    {
+      "name": "Blacksheeep",
+      "location": "Ebène",
+      "visited": false,
+      "date": null,
+      "note": "Next on our list for coffee and desserts ☕🍰"
     }
   ]
 }
