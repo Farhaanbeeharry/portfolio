@@ -142,6 +142,18 @@
     {
       "date": "11.09.2025",
       "textHTML": "<p>Today carried a special sweetness. I brought her a box of macarons, and as we sat together in the car, I gently fed her a chocolate one, its taste melting into the moment. Her cousin accompanied her, for she could not leave the house alone, and together they quietly slipped away just to meet me. In that precious time, I leaned in and placed my very first kiss upon her forehead, a tender promise in silence, a blessing pressed softly against her skin.</p>"
+    },
+    {
+      "date": "12.09.2025",
+      "textHTML": "<p>This evening became one of the most cherished memories of my heart. At first her friend Azra was meant to bring her from home to Ebene so we could meet for dinner, but Azra was late. So after work I drove from Ebene to Port Louis to pick her up myself, and together we returned to Blacksheeep in Ebene.</p><p>We shared a plate of creamy chicken mushroom tagliatelle, one meal between us, forkful after forkful like a dance of love. She drank water, and I had a strawberry daiquiri, yet the real sweetness was in sharing.</p><p>After dinner we went to the theater to watch <em>Conjuring, The Last Rites</em>. The movie itself was nothing frightening, but she barely watched it. Her eyes kept searching for me, admiring me, her fingers finding mine, holding firmly. She leaned her head against my shoulder, and I felt her warmth flow into me. We even played our little game of thumb war, laughing together whenever the so called scary character appeared on the screen. It was not the film that captured me, but her presence, her touch, her laughter.</p><p>In the theater I kissed her hands and even breathed in their scent, a gesture that felt sacred. When the night ended, before dropping her home, I placed a gentle kiss on her cheek, our very first. That soft kiss, simple and pure, carried the weight of my affection, my joy, my love.</p>"
+    },
+    {
+      "date": "13.09.2025",
+      "textHTML": "<p>Today was a quicker meeting, yet filled with warmth. She had her cousin Shahana with her, whom I dropped at the bus stop before we went to a small shop together. There we had Alouda, hers was a small kulfi one, mine was a large pistachio, and we shared sips of each, tasting each other’s choices.</p><p>Back in the car, laughter and play filled the space. I teased her with a fake cockroach, and though it scared her at first, she kept it simply because it came from me. I gave her five tiny keychains with a little note, calling them a pocket hug, so she could hold them and think of me whenever she wished.</p><p>We hugged, and in that embrace I felt comfort, safety, peace, and home all at once. I realized how truly lucky I am, Alhamdulillah, to have her in my life. Every moment beside her is a blessing. Before her father came to fetch her, I dropped her back home, my heart still wrapped in her presence.</p>"
+    },
+    {
+      "date": "15.09.2025",
+      "textHTML": "<p>Today was the first time I met her little baby sister Alisha. I picked up Aliah at 18:30 and then together we went to fetch Alisha from tuition. She was shy, so shy that she did not speak a word for almost half an hour.</p><p>We went to Panarottis on Edith Cavell Street and had dinner, the three of us. When I gave Aliah a sip of my drink, her fingers brushed against mine while holding the glass, and it felt like electricity flowing through me. She did not want her sister to notice the way we hold hands, hug, and stay close, so I teased her with my feet under the table instead.</p><p>After dinner we took some selfies, and among them was our very first cheeks kiss selfie, one that I absolutely adore. When we leaned close, I looked into her eyes and saw her biting her glossy lips, so tempting, and I wanted to kiss her, but I resisted.</p><p>Afterward I dropped them home. Alisha is adorable, even in her silence, and though she barely spoke, I know that with time she will open up and feel at ease with me. I want to treat her like my own little sister, because Aliah’s family is my family, and that is how I will always see them.</p>"
     }
   ],
   "places_map": [
@@ -203,6 +215,45 @@
       "emoji": "😘",
       "date": "11.09.2025",
       "note": "A tender kiss on her forehead, a silent promise."
+    },
+    {
+      "name": "Blacksheeep",
+      "latlng": [
+        -20.241276,
+        57.4878729
+      ],
+      "emoji": "🍝",
+      "date": "12.09.2025",
+      "note": "Dinner, one plate of tagliatelle shared between us."
+    },
+    {
+      "name": "Adam Alouda",
+      "latlng": [
+        -20.163078,
+        57.5056097
+      ],
+      "emoji": "🥛",
+      "date": "13.09.2025",
+      "note": "For a quick alouda treat 🍧"
+    },
+    {
+      "name": "Panarottis, Edith Cavell Street",
+      "latlng": [
+        -20.1640723,
+        57.4992903
+      ],
+      "emoji": "🍕",
+      "date": "15.09.2025",
+      "note": "Dinner with her and her little sister 🍝"
+    },
+    {
+      "name": "First Cheeks Kiss Selfie",
+      "latlng": [
+        -20.164172,
+        57.499622
+      ],
+      "emoji": "😚",
+      "note": "Our very first cheeks kiss selfie, one that I absolutely adore."
     }
   ],
   "food_places": [
@@ -216,9 +267,23 @@
     {
       "name": "Blacksheeep",
       "location": "Ebène",
-      "visited": false,
-      "date": null,
+      "visited": true,
+      "date": "12.09.2025",
       "note": "Next on our list for coffee and desserts ☕🍰"
+    },
+    {
+      "name": "Adam Alouda",
+      "location": "Rue Desforges",
+      "visited": true,
+      "date": "13.09.2025",
+      "note": "For a quick alouda treat 🍧"
+    },
+    {
+      "name": "Panarottis",
+      "location": "Edith Cavell Street",
+      "visited": true,
+      "date": "15.09.2025",
+      "note": "Dinner with her and her little sister 🍝"
     }
   ]
 }
