@@ -158,6 +158,10 @@
     {
       "date": "16.09.2025",
       "textHTML": "<p>After work I went to pick her up from her home, and together we went to Caudan Waterfront. We had dinner there, sharing a panini and a wrap, with chips and salad on the side, and only one lemon iced tea between us. I even fed her some chips, and it was so cute, like a little piece of love wrapped in laughter.</p><p>Before dinner, while waiting for the food, we sat near the sea on a bench. I held her close as the breeze wrapped around us, and in that moment it felt just like home. With her, I feel peace, comfort, and everything I have ever longed for.</p><p>After dinner, I took out a baby wipe and gently cleaned her hand, treating her like my little baby. That simple act of care made me feel even closer to her, as though she were already a part of me.</p><p>Later, in the car, I gave her a small gift, an earphone so she could use it to talk to me at night, whispering softly into the mic as though she were right beside me. We talked, laughed, hugged, held hands, and filled the air with our crazy and cute selfies.</p><p>And then came the moment that changed everything. She was blabbering sweetly, her eyes restless, her feet shifting, her gaze dropping to my lips again and again. I held her face gently, pulled her close, and kissed her on the lips. For a second she was shocked, her eyes wide with astonishment, but then she melted into it. She told me it was her dream, her first kiss, and it was everything she had imagined.</p><p>We kissed again, and this time our lips lingered, soft yet intense, melting into a French kiss. It was a kiss full of emotions, full of feelings, a kiss that spoke more than words could ever carry. Her lips tasted sweet, intoxicating, addictive, leaving me yearning for more even as they parted. Her scent wrapped around me, her closeness overwhelmed me, and it felt like peace, like comfort, like home itself.</p><p>Even now, I am already missing the taste of her lips, the way her breath mingled with mine, the way her body leaned into me as if we belonged to each other. Tonight was more than a kiss, it was a promise, a memory etched forever in my soul.</p>"
+    },
+    {
+      "date": "17.09.2025",
+      "textHTML": "<p>We met this evening around 19:15 and went to Jumbo Riche Terre. We picked up some snacks, and I chose chocolates especially for her. Back in the car, the world seemed to fade away as it always does when I am with her. We talked, we laughed, we smiled, and every word between us felt like another thread tying our souls together.</p><p>Tonight we made promises to each other, and confessed what our hearts had been whispering all along. I fed her chocolates with my own hands, watching the sweetness melt on her lips, and in that simple act I felt the joy of giving, the beauty of closeness. I asked her to place her feet on me, and as I gave her a gentle mini massage, I could see her relax, sinking into comfort. I kissed her feet, not out of duty, but out of pure love, a devotion that flows naturally from my heart.</p><p>With her, I feel something I cannot describe easily; I feel safe, protected, and cherished. Even in the quiet of the car, with only her beside me, I felt as though nothing in this world could harm me. Her presence shields me, calms me, gives me a peace I have never known before. She feels like home, not just a place but a sanctuary of love and comfort where I belong.</p>"
     }
   ],
   "places_map": [
@@ -258,6 +262,26 @@
       ],
       "emoji": "😚",
       "note": "Our very first cheeks kiss selfie, one that I absolutely adore."
+    },
+    {
+      "name": "Caudan Waterfront",
+      "latlng": [
+        -20.1604775,
+        57.4967847
+      ],
+      "emoji": "💏",
+      "date": "16.09.2025",
+      "note": "Where I kissed her on the lips for the first time."
+    },
+    {
+      "name": "Jumbo Riche Terre",
+      "latlng": [
+        -20.1353503,
+        57.4094922
+      ],
+      "emoji": "🛒",
+      "date": "17.09.2025",
+      "note": "Where I bought chocolates for her and massaged her feet."
     }
   ],
   "food_places": [
@@ -288,7 +312,13 @@
       "visited": true,
       "date": "15.09.2025",
       "note": "Dinner with her and her little sister 🍝"
+    },
+    {
+      "name": "Kebz",
+      "location": "Caudan Waterfront",
+      "visited": true,
+      "date": "16.09.2025",
+      "note": "Shared wrap and panini, one lemon iced tea 🍹"
     }
   ]
-
 }
