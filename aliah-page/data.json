@@ -179,6 +179,15 @@
       "note": "Where Farhaan lives"
     },
     {
+      "name": "Aliah's House",
+      "latlng": [
+        -20.162195, 
+        57.517427
+      ],
+      "emoji": "🏠",
+      "note": "Where Aliah lives"
+    },
+    {
       "name": "First Saw Her",
       "latlng": [
         -20.160225,
@@ -344,5 +353,6 @@
   ]
 
 }
+
 
 
