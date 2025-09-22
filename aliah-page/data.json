@@ -166,6 +166,10 @@
     {
       "date": "18.09.2025",
       "textHTML": "<p>This evening we went out for ice cream with her sister and her cousin. We went to Dhany's Délice, and the three of us enjoyed every scoop. They loved the ice cream, and truly it was delicious, the kind of simple joy that makes a night feel special.</p><p>On the way back home, we listened to Royoss songs, because her sister and her cousin adore them. The car was filled with music and laughter, a lighthearted soundtrack to our little journey.</p><p>When we reached her home, she waited patiently for her sister and cousin to step out of the car, and then she leaned in quickly to give me a kiss. That single moment carried so much sweetness, a secret just between us.</p><p>It was the fourth straight day we met, yet still it felt like it was not enough. No time will ever feel enough with her, because she is my everything, my peace, my joy, my love.</p>"
+    },
+    {
+      "date": "20.09.2025",
+      "textHTML": "<p>Today I went to pick her up, and together we went to fetch her cousins Shahana and Shahtaaj from Triolet. We had planned to go to OBOĒ Gardenstē for coffee, but upon arriving we were told it was already closed. So instead, we made our way to Nando’s at La Croisette.</p><p>We enjoyed our meal there, and for dessert I ordered a chocolate lava cake with vanilla ice cream. Feeding her spoonfuls of it, watching her smile with every bite, filled me with a tenderness I can hardly put into words.</p><p>Afterward, we dropped her cousins back home, and then it was just us. We found a quiet, silent parking spot where we sat together and spoke from the heart. We confessed how much we love each other, letting words flow that were long waiting to be spoken. I had prepared a handwritten agreement of love, promises, and confessions, and that evening we both signed it. I tucked it away safely, as a treasure of our bond.</p><p>We kissed after that, a long kiss, passionate and deep, one that stirred our souls and left us breathless. We stared into each other’s eyes, hugged tightly, and took selfies, playful and happy, capturing the joy of the moment.</p><p>At last, I dropped her home and then went back to mine, carrying with me the sweetness of her smile, the fire of her kiss, and the comfort of knowing that our love had deepened in yet another unforgettable way.</p>"
     }
   ],
   "places_map": [
@@ -305,6 +309,16 @@
       "emoji": "🍦",
       "date": "18.09.2025",
       "note": "Had ice cream with her sister and her cousin 🍦"
+    },
+    {
+      "name": "Nando's GBLC",
+      "latlng": [
+        -20.0220162,
+        57.5782135
+      ],
+      "emoji": "🍗",
+      "date": "20.09.2025",
+      "note": "Had burger, wrap and chocolate lava cake with vanilla ice cream 🍨"
     }
   ],
   "food_places": [
@@ -349,10 +363,17 @@
       "visited": true,
       "date": "18.09.2025",
       "note": "Had ice cream with her sister and her cousin 🍦"
+    },
+    {
+      "name": "Nando's GBLC",
+      "location": "Grand Baie",
+      "visited": true,
+      "date": "20.09.2025",
+      "note": "Had burger, wrap and chocolate lava cake with vanilla ice cream 🍨"
     }
   ]
-
 }
+
 
 
 
