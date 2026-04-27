@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Blaugrana</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta
+      name="description"
+      content="Blaugrana football club management web app for match attendance, member records, payments, and club finance tracking" />
+    <meta
+      name="keywords"
+      content="blaugrana, football club, club management, web app, firebase, supabase, payments, attendance, finance dashboard" />
+    <meta name="author" content="Farhaan Beeharry" />
+    <link rel="shortcut icon" href="../../img/logo.ico" />
+
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/bootstrap-grid.min.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/animations.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/perfect-scrollbar.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/magnific-popup.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+
+    <script src="../../js/modernizr.custom.js"></script>
+  </head>
+
+  <body>
+    <div
+      class="lm-animated-bg"
+      style="background-image: url(img/main_bg.png)"></div>
+
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner"></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="page-content">
+        <header id="site_header" class="header mobile-menu-hide">
+          <div class="header-content">
+            <div class="header-photo">
+              <img src="../../img/profile_picture.jpg" alt="Farhaan Beeharry" />
+            </div>
+            <div class="header-titles">
+              <h2>Farhaan Beeharry</h2>
+              <h4>Software Engineer</h4>
+            </div>
+          </div>
+
+          <ul class="main-menu">
+            <li class="active">
+              <a href="../../index.html#home" class="nav-anim">
+                <span class="menu-icon lnr lnr-home"></span>
+                <span class="link-text">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#about-me" class="nav-anim">
+                <span class="menu-icon lnr lnr-user"></span>
+                <span class="link-text">About Me</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#resume" class="nav-anim">
+                <span class="menu-icon lnr lnr-graduation-hat"></span>
+                <span class="link-text">Resume</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#portfolio" class="nav-anim">
+                <span class="menu-icon lnr lnr-briefcase"></span>
+                <span class="link-text">Portfolio</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="social-links">
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/farhaan-bms/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/Farhaanbeeharry" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://app.codesignal.com/profile/farhaan"
+                  target="_blank"
+                  ><i class="code-icon fa fa-code"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.behance.net/farhaanbeeharry"
+                  target="_blank"
+                  ><i class="fab fa-behance"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/farhaan_beeharry/"
+                  target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://wa.me/23057076881/" target="_blank"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="header-buttons">
+            <a
+              href="../../assets/Farhaan Beeharry CV.pdf"
+              target="_blank"
+              class="btn btn-primary"
+              >Download CV</a
+            ><br />
+            <a
+              href="../../assets/Farhaan Beeharry CV_FRENCH.pdf"
+              target="_blank"
+              >Telecharger la version francaise</a
+            >
+          </div>
+
+          <div class="copyrights">&copy; 2026 All rights reserved.</div>
+        </header>
+
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+
+        <div class="content-area single-page-area">
+          <div class="single-page-content">
+            <article class="post">
+              <div class="post-thumbnail">
+                <img src="background.png" alt="Blaugrana Project Cover" />
+              </div>
+
+              <div class="post-content">
+                <header class="entry-header">
+                  <div class="entry-meta entry-meta-top">
+                    <span><a href="#" rel="category tag">Web App</a></span>
+                  </div>
+                  <h2 class="entry-title">
+                    <strong>Blaugrana</strong>
+                  </h2>
+                </header>
+
+                <div class="entry-content">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                      <div class="col-inner">
+                        Blaugrana is a responsive football club management web
+                        app designed to help a local squad manage members,
+                        match availability, payment tracking, and club finances
+                        from one simple dashboard.
+
+                        <br /><br />
+                        The app was built to replace scattered manual workflows
+                        with a clearer digital system. Admins can review the
+                        squad overview, track who has paid, monitor outstanding
+                        dues, create match schedules, and view the club treasury
+                        without switching between spreadsheets, chat messages,
+                        and separate finance notes.
+
+                        <br /><br />
+                        Blaugrana includes separate admin and member
+                        experiences. Admin users get operational tools for
+                        managing matches, payments, finance records, and
+                        members, while regular members can check their profile,
+                        see upcoming matches, vote on availability, and review
+                        their payment status.
+
+                        <br /><br />
+                        Key features include:
+                        <ul>
+                          <li>Admin and member dashboard views</li>
+                          <li>Match scheduling and attendance voting</li>
+                          <li>Member directory and profile management</li>
+                          <li>Monthly and per-session payment tracking</li>
+                          <li>Finance ledger for income and expenses</li>
+                          <li>Club balance, collected amount, and pending dues</li>
+                          <li>Firebase Authentication for user access</li>
+                          <li>Supabase-backed finance data management</li>
+                          <li>Responsive desktop and mobile navigation</li>
+                        </ul>
+
+                        <br />
+                        The interface was designed around fast scanning and
+                        repeated use. Important club metrics are surfaced as
+                        dashboard cards, match participation is visualized with
+                        progress indicators, and finance data is grouped into
+                        clear income, expense, and balance summaries.
+
+                        <br /><br />
+                        On the member side, the app keeps the experience
+                        focused on the tasks players need most: checking their
+                        current payment status, voting for the next match, and
+                        viewing membership details. This keeps the product
+                        useful for both administrators and regular club members.
+
+                        <br /><br />
+                        Tech stack:
+                        <strong
+                          >HTML, CSS, JavaScript, Tailwind CSS, Firebase
+                          Authentication, Firestore, Supabase, Progressive Web
+                          App manifest, and service worker support.</strong
+                        >
+
+                        <br /><br />
+                        Blaugrana is a practical web product focused on
+                        community sports operations, combining club
+                        administration, member self-service, attendance
+                        coordination, and financial visibility into one
+                        lightweight application.
+
+                        <br /><br />
+                        Live website:
+                        <a href="https://foot.farhaan.info/" target="_blank"
+                          >https://foot.farhaan.info/</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="entry-meta entry-meta-bottom">
+                  <div class="date-author">
+                    <span class="entry-date"
+                      ><i class="far fa-clock"></i>
+                      <span class="entry-date"> April 28, 2026</span></span
+                    >
+                    <span class="author vcard"
+                      ><i class="fas fa-user"></i> Farhaan Beeharry</span
+                    >
+                  </div>
+                </div>
+
+                <div class="post-tags">
+                  <div class="tags">
+                    <a href="#" rel="tag">web app</a>
+                    <a href="#" rel="tag">club management</a>
+                    <a href="#" rel="tag">football</a>
+                    <a href="#" rel="tag">firebase</a>
+                    <a href="#" rel="tag">supabase</a>
+                    <a href="#" rel="tag">dashboard</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/modernizr.custom.js"></script>
+    <script src="../../js/animating.js"></script>
+    <script src="../../js/imagesloaded.pkgd.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="../../js/perfect-scrollbar.min.js"></script>
+    <script src="../../js/jquery.shuffle.min.js"></script>
+    <script src="../../js/masonry.pkgd.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/jquery.magnific-popup.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
+    <script src="../../js/jquery.googlemap.js"></script>
+    <script src="../../js/validator.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>
