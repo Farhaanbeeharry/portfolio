@@ -32,6 +32,7 @@
       href="../../css/magnific-popup.css"
       type="text/css" />
     <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
 
     <script src="../../js/modernizr.custom.js"></script>
   </head>
@@ -159,7 +160,7 @@
               <div class="post-content">
                 <header class="entry-header">
                   <div class="entry-meta entry-meta-top">
-                    <span><a href="#" rel="category tag">Web App</a></span>
+                    <span><a href="#" rel="category tag">Web</a></span>
                   </div>
                   <h2 class="entry-title">
                     <strong>MoMento</strong>
@@ -170,85 +171,251 @@
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        MoMento is a project collaboration and meeting minutes
-                        web application built to help teams organize workspaces,
-                        document meetings, assign action items, and keep project
-                        follow-up visible from one central dashboard.
+                        MoMento is a collaborative project-management platform
+                        that turns meeting minutes into action. Teams document
+                        minutes of meeting (attendees, decisions, notes), spin
+                        action items straight out of them, and drive delivery
+                        through a full Jira-style workflow — kanban and list
+                        boards, sprints with capacity planning, story points,
+                        test-case management and hierarchical project documents.
+                        Built with Angular 20 (standalone components, signals)
+                        on a Supabase backend.
 
                         <br /><br />
-                        The platform is designed around real project workflows.
-                        Users can create project workspaces, invite team
-                        members, manage pending invitations, customize project
-                        identity, and switch between active projects from a
-                        clean workspace layout.
-
-                        <br /><br />
-                        Inside each project, MoMento provides a dashboard for
-                        recent activity, meeting documentation, upcoming
-                        meetings, and open action items. The interface combines
-                        structured tables, filters, status badges, user avatars,
-                        and responsive layouts to keep collaboration clear and
-                        easy to scan.
-
-                        <br /><br />
-                        Meeting minutes can include agenda items, discussion
-                        points, decisions, attendees, author information,
-                        location, meeting time, and linked action items. Minutes
-                        can be kept as drafts, published to the team, viewed in
-                        a document-style layout, and exported as PDF for sharing
-                        or archiving.
-
-                        <br /><br />
-                        The action item module extends MoMento beyond simple
-                        note taking. It supports list and board views, assignee
-                        filtering, statuses, priorities, due dates, labels,
-                        story points, estimates, issue types, sprint grouping,
-                        parent-child task links, and soft-delete workflows.
-
-                        <br /><br />
-                        Key features include:
+                        Key features:
                         <ul>
-                          <li>Project workspace creation and management</li>
-                          <li>Team invitations and member collaboration</li>
-                          <li>Meeting minutes with agenda, notes, and decisions</li>
-                          <li>Published and draft MoM workflows</li>
-                          <li>Action item tracking with list and board views</li>
-                          <li>Sprints, labels, priorities, estimates, and due dates</li>
-                          <li>Role-aware project access and protected routes</li>
-                          <li>PDF export for meeting minutes</li>
-                          <li>Responsive light and dark UI with Angular Material components</li>
-                          <li>Project backup and restore tooling</li>
+                          <li>Minutes of meeting (draft/publish/archive) with attendees &amp; authorship</li>
+                          <li>Action items with issue types (Epic/Story/Bug/Task), priority &amp; status workflow</li>
+                          <li>Kanban board (drag &amp; drop) + list view</li>
+                          <li>Sprint planning with capacity &amp; goals</li>
+                          <li>Advanced multi-field filtering &amp; search</li>
+                          <li>Project documents in hierarchical folders (markdown + images)</li>
+                          <li>Test-case management with CSV/markdown import</li>
+                          <li>Team &amp; role management</li>
+                          <li>Project financing tracking</li>
                         </ul>
 
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#2b8cee;--brand-ink:#ffffff;--stage:#0c1622;--bg:#f6f7f8;--surface:#ffffff;--card:#ffffff;--text:#111418;--muted:#617589;--line:#dbe0e6;--ok:#22a06b;--warn:#e0a100;--danger:#e5484d;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">From minutes to done</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            From documented meetings to a Jira-style delivery
+                            board — recreated from the app's real Angular screens
+                            and colour system.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Dashboard -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">momento.app/board</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <span class="pf-t-lg" style="font-size:15px">MoMento</span>
+                                    </div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-tachometer-alt"></i></span> Dashboard</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-alt"></i></span> Minutes</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Action Items</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-bolt"></i></span> Sprints</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-folder"></i></span> Documents</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-grid3 pf-mb">
+                                      <div class="pf-stat brand">
+                                        <div class="n">42</div>
+                                        <div class="l">Total MoMs</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">17</div>
+                                        <div class="l">Open Items</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">8</div>
+                                        <div class="l">This Sprint</div>
+                                      </div>
+                                    </div>
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Recent minutes</div>
+                                      <div class="pf-li">
+                                        <div class="grow">
+                                          <div class="pf-t pf-strong">Sprint 12 planning</div>
+                                          <div class="pf-avs pf-mt">
+                                            <span class="pf-av">AS</span>
+                                            <span class="pf-av">RK</span>
+                                            <span class="pf-av">MJ</span>
+                                          </div>
+                                        </div>
+                                        <span class="pf-badge ok">Published</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <div class="grow">
+                                          <div class="pf-t pf-strong">Design review</div>
+                                          <div class="pf-avs pf-mt">
+                                            <span class="pf-av">LM</span>
+                                            <span class="pf-av">RK</span>
+                                          </div>
+                                        </div>
+                                        <span class="pf-badge warn">Draft</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <div class="grow">
+                                          <div class="pf-t pf-strong">Client kickoff</div>
+                                          <div class="pf-avs pf-mt">
+                                            <span class="pf-av">AS</span>
+                                            <span class="pf-av">MJ</span>
+                                            <span class="pf-av">TC</span>
+                                          </div>
+                                        </div>
+                                        <span class="pf-badge ok">Published</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Meetings hub</div>
+                            </div>
+
+                            <!-- Frame 2: Action Items board -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">momento.app/board/items</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <span class="pf-t-lg" style="font-size:15px">MoMento</span>
+                                    </div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-tachometer-alt"></i></span> Dashboard</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-alt"></i></span> Minutes</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Action Items</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-bolt"></i></span> Sprints</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-folder"></i></span> Documents</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-kanban">
+                                      <div class="pf-kcol">
+                                        <div class="h"><span>To Do</span><span>2</span></div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-142</span>
+                                          <div class="pf-t pf-mt">Draft onboarding flow</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">AS</span>
+                                            <span class="pf-badge danger">High</span>
+                                            <span class="pf-muted">5 pts</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-148</span>
+                                          <div class="pf-t pf-mt">Export MoM to PDF</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">RK</span>
+                                            <span class="pf-badge">Med</span>
+                                            <span class="pf-muted">3 pts</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="pf-kcol">
+                                        <div class="h"><span>In Progress</span><span>2</span></div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-131</span>
+                                          <div class="pf-t pf-mt">Sprint capacity planner</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">MJ</span>
+                                            <span class="pf-badge danger">High</span>
+                                            <span class="pf-muted">8 pts</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-137</span>
+                                          <div class="pf-t pf-mt">Filter by assignee</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">LM</span>
+                                            <span class="pf-badge">Med</span>
+                                            <span class="pf-muted">2 pts</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="pf-kcol">
+                                        <div class="h"><span>Testing</span><span>1</span></div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-125</span>
+                                          <div class="pf-t pf-mt">CSV test-case import</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">TC</span>
+                                            <span class="pf-badge warn">Low</span>
+                                            <span class="pf-muted">5 pts</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="pf-kcol">
+                                        <div class="h"><span>Done</span><span>3</span></div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-118</span>
+                                          <div class="pf-t pf-mt">Kanban drag &amp; drop</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">AS</span>
+                                            <span class="pf-badge">Med</span>
+                                            <span class="pf-muted">5 pts</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-120</span>
+                                          <div class="pf-t pf-mt">Story point field</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">RK</span>
+                                            <span class="pf-badge warn">Low</span>
+                                            <span class="pf-muted">2 pts</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <span class="pf-tag">MOM-122</span>
+                                          <div class="pf-t pf-mt">Attendee picker</div>
+                                          <div class="pf-row pf-mt">
+                                            <span class="pf-av">MJ</span>
+                                            <span class="pf-badge">Med</span>
+                                            <span class="pf-muted">3 pts</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Kanban &amp; sprints</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">Angular 20</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Angular Material</span>
+                            <span class="pf-chip">CDK Drag-Drop</span>
+                            <span class="pf-chip">Editor.js</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">RxJS</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
                         <br />
-                        The product focuses on replacing scattered meeting notes
-                        and manual follow-up tracking with a structured,
-                        searchable, team-oriented workflow. It gives teams a
-                        clearer path from discussion to decision to accountable
-                        action.
+                        MoMento is currently an in-development internal tool —
+                        there is no public demo link at this time.
 
                         <br /><br />
-                        Tech stack:
-                        <strong
-                          >Angular, TypeScript, Supabase, Tailwind CSS, Angular
-                          Material, RxJS, Editor.js, ngx-quill, ngx-editor, and
-                          Node.js project backup scripts.</strong
-                        >
-
-                        <br /><br />
-                        MoMento is a strong example of a real-world SaaS-style
-                        web application focused on productivity, collaboration,
-                        structured project documentation, and polished user
-                        experience.
-
-                        <br /><br />
-                        Live application:
-                        <a href="https://momento.farhaan.info" target="_blank"
-                          >https://momento.farhaan.info</a
-                        >
-                      
-                        <br /><br />
-                        
                         <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
                           <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
                           If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
@@ -274,10 +441,9 @@
                   <div class="tags">
                     <a href="#" rel="tag">web app</a>
                     <a href="#" rel="tag">angular</a>
-                    <a href="#" rel="tag">supabase</a>
-                    <a href="#" rel="tag">meeting minutes</a>
                     <a href="#" rel="tag">project management</a>
-                    <a href="#" rel="tag">collaboration</a>
+                    <a href="#" rel="tag">supabase</a>
+                    <a href="#" rel="tag">kanban</a>
                   </div>
                 </div>
               </div>

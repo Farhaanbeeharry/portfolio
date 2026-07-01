@@ -32,6 +32,7 @@
       href="../../css/magnific-popup.css"
       type="text/css" />
     <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
 
     <script src="../../js/modernizr.custom.js"></script>
   </head>
@@ -159,7 +160,7 @@
               <div class="post-content">
                 <header class="entry-header">
                   <div class="entry-meta entry-meta-top">
-                    <span><a href="#" rel="category tag">Web App</a></span>
+                    <span><a href="#" rel="category tag">Web</a></span>
                   </div>
                   <h2 class="entry-title">
                     <strong>Blaugrana</strong>
@@ -170,78 +171,190 @@
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        Blaugrana is a responsive football club management web
-                        app designed to help a local squad manage members,
-                        match availability, payment tracking, and club finances
-                        from one simple dashboard.
+                        Blaugrana is a members-only club-management web app for
+                        an FC Barcelona-inspired football club. Members sign in
+                        to a personalised dashboard to vote their availability
+                        for upcoming matches, view lineups, and track club
+                        finances and their subscription payments; admins get a
+                        full "Pitch Overview" with squad, payment and finance
+                        KPIs, member management and PDF receipt generation.
 
                         <br /><br />
-                        The app was built to replace scattered manual workflows
-                        with a clearer digital system. Admins can review the
-                        squad overview, track who has paid, monitor outstanding
-                        dues, create match schedules, and view the club treasury
-                        without switching between spreadsheets, chat messages,
-                        and separate finance notes.
+                        It is a framework-less vanilla-JS PWA with a dual
+                        backend &mdash; Firebase handles auth, members and
+                        matches, while Supabase backs the finance data.
 
                         <br /><br />
-                        Blaugrana includes separate admin and member
-                        experiences. Admin users get operational tools for
-                        managing matches, payments, finance records, and
-                        members, while regular members can check their profile,
-                        see upcoming matches, vote on availability, and review
-                        their payment status.
-
-                        <br /><br />
-                        Key features include:
+                        Key features:
                         <ul>
-                          <li>Admin and member dashboard views</li>
-                          <li>Match scheduling and attendance voting</li>
-                          <li>Member directory and profile management</li>
-                          <li>Monthly and per-session payment tracking</li>
-                          <li>Finance ledger for income and expenses</li>
-                          <li>Club balance, collected amount, and pending dues</li>
-                          <li>Firebase Authentication for user access</li>
-                          <li>Supabase-backed finance data management</li>
-                          <li>Responsive desktop and mobile navigation</li>
+                          <li>Firebase email/password auth with password reset</li>
+                          <li>Role-based Admin and Member dashboards</li>
+                          <li>Match management + real-time availability voting</li>
+                          <li>Finance tracking (income/expense) on Supabase</li>
+                          <li>Member roster with subscription plans &amp; approval workflow</li>
+                          <li>Payment status + jsPDF receipt generation</li>
+                          <li>Monthly payment batch generation</li>
+                          <li>Installable PWA</li>
+                          <li>Responsive Tailwind UI</li>
                         </ul>
 
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#7a0030;--brand-ink:#ffffff;--stage:#160610;--bg:#f7f7f9;--surface:#ffffff;--card:#ffffff;--text:#1a1c1c;--muted:#6b7280;--line:#e7e7ea;--ok:#1f9d55;--warn:#e0a100;--danger:#ba1a1a;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">Match day, managed</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            From the admin's Pitch Overview to the member's
+                            pocket app &mdash; recreated from the app's real
+                            screens and colour system.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Screen 1: Admin — Pitch Overview (browser) -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">foot.farhaan.info/dashboard</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="logo.svg" alt="Blaugrana" style="height:22px" />
+                                    </div>
+                                    <div class="pf-navitem active">
+                                      <span class="pf-ic"><i class="fas fa-chart-pie"></i></span> Dashboard
+                                    </div>
+                                    <div class="pf-navitem">
+                                      <span class="pf-ic"><i class="fas fa-users"></i></span> Members
+                                    </div>
+                                    <div class="pf-navitem">
+                                      <span class="pf-ic"><i class="fas fa-futbol"></i></span> Matches
+                                    </div>
+                                    <div class="pf-navitem">
+                                      <span class="pf-ic"><i class="fas fa-wallet"></i></span> Finance
+                                    </div>
+                                    <div class="pf-navitem">
+                                      <span class="pf-ic"><i class="fas fa-file-invoice-dollar"></i></span> Payments
+                                    </div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-t-lg pf-mb">Pitch Overview</div>
+
+                                    <div class="pf-grid3">
+                                      <div class="pf-stat">
+                                        <div class="n">20</div>
+                                        <div class="l">Squad</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">14</div>
+                                        <div class="l">Paid</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">6</div>
+                                        <div class="l">Pending</div>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-grid3 pf-mt">
+                                      <div class="pf-stat">
+                                        <div class="n">Rs 15,000</div>
+                                        <div class="l">Expected</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">Rs 10,500</div>
+                                        <div class="l">Collected</div>
+                                      </div>
+                                      <div class="pf-stat brand">
+                                        <div class="n">Rs 42,200</div>
+                                        <div class="l">Balance</div>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card pf-mt">
+                                      <div class="pf-between">
+                                        <div class="pf-t pf-strong">Next match &mdash; Sun 16:00</div>
+                                      </div>
+                                      <div class="pf-row pf-mt">
+                                        <div class="pf-avs">
+                                          <span class="pf-av">AS</span>
+                                          <span class="pf-av">RK</span>
+                                          <span class="pf-av">MJ</span>
+                                          <span class="pf-av">DL</span>
+                                          <span class="pf-av">+</span>
+                                        </div>
+                                        <div class="pf-muted">18 / 20 available</div>
+                                      </div>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-badge ok">16 playing</span>
+                                        <span class="pf-badge danger">2 out</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Admin dashboard</div>
+                            </div>
+
+                            <!-- Screen 2: Member view (phone / PWA) -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-t-lg">Blaugrana</div>
+                                      <span class="pf-ic"><i class="fas fa-user-circle"></i></span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong">Next Match &middot; vs Rovers</div>
+                                      <div class="pf-btn block pf-mt">
+                                        <i class="fas fa-check"></i> I'm Playing
+                                      </div>
+                                      <div class="pf-btn-outline pf-mt" style="width:100%">
+                                        <i class="fas fa-times"></i> Can't make it
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">My subscription</div>
+                                      <span class="pf-badge ok">Paid &middot; Aug 2026</span>
+                                      <div class="pf-btn-outline pf-mt" style="width:100%">
+                                        <i class="fas fa-file-download"></i> Download receipt
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Member app (PWA)</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">JavaScript (ES modules)</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Firebase Auth</span>
+                            <span class="pf-chip">Cloud Firestore</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">jsPDF</span>
+                            <span class="pf-chip">PWA</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
                         <br />
-                        The interface was designed around fast scanning and
-                        repeated use. Important club metrics are surfaced as
-                        dashboard cards, match participation is visualized with
-                        progress indicators, and finance data is grouped into
-                        clear income, expense, and balance summaries.
-
-                        <br /><br />
-                        On the member side, the app keeps the experience
-                        focused on the tasks players need most: checking their
-                        current payment status, voting for the next match, and
-                        viewing membership details. This keeps the product
-                        useful for both administrators and regular club members.
-
-                        <br /><br />
-                        Tech stack:
-                        <strong
-                          >HTML, CSS, JavaScript, Tailwind CSS, Firebase
-                          Authentication, Firestore, Supabase, Progressive Web
-                          App manifest, and service worker support.</strong
-                        >
-
-                        <br /><br />
-                        Blaugrana is a practical web product focused on
-                        community sports operations, combining club
-                        administration, member self-service, attendance
-                        coordination, and financial visibility into one
-                        lightweight application.
-
-                        <br /><br />
                         Live website:
                         <a href="https://foot.farhaan.info/" target="_blank"
                           >https://foot.farhaan.info/</a
                         >
-                      
+
                         <br /><br />
-                        
+
                         <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
                           <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
                           If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
@@ -266,11 +379,10 @@
                 <div class="post-tags">
                   <div class="tags">
                     <a href="#" rel="tag">web app</a>
-                    <a href="#" rel="tag">club management</a>
                     <a href="#" rel="tag">football</a>
                     <a href="#" rel="tag">firebase</a>
                     <a href="#" rel="tag">supabase</a>
-                    <a href="#" rel="tag">dashboard</a>
+                    <a href="#" rel="tag">pwa</a>
                   </div>
                 </div>
               </div>

@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>MotoGate</title>
+    <title>Fruitopia</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta
       name="description"
-      content="MotoGate — event access management mobile app built with Flutter and Firebase, featuring QR ticketing, live gate scanning and role-based access." />
+      content="Fruitopia — a two-sided farm-to-table marketplace built with Flutter, pairing a customer storefront with a seller dashboard, powered by flutter_bloc, go_router, get_it and Supabase." />
     <meta
       name="keywords"
-      content="motogate, motoclub, event access, flutter, firebase, qr ticketing, mobile app" />
+      content="fruitopia, farm to table, marketplace, flutter, supabase, ecommerce, mobile app, seller dashboard" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
 
@@ -154,7 +154,7 @@
           <div class="single-page-content">
             <article class="post">
               <div class="post-thumbnail">
-                <img src="background.png" alt="MotoGate Project Cover" />
+                <img src="background.svg" alt="Fruitopia Project Cover" />
               </div>
 
               <div class="post-content">
@@ -163,7 +163,7 @@
                     <span><a href="#" rel="category tag">Mobile</a></span>
                   </div>
                   <h2 class="entry-title">
-                    <strong>MotoGate</strong>
+                    <strong>Fruitopia</strong>
                   </h2>
                 </header>
 
@@ -171,92 +171,68 @@
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        Built for <strong>MotoClub Mauritius</strong>, MotoGate
-                        is a custom event access-management app that replaces
-                        manual guest lists with secure QR ticketing and live gate
-                        control. It handles the full lifecycle of a motorsport or
-                        VIP event — from creating the event and inviting guests,
-                        to scanning them in at the gate in real time.
+                        <strong>Fruitopia</strong> is a two-sided farm-to-table
+                        marketplace built with Flutter — one app, two
+                        experiences. Customers browse fresh produce, add to cart
+                        and track their delivery; vendors get a seller dashboard
+                        to manage inventory, fulfil orders and read sales
+                        analytics.
 
                         <br /><br />
-                        Organizers create events, set venue capacity, register
-                        guests, companions and teams, and assign role-based
-                        access for VIPs, media, staff and competitors. At the
-                        gate, staff scan tickets that are verified live against
-                        Cloud Firestore — blocking reused codes, admitting
-                        companions, and offering supervised override flows for
-                        exceptional cases. Attendees, meanwhile, carry a
-                        screenshot-protected digital pass on their own phone.
+                        It follows a clean, layered architecture
+                        (domain/data/presentation) with flutter_bloc for state,
+                        go_router for navigation and get_it for dependency
+                        injection, and swaps seamlessly from built-in mock data
+                        to a live Supabase backend. The app is fully bilingual
+                        (English/French) with a Material 3 design system.
 
                         <br /><br />
-                        On the organiser side, MotoGate is a full control room.
-                        Admins build an event, define venue capacity and manage
-                        the guest list — invitees, their companions and whole
-                        teams — each assigned a role that determines where they
-                        can go. Tickets are generated as QR codes and can be
-                        printed as bracelets on-site, while a live entry log and
-                        audit trail record every scan, override and exceptional
-                        admission as it happens.
+                        For customers, Fruitopia is a focused storefront: a home
+                        feed of fresh picks, product pages with ratings, stock
+                        status and unit/quantity selection, a cart with a live
+                        order summary and delivery fee, and order tracking that
+                        moves from pending to confirmed to delivered. Everything
+                        is designed to make ordering produce feel as quick and
+                        trustworthy as buying it in person.
 
                         <br /><br />
-                        At the gate, scanning is built for speed and trust. Each
-                        code is checked live against Cloud Firestore for event
-                        ownership, validity and re-use; a clear full-screen result
-                        shows access granted or denied, admits allowed companions,
-                        and offers a supervised override for edge cases. The same
-                        QR format doubles as a MotoClub racing licence, so event
-                        invitations and competitor IDs run through one flow.
-                        Attendee passes are protected against screenshots and
-                        screen recording and auto-boost screen brightness so they
-                        scan first time.
+                        For vendors, the same app flips into a seller workspace.
+                        A dashboard surfaces daily revenue, order counts and stock
+                        levels; inventory screens let sellers create and update
+                        products; each incoming order shows the customer's delivery
+                        address; and dedicated views handle delivery-route
+                        planning, seasonal pre-orders, sales analytics and
+                        broadcast notifications back to customers — a complete
+                        two-sided marketplace inside one binary.
 
                         <br /><br />
-                        Technically, MotoGate is a Flutter app using flutter_bloc
-                        for state, the full Firebase suite (Authentication, Cloud
-                        Firestore, Cloud Messaging) for its real-time backend,
-                        mobile_scanner and qr_flutter for ticketing, on-device PDF
-                        generation for printing, and push plus local notifications
-                        to keep invitees informed. It is published on both the
-                        Google Play Store and the Apple App Store.
+                        The codebase reflects production discipline: a clean
+                        domain / data / presentation split, flutter_bloc + get_it
+                        for state and dependency injection, go_router shells for
+                        the two navigation trees, and a mock-data layer that swaps
+                        to a live Supabase backend without touching UI code. It is
+                        fully localised in English and French with no hardcoded
+                        strings, on a Material 3 design system.
 
                         <br /><br />
                         Key features:
                         <ul>
-                          <li>Event creation with venue capacity management</li>
-                          <li>Guest, companion and team registration</li>
-                          <li>Role-based access control (VIP, media, staff, teams)</li>
-                          <li>QR ticket generation and live scanning</li>
-                          <li>Real-time verification against Firestore</li>
-                          <li>Entry logs, override flows and audit tracking</li>
-                          <li>Screenshot / screen-recording protected passes</li>
-                          <li>Push &amp; local notifications for invitees</li>
+                          <li>Dual role-based app (customer + seller) with shell navigation</li>
+                          <li>Product catalogue with detail pages, ratings &amp; stock status</li>
+                          <li>Cart with live order summary &amp; delivery fee</li>
+                          <li>Order tracking (pending / confirmed / delivered)</li>
+                          <li>Seller dashboard with daily revenue, orders &amp; stock metrics</li>
+                          <li>Inventory management (create / edit stock)</li>
+                          <li>Delivery route &amp; pre-orders planning</li>
+                          <li>Seller analytics (top products, hotspots)</li>
+                          <li>Push &amp; broadcast notifications</li>
+                          <li>English / French localisation</li>
+                          <li>Mock-data layer with a drop-in Supabase swap</li>
                         </ul>
 
 
                         <br />
-                        MotoClub website:
-                        <a href="https://motoclub.mu/" target="_blank"
-                          >https://motoclub.mu/</a
-                        >
-
-                        <br /><br />
-                        The application is available on:
-                        <ul>
-                          <li>
-                            <a
-                              href="https://play.google.com/store/apps/details?id=info.farhaan.motogate&pcampaignid=web_share"
-                              target="_blank"
-                              >Google Play Store</a
-                            >
-                          </li>
-                          <li>
-                            <a
-                              href="https://apps.apple.com/mu/app/motogate/id6759206166"
-                              target="_blank"
-                              >Apple App Store</a
-                            >
-                          </li>
-                        </ul>
+                        Links: none — the app is not yet published.
 
                         <br />
                         <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
@@ -272,7 +248,7 @@
                   <div class="date-author">
                     <span class="entry-date"
                       ><i class="far fa-clock"></i>
-                      <span class="entry-date"> March 20, 2026</span></span
+                      <span class="entry-date"> June 2026</span></span
                     >
                     <span class="author vcard"
                       ><i class="fas fa-user"></i> Farhaan Beeharry</span
@@ -284,9 +260,9 @@
                   <div class="tags">
                     <a href="#" rel="tag">mobile app</a>
                     <a href="#" rel="tag">flutter</a>
-                    <a href="#" rel="tag">firebase</a>
-                    <a href="#" rel="tag">qr access</a>
-                    <a href="#" rel="tag">event management</a>
+                    <a href="#" rel="tag">marketplace</a>
+                    <a href="#" rel="tag">supabase</a>
+                    <a href="#" rel="tag">ecommerce</a>
                   </div>
                 </div>
               </div>

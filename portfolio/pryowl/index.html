@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Pryowl</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta
+      name="description"
+      content="Pryowl — a modern survey & form-builder SaaS with a visual builder, advanced conditional & skip logic, matrix questions, workspace RBAC and immutable response snapshots. Built with React, Vite, TypeScript and Supabase." />
+    <meta
+      name="keywords"
+      content="pryowl, survey builder, form builder, saas, conditional logic, skip logic, matrix questions, workspace rbac, react, vite, typescript, supabase, recharts" />
+    <meta name="author" content="Farhaan Beeharry" />
+    <link rel="shortcut icon" href="../../img/logo.ico" />
+
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/bootstrap-grid.min.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/animations.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/perfect-scrollbar.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/magnific-popup.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
+
+    <script src="../../js/modernizr.custom.js"></script>
+  </head>
+
+  <body>
+    <div
+      class="lm-animated-bg"
+      style="background-image: url(img/main_bg.png)"></div>
+
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner"></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="page-content">
+        <header id="site_header" class="header mobile-menu-hide">
+          <div class="header-content">
+            <div class="header-photo">
+              <img src="../../img/profile_picture.jpg" alt="Farhaan Beeharry" />
+            </div>
+            <div class="header-titles">
+              <h2>Farhaan Beeharry</h2>
+              <h4>Software Engineer</h4>
+            </div>
+          </div>
+
+          <ul class="main-menu">
+            <li class="active">
+              <a href="../../index.html#home" class="nav-anim">
+                <span class="menu-icon lnr lnr-home"></span>
+                <span class="link-text">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#about-me" class="nav-anim">
+                <span class="menu-icon lnr lnr-user"></span>
+                <span class="link-text">About Me</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#resume" class="nav-anim">
+                <span class="menu-icon lnr lnr-graduation-hat"></span>
+                <span class="link-text">Resume</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#portfolio" class="nav-anim">
+                <span class="menu-icon lnr lnr-briefcase"></span>
+                <span class="link-text">Portfolio</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="social-links">
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/farhaan-bms/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/Farhaanbeeharry" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://app.codesignal.com/profile/farhaan"
+                  target="_blank"
+                  ><i class="code-icon fa fa-code"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.behance.net/farhaanbeeharry"
+                  target="_blank"
+                  ><i class="fab fa-behance"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/farhaan_beeharry/"
+                  target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://wa.me/23057076881/" target="_blank"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="header-buttons">
+            <a
+              href="../../assets/Farhaan Beeharry CV.pdf"
+              target="_blank"
+              class="btn btn-primary"
+              >Download CV</a
+            ><br />
+            <a
+              href="../../assets/Farhaan Beeharry CV_FRENCH.pdf"
+              target="_blank"
+              >Telecharger la version francaise</a
+            >
+          </div>
+
+          <div class="copyrights">© 2026 All rights reserved.</div>
+        </header>
+
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+
+        <div class="content-area single-page-area">
+          <div class="single-page-content">
+            <article class="post">
+              <div class="post-thumbnail">
+                <img src="background.svg" alt="Pryowl Project Cover" />
+              </div>
+
+              <div class="post-content">
+                <header class="entry-header">
+                  <div class="entry-meta entry-meta-top">
+                    <span><a href="#" rel="category tag">Web</a></span>
+                  </div>
+                  <h2 class="entry-title">
+                    <strong>Pryowl</strong>
+                  </h2>
+                </header>
+
+                <div class="entry-content">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                      <div class="col-inner">
+                        <strong>Pryowl</strong> is a modern survey &amp;
+                        form-builder SaaS. Authors design surveys in a visual
+                        builder with genuinely advanced logic — conditional
+                        show/hide, skip/branching, and matrix grids — then
+                        publish them with intelligent gating: response caps,
+                        save-and-resume, and one-per-browser/email limits.
+
+                        <br /><br />
+                        A workspace model with fine-grained RBAC (21+ granular
+                        permissions) lets teams collaborate, while every response
+                        is stored as an immutable snapshot of the survey at
+                        submission time. Built with React + Vite + TypeScript on
+                        Supabase, with per-workspace branding, dark mode and
+                        EN/FR support.
+
+                        <br /><br />
+                        Key features:
+                        <ul>
+                          <li>Visual survey builder with instant preview</li>
+                          <li>Conditional logic (show / hide by answer)</li>
+                          <li>Skip logic / branching</li>
+                          <li>Matrix (grid) questions</li>
+                          <li>Response caps &amp; one-per-browser/email limits</li>
+                          <li>Save &amp; resume from browser</li>
+                          <li>Workspace RBAC v2 with custom roles &amp; 21+ permissions</li>
+                          <li>Team workspaces with invites</li>
+                          <li>Per-workspace branding (colours, logos)</li>
+                          <li>Rich question types (text, rating/stars, phone, date, multiselect, matrix)</li>
+                          <li>Immutable response snapshots</li>
+                          <li>Analytics dashboard (Recharts) + CSV / PDF export</li>
+                          <li>Multi-language (EN / FR) + dark mode</li>
+                        </ul>
+
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#4fdbc8;--brand-ink:#04211d;--stage:#06120f;--bg:#0e1513;--surface:#1a211f;--card:#141b19;--text:#e6f0ed;--muted:#8fa39d;--line:#31403c;--ok:#6dd58c;--warn:#ffb95f;--danger:#ffb4ab;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">Surveys with real logic</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            From the visual builder to the branded public response
+                            page — recreated from Pryowl's real screens and colour
+                            system.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Browser — Survey builder -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">pryowl.app/build</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="icon.png" alt="Pryowl" style="height:20px" />
+                                      <span class="pf-strong">Pryowl</span>
+                                    </div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-font"></i></span> Short text</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-list-ul"></i></span> Multiple choice</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-star"></i></span> Rating</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-th"></i></span> Matrix</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-calendar"></i></span> Date</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-phone"></i></span> Phone</div>
+                                  </div>
+
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-t-lg">Untitled survey</div>
+                                      <div class="pf-row">
+                                        <span class="pf-btn-outline">Preview</span>
+                                        <span class="pf-btn">Publish</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong">Q1 · How satisfied are you?</div>
+                                      <div class="pf-row pf-mt" style="gap:6px;color:var(--brand)">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star" style="color:var(--muted)"></i>
+                                        <i class="fas fa-star" style="color:var(--muted)"></i>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong">Q2 · Which features do you use?</div>
+                                      <div class="pf-row pf-mt">
+                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--brand);flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span></span>
+                                        <span class="pf-t">Builder</span>
+                                      </div>
+                                      <div class="pf-row pf-mt">
+                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
+                                        <span class="pf-t">Analytics</span>
+                                      </div>
+                                      <div class="pf-row pf-mt">
+                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
+                                        <span class="pf-t">Exports</span>
+                                      </div>
+                                    </div>
+
+                                    <span class="pf-badge">Logic: show Q3 if 'Pro'</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Visual builder + logic</div>
+                            </div>
+
+                            <!-- Frame 2: Phone — Public survey -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <img src="icon.png" alt="Acme" style="height:18px;width:auto" />
+                                        <span class="pf-t pf-strong">Acme Feedback</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-bar" style="margin-bottom:6px"><i style="width:40%"></i></div>
+                                    <div class="pf-muted pf-mb">2 of 5</div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong">How likely are you to recommend us?</div>
+                                      <div class="pf-row wrap pf-mt" style="gap:5px">
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">0</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">1</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">2</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">3</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">4</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">5</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">6</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">7</span>
+                                        <span class="pf-xs pf-strong" style="width:20px;height:20px;border-radius:6px;background:var(--brand);color:var(--brand-ink);display:inline-flex;align-items:center;justify-content:center">8</span>
+                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">9</span>
+                                        <span class="pf-xs" style="width:24px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">10</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Rate the following</div>
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Speed</span>
+                                        <span class="pf-row" style="gap:8px">
+                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
+                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--brand);background:var(--brand)"></span>
+                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
+                                        </span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Support</span>
+                                        <span class="pf-row" style="gap:8px">
+                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
+                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
+                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--brand);background:var(--brand)"></span>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-btn block pf-mt">Next</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Branded response page</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">React 18</span>
+                            <span class="pf-chip">Vite</span>
+                            <span class="pf-chip">TypeScript</span>
+                            <span class="pf-chip">React Router v7</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">Recharts</span>
+                            <span class="pf-chip">Lucide</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
+                        <br />
+                        Public links are not yet available — billing is not enabled
+                        on Pryowl at this time.
+
+                        <br />
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
+                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="entry-meta entry-meta-bottom">
+                  <div class="date-author">
+                    <span class="entry-date"
+                      ><i class="far fa-clock"></i>
+                      <span class="entry-date"> June 2026</span></span
+                    >
+                    <span class="author vcard"
+                      ><i class="fas fa-user"></i> Farhaan Beeharry</span
+                    >
+                  </div>
+                </div>
+
+                <div class="post-tags">
+                  <div class="tags">
+                    <a href="#" rel="tag">web app</a>
+                    <a href="#" rel="tag">saas</a>
+                    <a href="#" rel="tag">survey builder</a>
+                    <a href="#" rel="tag">react</a>
+                    <a href="#" rel="tag">supabase</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/modernizr.custom.js"></script>
+    <script src="../../js/animating.js"></script>
+    <script src="../../js/imagesloaded.pkgd.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="../../js/perfect-scrollbar.min.js"></script>
+    <script src="../../js/jquery.shuffle.min.js"></script>
+    <script src="../../js/masonry.pkgd.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/jquery.magnific-popup.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
+    <script src="../../js/jquery.googlemap.js"></script>
+    <script src="../../js/validator.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

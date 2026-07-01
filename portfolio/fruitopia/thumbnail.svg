@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" font-family="Lexend, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1c4a17"/><stop offset="1" stop-color="#0e2a10"/>
+    </linearGradient>
+    <radialGradient id="gl" cx="0.5" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#fd9d1a" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#fd9d1a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#gl)"/>
+  <circle cx="400" cy="200" r="86" fill="#fd9d1a" opacity="0.16"/>
+  <circle cx="400" cy="200" r="58" fill="#ffffff" opacity="0.95"/>
+  <circle cx="400" cy="200" r="30" fill="#fd9d1a"/>
+  <path d="M400 170 q22 -22 30 -6 q-16 4 -18 20 z" fill="#2d5a27"/>
+  <text x="400" y="360" text-anchor="middle" font-size="60" font-weight="700" fill="#f7fbf3" letter-spacing="-0.5">Fruitopia</text>
+  <text x="400" y="404" text-anchor="middle" font-size="21" font-weight="500" fill="#fd9d1a" letter-spacing="3.5">FARM-TO-TABLE MARKETPLACE</text>
+  <g transform="translate(276,452)">
+    <rect x="0" y="0" width="112" height="60" rx="12" fill="#ffffff" opacity="0.96"/>
+    <circle cx="30" cy="24" r="12" fill="#fd9d1a"/>
+    <rect x="14" y="42" width="60" height="7" rx="3" fill="#17210f"/>
+    <rect x="136" y="0" width="112" height="60" rx="12" fill="#fd9d1a"/>
+    <rect x="156" y="26" width="72" height="9" rx="4" fill="#3a2500"/>
+  </g>
+</svg>

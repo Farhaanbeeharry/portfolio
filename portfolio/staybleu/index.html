@@ -32,6 +32,7 @@
       href="../../css/magnific-popup.css"
       type="text/css" />
     <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
 
     <script src="../../js/modernizr.custom.js"></script>
   </head>
@@ -159,7 +160,7 @@
               <div class="post-content">
                 <header class="entry-header">
                   <div class="entry-meta entry-meta-top">
-                    <span><a href="#" rel="category tag">Web Application</a></span>
+                    <span><a href="#" rel="category tag">Web</a></span>
                   </div>
                   <h2 class="entry-title">
                     <strong>StayBleu</strong>
@@ -170,46 +171,173 @@
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        StayBleu is a premium, enterprise-grade hospitality management system (PMS) designed to serve as the unified operating system for luxury hotels and property groups. It streamlines the entire guest lifecycle—from booking and check-in to real-time housekeeping and forensic financial auditing.
+                        StayBleu is an enterprise-grade property-management
+                        system (PMS) for hotels and guesthouses. From one
+                        real-time dashboard, staff process check-ins/outs, track
+                        occupancy, flag pending payments and manage housekeeping
+                        — with flexible pricing for day-use, evening and full
+                        stays, automatic overstay charges, multi-property support
+                        with an interactive map, and thorough guest records
+                        (national ID, passport, family links, banning). Built on
+                        Next.js 16 / React 19 with a Supabase backend and live
+                        database subscriptions.
 
                         <br /><br />
-                        The platform focuses on high-performance operations and data integrity. It features a robust identity-first guest registration workflow, supporting direct ID/Passport scanning and automated verification to minimize manual entry errors and enhance security at the front desk.
-
-                        <br /><br />
-                        Designed with a "Forensic First" philosophy, StayBleu includes a sophisticated audit infrastructure that captures every administrative action with high-privilege logging, ensuring total accountability and transparency across all levels of management.
-
-                        <br /><br />
-                        Key features include:
+                        Key features:
                         <ul>
-                          <li>Enterprise Dashboard with real-time revenue and occupancy metrics</li>
-                          <li>Identity-first Guest Registration with USB scanner integration</li>
-                          <li>Advanced Booking Engine supporting multi-tier room pricing</li>
-                          <li>Forensic Audit Logging for all administrative actions</li>
-                          <li>Role-Based Access Control (RBAC) with Supabase RLS</li>
-                          <li>Automated Financial Reporting and ADR tracking</li>
-                          <li>Scalable infrastructure for multi-property management</li>
+                          <li>Real-time dashboard (active stays, checkout alerts, occupancy %)</li>
+                          <li>Multi-location management with Leaflet map &amp; table views</li>
+                          <li>Flexible bookings (day-use / evening / full / hybrid) with auto price calc</li>
+                          <li>Guest management with ID verification, family linking &amp; banning</li>
+                          <li>Phone-booking modal for rapid manual reservations</li>
+                          <li>Overstay detection &amp; auto extra-charge</li>
+                          <li>Role-based access + full audit logging</li>
+                          <li>Finance tracking (income / expense by method)</li>
+                          <li>Housekeeping tasks with auto-cleanup</li>
+                          <li>Multi-language (next-intl) + user preferences</li>
                         </ul>
 
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#1e3a8a;--brand-ink:#ffffff;--brand2:#d4af37;--stage:#0a1024;--bg:#f8fafc;--surface:#ffffff;--card:#ffffff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--ok:#10b981;--warn:#f59e0b;--danger:#ef4444;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">Front desk, in real time</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            A look at the operations dashboard and booking desk —
+                            recreated from the app's real Next.js screens and
+                            colour system.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Dashboard -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">staybleu.app/dashboard</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <span class="pf-t-lg">Stay<span style="color:var(--brand2, #d4af37)">Bleu</span></span>
+                                    </div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-tachometer-alt"></i></span> Dashboard</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-calendar-check"></i></span> Bookings</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-bed"></i></span> Rooms</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Guests</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-wallet"></i></span> Finance</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-broom"></i></span> Housekeeping</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-grid3">
+                                      <div class="pf-stat"><div class="n">38</div><div class="l">Active Stays</div></div>
+                                      <div class="pf-stat"><div class="n">12</div><div class="l">Due Today</div></div>
+                                      <div class="pf-stat"><div class="n">Rs 24,500</div><div class="l">Pending</div></div>
+                                    </div>
+                                    <div class="pf-row pf-mt" style="align-items:flex-start">
+                                      <div class="pf-card" style="text-align:center">
+                                        <div class="pf-donut" data-v="82%" style="--v:82%;margin:0 auto"></div>
+                                        <div class="pf-muted pf-mt">Occupancy</div>
+                                      </div>
+                                      <div class="pf-card" style="flex:1">
+                                        <div class="pf-h2">Checkouts today</div>
+                                        <div class="pf-li">
+                                          <div class="grow"><div class="pf-t pf-strong">Room 204</div><div class="pf-muted">11:00</div></div>
+                                          <span class="pf-badge warn">Due</span>
+                                        </div>
+                                        <div class="pf-li">
+                                          <div class="grow"><div class="pf-t pf-strong">Room 118</div><div class="pf-muted">checked-out</div></div>
+                                          <span class="pf-badge ok">Paid</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Operations dashboard</div>
+                            </div>
+
+                            <!-- Frame 2: Bookings -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">staybleu.app/bookings</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <span class="pf-t-lg">Stay<span style="color:var(--brand2, #d4af37)">Bleu</span></span>
+                                    </div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-tachometer-alt"></i></span> Dashboard</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-calendar-check"></i></span> Bookings</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-bed"></i></span> Rooms</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Guests</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-wallet"></i></span> Finance</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-broom"></i></span> Housekeeping</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-h2" style="margin:0">Reservations</div>
+                                      <span class="pf-btn"><i class="fas fa-phone"></i> Phone booking</span>
+                                    </div>
+                                    <table class="pf-table">
+                                      <thead>
+                                        <tr>
+                                          <th>Room</th><th>Guest</th><th>Check-out</th><th>Status</th><th>Payment</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>204</td><td>A. Ramdin</td><td>11:00</td>
+                                          <td><span class="pf-badge warn">Due</span></td><td>Rs 3,200</td>
+                                        </tr>
+                                        <tr>
+                                          <td>118</td><td>L. Chan</td><td>—</td>
+                                          <td><span class="pf-badge ok">Out</span></td>
+                                          <td><span class="pf-badge ok">Paid</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>301</td><td>P. Naik</td><td>12:00</td>
+                                          <td><span class="pf-badge danger">Overstay</span></td>
+                                          <td><span class="pf-badge warn">Partial</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td>227</td><td>S. Fokeer</td><td>10:30</td>
+                                          <td><span class="pf-badge">In-house</span></td><td>Rs 5,400</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Bookings &amp; overstay alerts</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">Next.js 16</span>
+                            <span class="pf-chip">React 19</span>
+                            <span class="pf-chip">Tailwind CSS 4</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">Leaflet</span>
+                            <span class="pf-chip">next-intl</span>
+                            <span class="pf-chip">dnd-kit</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
                         <br />
-                        For hospitality groups, StayBleu provides a centralized command center to monitor performance across multiple locations, manage complex pricing strategies, and ensure a consistent, premium experience for every guest.
+                        Deployment: StayBleu is a self-hosted deployment — there
+                        is no public URL available.
 
                         <br /><br />
-                        Tech stack:
-                        <strong
-                          >Next.js (App Router), TypeScript, Supabase, PostgreSQL, TailwindCSS, Lucide Icons, and Hardware-integrated scanning APIs.</strong
-                        >
-
-                        <br /><br />
-                        StayBleu demonstrates a deep understanding of enterprise workflows, combining high-resolution UI/UX with a rigorous backend architecture to handle the demanding requirements of luxury hospitality operations.
-
-                        <br /><br />
-                        Live Platform:
-                        <a href="https://staybleu.farhaan.info" target="_blank"
-                          >https://staybleu.farhaan.info</a
-                        >
-                      
-                        <br /><br />
-                        
                         <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
                           <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
                           If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
@@ -234,10 +362,10 @@
                 <div class="post-tags">
                   <div class="tags">
                     <a href="#" rel="tag">web app</a>
-                    <a href="#" rel="tag">nextjs</a>
+                    <a href="#" rel="tag">hotel pms</a>
+                    <a href="#" rel="tag">next.js</a>
                     <a href="#" rel="tag">supabase</a>
-                    <a href="#" rel="tag">hospitality</a>
-                    <a href="#" rel="tag">enterprise</a>
+                    <a href="#" rel="tag">dashboard</a>
                   </div>
                 </div>
               </div>

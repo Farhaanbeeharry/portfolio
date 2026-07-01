@@ -32,6 +32,7 @@
       href="../../css/magnific-popup.css"
       type="text/css" />
     <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
 
     <script src="../../js/modernizr.custom.js"></script>
   </head>
@@ -170,79 +171,142 @@
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        TeamToss is a football match organization web app built
-                        to make casual games easier to plan, balance, and share.
-                        Instead of coordinating player lists and team selection
-                        manually in group chats, organizers can create a match,
-                        add players, assign positions, generate balanced teams,
-                        and send the lineup through a simple share link.
+                        TeamToss ends the WhatsApp chaos of organising a casual
+                        football match. Create a match with date, time and venue,
+                        add players with their positions, then shuffle fair,
+                        position-balanced teams in one tap — the algorithm pools
+                        players by position, randomises within each pool, and
+                        distributes them round-robin so every side gets a keeper,
+                        defenders, mids and attackers. Share the final lineup
+                        with a single link; teammates view it with no account
+                        needed. Vanilla JS + Tailwind on a Supabase backend.
 
                         <br /><br />
-                        The project focuses on a fast organizer workflow. Users
-                        can create upcoming matches with date, time, location,
-                        and the number of teams required. Each match includes a
-                        squad builder where players can be added with football
-                        positions such as goalkeeper, defender, midfielder, and
-                        attacker.
-
-                        <br /><br />
-                        Once enough players are available, TeamToss shuffles the
-                        roster into teams while taking player positions into
-                        account. This helps create fairer matchups and removes
-                        the usual back-and-forth of deciding teams before the
-                        game starts.
-
-                        <br /><br />
-                        Key features include:
+                        Key features:
                         <ul>
-                          <li>Match creation with date, time, and location</li>
-                          <li>Support for 2 to 10 teams per match</li>
-                          <li>Player roster management</li>
-                          <li>Position assignment for GK, DEF, MID, and ATT</li>
-                          <li>Automatic team shuffling and saved lineups</li>
-                          <li>Shareable match links for players</li>
-                          <li>
-                            Public shared view without requiring an account
-                          </li>
-                          <li>Responsive dark UI designed for quick use</li>
+                          <li>Position-aware fair team shuffling (GK/DEF/MID/ATT)</li>
+                          <li>Create matches with date, time &amp; location</li>
+                          <li>Roster management (add/remove players)</li>
+                          <li>2–10 teams per match</li>
+                          <li>One-click shareable lineup links</li>
+                          <li>Guest view (no login required)</li>
+                          <li>Multiple shuffle history per match</li>
+                          <li>Supabase auth</li>
+                          <li>Dark/light theme</li>
+                          <li>Mobile-responsive</li>
                         </ul>
 
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#0df259;--brand-ink:#06210f;--stage:#08150e;--bg:#102216;--surface:#1c2e22;--card:#16281c;--text:#ffffff;--muted:#8bafa0;--line:#2a3c30;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">Fair teams in one tap</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            From the organiser's shuffle screen to the guest's
+                            shared lineup — recreated from the app's real
+                            interface and colour system.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Screen 1: Browser — Match / shuffle -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">teamtoss.farhaan.info/app</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-main">
+                                    <div class="pf-between">
+                                      <div>
+                                        <div class="pf-t-lg">Sunday Kickabout · 18:00 · Gymkhana</div>
+                                        <div class="pf-muted">14 players · 2 teams</div>
+                                      </div>
+                                      <span class="pf-btn"><i class="fas fa-random"></i> Shuffle</span>
+                                    </div>
+
+                                    <div class="pf-grid2 pf-mt">
+                                      <div class="pf-card">
+                                        <div class="pf-t pf-strong pf-mb">Team A</div>
+                                        <div class="pf-li"><span class="grow pf-t">Aarav S.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#facc15;color:#000">GK</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Kishan R.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#3b82f6;color:#fff">DEF</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Yash P.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#3b82f6;color:#fff">DEF</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Rohan M.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#22c55e;color:#052">MID</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Vikram D.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#ef4444;color:#fff">ATT</span></div>
+                                      </div>
+                                      <div class="pf-card">
+                                        <div class="pf-t pf-strong pf-mb">Team B</div>
+                                        <div class="pf-li"><span class="grow pf-t">Dev N.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#facc15;color:#000">GK</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Arjun T.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#3b82f6;color:#fff">DEF</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Sanjay K.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#3b82f6;color:#fff">DEF</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Nikhil B.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#22c55e;color:#052">MID</span></div>
+                                        <div class="pf-li"><span class="grow pf-t">Farhaan H.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#ef4444;color:#fff">ATT</span></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Position-balanced shuffle</div>
+                            </div>
+
+                            <!-- Screen 2: Phone — shared lineup (guest view) -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div>
+                                        <div class="pf-t-lg">Sunday Kickabout</div>
+                                        <div class="pf-muted">18:00 · Gymkhana Ground</div>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Team A</div>
+                                      <div class="pf-li"><span class="grow pf-t">Aarav S.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#facc15;color:#000">GK</span></div>
+                                      <div class="pf-li"><span class="grow pf-t">Kishan R.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#3b82f6;color:#fff">DEF</span></div>
+                                      <div class="pf-li"><span class="grow pf-t">Rohan M.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#22c55e;color:#052">MID</span></div>
+                                      <div class="pf-li"><span class="grow pf-t">Vikram D.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#ef4444;color:#fff">ATT</span></div>
+                                    </div>
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Team B</div>
+                                      <div class="pf-li"><span class="grow pf-t">Dev N.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#facc15;color:#000">GK</span></div>
+                                      <div class="pf-li"><span class="grow pf-t">Arjun T.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#3b82f6;color:#fff">DEF</span></div>
+                                      <div class="pf-li"><span class="grow pf-t">Nikhil B.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#22c55e;color:#052">MID</span></div>
+                                      <div class="pf-li"><span class="grow pf-t">Farhaan H.</span><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;background:#ef4444;color:#fff">ATT</span></div>
+                                    </div>
+
+                                    <div class="pf-btn block pf-mt"><i class="fas fa-link"></i> Copy share link</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Shareable link — no login</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">JavaScript (ES modules)</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Lexend</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
                         <br />
-                        The app includes authentication-backed match management
-                        for organizers, while shared links allow players to view
-                        the latest teams without logging in. This keeps the
-                        organizer tools private while making the final lineup
-                        easy to distribute.
-
-                        <br /><br />
-                        On the interface side, TeamToss uses a football-inspired
-                        visual direction with a dark pitch-like background,
-                        high-contrast green actions, rounded dashboard panels,
-                        position badges, and compact team cards optimized for
-                        scanning before a match.
-
-                        <br /><br />
-                        Tech stack:
-                        <strong
-                          >HTML, Tailwind CSS, JavaScript, Supabase
-                          Authentication, Supabase database queries, and
-                          responsive web UI patterns.</strong
-                        >
-
-                        <br /><br />
-                        TeamToss is a practical example of a focused web product
-                        that solves a familiar coordination problem with a clean
-                        workflow: create the match, add the squad, shuffle the
-                        teams, and share the result.
-
-                        <br /><br />
                         Live website:
                         <a href="https://teamtoss.farhaan.info/" target="_blank"
                           >https://teamtoss.farhaan.info/</a
                         >
-                      
+
                         <br /><br />
-                        
+
                         <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
                           <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
                           If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>

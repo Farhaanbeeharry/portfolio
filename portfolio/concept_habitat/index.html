@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Concept Habitat CRM</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta
+      name="description"
+      content="Concept Habitat CRM — a staff-only CRM and visitor-registration system for an exclusive home & lifestyle showroom event, built with React, Vite and Supabase with role-based access and a follow-up pipeline." />
+    <meta
+      name="keywords"
+      content="concept habitat, crm, visitor registration, react, vite, supabase, dashboard, lead pipeline, mauritius" />
+    <meta name="author" content="Farhaan Beeharry" />
+    <link rel="shortcut icon" href="../../img/logo.ico" />
+
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/bootstrap-grid.min.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/animations.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/perfect-scrollbar.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/magnific-popup.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
+
+    <script src="../../js/modernizr.custom.js"></script>
+  </head>
+
+  <body>
+    <div
+      class="lm-animated-bg"
+      style="background-image: url(img/main_bg.png)"></div>
+
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner"></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="page-content">
+        <header id="site_header" class="header mobile-menu-hide">
+          <div class="header-content">
+            <div class="header-photo">
+              <img src="../../img/profile_picture.jpg" alt="Farhaan Beeharry" />
+            </div>
+            <div class="header-titles">
+              <h2>Farhaan Beeharry</h2>
+              <h4>Software Engineer</h4>
+            </div>
+          </div>
+
+          <ul class="main-menu">
+            <li class="active">
+              <a href="../../index.html#home" class="nav-anim">
+                <span class="menu-icon lnr lnr-home"></span>
+                <span class="link-text">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#about-me" class="nav-anim">
+                <span class="menu-icon lnr lnr-user"></span>
+                <span class="link-text">About Me</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#resume" class="nav-anim">
+                <span class="menu-icon lnr lnr-graduation-hat"></span>
+                <span class="link-text">Resume</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#portfolio" class="nav-anim">
+                <span class="menu-icon lnr lnr-briefcase"></span>
+                <span class="link-text">Portfolio</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="social-links">
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/farhaan-bms/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/Farhaanbeeharry" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://app.codesignal.com/profile/farhaan"
+                  target="_blank"
+                  ><i class="code-icon fa fa-code"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.behance.net/farhaanbeeharry"
+                  target="_blank"
+                  ><i class="fab fa-behance"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/farhaan_beeharry/"
+                  target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://wa.me/23057076881/" target="_blank"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="header-buttons">
+            <a
+              href="../../assets/Farhaan Beeharry CV.pdf"
+              target="_blank"
+              class="btn btn-primary"
+              >Download CV</a
+            ><br />
+            <a
+              href="../../assets/Farhaan Beeharry CV_FRENCH.pdf"
+              target="_blank"
+              >Telecharger la version francaise</a
+            >
+          </div>
+
+          <div class="copyrights">© 2026 All rights reserved.</div>
+        </header>
+
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+
+        <div class="content-area single-page-area">
+          <div class="single-page-content">
+            <article class="post">
+              <div class="post-thumbnail">
+                <img src="background.svg" alt="Concept Habitat CRM Project Cover" />
+              </div>
+
+              <div class="post-content">
+                <header class="entry-header">
+                  <div class="entry-meta entry-meta-top">
+                    <span><a href="#" rel="category tag">Web</a></span>
+                  </div>
+                  <h2 class="entry-title">
+                    <strong>Concept Habitat CRM</strong>
+                  </h2>
+                </header>
+
+                <div class="entry-content">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                      <div class="col-inner">
+                        <strong>Concept Habitat "After Hours"</strong> is a
+                        staff-only CRM and visitor-registration system built for
+                        an exclusive home &amp; lifestyle showroom event in
+                        Mauritius. A public form captures visitor profiles — with
+                        photo and PDF attachments — while staff log in to a dark,
+                        luxury dashboard to score leads, run a follow-up pipeline
+                        and export insights.
+
+                        <br /><br />
+                        Role-based access (Super Admin / Admin / Staff) is
+                        enforced with Supabase Row-Level Security, so every user
+                        sees only what their role allows. Built with React + Vite
+                        and deployed on Vercel, the tool turns a single evening of
+                        walk-in guests into a clean, measurable sales pipeline.
+
+                        <br /><br />
+                        Key features:
+                        <ul>
+                          <li>Custom registration form builder with conditional field visibility</li>
+                          <li>Role-based access (RLS: Super Admin / Admin / Staff)</li>
+                          <li>Executive dashboard with live KPIs and 7-day trend</li>
+                          <li>Searchable / filterable visitors table with bulk CSV &amp; XLSX export</li>
+                          <li>Hot / warm high-priority leads board</li>
+                          <li>Kanban follow-up pipeline (Not Contacted → Contacted → Quotation Sent → Won / Lost)</li>
+                          <li>Visitor profiles with timestamped notes &amp; attachments</li>
+                          <li>Performance analytics (conversion rate, top products, staff ranking)</li>
+                          <li>Field-level audit log</li>
+                          <li>OTP password reset</li>
+                          <li>Soft-delete / archive with restore</li>
+                        </ul>
+
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#c19a6b;--brand-ink:#1a1512;--stage:#0b0d0d;--bg:#121414;--surface:#1e2020;--card:#1c1e1e;--text:#e2e2e2;--muted:#9a9a97;--line:#3a3536;--ok:#7bd88f;--warn:#eabf8d;--danger:#ffb4ab;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">Every guest, every lead</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            From the executive dashboard to the follow-up board —
+                            recreated from the app's real screens and colour
+                            system.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Screen 1: Executive dashboard -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">concept-habitat.app/dashboard</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="logo.png" alt="Concept Habitat" style="height:18px" />
+                                    </div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-chart-line"></i></span> Dashboard</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Visitors</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-fire"></i></span> Leads</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Follow-Ups</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-pie"></i></span> Analytics</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-cog"></i></span> Settings</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-appbar">
+                                      <div class="pf-t-lg">After Hours · Overview</div>
+                                      <span class="pf-badge"><span class="pf-dot-live"></span>Live</span>
+                                    </div>
+
+                                    <div class="pf-grid4">
+                                      <div class="pf-stat brand">
+                                        <div class="n">512</div>
+                                        <div class="l">Registrations</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">47</div>
+                                        <div class="l">Today</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">38</div>
+                                        <div class="l">Hot Leads</div>
+                                      </div>
+                                      <div class="pf-stat">
+                                        <div class="n">6</div>
+                                        <div class="l">Overdue</div>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card pf-mt">
+                                      <div class="pf-h2">Visitors · last 7 days</div>
+                                      <div class="pf-chart">
+                                        <span class="b" style="height:42%"></span>
+                                        <span class="b" style="height:58%"></span>
+                                        <span class="b" style="height:50%"></span>
+                                        <span class="b" style="height:74%"></span>
+                                        <span class="b" style="height:63%"></span>
+                                        <span class="b" style="height:82%"></span>
+                                        <span class="b hi" style="height:100%"></span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Lead status</div>
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-muted">Hot</span>
+                                        <div class="pf-bar" style="width:62%"><i style="width:70%"></i></div>
+                                      </div>
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-muted">Warm</span>
+                                        <div class="pf-bar warn" style="width:62%"><i style="width:45%"></i></div>
+                                      </div>
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Cold</span>
+                                        <div class="pf-bar" style="width:62%"><i style="width:20%;background:var(--muted)"></i></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Live KPIs &amp; trends</div>
+                            </div>
+
+                            <!-- Screen 2: Follow-up pipeline -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">concept-habitat.app/follow-ups</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="logo.png" alt="Concept Habitat" style="height:18px" />
+                                    </div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-line"></i></span> Dashboard</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Visitors</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-fire"></i></span> Leads</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Follow-Ups</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-pie"></i></span> Analytics</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-cog"></i></span> Settings</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-appbar">
+                                      <div class="pf-t-lg">Follow-up pipeline</div>
+                                      <span class="pf-badge warn">8 open</span>
+                                    </div>
+
+                                    <div class="pf-kanban">
+                                      <div class="pf-kcol">
+                                        <div class="h">Not Contacted <span>3</span></div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Aarav S.</div>
+                                          <div class="pf-muted">Architect</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge danger">Hot</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Léa M.</div>
+                                          <div class="pf-muted">Homeowner</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge warn">Warm</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Priya R.</div>
+                                          <div class="pf-muted">Interior Designer</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge danger">Hot</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="pf-kcol">
+                                        <div class="h">Contacted <span>2</span></div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Kevin T.</div>
+                                          <div class="pf-muted">Homeowner</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge warn">Warm</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Sasha D.</div>
+                                          <div class="pf-muted">Architect</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge danger">Hot</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="pf-kcol">
+                                        <div class="h">Quotation Sent <span>2</span></div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Noah B.</div>
+                                          <div class="pf-muted">Interior Designer</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge danger">Hot</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Ines G.</div>
+                                          <div class="pf-muted">Homeowner</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge warn">Warm</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="pf-kcol">
+                                        <div class="h">Won <span>1</span></div>
+                                        <div class="pf-kcard">
+                                          <div class="pf-t pf-strong">Rahul V.</div>
+                                          <div class="pf-muted">Architect</div>
+                                          <div class="pf-between pf-mt">
+                                            <span class="pf-badge ok">Won</span>
+                                            <span class="pf-tag">Open</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Lead follow-up board</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">React 18</span>
+                            <span class="pf-chip">Vite</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">Edge Functions</span>
+                            <span class="pf-chip">Row-Level Security</span>
+                            <span class="pf-chip">XLSX</span>
+                            <span class="pf-chip">jsPDF</span>
+                            <span class="pf-chip">Vercel</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
+                        <br />
+                        This is a private, invite-only tool built for a single
+                        event — there are no public links or app-store listings.
+
+                        <br />
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
+                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="entry-meta entry-meta-bottom">
+                  <div class="date-author">
+                    <span class="entry-date"
+                      ><i class="far fa-clock"></i>
+                      <span class="entry-date"> June 2026</span></span
+                    >
+                    <span class="author vcard"
+                      ><i class="fas fa-user"></i> Farhaan Beeharry</span
+                    >
+                  </div>
+                </div>
+
+                <div class="post-tags">
+                  <div class="tags">
+                    <a href="#" rel="tag">web app</a>
+                    <a href="#" rel="tag">crm</a>
+                    <a href="#" rel="tag">react</a>
+                    <a href="#" rel="tag">supabase</a>
+                    <a href="#" rel="tag">dashboard</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/modernizr.custom.js"></script>
+    <script src="../../js/animating.js"></script>
+    <script src="../../js/imagesloaded.pkgd.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="../../js/perfect-scrollbar.min.js"></script>
+    <script src="../../js/jquery.shuffle.min.js"></script>
+    <script src="../../js/masonry.pkgd.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/jquery.magnific-popup.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
+    <script src="../../js/jquery.googlemap.js"></script>
+    <script src="../../js/validator.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>
