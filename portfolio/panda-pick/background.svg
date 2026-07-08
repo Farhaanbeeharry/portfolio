@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4648d4"/>
+      <stop offset="1" stop-color="#831ada"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.2" r="0.6">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="520" fill="url(#bg)"/>
+  <rect width="1200" height="520" fill="url(#glow)"/>
+  <!-- panda mark right -->
+  <g transform="translate(1006,180)">
+    <circle cx="0" cy="0" r="176" fill="none" stroke="#ffffff" stroke-opacity="0.18"/>
+    <circle cx="0" cy="0" r="110" fill="none" stroke="#ffffff" stroke-opacity="0.18"/>
+    <circle cx="-52" cy="-56" r="26" fill="#1b1b23"/>
+    <circle cx="52" cy="-56" r="26" fill="#1b1b23"/>
+    <ellipse cx="0" cy="2" rx="72" ry="64" fill="#ffffff" stroke="#1b1b23" stroke-width="5"/>
+    <ellipse cx="-30" cy="-4" rx="21" ry="26" fill="#1b1b23" transform="rotate(-12 -30 -4)"/>
+    <ellipse cx="30" cy="-4" rx="21" ry="26" fill="#1b1b23" transform="rotate(12 30 -4)"/>
+    <circle cx="-28" cy="-4" r="7" fill="#ffffff"/>
+    <circle cx="32" cy="-4" r="7" fill="#ffffff"/>
+    <ellipse cx="0" cy="28" rx="11" ry="7" fill="#1b1b23"/>
+    <path d="M0 35 q-14 16 -26 5 M0 35 q14 16 26 5" fill="none" stroke="#1b1b23" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <rect x="90" y="150" width="54" height="4" rx="2" fill="#ffffff"/>
+  <text x="88" y="238" font-size="88" font-weight="800" fill="#ffffff" letter-spacing="-1.5">PandaPick</text>
+  <text x="92" y="292" font-size="28" font-weight="600" fill="#e1e0ff" letter-spacing="4">OFFICE PREDICTION GAMES</text>
+  <text x="92" y="336" font-size="22" fill="#d7d5f5">Make fun office picks, vote before the deadline, climb the leaderboard.</text>
+  <!-- fake pick card -->
+  <g transform="translate(92,384)">
+    <rect x="0" y="0" width="380" height="96" rx="14" fill="#ffffff" opacity="0.97"/>
+    <rect x="16" y="16" width="150" height="9" rx="4" fill="#4648d4" opacity="0.85"/>
+    <rect x="16" y="40" width="150" height="20" rx="10" fill="#efecf8"/>
+    <rect x="176" y="40" width="90" height="20" rx="10" fill="#efecf8"/>
+    <rect x="16" y="70" width="110" height="20" rx="10" fill="#e1e0ff"/>
+    <rect x="290" y="30" width="74" height="36" rx="10" fill="#4648d4"/>
+    <rect x="308" y="44" width="38" height="8" rx="4" fill="#ffffff"/>
+  </g>
+</svg>

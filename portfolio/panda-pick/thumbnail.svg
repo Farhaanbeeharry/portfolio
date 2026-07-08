@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4648d4"/><stop offset="1" stop-color="#831ada"/>
+    </linearGradient>
+    <radialGradient id="gl" cx="0.5" cy="0.28" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#gl)"/>
+  <!-- panda mark -->
+  <g transform="translate(400,188)">
+    <circle cx="0" cy="0" r="104" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/>
+    <!-- ears -->
+    <circle cx="-58" cy="-62" r="30" fill="#1b1b23"/>
+    <circle cx="58" cy="-62" r="30" fill="#1b1b23"/>
+    <!-- face -->
+    <ellipse cx="0" cy="4" rx="80" ry="72" fill="#ffffff" stroke="#1b1b23" stroke-width="5"/>
+    <!-- eye patches -->
+    <ellipse cx="-34" cy="-2" rx="24" ry="30" fill="#1b1b23" transform="rotate(-12 -34 -2)"/>
+    <ellipse cx="34" cy="-2" rx="24" ry="30" fill="#1b1b23" transform="rotate(12 34 -2)"/>
+    <circle cx="-32" cy="-2" r="8" fill="#ffffff"/>
+    <circle cx="36" cy="-2" r="8" fill="#ffffff"/>
+    <!-- nose + mouth -->
+    <ellipse cx="0" cy="34" rx="12" ry="8" fill="#1b1b23"/>
+    <path d="M0 42 q-16 18 -30 6 M0 42 q16 18 30 6" fill="none" stroke="#1b1b23" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="360" text-anchor="middle" font-size="64" font-weight="800" fill="#ffffff" letter-spacing="-1">PandaPick</text>
+  <text x="400" y="404" text-anchor="middle" font-size="20" font-weight="600" fill="#e1e0ff" letter-spacing="3.5">OFFICE PREDICTION GAMES</text>
+  <!-- pick card mock -->
+  <g transform="translate(248,448)">
+    <rect x="0" y="0" width="304" height="70" rx="14" fill="#ffffff" opacity="0.96"/>
+    <rect x="18" y="16" width="150" height="9" rx="4" fill="#4648d4" opacity="0.85"/>
+    <rect x="18" y="38" width="120" height="18" rx="9" fill="#efecf8"/>
+    <rect x="146" y="38" width="60" height="18" rx="9" fill="#efecf8"/>
+    <rect x="228" y="18" width="60" height="34" rx="10" fill="#4648d4"/>
+    <rect x="244" y="31" width="28" height="8" rx="4" fill="#ffffff"/>
+  </g>
+</svg>
