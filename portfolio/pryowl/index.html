@@ -9,10 +9,10 @@
       content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta
       name="description"
-      content="Pryowl — a modern survey & form-builder SaaS with a visual builder, advanced conditional & skip logic, matrix questions, workspace RBAC and immutable response snapshots. Built with React, Vite, TypeScript and Supabase." />
+      content="Pryowl — a survey, quiz and e-signature platform: a visual builder with 21 question types, conditional and skip logic, matrix grids, an AI copilot (Hoot), server-side quiz grading, nine chart types, PDF e-signature and workspace RBAC with 24 scoped permissions. React + Vite + Supabase." />
     <meta
       name="keywords"
-      content="pryowl, survey builder, form builder, saas, conditional logic, skip logic, matrix questions, workspace rbac, react, vite, typescript, supabase, recharts" />
+      content="pryowl, survey builder, form builder, quiz platform, e-signature, esign, ai survey builder, conditional logic, skip logic, matrix questions, workspace rbac, row level security, react, vite, supabase, recharts, pdf-lib" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
 
@@ -171,37 +171,126 @@
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        <strong>Pryowl</strong> is a modern survey &amp;
-                        form-builder SaaS. Authors design surveys in a visual
-                        builder with genuinely advanced logic — conditional
-                        show/hide, skip/branching, and matrix grids — then
-                        publish them with intelligent gating: response caps,
-                        save-and-resume, and one-per-browser/email limits.
+                        <strong>Pryowl</strong> started as a survey builder and
+                        grew into a full data-collection and document platform.
+                        Authors design forms in a visual builder with genuinely
+                        advanced logic, publish them with intelligent gating,
+                        auto-mark them as quizzes, analyse the results across nine
+                        chart types — and, in the same workspace, send PDFs out for
+                        legally-structured <strong>e-signature</strong>.
 
                         <br /><br />
-                        A workspace model with fine-grained RBAC (21+ granular
-                        permissions) lets teams collaborate, while every response
-                        is stored as an immutable snapshot of the survey at
-                        submission time. Built with React + Vite + TypeScript on
-                        Supabase, with per-workspace branding, dark mode and
-                        EN/FR support.
+                        Inside it lives <strong>Hoot</strong>, the owl — an AI
+                        copilot you talk to in a chat. Describe what you want to
+                        ask and Hoot returns a complete survey (title, questions,
+                        options, settings), then keeps editing as you refine, and
+                        names exactly what it changed each turn. It knows every
+                        question type in the builder and answers in one of eight
+                        selectable tones, in English or French.
 
                         <br /><br />
-                        Key features:
+                        The builder covers <strong>21 question types</strong> —
+                        short and long answer, e-mail, number, phone, date, time,
+                        single and multiple choice, dropdown, yes/no, consent,
+                        star rating, linear scale, NPS, matrix grids, section
+                        breaks, image upload, image URL, link and file upload.
+                        Questions can show or hide on earlier answers
+                        (<em>conditional logic</em>), jump respondents forward
+                        (<em>skip logic / branching</em>), and be grouped into
+                        sections with their own progress.
+
+                        <br /><br />
+                        Turning a survey into a <strong>quiz</strong> is a
+                        setting, not a different product. Correct answers are
+                        stored per question and — critically — never sent to the
+                        browser: the public fetch omits the column entirely and
+                        grading happens inside a server-side function, so the
+                        answer key cannot be scraped from the page. Authors can
+                        optionally show respondents their score with a pass mark,
+                        and mark free-text answers by hand afterwards.
+
+                        <br /><br />
+                        A workspace model with fine-grained
+                        <strong>RBAC (24 permissions)</strong> lets teams
+                        collaborate, and the scoped permissions are tri-state
+                        rather than boolean — <em>None / Own / All</em> — so a
+                        member can be allowed to edit their own surveys but only
+                        view everyone else's. The permission engine also enforces
+                        implications: granting "publish own surveys" silently
+                        raises "view own surveys", because the first is meaningless
+                        without the second. Every rule is re-enforced in Postgres
+                        Row Level Security and database triggers, not just in the UI.
+
+                        <br /><br />
+                        Every response is stored as an
+                        <strong>immutable snapshot</strong> of the survey at
+                        submission time, so editing a question later never
+                        rewrites history or corrupts old analytics.
+
+                        <br /><br />
+                        <strong>Building</strong>
                         <ul>
-                          <li>Visual survey builder with instant preview</li>
-                          <li>Conditional logic (show / hide by answer)</li>
-                          <li>Skip logic / branching</li>
-                          <li>Matrix (grid) questions</li>
-                          <li>Response caps &amp; one-per-browser/email limits</li>
-                          <li>Save &amp; resume from browser</li>
-                          <li>Workspace RBAC v2 with custom roles &amp; 21+ permissions</li>
-                          <li>Team workspaces with invites</li>
-                          <li>Per-workspace branding (colours, logos)</li>
-                          <li>Rich question types (text, rating/stars, phone, date, multiselect, matrix)</li>
-                          <li>Immutable response snapshots</li>
-                          <li>Analytics dashboard (Recharts) + CSV / PDF export</li>
-                          <li>Multi-language (EN / FR) + dark mode</li>
+                          <li>Visual builder with instant preview and drag-ordered questions</li>
+                          <li>21 question types, including matrix grids, NPS, consent and file upload</li>
+                          <li>Conditional logic — show / hide a question by earlier answers</li>
+                          <li>Skip logic and branching</li>
+                          <li>Sections with their own titles and progress</li>
+                          <li>Hoot, the AI copilot — builds and edits a whole survey in chat</li>
+                          <li>Eight selectable Hoot reply tones</li>
+                          <li>Reusable survey templates</li>
+                          <li>Per-workspace branding — colours, logos, custom start screen</li>
+                        </ul>
+
+                        <br /><strong>Publishing &amp; responding</strong>
+                        <ul>
+                          <li>Response caps that close a survey automatically</li>
+                          <li>One-per-browser and one-per-e-mail submission limits</li>
+                          <li>Save &amp; resume a part-finished response from the browser</li>
+                          <li>Invite respondents by e-mail from inside the app</li>
+                          <li>Anonymous responses when the survey allows it</li>
+                          <li>Attempt timers, with a clear notice when time is capped</li>
+                          <li>Cancel a live survey without destroying its responses</li>
+                          <li>A "my responses" area where a respondent can find their own submissions</li>
+                        </ul>
+
+                        <br /><strong>Quizzes &amp; marking</strong>
+                        <ul>
+                          <li>Per-question correct answers, never exposed to the client</li>
+                          <li>Server-side auto-grading with score and max score</li>
+                          <li>Optional score reveal with a configurable pass mark</li>
+                          <li>Manual marking of free-text answers, with custom mark values</li>
+                          <li>Detailed per-question results and a results message per outcome</li>
+                        </ul>
+
+                        <br /><strong>E-signature</strong>
+                        <ul>
+                          <li>Upload a PDF and place signature, text and date fields on it</li>
+                          <li>Visual document builder rendering the real PDF on canvas</li>
+                          <li>Draw-to-sign signature pad</li>
+                          <li>Send a document out for signing and track its status</li>
+                          <li>A signed copy written back into the PDF with pdf-lib</li>
+                          <li>Document library with view / update / delete permissions</li>
+                        </ul>
+
+                        <br /><strong>Analysis</strong>
+                        <ul>
+                          <li>Nine chart types — bar, stacked bar, line, pie, polar area, radar, gauge, data table and a chart-type picker per question</li>
+                          <li>Per-question summaries and cross-response analytics</li>
+                          <li>Individual response inspection</li>
+                          <li>CSV and PDF export</li>
+                        </ul>
+
+                        <br /><strong>Workspaces, accounts &amp; platform</strong>
+                        <ul>
+                          <li>Team workspaces with e-mail invitations and an accept-invite flow</li>
+                          <li>Custom roles built from 24 permissions, scoped None / Own / All</li>
+                          <li>Permission implications enforced so a role can never be incoherent</li>
+                          <li>Ownership transfer, workspace icon / colour / logo picker</li>
+                          <li>Two-factor authentication, OTP verification and OTP password reset</li>
+                          <li>Plan tiers (Free / Pro / Business) with workspace and survey limits enforced by database triggers</li>
+                          <li>In-app notifications</li>
+                          <li>Marketing site — features, pricing, comparison, e-signature and Hoot pages</li>
+                          <li>Multi-language (EN / FR) and dark mode, both driven by CSS custom properties</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
@@ -212,9 +301,9 @@
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            From the visual builder to the branded public response
-                            page — recreated from Pryowl's real screens and colour
-                            system.
+                            The visual builder, Hoot the AI copilot, the branded
+                            public response page and the e-signature canvas —
+                            recreated from Pryowl's real screens and colour system.
                           </p>
 
                           <div class="pf-stage">
@@ -237,13 +326,13 @@
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-list-ul"></i></span> Multiple choice</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-star"></i></span> Rating</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-th"></i></span> Matrix</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-calendar"></i></span> Date</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-phone"></i></span> Phone</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-gauge-high"></i></span> NPS</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-arrow-up"></i></span> File upload</div>
                                   </div>
 
                                   <div class="pf-main">
                                     <div class="pf-between pf-mb">
-                                      <div class="pf-t-lg">Untitled survey</div>
+                                      <div class="pf-t-lg">Customer feedback</div>
                                       <div class="pf-row">
                                         <span class="pf-btn-outline">Preview</span>
                                         <span class="pf-btn">Publish</span>
@@ -251,37 +340,46 @@
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-t pf-strong">Q1 · How satisfied are you?</div>
+                                      <div class="pf-between">
+                                        <div class="pf-t pf-strong">Q1 · How satisfied are you?</div>
+                                        <span class="pf-badge ok">1 pt</span>
+                                      </div>
                                       <div class="pf-row pf-mt" style="gap:6px;color:var(--brand)">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                         <i class="fas fa-star" style="color:var(--muted)"></i>
                                         <i class="fas fa-star" style="color:var(--muted)"></i>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-t pf-strong">Q2 · Which features do you use?</div>
+                                      <div class="pf-t pf-strong">Q2 · Which plan are you on?</div>
                                       <div class="pf-row pf-mt">
                                         <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--brand);flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span></span>
-                                        <span class="pf-t">Builder</span>
+                                        <span class="pf-t">Pro</span>
                                       </div>
                                       <div class="pf-row pf-mt">
                                         <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
-                                        <span class="pf-t">Analytics</span>
+                                        <span class="pf-t">Free</span>
                                       </div>
-                                      <div class="pf-row pf-mt">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
-                                        <span class="pf-t">Exports</span>
+                                    </div>
+
+                                    <!-- Hoot chat -->
+                                    <div class="pf-card" style="border-color:var(--brand)">
+                                      <div class="pf-row">
+                                        <span class="pf-iconbox"><i class="fas fa-feather"></i></span>
+                                        <span class="grow">
+                                          <span class="pf-t pf-strong">Hoot 🦉</span><br />
+                                          <span class="pf-muted">Added Q3 and a skip rule to Q2.</span>
+                                        </span>
                                       </div>
+                                      <div class="pf-input pf-mt"><i class="fas fa-wand-magic-sparkles"></i> Ask Hoot to change something…</div>
                                     </div>
 
                                     <span class="pf-badge">Logic: show Q3 if 'Pro'</span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Visual builder + logic</div>
+                              <div class="pf-cap">Visual builder, logic &amp; Hoot</div>
                             </div>
 
                             <!-- Frame 2: Phone — Public survey -->
@@ -298,17 +396,11 @@
                                     </div>
 
                                     <div class="pf-bar" style="margin-bottom:6px"><i style="width:40%"></i></div>
-                                    <div class="pf-muted pf-mb">2 of 5</div>
+                                    <div class="pf-muted pf-mb">2 of 5 · Section 1</div>
 
                                     <div class="pf-card">
                                       <div class="pf-t pf-strong">How likely are you to recommend us?</div>
                                       <div class="pf-row wrap pf-mt" style="gap:5px">
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">0</span>
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">1</span>
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">2</span>
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">3</span>
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">4</span>
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">5</span>
                                         <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">6</span>
                                         <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">7</span>
                                         <span class="pf-xs pf-strong" style="width:20px;height:20px;border-radius:6px;background:var(--brand);color:var(--brand-ink);display:inline-flex;align-items:center;justify-content:center">8</span>
@@ -343,17 +435,94 @@
                               </div>
                               <div class="pf-cap">Branded response page</div>
                             </div>
+
+                            <!-- Frame 3: Browser — e-signature + analytics -->
+                            <div class="pf-frame" style="flex:1 1 460px">
+                              <div class="pf-browser">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">pryowl.farhaan.info/documents/sign</span>
+                                </div>
+                                <div class="pf-pad">
+                                  <div class="pf-between pf-mb">
+                                    <div class="pf-t-lg">Service agreement</div>
+                                    <span class="pf-badge warn">Awaiting signature</span>
+                                  </div>
+
+                                  <div class="pf-card">
+                                    <div class="pf-row" style="align-items:flex-start;gap:12px">
+                                      <span style="flex:0 0 96px;height:120px;border-radius:8px;background:#fff;display:block;position:relative">
+                                        <span style="position:absolute;left:10px;top:12px;right:10px;height:5px;border-radius:3px;background:#c9d3d1;display:block"></span>
+                                        <span style="position:absolute;left:10px;top:24px;right:26px;height:5px;border-radius:3px;background:#dde5e3;display:block"></span>
+                                        <span style="position:absolute;left:10px;top:36px;right:16px;height:5px;border-radius:3px;background:#dde5e3;display:block"></span>
+                                        <span style="position:absolute;left:10px;bottom:16px;width:56px;height:22px;border-radius:5px;border:2px dashed #4fdbc8;display:block"></span>
+                                      </span>
+                                      <span class="grow">
+                                        <span class="pf-t pf-strong">Drop fields on the PDF</span><br />
+                                        <span class="pf-muted">Signature · Full name · Date</span>
+                                        <span class="pf-row pf-mt" style="gap:6px">
+                                          <span class="pf-tag">SIGNATURE</span>
+                                          <span class="pf-tag">DATE</span>
+                                          <span class="pf-tag">TEXT</span>
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  <div class="pf-card">
+                                    <div class="pf-h2">Draw to sign</div>
+                                    <div style="height:52px;border-radius:8px;border:1px solid var(--line);background:color-mix(in srgb,var(--text) 5%,transparent);position:relative">
+                                      <svg viewBox="0 0 220 52" style="position:absolute;inset:0;width:100%;height:100%">
+                                        <path d="M14 38c10-18 16-22 22-8s10 18 16 4 8-22 14-10 6 20 12 12 8-20 14-14 8 18 14 10 10-20 18-16 10 14 20 12" fill="none" stroke="#4fdbc8" stroke-width="2.6" stroke-linecap="round"/>
+                                      </svg>
+                                    </div>
+                                    <div class="pf-row pf-mt">
+                                      <span class="pf-btn">Sign &amp; send</span>
+                                      <span class="pf-btn-ghost">Clear</span>
+                                    </div>
+                                  </div>
+
+                                  <div class="pf-card">
+                                    <div class="pf-h2">Q1 · Satisfaction</div>
+                                    <div class="pf-row" style="gap:14px">
+                                      <span class="pf-donut" style="--v:78%" data-v="78%"></span>
+                                      <span class="grow">
+                                        <div class="pf-chart">
+                                          <span class="b" style="height:40%"></span>
+                                          <span class="b" style="height:62%"></span>
+                                          <span class="b hi" style="height:100%"></span>
+                                          <span class="b" style="height:74%"></span>
+                                          <span class="b" style="height:48%"></span>
+                                        </div>
+                                      </span>
+                                    </div>
+                                    <div class="pf-row pf-mt" style="gap:6px">
+                                      <span class="pf-badge">CSV</span>
+                                      <span class="pf-badge">PDF</span>
+                                      <span class="pf-badge ok">Pass mark 60%</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">E-signature &amp; analytics</div>
+                            </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">React 18</span>
                             <span class="pf-chip">Vite</span>
-                            <span class="pf-chip">TypeScript</span>
-                            <span class="pf-chip">React Router v7</span>
+                            <span class="pf-chip">React Router</span>
                             <span class="pf-chip">Tailwind CSS</span>
                             <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">Postgres RLS</span>
                             <span class="pf-chip">Recharts</span>
+                            <span class="pf-chip">pdf-lib</span>
+                            <span class="pf-chip">pdfjs-dist</span>
+                            <span class="pf-chip">react-easy-crop</span>
                             <span class="pf-chip">Lucide</span>
+                            <span class="pf-chip">Vitest</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
@@ -365,9 +534,9 @@
                         >
 
                         <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
-                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #14b8a6; font-weight: 600; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #4fdbc8;"></i>
+                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #4fdbc8; text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>
@@ -391,6 +560,8 @@
                     <a href="#" rel="tag">web app</a>
                     <a href="#" rel="tag">saas</a>
                     <a href="#" rel="tag">survey builder</a>
+                    <a href="#" rel="tag">quiz</a>
+                    <a href="#" rel="tag">e-signature</a>
                     <a href="#" rel="tag">react</a>
                     <a href="#" rel="tag">supabase</a>
                   </div>

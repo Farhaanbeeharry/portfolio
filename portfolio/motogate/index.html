@@ -9,10 +9,10 @@
       content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta
       name="description"
-      content="MotoGate — event access management mobile app built with Flutter and Firebase, featuring QR ticketing, live gate scanning and role-based access." />
+      content="MotoGate — a Flutter + Firebase event access-management app for MotoClub Mauritius: QR ticketing, live gate scanning against Cloud Firestore, customisable access roles, printed access bracelets, racing-licence lifecycle, entry audit logs and screenshot-protected passes." />
     <meta
       name="keywords"
-      content="motogate, motoclub, event access, flutter, firebase, qr ticketing, mobile app" />
+      content="motogate, motoclub mauritius, event access control, qr ticketing, gate scanning, access roles, racing licence, entry log, audit trail, flutter, firebase, cloud firestore, mobile_scanner, bloc" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
 
@@ -154,7 +154,7 @@
           <div class="single-page-content">
             <article class="post">
               <div class="post-thumbnail">
-                <img src="background.png" alt="MotoGate Project Cover" />
+                <img src="background.svg" alt="MotoGate Project Cover" />
               </div>
 
               <div class="post-content">
@@ -171,67 +171,297 @@
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        Built for <strong>MotoClub Mauritius</strong>, MotoGate
-                        is a custom event access-management app that replaces
-                        manual guest lists with secure QR ticketing and live gate
-                        control. It handles the full lifecycle of a motorsport or
-                        VIP event — from creating the event and inviting guests,
-                        to scanning them in at the gate in real time.
+                        Built for <strong>MotoClub Mauritius</strong>,
+                        <strong>MotoGate</strong> is a custom event
+                        access-management app that replaces manual guest lists
+                        with secure QR ticketing and live gate control. It runs
+                        the full lifecycle of a motorsport or VIP event — creating
+                        the event, building the guest list, issuing passes, and
+                        scanning people in at the gate against a live database.
 
                         <br /><br />
-                        Organizers create events, set venue capacity, register
-                        guests, companions and teams, and assign role-based
-                        access for VIPs, media, staff and competitors. At the
-                        gate, staff scan tickets that are verified live against
-                        Cloud Firestore — blocking reused codes, admitting
-                        companions, and offering supervised override flows for
-                        exceptional cases. Attendees, meanwhile, carry a
-                        screenshot-protected digital pass on their own phone.
-
-                        <br /><br />
-                        On the organiser side, MotoGate is a full control room.
-                        Admins build an event, define venue capacity and manage
-                        the guest list — invitees, their companions and whole
-                        teams — each assigned a role that determines where they
-                        can go. Tickets are generated as QR codes and can be
-                        printed as bracelets on-site, while a live entry log and
-                        audit trail record every scan, override and exceptional
-                        admission as it happens.
+                        On the organiser side it is a control room. Admins create
+                        an event, set venue capacity, and manage invitees, their
+                        companions and whole teams — each assigned an
+                        <strong>access role</strong> that decides where they can
+                        go. Roles are not hard-coded: the seven system defaults
+                        (Media, Staff, VIP, Sponsor, Services, Demo, Other) can be
+                        renamed, recoloured, re-iconed, disabled or joined by
+                        custom roles of the club's own. Passes are issued as QR
+                        codes, printable on-site as access bracelets, and every
+                        scan, override and exceptional admission lands in a live
+                        entry log.
 
                         <br /><br />
                         At the gate, scanning is built for speed and trust. Each
-                        code is checked live against Cloud Firestore for event
-                        ownership, validity and re-use; a clear full-screen result
-                        shows access granted or denied, admits allowed companions,
-                        and offers a supervised override for edge cases. The same
-                        QR format doubles as a MotoClub racing licence, so event
-                        invitations and competitor IDs run through one flow.
-                        Attendee passes are protected against screenshots and
-                        screen recording and auto-boost screen brightness so they
-                        scan first time.
+                        code is verified live against Cloud Firestore for event
+                        ownership, validity and re-use, then a full-screen result
+                        shows access granted or denied, admits the allowed number
+                        of companions, and offers a supervised override for edge
+                        cases. A separate <strong>special guest entry</strong>
+                        flow covers people who arrive without a pass at all.
 
                         <br /><br />
-                        Technically, MotoGate is a Flutter app using flutter_bloc
-                        for state, the full Firebase suite (Authentication, Cloud
-                        Firestore, Cloud Messaging) for its real-time backend,
-                        mobile_scanner and qr_flutter for ticketing, on-device PDF
-                        generation for printing, and push plus local notifications
-                        to keep invitees informed. It is published on both the
-                        Google Play Store and the Apple App Store.
+                        The same QR format doubles as a
+                        <strong>MotoClub racing licence</strong>, so event
+                        invitations and competitor IDs run through one pipeline.
+                        Licences have their own lifecycle — application, review,
+                        issue, renewal — and the admin console filters them by
+                        Pending, In&nbsp;Review, Issued, Renewals, Rejected and
+                        Revoked. Attendee passes are protected against screenshots
+                        and screen recording, and auto-boost screen brightness so
+                        they scan first time.
 
                         <br /><br />
-                        Key features:
+                        Access to the console itself is permission-gated. A
+                        super-admin grants any combination of seven staff
+                        permissions — event admin, licence admin, user management,
+                        QR scanning, notifications, pricing and manual account
+                        verification — so a gate steward sees only the scanner
+                        while the club secretary sees the licence queue.
+
+                        <br /><br />
+                        <strong>Events &amp; guests</strong>
                         <ul>
-                          <li>Event creation with venue capacity management</li>
-                          <li>Guest, companion and team registration</li>
-                          <li>Role-based access control (VIP, media, staff, teams)</li>
-                          <li>QR ticket generation and live scanning</li>
-                          <li>Real-time verification against Firestore</li>
-                          <li>Entry logs, override flows and audit tracking</li>
-                          <li>Screenshot / screen-recording protected passes</li>
-                          <li>Push &amp; local notifications for invitees</li>
+                          <li>Event creation and editing with venue capacity management</li>
+                          <li>Live / upcoming / past event states, with a single live event at a time</li>
+                          <li>Invitee, companion and team registration</li>
+                          <li>Contact-book import when adding guests, so numbers are not retyped</li>
+                          <li>Customisable access roles — name, colour, icon, enabled state</li>
+                          <li>Companions directory reused across events</li>
+                          <li>Sponsor management</li>
                         </ul>
 
+                        <br /><strong>Ticketing &amp; the gate</strong>
+                        <ul>
+                          <li>QR pass generation, viewable in-app and shareable</li>
+                          <li>Camera scanning with live Firestore verification</li>
+                          <li>Re-use, wrong-event and invalid-code rejection</li>
+                          <li>Companion admission counted against the invitee</li>
+                          <li>Supervised override flow for exceptional cases</li>
+                          <li>Special guest entry for unticketed arrivals</li>
+                          <li>Live entry log and audit trail of every decision</li>
+                          <li>On-device PDF generation for printed access bracelets</li>
+                          <li>Data export as CSV or PDF, via share sheet or file download</li>
+                        </ul>
+
+                        <br /><strong>Racing licences</strong>
+                        <ul>
+                          <li>Licence application and renewal from the member's own phone</li>
+                          <li>Admin review queue with issue / reject / revoke decisions</li>
+                          <li>Status filters — Pending, In Review, Issued, Renewals, Rejected, Revoked</li>
+                          <li>Document and photo upload with in-app image cropping</li>
+                          <li>The licence QR is the same format as an event pass</li>
+                          <li>Configurable pricing per licence type</li>
+                        </ul>
+
+                        <br /><strong>Accounts, staff &amp; platform</strong>
+                        <ul>
+                          <li>Sign-up and login by e-mail <em>or</em> mobile number</li>
+                          <li>6-digit OTP verification and OTP-based password reset</li>
+                          <li>Manual account verification flow for members without documents</li>
+                          <li>Seven granular staff permissions granted by a super-admin</li>
+                          <li>Users directory and staff management console</li>
+                          <li>Broadcast push notifications to invitees, plus local notifications</li>
+                          <li>Screenshot / screen-recording protection on passes</li>
+                          <li>Automatic screen-brightness boost while a pass is displayed</li>
+                          <li>Published on both the Google Play Store and the Apple App Store</li>
+                        </ul>
+
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#0d92f2;--brand-ink:#00121f;--stage:#001422;--bg:#051b29;--surface:#0d2536;--card:#081e2c;--text:#dde4e7;--muted:#4a5f73;--line:#1d4560;--ok:#22c55e;--warn:#f59e0b;--danger:#ef4444;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">Built for the gate, not the office</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            The organiser console, the attendee pass and the live
+                            scan result — recreated from MotoGate's real screens
+                            and its dark blue access-control palette.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Phone — organiser event console -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <img src="icon_white.png" alt="MotoGate" style="height:20px;width:auto" />
+                                        <span class="pf-t pf-strong">MotoGate</span>
+                                      </div>
+                                      <span class="pf-badge ok"><span class="pf-dot-live"></span> Live</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong">Rallye de Maurice</div>
+                                      <div class="pf-muted pf-mb">Gymkhana Ground · capacity 1,200</div>
+                                      <div class="pf-bar"><i style="width:72%"></i></div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted pf-xs">864 admitted</span>
+                                        <span class="pf-muted pf-xs">72%</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat"><div class="n">248</div><div class="l">Scanned in</div></div>
+                                      <div class="pf-stat"><div class="n">12</div><div class="l">Denied</div></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Guest list</div>
+                                      <div class="pf-li">
+                                        <span class="pf-av">JD</span>
+                                        <span class="grow"><span class="pf-t pf-strong">J. Dookhee</span><br /><span class="pf-muted">+2 companions</span></span>
+                                        <span class="pf-tag">VIP</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-av">RM</span>
+                                        <span class="grow"><span class="pf-t pf-strong">R. Maigre</span><br /><span class="pf-muted">Team Alpha</span></span>
+                                        <span class="pf-tag">MEDIA</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span class="active"><i class="fas fa-calendar-alt"></i></span>
+                                    <span><i class="fas fa-id-card"></i></span>
+                                    <span><i class="fas fa-bell"></i></span>
+                                    <span><i class="fas fa-cog"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Organiser event console</div>
+                            </div>
+
+                            <!-- Frame 2: Phone — attendee pass -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <span class="pf-t pf-strong">My pass</span>
+                                      <span class="pf-badge"><i class="fas fa-shield-alt"></i> Protected</span>
+                                    </div>
+
+                                    <div class="pf-qr">
+                                      <svg viewBox="0 0 29 29" shape-rendering="crispEdges">
+                                        <rect width="29" height="29" fill="#fff"/>
+                                        <g fill="#001422">
+                                          <path d="M0 0h7v7H0zM22 0h7v7h-7zM0 22h7v7H0z"/>
+                                          <path d="M2 2h3v3H2zM24 2h3v3h-3zM2 24h3v3H2z" fill="#fff"/>
+                                          <path d="M9 0h1v1H9zM11 0h1v1h-1zM13 0h1v1h-1zM9 2h1v1H9zM12 2h1v1h-1zM10 4h1v1h-1zM13 4h1v1h-1zM9 6h1v1H9zM11 6h1v1h-1z"/>
+                                          <path d="M0 9h1v1H0zM2 9h1v1H2zM4 9h1v1H4zM6 9h1v1H6zM1 11h1v1H1zM3 11h1v1H3zM5 11h1v1H5zM0 13h1v1H0zM2 13h1v1H2zM4 13h1v1H4zM6 13h1v1H6z"/>
+                                          <path d="M9 9h1v1H9zM11 9h1v1h-1zM13 9h1v1h-1zM15 9h1v1h-1zM17 9h1v1h-1zM19 9h1v1h-1zM10 11h1v1h-1zM12 11h1v1h-1zM14 11h1v1h-1zM16 11h1v1h-1zM18 11h1v1h-1zM9 13h1v1H9zM11 13h1v1h-1zM13 13h1v1h-1zM15 13h1v1h-1zM17 13h1v1h-1zM19 13h1v1h-1z"/>
+                                          <path d="M22 9h1v1h-1zM24 9h1v1h-1zM26 9h1v1h-1zM28 9h1v1h-1zM23 11h1v1h-1zM25 11h1v1h-1zM27 11h1v1h-1zM22 13h1v1h-1zM24 13h1v1h-1zM26 13h1v1h-1zM28 13h1v1h-1z"/>
+                                          <path d="M9 16h1v1H9zM12 16h1v1h-1zM15 16h1v1h-1zM18 16h1v1h-1zM21 16h1v1h-1zM24 16h1v1h-1zM27 16h1v1h-1zM10 18h1v1h-1zM13 18h1v1h-1zM16 18h1v1h-1zM19 18h1v1h-1zM22 18h1v1h-1zM25 18h1v1h-1zM28 18h1v1h-1z"/>
+                                          <path d="M9 20h1v1H9zM11 20h1v1h-1zM14 20h1v1h-1zM17 20h1v1h-1zM20 20h1v1h-1zM23 20h1v1h-1zM26 20h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM15 22h1v1h-1zM18 22h1v1h-1zM21 22h1v1h-1zM24 22h1v1h-1zM27 22h1v1h-1z"/>
+                                          <path d="M9 24h1v1H9zM12 24h1v1h-1zM16 24h1v1h-1zM19 24h1v1h-1zM22 24h1v1h-1zM25 24h1v1h-1zM28 24h1v1h-1zM11 26h1v1h-1zM14 26h1v1h-1zM17 26h1v1h-1zM20 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1zM10 28h1v1h-1zM13 28h1v1h-1zM16 28h1v1h-1zM19 28h1v1h-1zM22 28h1v1h-1zM25 28h1v1h-1zM28 28h1v1h-1z"/>
+                                        </g>
+                                      </svg>
+                                    </div>
+
+                                    <div class="pf-card pf-mt">
+                                      <div class="pf-t pf-strong">J. Dookhee</div>
+                                      <div class="pf-muted">Rallye de Maurice · 14 Mar</div>
+                                      <div class="pf-row pf-mt" style="gap:6px">
+                                        <span class="pf-tag">VIP</span>
+                                        <span class="pf-badge">+2 companions</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Racing licence</span>
+                                        <span class="pf-badge ok">Valid</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Brightness</span>
+                                        <span class="pf-badge solid">Boosted</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Protected attendee pass</div>
+                            </div>
+
+                            <!-- Frame 3: Phone — scan result + entry log -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <span class="pf-t pf-strong">Scan ticket</span>
+                                      <span class="pf-muted"><i class="fas fa-bolt"></i></span>
+                                    </div>
+
+                                    <div class="pf-card" style="border-color:var(--ok)">
+                                      <div class="pf-row">
+                                        <span class="pf-iconbox" style="background:color-mix(in srgb,var(--ok) 22%,transparent);color:var(--ok)"><i class="fas fa-check"></i></span>
+                                        <span class="grow">
+                                          <span class="pf-t pf-strong" style="color:var(--ok)">ACCESS GRANTED</span><br />
+                                          <span class="pf-muted">J. Dookhee · VIP</span>
+                                        </span>
+                                      </div>
+                                      <div class="pf-row pf-mt" style="gap:6px">
+                                        <span class="pf-badge ok">+2 admitted</span>
+                                        <span class="pf-badge">Gate A</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card" style="border-color:var(--danger)">
+                                      <div class="pf-row">
+                                        <span class="pf-iconbox" style="background:color-mix(in srgb,var(--danger) 22%,transparent);color:var(--danger)"><i class="fas fa-times"></i></span>
+                                        <span class="grow">
+                                          <span class="pf-t pf-strong" style="color:var(--danger)">ALREADY USED</span><br />
+                                          <span class="pf-muted">Used 18:42 · Gate B</span>
+                                        </span>
+                                      </div>
+                                      <div class="pf-btn-outline pf-mt">Supervisor override</div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Entry log</div>
+                                      <div class="pf-li">
+                                        <span class="pf-badge ok"><i class="fas fa-check"></i></span>
+                                        <span class="grow pf-t">R. Maigre · Media</span>
+                                        <span class="pf-muted pf-xs">18:44</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-badge warn"><i class="fas fa-user-shield"></i></span>
+                                        <span class="grow pf-t">Override · S. B.</span>
+                                        <span class="pf-muted pf-xs">18:43</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Live scan result &amp; audit trail</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">Flutter</span>
+                            <span class="pf-chip">flutter_bloc</span>
+                            <span class="pf-chip">Firebase Auth</span>
+                            <span class="pf-chip">Cloud Firestore</span>
+                            <span class="pf-chip">Cloud Messaging</span>
+                            <span class="pf-chip">mobile_scanner</span>
+                            <span class="pf-chip">qr_flutter</span>
+                            <span class="pf-chip">screen_protector</span>
+                            <span class="pf-chip">pdf</span>
+                            <span class="pf-chip">image_cropper</span>
+                            <span class="pf-chip">flutter_contacts</span>
+                            <span class="pf-chip">pinput</span>
+                            <span class="pf-chip">Google Fonts</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
                         MotoClub website:
@@ -259,7 +489,7 @@
                         </ul>
 
                         <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #0d92f2; font-weight: 600; margin-top: 20px;">
                           <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
                           If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
                         </div>
@@ -287,6 +517,7 @@
                     <a href="#" rel="tag">firebase</a>
                     <a href="#" rel="tag">qr access</a>
                     <a href="#" rel="tag">event management</a>
+                    <a href="#" rel="tag">access control</a>
                   </div>
                 </div>
               </div>

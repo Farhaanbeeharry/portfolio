@@ -9,10 +9,10 @@
       content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta
       name="description"
-      content="PandaPick — friendly office prediction games for teams. Admins spin up a company workspace, invite members, and everyone makes fun office picks with 2–4 outcomes, votes before the deadline, earns points and climbs the leaderboard. Built with React, Vite, TypeScript and Supabase." />
+      content="PandaPick — a multi-tenant office prediction game: company workspaces, challenges with unlimited outcomes, a live leaderboard, and two daily mini-games (Mathdown, a 1v1 real-time maths duel, and Pinpoint, a treasure board). React + TypeScript + Supabase with RLS and Edge Functions. No money, no odds." />
     <meta
       name="keywords"
-      content="pandapick, office games, prediction game, team engagement, leaderboard, workspace, rbac, react, vite, typescript, supabase, tailwind, edge functions" />
+      content="pandapick, office prediction game, team engagement, leaderboard, mini-games, mathdown, pinpoint, multi-tenant saas, workspaces, react, typescript, supabase, row level security, edge functions, tanstack query" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
 
@@ -174,7 +174,7 @@
                         <strong>PandaPick</strong> is a friendly office
                         prediction game for teams — the risk-free way to turn
                         watercooler chatter into a company-wide sport. An admin
-                        spins up a company workspace, invites the team by email
+                        spins up a company workspace, invites the team by e-mail
                         or a single share link, and everyone makes fun
                         <strong>picks</strong> on <strong>challenges</strong> —
                         light-hearted predictions with as many outcomes as you
@@ -184,23 +184,52 @@
                         champion. 🐼👑
 
                         <br /><br />
-                        The twist is <strong>multi-workspace by design</strong>:
-                        one account belongs to as many teams as invite you, and
-                        you switch between them in a single click. Plan limits
-                        only ever cap the workspaces you <em>create</em> —
-                        joining a teammate's workspace is always free and
-                        unlimited.
+                        Alongside the picks are two daily
+                        <strong>mini-games</strong>, both scored into the same
+                        leaderboard. <strong>Mathdown</strong> is a 1v1 real-time
+                        maths showdown: challenge an online teammate and you both
+                        receive the same ten questions of ramping difficulty, one
+                        at a time, in sync — the first correct answer claims the
+                        point and advances you both. Most points wins; ties break
+                        on the lower total solve time. <strong>Pinpoint</strong>
+                        is a per-workspace treasure hunt: each day the workspace
+                        gets one board with a hidden treasure, members drop and
+                        drag a flag live, then lock it; at the workspace's deadline
+                        the board closes, the treasure is revealed with an
+                        animation, and the closest locked flags score.
 
                         <br /><br />
-                        Under the hood it's a real multi-tenant SaaS: workspaces
-                        with role-based access, invitation-only membership,
-                        custom colour-coded categories, private vs public and
-                        anonymous challenges, and every business rule enforced in
-                        Postgres Row Level Security and Supabase Edge Functions —
-                        from one-vote-per-pick to automatic point reversal when a
-                        result is re-resolved. It ships its own 6-digit OTP email
-                        flow, a searchable admin audit trail, in-app + email
-                        notifications, per-company branding, dark mode and EN/FR.
+                        Both games are built so they cannot be cheated from the
+                        client. Mathdown's answers live in a
+                        <code>quiz_solutions</code> table with RLS enabled and
+                        <em>zero policies</em>, so no client can ever read them —
+                        answers are checked only inside a security-definer
+                        function, and solve times are measured server-side.
+                        Pinpoint's treasure coordinates sit in the same kind of
+                        unreadable table and are only written into the public row
+                        at reveal time.
+
+                        <br /><br />
+                        The twist on the product side is
+                        <strong>multi-workspace by design</strong>: one account
+                        belongs to as many teams as invite you, and you switch
+                        between them in a single click. Plan limits only ever cap
+                        the workspaces you <em>create</em> — joining a teammate's
+                        workspace is always free and unlimited, and the limits that
+                        do apply (weekly picks, member count) are taken from the
+                        workspace owner's plan and enforced by database triggers.
+
+                        <br /><br />
+                        Under the hood it is a real multi-tenant SaaS: workspaces
+                        with role-based access, invitation-only membership, custom
+                        colour-coded categories, private / public and anonymous
+                        challenges, and every business rule enforced in Postgres
+                        Row Level Security and ten Supabase Edge Functions — from
+                        one-vote-per-pick to automatic point reversal when a result
+                        is re-resolved. It ships its own 6-digit OTP e-mail flow,
+                        seven responsive HTML e-mail templates, a searchable admin
+                        audit trail, in-app and e-mail notifications, per-company
+                        branding, dark mode and EN/FR.
 
                         <br /><br />
                         <em>Not a gambling product — no real money, no odds, no
@@ -210,61 +239,82 @@
                         <br /><br />
                         <strong>Play &amp; compete</strong>
                         <ul>
-                          <li>Challenges with unlimited outcomes &amp; a voting deadline</li>
+                          <li>Challenges with unlimited outcomes and a voting deadline</li>
                           <li>One-tap voting — one pick per member, locked at close</li>
-                          <li>Change your pick any time before close (if allowed)</li>
-                          <li>+1 point per correct call, awarded on resolution</li>
-                          <li>Live leaderboard — all-time, monthly &amp; weekly, with tie-breaks</li>
-                          <li>The leader gets crowned right in the sidebar 👑</li>
-                          <li>Win rates, streaks &amp; correct-call analytics</li>
-                          <li>Colour-coded categories &amp; tags</li>
-                          <li>Private vs public and fully anonymous challenges</li>
-                          <li>Comments &amp; reactions on every challenge</li>
+                          <li>Change your pick any time before close, if the challenge allows it</li>
+                          <li>Creators can be blocked from voting on their own challenge</li>
+                          <li>Custom point values per challenge</li>
+                          <li>Comments on challenges, switchable per challenge</li>
+                          <li>Anonymous voting mode</li>
+                          <li>Private and public challenges</li>
+                          <li>Colour-coded custom categories</li>
+                          <li>Live leaderboard with a reigning champion</li>
+                          <li>My votes, pick reviews and a pending-resolutions queue</li>
                         </ul>
 
-                        <strong>Run the workspace</strong>
+                        <br /><strong>Mini-games</strong>
                         <ul>
-                          <li>Belong to many workspaces — switch in one click</li>
-                          <li>Email or single-link invitations, join with an existing account</li>
-                          <li>Role-based access (owner, admins, creators, members) + owner badge</li>
-                          <li>Pick reviews &amp; an "Awaiting Results" resolution queue</li>
-                          <li>Searchable, exportable admin activity log</li>
-                          <li>Account-based plan limits (Starter free · Pro · Enterprise)</li>
-                          <li>Creator commits a locked vote at publish, so they can score too</li>
+                          <li><strong>Mathdown</strong> — 1v1 real-time maths duel over ten synced questions</li>
+                          <li>Server-generated questions with ramping difficulty and integer answers</li>
+                          <li>First correct answer claims the point; skips and forfeits handled</li>
+                          <li>Time-weighted scoring, with ties broken on total solve time</li>
+                          <li>Daily Mathdown mode, with weekend scheduling rules</li>
+                          <li>Match history and a lobby of online teammates</li>
+                          <li><strong>Pinpoint</strong> — one daily treasure board per workspace</li>
+                          <li>Drop a flag, drag it live, then lock it before the deadline</li>
+                          <li>Closest locked flags score (top-two distance groups, ties share)</li>
+                          <li>Animated reveal ceremony, animal flag picker, per-workspace deadline</li>
+                          <li>Pinpoint history, and both games toggleable per workspace</li>
                         </ul>
 
-                        <strong>Platform &amp; polish</strong>
+                        <br /><strong>Workspaces &amp; administration</strong>
                         <ul>
-                          <li>Custom 6-digit OTP email verification flow</li>
-                          <li>In-app bell + email notifications (new picks, closing-soon, results, points)</li>
-                          <li>Auto-close of expired challenges via a scheduled Edge Function</li>
-                          <li>Company logo &amp; avatar uploads with an in-browser image cropper</li>
-                          <li>Global search across the workspace</li>
-                          <li>Per-company branding, dark mode &amp; multi-language (EN / FR)</li>
+                          <li>Multi-workspace membership with a one-click switcher</li>
+                          <li>Invitation-only joining, by e-mail or a single share link</li>
+                          <li>Invitation management — send, resend, revoke</li>
+                          <li>Role-based access, with a guarantee of at least one active admin</li>
+                          <li>Member deactivation that immediately blocks voting</li>
+                          <li>Ownership transfer</li>
+                          <li>Company settings and per-company branding with logo upload</li>
+                          <li>Searchable activity / audit log</li>
+                          <li>Plan tiers with weekly pick and member limits, enforced in Postgres</li>
+                          <li>Workspace usage reporting</li>
+                        </ul>
+
+                        <br /><strong>Platform &amp; correctness</strong>
+                        <ul>
+                          <li>Every rule enforced in Row Level Security, not only in the UI</li>
+                          <li>Ten Deno Edge Functions — OTP, invitations, resolution, leaderboard, mail</li>
+                          <li>Automatic point reversal and re-award when a result is re-resolved</li>
+                          <li>Scheduled closing of expired challenges via a cron-secret endpoint</li>
+                          <li>Own 6-digit OTP signup flow, plus native password reset</li>
+                          <li>Seven responsive HTML e-mail templates</li>
+                          <li>In-app notification bell and e-mail notifications</li>
+                          <li>Realtime updates, dark mode and EN/FR</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
                         <div class="pf-wrap"
-                          style="--brand:#4648d4;--brand-ink:#ffffff;--stage:#eef0fb;--bg:#f5f6fa;--surface:#ffffff;--card:#ffffff;--text:#1b1b23;--muted:#5c5b6b;--line:#e6e4f0;--ok:#16a34a;--warn:#f97316;--danger:#ba1a1a;">
+                          style="--brand:#6063ee;--brand-ink:#ffffff;--stage:#0a0a1c;--bg:#12122c;--surface:#1c1c40;--card:#181838;--text:#e4e1ed;--muted:#8f90bd;--line:#2e2e5c;--ok:#16a34a;--warn:#f97316;--danger:#ef4444;">
                           <div class="pf-head">
-                            <span class="pf-kicker">Office picks, real stakes-free fun</span>
+                            <span class="pf-kicker">Office sport, zero risk</span>
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            From the workspace dashboard to the phone voting
-                            screen — recreated from PandaPick's real screens,
-                            navigation and colour system.
+                            A challenge with live picks, the leaderboard, and the
+                            two daily mini-games — recreated from PandaPick's real
+                            screens and its indigo / violet design tokens.
                           </p>
 
                           <div class="pf-stage">
-                            <!-- Frame 1: Browser — Workspace dashboard -->
-                            <div class="pf-frame" style="flex:1 1 580px">
+                            <!-- Frame 1: Browser — challenge + leaderboard -->
+                            <div class="pf-frame" style="flex:1 1 560px">
                               <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
                                   <span class="pf-dot r"></span>
                                   <span class="pf-dot y"></span>
                                   <span class="pf-dot g"></span>
-                                  <span class="pf-url">pandapick.farhaan.info/app · Acme Corp</span>
+                                  <span class="pf-url">pandapick.app/challenges</span>
                                 </div>
                                 <div class="pf-viewport">
                                   <div class="pf-side">
@@ -272,179 +322,219 @@
                                       <img src="icon.png" alt="PandaPick" style="height:22px" />
                                       <span class="pf-strong">PandaPick</span>
                                     </div>
-                                    <div class="pf-input" style="margin-bottom:10px">
-                                      <i class="fas fa-search"></i> Acme Corp
-                                      <i class="fas fa-chevron-down" style="margin-left:auto;font-size:10px"></i>
-                                    </div>
-                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-th-large"></i></span> Dashboard</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-plus-circle"></i></span> Create Pick</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-vote-yea"></i></span> My Votes</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-bullseye"></i></span> Challenges</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-trophy"></i></span> Leaderboard</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-khanda"></i></span> Challenges</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-gavel"></i></span> Awaiting Results</div>
-                                    <div class="pf-li" style="margin-top:10px;border-top:1px solid var(--line);border-bottom:0;padding-top:12px">
-                                      <span class="pf-av" style="position:relative">P<span style="position:absolute;top:-9px;right:-4px;font-size:11px">👑</span></span>
-                                      <span class="grow"><span class="pf-t pf-strong" style="display:block">Priya</span><span class="pf-muted">Reigning champ</span></span>
-                                    </div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-dice"></i></span> Mini-games</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-check-double"></i></span> My votes</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Members</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-clock-rotate-left"></i></span> Activity</div>
                                   </div>
 
                                   <div class="pf-main">
                                     <div class="pf-between pf-mb">
-                                      <div class="pf-t-lg">Active Challenges</div>
+                                      <div class="pf-t-lg">Open challenges</div>
                                       <div class="pf-row">
-                                        <span class="pf-badge">3 Open</span>
+                                        <span class="pf-badge"><span class="pf-dot-live"></span> Acme Ltd</span>
                                         <span class="pf-btn">New pick</span>
                                       </div>
                                     </div>
 
-                                    <div class="pf-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
-                                      <div class="pf-stat brand"><div class="n">#2</div><div class="l">Your rank</div></div>
-                                      <div class="pf-stat"><div class="n">68%</div><div class="l">Win rate</div></div>
-                                      <div class="pf-stat"><div class="n">5 🔥</div><div class="l">Streak</div></div>
-                                      <div class="pf-stat"><div class="n">27</div><div class="l">Correct</div></div>
-                                    </div>
-
                                     <div class="pf-card">
-                                      <div class="pf-between">
-                                        <div class="pf-row" style="gap:8px">
-                                          <span class="pf-tag">Engineering</span>
-                                          <span class="pf-t pf-strong">Who ships the release first?</span>
-                                        </div>
-                                        <span class="pf-badge" style="background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)">Closes in 2d</span>
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-tag">OFFICE LIFE</span>
+                                        <span class="pf-badge warn"><i class="far fa-clock"></i> closes in 4h</span>
                                       </div>
-                                      <div class="pf-row pf-mt" style="justify-content:space-between">
-                                        <span class="pf-t">Team Alpha</span><span class="pf-muted">42%</span>
+                                      <div class="pf-t pf-strong pf-mb">Who brings the worst mug to the Monday stand-up?</div>
+                                      <div class="pf-mb">
+                                        <div class="pf-between"><span class="pf-t">Priya</span><span class="pf-muted pf-xs">48%</span></div>
+                                        <div class="pf-bar" style="margin-top:4px"><i style="width:48%"></i></div>
                                       </div>
-                                      <div class="pf-bar"><i style="width:42%"></i></div>
-                                      <div class="pf-row pf-mt" style="justify-content:space-between">
-                                        <span class="pf-t">Team Bravo</span><span class="pf-muted">33%</span>
+                                      <div class="pf-mb">
+                                        <div class="pf-between"><span class="pf-t">Kevin</span><span class="pf-muted pf-xs">31%</span></div>
+                                        <div class="pf-bar" style="margin-top:4px"><i style="width:31%"></i></div>
                                       </div>
-                                      <div class="pf-bar"><i style="width:33%"></i></div>
-                                      <div class="pf-row pf-mt" style="justify-content:space-between">
-                                        <span class="pf-t">Nobody 😅</span><span class="pf-muted">25%</span>
+                                      <div>
+                                        <div class="pf-between"><span class="pf-t">Yusuf</span><span class="pf-muted pf-xs">21%</span></div>
+                                        <div class="pf-bar" style="margin-top:4px"><i style="width:21%"></i></div>
                                       </div>
-                                      <div class="pf-bar"><i style="width:25%"></i></div>
-                                      <div class="pf-between pf-mt">
-                                        <span class="pf-avs"><span class="pf-av">A</span><span class="pf-av">M</span><span class="pf-av">S</span><span class="pf-av">+</span></span>
-                                        <span class="pf-muted">12 voted</span>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-avs">
+                                          <span class="pf-av">P</span><span class="pf-av">K</span><span class="pf-av">Y</span><span class="pf-av">+9</span>
+                                        </span>
+                                        <span class="pf-muted pf-xs">12 picks in</span>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
                                       <div class="pf-between">
-                                        <div class="pf-row" style="gap:8px">
-                                          <span class="pf-tag" style="background:color-mix(in srgb,var(--secondary,#831ada) 18%,transparent);color:#831ada">Office life</span>
-                                          <span class="pf-t pf-strong">Coffee machine survives Friday?</span>
-                                        </div>
-                                        <span class="pf-badge" style="background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)"><i class="fas fa-check"></i> Voted</span>
+                                        <span class="pf-t pf-strong">Q3 revenue beats target?</span>
+                                        <span class="pf-badge ok">Resolved</span>
                                       </div>
-                                      <div class="pf-row pf-mt" style="gap:8px">
-                                        <span class="pf-tag" style="background:var(--brand);color:var(--brand-ink)">Yes</span>
-                                        <span class="pf-tag">No way</span>
-                                        <span class="pf-muted" style="margin-left:auto"><i class="fas fa-user-secret"></i> Anonymous</span>
+                                      <div class="pf-row pf-mt" style="gap:6px">
+                                        <span class="pf-badge solid">+1 pt awarded</span>
+                                        <span class="pf-badge">Anonymous</span>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Dashboard · challenges, categories &amp; your stats</div>
+                              <div class="pf-cap">Challenge with live picks</div>
                             </div>
 
-                            <!-- Frame 2: Phone — Voting + leaderboard -->
+                            <!-- Frame 2: Phone — leaderboard -->
                             <div class="pf-frame">
                               <div class="pf-phone">
                                 <div class="pf-screen">
                                   <div class="pf-notch"></div>
                                   <div class="pf-body">
                                     <div class="pf-appbar">
+                                      <span class="pf-t pf-strong">Leaderboard</span>
+                                      <span class="pf-badge">This month</span>
+                                    </div>
+
+                                    <div class="pf-card">
                                       <div class="pf-row">
-                                        <img src="icon.png" alt="PandaPick" style="height:18px;width:auto" />
-                                        <span class="pf-t pf-strong">Acme Corp</span>
+                                        <span class="pf-iconbox"><i class="fas fa-crown"></i></span>
+                                        <span class="grow">
+                                          <span class="pf-t pf-strong">Priya R.</span><br />
+                                          <span class="pf-muted">Reigning champion</span>
+                                        </span>
+                                        <span class="pf-t-lg">24</span>
                                       </div>
-                                      <i class="fas fa-bell" style="margin-left:auto;color:var(--muted)"></i>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-between pf-mb">
-                                        <span class="pf-tag">Sports</span>
-                                        <span class="pf-muted">Closes in 5h</span>
-                                      </div>
-                                      <div class="pf-t pf-strong pf-mb">Who wins the ping-pong final?</div>
-                                      <div class="pf-row pf-mt">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--brand);flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span></span>
-                                        <span class="pf-t">Priya</span>
-                                      </div>
-                                      <div class="pf-row pf-mt">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
-                                        <span class="pf-t">Marco</span>
-                                      </div>
-                                      <div class="pf-row pf-mt">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
-                                        <span class="pf-t">Sam</span>
-                                      </div>
-                                      <div class="pf-btn block pf-mt">Lock in pick</div>
-                                      <div class="pf-muted pf-mt" style="text-align:center">One vote · change it anytime before close</div>
-                                    </div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-tabs pf-mb">
-                                        <b>All-time</b><b class="active">Monthly</b><b>Weekly</b>
+                                      <div class="pf-li">
+                                        <span class="pf-av">2</span>
+                                        <span class="grow pf-t">Kevin M.</span>
+                                        <span class="pf-t pf-strong">21</span>
                                       </div>
                                       <div class="pf-li">
-                                        <span class="pf-av" style="position:relative">P<span style="position:absolute;top:-9px;right:-4px;font-size:11px">👑</span></span>
-                                        <span class="grow pf-t pf-strong">Priya</span>
-                                        <span class="pf-strong" style="color:var(--brand)">18</span>
+                                        <span class="pf-av">3</span>
+                                        <span class="grow pf-t">Yusuf B.</span>
+                                        <span class="pf-t pf-strong">19</span>
                                       </div>
                                       <div class="pf-li">
-                                        <span class="pf-av">Y</span>
+                                        <span class="pf-av">4</span>
+                                        <span class="grow pf-t">Aisha D.</span>
+                                        <span class="pf-t pf-strong">17</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-av">5</span>
                                         <span class="grow pf-t">You</span>
-                                        <span class="pf-strong">15</span>
+                                        <span class="pf-t pf-strong">15</span>
                                       </div>
-                                      <div class="pf-li">
-                                        <span class="pf-av">M</span>
-                                        <span class="grow pf-t">Marco</span>
-                                        <span class="pf-strong">12</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Points from</div>
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Picks</span><span class="pf-t pf-strong">9</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Mathdown</span><span class="pf-t pf-strong">4</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Pinpoint</span><span class="pf-t pf-strong">2</span>
                                       </div>
                                     </div>
                                   </div>
                                   <div class="pf-tabbarbtm">
-                                    <span class="active"><i class="fas fa-th-large"></i></span>
-                                    <span><i class="fas fa-khanda"></i></span>
-                                    <span><i class="fas fa-trophy"></i></span>
+                                    <span><i class="fas fa-bullseye"></i></span>
+                                    <span class="active"><i class="fas fa-trophy"></i></span>
+                                    <span><i class="fas fa-dice"></i></span>
                                     <span><i class="fas fa-user"></i></span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Vote, then climb the crowned leaderboard</div>
+                              <div class="pf-cap">Live leaderboard</div>
+                            </div>
+
+                            <!-- Frame 3: Browser — mini-games -->
+                            <div class="pf-frame" style="flex:1 1 440px">
+                              <div class="pf-browser">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">pandapick.app/games</span>
+                                </div>
+                                <div class="pf-pad">
+                                  <div class="pf-tabs pf-mb">
+                                    <b class="active">Mathdown</b><b>Pinpoint</b><b>History</b>
+                                  </div>
+
+                                  <div class="pf-card">
+                                    <div class="pf-between pf-mb">
+                                      <span class="pf-t pf-strong">Question 4 of 10</span>
+                                      <span class="pf-badge"><span class="pf-dot-live"></span> live</span>
+                                    </div>
+                                    <div class="pf-t-lg pf-mb">17 × 6 − 28 = ?</div>
+                                    <div class="pf-grid2">
+                                      <span class="pf-btn-outline">74</span>
+                                      <span class="pf-btn">74 → claimed</span>
+                                    </div>
+                                    <div class="pf-between pf-mt">
+                                      <span class="pf-row"><span class="pf-av">P</span><span class="pf-t pf-strong">3</span></span>
+                                      <span class="pf-muted pf-xs">1.42 s</span>
+                                      <span class="pf-row"><span class="pf-t pf-strong">1</span><span class="pf-av">K</span></span>
+                                    </div>
+                                  </div>
+
+                                  <div class="pf-card">
+                                    <div class="pf-between pf-mb">
+                                      <span class="pf-t pf-strong">Pinpoint · today</span>
+                                      <span class="pf-badge warn">locks 18:00</span>
+                                    </div>
+                                    <div style="position:relative;height:120px;border-radius:10px;border:1px solid var(--line);background:color-mix(in srgb,var(--brand) 8%,transparent);overflow:hidden">
+                                      <svg viewBox="0 0 300 120" style="position:absolute;inset:0;width:100%;height:100%">
+                                        <g stroke="#6063ee" stroke-opacity=".2">
+                                          <path d="M0 30H300M0 60H300M0 90H300M60 0V120M120 0V120M180 0V120M240 0V120"/>
+                                        </g>
+                                        <g>
+                                          <circle cx="96" cy="52" r="16" fill="#f97316" fill-opacity=".18"/>
+                                          <path d="M96 40l4 8h-8z" fill="#f97316"/>
+                                          <circle cx="188" cy="78" r="5" fill="#6063ee"/>
+                                          <circle cx="132" cy="86" r="5" fill="#9e41f5"/>
+                                          <circle cx="230" cy="40" r="5" fill="#8f90bd"/>
+                                          <path d="M96 52l-1 14h2z" fill="#f97316"/>
+                                        </g>
+                                      </svg>
+                                    </div>
+                                    <div class="pf-row pf-mt" style="gap:6px">
+                                      <span class="pf-badge solid">Flag locked</span>
+                                      <span class="pf-badge">4 locked</span>
+                                      <span class="pf-badge">+2 / +1</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Mathdown &amp; Pinpoint</div>
                             </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">React 18</span>
-                            <span class="pf-chip">Vite</span>
                             <span class="pf-chip">TypeScript</span>
-                            <span class="pf-chip">React Router</span>
+                            <span class="pf-chip">Vite</span>
                             <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">TanStack Query</span>
+                            <span class="pf-chip">React Router</span>
+                            <span class="pf-chip">React Hook Form + Zod</span>
                             <span class="pf-chip">Supabase</span>
                             <span class="pf-chip">Postgres RLS</span>
-                            <span class="pf-chip">Edge Functions</span>
-                            <span class="pf-chip">TanStack Query</span>
-                            <span class="pf-chip">React Hook Form</span>
-                            <span class="pf-chip">Zod</span>
+                            <span class="pf-chip">Deno Edge Functions</span>
+                            <span class="pf-chip">Three.js</span>
+                            <span class="pf-chip">Lucide</span>
+                            <span class="pf-chip">Sonner</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
-                        Live website:
-                        <a href="https://pandapick.farhaan.info/" target="_blank"
-                          >https://pandapick.farhaan.info/</a
-                        >
-
-                        <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
-                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #6063ee; font-weight: 600; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #a5b4fc;"></i>
+                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #a5b4fc; text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>

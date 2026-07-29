@@ -178,7 +178,8 @@
                         <strong>point of sale</strong>, quotations and invoicing,
                         customers and suppliers, reporting and audit logs into a
                         single system, configurable enough to fit a retail shop, a
-                        wholesaler, a workshop, a garage or a repair business.
+                        wholesaler, a workshop, a garage, a printer or a repair
+                        business.
 
                         <br /><br />
                         Architecturally it is a <strong>modular monolith</strong>:
@@ -187,10 +188,10 @@
                         Suppliers, Accounting, Reporting, Users, Notifications,
                         Settings, Support</em> — is its own module with its own
                         domain, application, infrastructure and routes layers, and
-                        a dependency linter that fails the build when a module
-                        reaches into a neighbour it has no business knowing about.
-                        The composition root wires modules together; it contains no
-                        business logic of its own.
+                        a dependency linter (Deptrac) that fails the build when a
+                        module reaches into a neighbour it has no business knowing
+                        about. The composition root wires modules together; it
+                        contains no business logic of its own.
 
                         <br /><br />
                         On top of that API sit two clients: a
@@ -198,8 +199,21 @@
                         office and the POS, and a <strong>Flutter companion
                         app</strong> for the shop floor — stock lookups, movements
                         and dashboards from a phone. Both are fully bilingual
-                        (EN / FR) with light and dark themes, and the theme and
-                        language follow the account rather than the device.
+                        (EN / FR) with light and dark themes, and — a detail that
+                        matters on shared hardware — the theme and language follow
+                        the <em>account</em> rather than the device, carried in a
+                        JWT claim so a fresh device adopts the right settings on
+                        first login.
+
+                        <br /><br />
+                        The brand palette is derived from the logo rather than
+                        picked by eye, and it is documented as a contrast argument:
+                        interactive surfaces run teal → cyan, and the exact shades
+                        were chosen because they clear 3:1 against both white and
+                        near-black, with the 700 shades reserved for anything
+                        carrying white text so it clears the 4.5:1 AA threshold.
+                        Blue was retired from the brand entirely and now means
+                        <em>status</em>.
 
                         <br /><br />
                         <strong>Inventory &amp; stock</strong>
@@ -208,31 +222,59 @@
                           <li>Per-store stock levels with low-stock thresholds</li>
                           <li>Stock adjustments with reason codes and a full audit trail</li>
                           <li>Inter-store transfers with request / dispatch / receive states</li>
-                          <li>Bulk import &amp; export of products</li>
+                          <li>Bulk import and export of products</li>
                           <li>Barcode scanner input on product and POS screens</li>
+                          <li>Product detail pages with per-store breakdown and movement history</li>
+                          <li>Store management for single-branch or multi-branch businesses</li>
                         </ul>
 
                         <br /><strong>Selling</strong>
                         <ul>
-                          <li>Touch-friendly POS with keyboard shortcuts and held orders</li>
-                          <li>Product customisation at the point of sale (custom-order businesses)</li>
+                          <li>Touch-friendly POS with keyboard shortcuts</li>
+                          <li>Held orders — park a sale and come back to it</li>
+                          <li>In-POS sales history</li>
+                          <li>Product customisation at the point of sale, for custom-order businesses</li>
                           <li>Quotations that convert into invoices</li>
-                          <li>Invoices with status transitions, part payments and follow-ups</li>
-                          <li>Printable / thermal receipts and an orders queue for workshops</li>
-                          <li>Accounts receivable with mark-as-paid and reminder flows</li>
+                          <li>Invoices with status transitions, part payments and mark-as-paid</li>
+                          <li>Follow-up flow for unpaid invoices</li>
+                          <li>Printable / thermal receipts</li>
+                          <li>Orders queue for workshops and repair jobs</li>
+                          <li>Accounts receivable with reminder flows</li>
+                        </ul>
+
+                        <br /><strong>Contacts &amp; purchasing</strong>
+                        <ul>
+                          <li>Customers with per-customer history and balances</li>
+                          <li>Suppliers with their own product catalogues</li>
+                          <li>Supplier orders raised from a supplier's catalogue</li>
+                          <li>Contact detail pages tying documents, orders and payments together</li>
                         </ul>
 
                         <br /><strong>Business &amp; platform</strong>
                         <ul>
                           <li>Multi-business workspaces with a business switcher</li>
-                          <li>Guided onboarding wizard with logo upload &amp; cropping</li>
+                          <li>Guided onboarding wizard with logo upload and in-browser cropping</li>
                           <li>Users, roles and granular permissions</li>
-                          <li>Customers and suppliers with per-contact history</li>
-                          <li>Supplier orders and supplier product catalogues</li>
                           <li>Drag-and-drop customisable dashboard widgets</li>
-                          <li>Reports with charts, plus notifications and a searchable audit log</li>
-                          <li>JWT auth, 2FA (TOTP with QR enrolment), OTP e-mail flows</li>
-                          <li>Documented REST API with generated OpenAPI spec &amp; integrations page</li>
+                          <li>Reports with charts (Recharts) and data tables</li>
+                          <li>Searchable audit log of every privileged action</li>
+                          <li>In-app notifications</li>
+                          <li>JWT authentication with 2FA (TOTP, QR enrolment) and OTP e-mail flows</li>
+                          <li>Password policy defined once and shared by the API rule and the on-screen checklist</li>
+                          <li>Documented REST API with a generated OpenAPI spec, plus an integrations page</li>
+                          <li>Billing and plan management</li>
+                          <li>Help centre, changelog and credits pages</li>
+                          <li>EN / FR throughout, light and dark themes that follow the account</li>
+                        </ul>
+
+                        <br /><strong>Engineering</strong>
+                        <ul>
+                          <li>Laravel modules with enforced boundaries — Deptrac fails the build on a violation</li>
+                          <li>Larastan static analysis and a PHPUnit suite</li>
+                          <li>Errors carry stable <code>error_key</code> values; clients never match on prose</li>
+                          <li>A mock server (MSW) so the SPA can be developed against the real response envelope</li>
+                          <li>Playwright end-to-end coverage</li>
+                          <li>Documented conventions for the traps that bite: <code>actingAs()</code> bypassing the auth provider, and <code>Notification::fake()</code> never rendering the mail template</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
@@ -243,7 +285,7 @@
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            From the back-office stock table to the POS and the
+                            The back-office stock table, the point of sale and the
                             Flutter shop-floor app — recreated from NexStock's real
                             screens and its teal / cyan brand palette.
                           </p>
@@ -306,7 +348,66 @@
                               <div class="pf-cap">Multi-store product &amp; stock table</div>
                             </div>
 
-                            <!-- Frame 2: Phone — Flutter companion -->
+                            <!-- Frame 2: Browser — POS -->
+                            <div class="pf-frame" style="flex:1 1 440px">
+                              <div class="pf-browser">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">nexstock.app/sales/pos</span>
+                                </div>
+                                <div class="pf-pad">
+                                  <div class="pf-between pf-mb">
+                                    <div class="pf-t-lg">Point of sale</div>
+                                    <span class="pf-badge"><i class="fas fa-keyboard"></i> F2 hold</span>
+                                  </div>
+
+                                  <div class="pf-grid3 pf-mb">
+                                    <span class="pf-btn-outline">Alu Profile</span>
+                                    <span class="pf-btn-outline">Hinge Kit</span>
+                                    <span class="pf-btn-outline">LED Strip</span>
+                                  </div>
+
+                                  <div class="pf-card">
+                                    <table class="pf-table">
+                                      <tr><th>Item</th><th>Qty</th><th>Total</th></tr>
+                                      <tr><td>Alu Profile 40×40</td><td>4</td><td>Rs 1,240</td></tr>
+                                      <tr><td>Hinge Kit</td><td>2</td><td>Rs 460</td></tr>
+                                      <tr><td>LED Strip 5m</td><td>1</td><td>Rs 590</td></tr>
+                                    </table>
+                                    <div class="pf-between pf-mt">
+                                      <span class="pf-muted">Subtotal</span><span class="pf-t">Rs 2,290</span>
+                                    </div>
+                                    <div class="pf-between pf-mt">
+                                      <span class="pf-t pf-strong">Due</span>
+                                      <span class="pf-t-lg">Rs 2,633</span>
+                                    </div>
+                                  </div>
+
+                                  <div class="pf-row pf-mb">
+                                    <span class="pf-btn">Charge</span>
+                                    <span class="pf-btn-outline">Hold</span>
+                                    <span class="pf-btn-ghost">Quotation</span>
+                                  </div>
+
+                                  <div class="pf-card">
+                                    <div class="pf-h2">Held orders</div>
+                                    <div class="pf-li">
+                                      <span class="grow pf-t">#H-207 · walk-in</span>
+                                      <span class="pf-badge warn">2 items</span>
+                                    </div>
+                                    <div class="pf-li">
+                                      <span class="grow pf-t">#H-206 · Mr Ramjan</span>
+                                      <span class="pf-badge warn">5 items</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">POS with held orders</div>
+                            </div>
+
+                            <!-- Frame 3: Phone — Flutter companion -->
                             <div class="pf-frame">
                               <div class="pf-phone">
                                 <div class="pf-screen">
@@ -371,11 +472,13 @@
                             <span class="pf-chip">Tailwind CSS</span>
                             <span class="pf-chip">Radix UI</span>
                             <span class="pf-chip">Recharts</span>
+                            <span class="pf-chip">dnd-kit</span>
                             <span class="pf-chip">Flutter</span>
                             <span class="pf-chip">flutter_bloc</span>
                             <span class="pf-chip">Larastan</span>
                             <span class="pf-chip">Deptrac</span>
                             <span class="pf-chip">Playwright</span>
+                            <span class="pf-chip">MSW</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
