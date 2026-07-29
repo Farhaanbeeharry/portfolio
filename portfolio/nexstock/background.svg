@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 520" width="1200" height="520" font-family="Lexend, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c3a37"/>
+      <stop offset="1" stop-color="#04120f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".84" cy=".22" r=".62">
+      <stop offset="0" stop-color="#04dde2" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#04dde2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#0d9488" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#04dde2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" fill="url(#bg)"/>
+  <rect width="1200" height="520" fill="url(#glow)"/>
+
+  <!-- isometric lattice -->
+  <g stroke="#04dde2" stroke-opacity=".08" fill="none">
+    <path d="M700 -60 L1260 260M780 -60 L1340 260M860 -60 L1420 260M620 -60 L1180 260"/>
+    <path d="M700 580 L1260 260M780 580 L1340 260M860 580 L1420 260M620 580 L1180 260"/>
+  </g>
+  <g fill="none" stroke="#04dde2" stroke-opacity=".22">
+    <path d="M1010 118 L1140 193 L1140 343 L1010 418 L880 343 L880 193 Z"/>
+    <path d="M1010 172 L1094 220 L1094 316 L1010 364 L926 316 L926 220 Z" stroke-opacity=".13"/>
+  </g>
+
+  <rect x="90" y="150" width="54" height="4" rx="2" fill="#04dde2"/>
+  <text x="88" y="238" font-size="88" font-weight="700" fill="#e7fdfb"
+        letter-spacing="-1">NexStock</text>
+  <text x="92" y="292" font-size="28" font-weight="500" fill="#04dde2"
+        letter-spacing="3.6">INVENTORY &amp; STOCK PLATFORM</text>
+  <text x="92" y="336" font-size="22" fill="#8fc4bf">Multi-store inventory, POS, invoicing and reporting in one system.</text>
+
+  <!-- stat card + chart -->
+  <g transform="translate(92,378)">
+    <rect x="0" y="0" width="380" height="100" rx="14" fill="#0b1f1d" stroke="#1e403c"/>
+    <rect x="18" y="18" width="112" height="9" rx="4" fill="#04dde2" opacity=".7"/>
+    <text x="18" y="66" font-size="26" font-weight="700" fill="#e7fdfb">1,284</text>
+    <text x="18" y="86" font-size="13" fill="#7fada9">SKUs in stock</text>
+    <g>
+      <rect x="196" y="58" width="20" height="26" rx="4" fill="url(#bar)"/>
+      <rect x="224" y="44" width="20" height="40" rx="4" fill="url(#bar)"/>
+      <rect x="252" y="52" width="20" height="32" rx="4" fill="url(#bar)"/>
+      <rect x="280" y="30" width="20" height="54" rx="4" fill="url(#bar)"/>
+      <rect x="308" y="38" width="20" height="46" rx="4" fill="url(#bar)"/>
+      <rect x="336" y="20" width="20" height="64" rx="4" fill="url(#bar)"/>
+    </g>
+  </g>
+  <image x="958.4" y="189.0" width="103.2" height="118.0" preserveAspectRatio="xMidYMid meet" xlink:href="data:image/png;base64,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"/>
+</svg>

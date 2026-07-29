@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Lokal</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta
+      name="description"
+      content="Lokal — a local business directory that gives small businesses a professional digital profile: searchable listings, product catalogues, WhatsApp / phone / e-mail contact, a 7-step seller onboarding wizard and an admin CRM. Built with React 19, TypeScript, Vite and Supabase." />
+    <meta
+      name="keywords"
+      content="lokal, business directory, local business, small business, seller portal, onboarding wizard, admin crm, react, typescript, vite, supabase, row level security, tanstack query, i18next, mauritius" />
+    <meta name="author" content="Farhaan Beeharry" />
+    <link rel="shortcut icon" href="../../img/logo.ico" />
+
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/bootstrap-grid.min.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/animations.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/perfect-scrollbar.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/magnific-popup.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
+
+    <script src="../../js/modernizr.custom.js"></script>
+  </head>
+
+  <body>
+    <div
+      class="lm-animated-bg"
+      style="background-image: url(img/main_bg.png)"></div>
+
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner"></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="page-content">
+        <header id="site_header" class="header mobile-menu-hide">
+          <div class="header-content">
+            <div class="header-photo">
+              <img src="../../img/profile_picture.jpg" alt="Farhaan Beeharry" />
+            </div>
+            <div class="header-titles">
+              <h2>Farhaan Beeharry</h2>
+              <h4>Software Engineer</h4>
+            </div>
+          </div>
+
+          <ul class="main-menu">
+            <li class="active">
+              <a href="../../index.html#home" class="nav-anim">
+                <span class="menu-icon lnr lnr-home"></span>
+                <span class="link-text">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#about-me" class="nav-anim">
+                <span class="menu-icon lnr lnr-user"></span>
+                <span class="link-text">About Me</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#resume" class="nav-anim">
+                <span class="menu-icon lnr lnr-graduation-hat"></span>
+                <span class="link-text">Resume</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#portfolio" class="nav-anim">
+                <span class="menu-icon lnr lnr-briefcase"></span>
+                <span class="link-text">Portfolio</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="social-links">
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/farhaan-bms/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/Farhaanbeeharry" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://app.codesignal.com/profile/farhaan"
+                  target="_blank"
+                  ><i class="code-icon fa fa-code"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.behance.net/farhaanbeeharry"
+                  target="_blank"
+                  ><i class="fab fa-behance"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/farhaan_beeharry/"
+                  target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://wa.me/23057076881/" target="_blank"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="header-buttons">
+            <a
+              href="../../assets/Farhaan Beeharry CV.pdf"
+              target="_blank"
+              class="btn btn-primary"
+              >Download CV</a
+            ><br />
+            <a
+              href="../../assets/Farhaan Beeharry CV_FRENCH.pdf"
+              target="_blank"
+              >Telecharger la version francaise</a
+            >
+          </div>
+
+          <div class="copyrights">© 2026 All rights reserved.</div>
+        </header>
+
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+
+        <div class="content-area single-page-area">
+          <div class="single-page-content">
+            <article class="post">
+              <div class="post-thumbnail">
+                <img src="background.svg" alt="Lokal Project Cover" />
+              </div>
+
+              <div class="post-content">
+                <header class="entry-header">
+                  <div class="entry-meta entry-meta-top">
+                    <span><a href="#" rel="category tag">Web</a></span>
+                  </div>
+                  <h2 class="entry-title">
+                    <strong>Lokal</strong>
+                  </h2>
+                </header>
+
+                <div class="entry-content">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                      <div class="col-inner">
+                        <strong>Lokal</strong> gives a small business or an
+                        independent entrepreneur a professional digital presence —
+                        discoverable, contactable, and theirs. Customers search the
+                        directory, browse a business profile with its products and
+                        services, and get in touch directly by
+                        <strong>WhatsApp, phone or e-mail</strong>.
+
+                        <br /><br />
+                        The scope is deliberately tight:
+                        <strong>Lokal is a directory, not an e-commerce
+                        platform</strong>. There is no cart, no checkout, no order
+                        and no customer payment anywhere in the product. The only
+                        money that changes hands is the seller's one-time
+                        activation fee, transferred out of band and verified
+                        manually by an administrator — which keeps the product
+                        honest about what it does and removes an entire class of
+                        payment and fulfilment complexity.
+
+                        <br /><br />
+                        The app has exactly four surfaces: a
+                        <strong>public website</strong> (landing, about, contact,
+                        FAQ, legal), a <strong>visitor</strong> experience for
+                        searching and viewing businesses, a
+                        <strong>seller portal</strong> with a 7-step onboarding
+                        wizard and a dashboard, and an <strong>admin CRM</strong>
+                        for metrics, moderation, activation verification and seller
+                        support.
+
+                        <br /><br />
+                        It is built on React 19 + TypeScript with a
+                        <strong>clean, feature-sliced architecture</strong> — each
+                        feature owning its <em>domain</em> (types, Zod schemas,
+                        pure rules), <em>application</em> (TanStack Query hooks),
+                        <em>infrastructure</em> (the only layer allowed to talk to
+                        Supabase) and <em>presentation</em> layers. Business rules
+                        such as "when may a seller submit for activation" live in
+                        plain, React-free, unit-tested domain code.
+
+                        <br /><br />
+                        Security sits in the database rather than the client: a
+                        business moves <code>draft → pending_activation →
+                        active</code>, and a seller <em>cannot</em> publish
+                        themselves — Row Level Security restricts them to the first
+                        two states, and publication only happens inside an
+                        admin-gated Postgres function.
+
+                        <br /><br />
+                        <strong>For visitors</strong>
+                        <ul>
+                          <li>Directory search with filters kept in the URL — linkable, bookmarkable, back-button safe</li>
+                          <li>Business profiles with photos, opening hours, location and map</li>
+                          <li>Product &amp; service catalogue with fixed / "as from" / on-request pricing</li>
+                          <li>One-tap WhatsApp, call, e-mail and social links</li>
+                        </ul>
+
+                        <br /><strong>For sellers</strong>
+                        <ul>
+                          <li>7-step onboarding wizard with image cropping and progress tracking</li>
+                          <li>A completion gate that spells out exactly what is still missing before activation</li>
+                          <li>Live preview rendered by the same component visitors see — the preview cannot drift</li>
+                          <li>Dashboard to manage profile, contacts, socials, opening hours and products</li>
+                        </ul>
+
+                        <br /><strong>For administrators</strong>
+                        <ul>
+                          <li>Platform metrics and business moderation</li>
+                          <li>Activation request verification and approval</li>
+                          <li>Business suspension and seller support tooling</li>
+                        </ul>
+
+                        <br /><strong>Engineering</strong>
+                        <ul>
+                          <li>English / French throughout, including the legal documents — a test fails the build if the two languages drift apart</li>
+                          <li>Errors carry translation keys, not sentences, so no raw Postgres message ever reaches a user</li>
+                          <li>65 tests focused on where a mistake would be silent: contact-link building, opening-hours parsing, the activation gate, price rendering</li>
+                          <li>Accessibility built in: skip links, focus-visible rings, wired label / hint / error relationships, <code>prefers-reduced-motion</code></li>
+                        </ul>
+
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#ff6a1f;--brand-ink:#2a0e04;--stage:#170803;--bg:#1f0d06;--surface:#2c130a;--card:#241007;--text:#fff2ea;--muted:#c09a86;--line:#4d2415;--ok:#6fd39a;--warn:#ffc069;--danger:#ff9f9a;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">Found, then contacted</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            From the visitor directory to the seller onboarding
+                            wizard — recreated from Lokal's real screens and its
+                            orange brand palette.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Browser — directory search -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">lokal.mu/search?category=bakery</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="icon.png" alt="Lokal" style="height:20px" />
+                                      <span class="pf-strong">Lokal</span>
+                                    </div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-search"></i></span> Search</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-store"></i></span> Categories</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-map-marker-alt"></i></span> Near me</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-info-circle"></i></span> About</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-question-circle"></i></span> FAQ</div>
+                                  </div>
+
+                                  <div class="pf-main">
+                                    <div class="pf-input pf-mb"><i class="fas fa-search"></i> Bakery in Quatre Bornes…</div>
+                                    <div class="pf-row wrap pf-mb">
+                                      <span class="pf-badge solid">Bakery</span>
+                                      <span class="pf-badge">Open now</span>
+                                      <span class="pf-badge">Delivers</span>
+                                      <span class="pf-muted">28 results</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-row">
+                                        <span class="pf-iconbox"><i class="fas fa-bread-slice"></i></span>
+                                        <span style="flex:1">
+                                          <span class="pf-t pf-strong">Boulangerie Bo Vallon</span><br />
+                                          <span class="pf-muted"><i class="fas fa-map-marker-alt"></i> Quatre Bornes · Bakery</span>
+                                        </span>
+                                        <span class="pf-badge ok"><span class="pf-dot-live"></span> Open</span>
+                                      </div>
+                                      <div class="pf-row pf-mt" style="gap:6px">
+                                        <span class="pf-tag">Fresh bread</span>
+                                        <span class="pf-tag">Cakes</span>
+                                        <span class="pf-tag">Catering</span>
+                                      </div>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-btn"><i class="fab fa-whatsapp"></i> WhatsApp</span>
+                                        <span class="pf-btn-outline"><i class="fas fa-phone"></i> Call</span>
+                                        <span class="pf-btn-ghost">View profile</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-row">
+                                        <span class="pf-iconbox"><i class="fas fa-cookie-bite"></i></span>
+                                        <span style="flex:1">
+                                          <span class="pf-t pf-strong">Ti Gato Patisserie</span><br />
+                                          <span class="pf-muted"><i class="fas fa-map-marker-alt"></i> Vacoas · Bakery</span>
+                                        </span>
+                                        <span class="pf-badge warn">Closed</span>
+                                      </div>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-muted">Wedding cakes</span>
+                                        <span class="pf-t pf-strong" style="margin-left:auto">as from Rs 1,500</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Visitor directory &amp; search</div>
+                            </div>
+
+                            <!-- Frame 2: Phone — seller onboarding -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <img src="icon.png" alt="Lokal" style="height:18px;width:auto" />
+                                        <span class="pf-t pf-strong">Set up</span>
+                                      </div>
+                                      <span class="pf-muted">4 / 7</span>
+                                    </div>
+
+                                    <div class="pf-bar" style="margin-bottom:6px"><i style="width:57%"></i></div>
+                                    <div class="pf-muted pf-mb">Products &amp; services</div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Pain maison</div>
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Price</span>
+                                        <span class="pf-t pf-strong">Rs 25</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Type</span>
+                                        <span class="pf-badge solid">Fixed</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Before activation</div>
+                                      <div class="pf-li">
+                                        <span class="pf-badge ok"><i class="fas fa-check"></i></span>
+                                        <span class="grow pf-t">Profile &amp; logo</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-badge ok"><i class="fas fa-check"></i></span>
+                                        <span class="grow pf-t">Contact details</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-badge warn"><i class="fas fa-clock"></i></span>
+                                        <span class="grow pf-t">Opening hours</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-btn block pf-mt">Continue</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Seller onboarding wizard</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">React 19</span>
+                            <span class="pf-chip">TypeScript (strict)</span>
+                            <span class="pf-chip">Vite</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">shadcn/ui + Radix</span>
+                            <span class="pf-chip">React Router</span>
+                            <span class="pf-chip">TanStack Query</span>
+                            <span class="pf-chip">Zustand</span>
+                            <span class="pf-chip">React Hook Form + Zod</span>
+                            <span class="pf-chip">i18next</span>
+                            <span class="pf-chip">Framer Motion</span>
+                            <span class="pf-chip">Leaflet</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">Postgres RLS</span>
+                            <span class="pf-chip">Vitest</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
+                        <br />
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #f97316; font-weight: 600; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #fb923c;"></i>
+                          If you would like a walkthrough or a demo access account,
+                          please contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: #fb923c; text-decoration: underline;">contact@farhaan.info</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="entry-meta entry-meta-bottom">
+                  <div class="date-author">
+                    <span class="entry-date"
+                      ><i class="far fa-clock"></i>
+                      <span class="entry-date"> July 2026</span></span
+                    >
+                    <span class="author vcard"
+                      ><i class="fas fa-user"></i> Farhaan Beeharry</span
+                    >
+                  </div>
+                </div>
+
+                <div class="post-tags">
+                  <div class="tags">
+                    <a href="#" rel="tag">web app</a>
+                    <a href="#" rel="tag">directory</a>
+                    <a href="#" rel="tag">small business</a>
+                    <a href="#" rel="tag">react</a>
+                    <a href="#" rel="tag">supabase</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/modernizr.custom.js"></script>
+    <script src="../../js/animating.js"></script>
+    <script src="../../js/imagesloaded.pkgd.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="../../js/perfect-scrollbar.min.js"></script>
+    <script src="../../js/jquery.shuffle.min.js"></script>
+    <script src="../../js/masonry.pkgd.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/jquery.magnific-popup.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
+    <script src="../../js/jquery.googlemap.js"></script>
+    <script src="../../js/validator.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>

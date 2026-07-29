@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>NexStock</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta
+      name="description"
+      content="NexStock — a multi-store inventory &amp; business management platform: products, stock adjustments, inter-store transfers, POS, quotations, invoicing, suppliers, reporting and audit logs. Laravel modular monolith API, React + TypeScript SPA and a Flutter companion app." />
+    <meta
+      name="keywords"
+      content="nexstock, inventory management, stock management, pos, point of sale, invoicing, quotations, multi-store, suppliers, saas, laravel, modular monolith, react, typescript, tanstack, flutter, jwt, 2fa" />
+    <meta name="author" content="Farhaan Beeharry" />
+    <link rel="shortcut icon" href="../../img/logo.ico" />
+
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/bootstrap-grid.min.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/animations.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/perfect-scrollbar.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/owl.carousel.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="../../css/magnific-popup.css"
+      type="text/css" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
+
+    <script src="../../js/modernizr.custom.js"></script>
+  </head>
+
+  <body>
+    <div
+      class="lm-animated-bg"
+      style="background-image: url(img/main_bg.png)"></div>
+
+    <div class="preloader">
+      <div class="preloader-animation">
+        <div class="preloader-spinner"></div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="page-content">
+        <header id="site_header" class="header mobile-menu-hide">
+          <div class="header-content">
+            <div class="header-photo">
+              <img src="../../img/profile_picture.jpg" alt="Farhaan Beeharry" />
+            </div>
+            <div class="header-titles">
+              <h2>Farhaan Beeharry</h2>
+              <h4>Software Engineer</h4>
+            </div>
+          </div>
+
+          <ul class="main-menu">
+            <li class="active">
+              <a href="../../index.html#home" class="nav-anim">
+                <span class="menu-icon lnr lnr-home"></span>
+                <span class="link-text">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#about-me" class="nav-anim">
+                <span class="menu-icon lnr lnr-user"></span>
+                <span class="link-text">About Me</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#resume" class="nav-anim">
+                <span class="menu-icon lnr lnr-graduation-hat"></span>
+                <span class="link-text">Resume</span>
+              </a>
+            </li>
+            <li>
+              <a href="../../index.html#portfolio" class="nav-anim">
+                <span class="menu-icon lnr lnr-briefcase"></span>
+                <span class="link-text">Portfolio</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="social-links">
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/farhaan-bms/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/Farhaanbeeharry" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://app.codesignal.com/profile/farhaan"
+                  target="_blank"
+                  ><i class="code-icon fa fa-code"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.behance.net/farhaanbeeharry"
+                  target="_blank"
+                  ><i class="fab fa-behance"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/farhaan_beeharry/"
+                  target="_blank"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://wa.me/23057076881/" target="_blank"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="header-buttons">
+            <a
+              href="../../assets/Farhaan Beeharry CV.pdf"
+              target="_blank"
+              class="btn btn-primary"
+              >Download CV</a
+            ><br />
+            <a
+              href="../../assets/Farhaan Beeharry CV_FRENCH.pdf"
+              target="_blank"
+              >Telecharger la version francaise</a
+            >
+          </div>
+
+          <div class="copyrights">© 2026 All rights reserved.</div>
+        </header>
+
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+
+        <div class="content-area single-page-area">
+          <div class="single-page-content">
+            <article class="post">
+              <div class="post-thumbnail">
+                <img src="background.svg" alt="NexStock Project Cover" />
+              </div>
+
+              <div class="post-content">
+                <header class="entry-header">
+                  <div class="entry-meta entry-meta-top">
+                    <span><a href="#" rel="category tag">Web &amp; Mobile</a></span>
+                  </div>
+                  <h2 class="entry-title">
+                    <strong>NexStock</strong>
+                  </h2>
+                </header>
+
+                <div class="entry-content">
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                      <div class="col-inner">
+                        <strong>NexStock</strong> is a business operating system
+                        for small and medium businesses — one platform in place of
+                        the usual pile of disconnected tools. It brings
+                        <strong>multi-store inventory</strong>, a
+                        <strong>point of sale</strong>, quotations and invoicing,
+                        customers and suppliers, reporting and audit logs into a
+                        single system, configurable enough to fit a retail shop, a
+                        wholesaler, a workshop, a garage or a repair business.
+
+                        <br /><br />
+                        Architecturally it is a <strong>modular monolith</strong>:
+                        a Laravel 12 API where every bounded context —
+                        <em>Inventory, Products, Sales, Purchasing, Customers,
+                        Suppliers, Accounting, Reporting, Users, Notifications,
+                        Settings, Support</em> — is its own module with its own
+                        domain, application, infrastructure and routes layers, and
+                        a dependency linter that fails the build when a module
+                        reaches into a neighbour it has no business knowing about.
+                        The composition root wires modules together; it contains no
+                        business logic of its own.
+
+                        <br /><br />
+                        On top of that API sit two clients: a
+                        <strong>React + TypeScript SPA</strong> for the back
+                        office and the POS, and a <strong>Flutter companion
+                        app</strong> for the shop floor — stock lookups, movements
+                        and dashboards from a phone. Both are fully bilingual
+                        (EN / FR) with light and dark themes, and the theme and
+                        language follow the account rather than the device.
+
+                        <br /><br />
+                        <strong>Inventory &amp; stock</strong>
+                        <ul>
+                          <li>Product catalogue with variants, barcodes and unit pricing</li>
+                          <li>Per-store stock levels with low-stock thresholds</li>
+                          <li>Stock adjustments with reason codes and a full audit trail</li>
+                          <li>Inter-store transfers with request / dispatch / receive states</li>
+                          <li>Bulk import &amp; export of products</li>
+                          <li>Barcode scanner input on product and POS screens</li>
+                        </ul>
+
+                        <br /><strong>Selling</strong>
+                        <ul>
+                          <li>Touch-friendly POS with keyboard shortcuts and held orders</li>
+                          <li>Product customisation at the point of sale (custom-order businesses)</li>
+                          <li>Quotations that convert into invoices</li>
+                          <li>Invoices with status transitions, part payments and follow-ups</li>
+                          <li>Printable / thermal receipts and an orders queue for workshops</li>
+                          <li>Accounts receivable with mark-as-paid and reminder flows</li>
+                        </ul>
+
+                        <br /><strong>Business &amp; platform</strong>
+                        <ul>
+                          <li>Multi-business workspaces with a business switcher</li>
+                          <li>Guided onboarding wizard with logo upload &amp; cropping</li>
+                          <li>Users, roles and granular permissions</li>
+                          <li>Customers and suppliers with per-contact history</li>
+                          <li>Supplier orders and supplier product catalogues</li>
+                          <li>Drag-and-drop customisable dashboard widgets</li>
+                          <li>Reports with charts, plus notifications and a searchable audit log</li>
+                          <li>JWT auth, 2FA (TOTP with QR enrolment), OTP e-mail flows</li>
+                          <li>Documented REST API with generated OpenAPI spec &amp; integrations page</li>
+                        </ul>
+
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#04dde2;--brand-ink:#04211f;--stage:#04120f;--bg:#0b1614;--surface:#132322;--card:#0e1c1a;--text:#e7fdfb;--muted:#8fb2ae;--line:#274441;--ok:#5fd39a;--warn:#ffc069;--danger:#ff9f9a;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">One system, every counter</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            From the back-office stock table to the POS and the
+                            Flutter shop-floor app — recreated from NexStock's real
+                            screens and its teal / cyan brand palette.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Browser — Inventory -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">nexstock.app/inventory/products</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="icon.png" alt="NexStock" style="height:20px" />
+                                      <span class="pf-strong">NexStock</span>
+                                    </div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-th-large"></i></span> Dashboard</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-boxes"></i></span> Products</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-warehouse"></i></span> Stores</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-exchange-alt"></i></span> Transfers</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-cash-register"></i></span> POS</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-invoice"></i></span> Invoices</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-bar"></i></span> Reports</div>
+                                  </div>
+
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-t-lg">Products</div>
+                                      <div class="pf-row">
+                                        <span class="pf-btn-outline">Import</span>
+                                        <span class="pf-btn">Add product</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-grid3 pf-mb">
+                                      <div class="pf-stat"><div class="n">1,284</div><div class="l">SKUs</div></div>
+                                      <div class="pf-stat"><div class="n">17</div><div class="l">Low stock</div></div>
+                                      <div class="pf-stat brand"><div class="n">4</div><div class="l">Stores</div></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-input pf-mb"><i class="fas fa-barcode"></i> Scan or search a barcode…</div>
+                                      <table class="pf-table">
+                                        <tr><th>Product</th><th>Store</th><th>Qty</th><th>Status</th></tr>
+                                        <tr><td>Alu Profile 40×40</td><td>Port Louis</td><td>212</td><td><span class="pf-badge ok">In stock</span></td></tr>
+                                        <tr><td>Hinge Kit — Soft close</td><td>Curepipe</td><td>14</td><td><span class="pf-badge warn">Low</span></td></tr>
+                                        <tr><td>Melamine Board 18mm</td><td>Quatre Bornes</td><td>0</td><td><span class="pf-badge danger">Out</span></td></tr>
+                                        <tr><td>LED Strip 5m — Warm</td><td>Port Louis</td><td>96</td><td><span class="pf-badge ok">In stock</span></td></tr>
+                                      </table>
+                                    </div>
+
+                                    <span class="pf-badge solid">Transfer requested · Curepipe → Port Louis</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Multi-store product &amp; stock table</div>
+                            </div>
+
+                            <!-- Frame 2: Phone — Flutter companion -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <img src="icon.png" alt="NexStock" style="height:18px;width:auto" />
+                                        <span class="pf-t pf-strong">Port Louis</span>
+                                      </div>
+                                      <span class="pf-muted"><i class="fas fa-bell"></i></span>
+                                    </div>
+
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat"><div class="n">Rs 48k</div><div class="l">Today</div></div>
+                                      <div class="pf-stat"><div class="n">32</div><div class="l">Sales</div></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Stock movements</div>
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-arrow-down"></i></span>
+                                        <span class="grow"><span class="pf-t pf-strong">Received · 40 pcs</span><br /><span class="pf-muted">Hinge Kit</span></span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-arrow-up"></i></span>
+                                        <span class="grow"><span class="pf-t pf-strong">Sold · 6 pcs</span><br /><span class="pf-muted">LED Strip 5m</span></span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-t pf-strong">Low stock</span>
+                                        <span class="pf-badge warn">17</span>
+                                      </div>
+                                      <div class="pf-bar warn"><i style="width:18%"></i></div>
+                                    </div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span class="active"><i class="fas fa-th-large"></i></span>
+                                    <span><i class="fas fa-boxes"></i></span>
+                                    <span><i class="fas fa-exchange-alt"></i></span>
+                                    <span><i class="fas fa-cog"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Flutter shop-floor app</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">Laravel 12</span>
+                            <span class="pf-chip">PHP 8.3</span>
+                            <span class="pf-chip">Modular monolith</span>
+                            <span class="pf-chip">JWT + 2FA</span>
+                            <span class="pf-chip">React 18</span>
+                            <span class="pf-chip">TypeScript</span>
+                            <span class="pf-chip">Vite</span>
+                            <span class="pf-chip">TanStack Router</span>
+                            <span class="pf-chip">TanStack Query</span>
+                            <span class="pf-chip">TanStack Table</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Radix UI</span>
+                            <span class="pf-chip">Recharts</span>
+                            <span class="pf-chip">Flutter</span>
+                            <span class="pf-chip">flutter_bloc</span>
+                            <span class="pf-chip">Larastan</span>
+                            <span class="pf-chip">Deptrac</span>
+                            <span class="pf-chip">Playwright</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
+                        <br />
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #14b8a6; font-weight: 600; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #2dd4bf;"></i>
+                          NexStock is in active development. If you would like a
+                          walkthrough or a demo access account, contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: #2dd4bf; text-decoration: underline;">contact@farhaan.info</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="entry-meta entry-meta-bottom">
+                  <div class="date-author">
+                    <span class="entry-date"
+                      ><i class="far fa-clock"></i>
+                      <span class="entry-date"> July 2026</span></span
+                    >
+                    <span class="author vcard"
+                      ><i class="fas fa-user"></i> Farhaan Beeharry</span
+                    >
+                  </div>
+                </div>
+
+                <div class="post-tags">
+                  <div class="tags">
+                    <a href="#" rel="tag">web app</a>
+                    <a href="#" rel="tag">mobile app</a>
+                    <a href="#" rel="tag">inventory</a>
+                    <a href="#" rel="tag">pos</a>
+                    <a href="#" rel="tag">laravel</a>
+                    <a href="#" rel="tag">react</a>
+                    <a href="#" rel="tag">flutter</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/modernizr.custom.js"></script>
+    <script src="../../js/animating.js"></script>
+    <script src="../../js/imagesloaded.pkgd.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="../../js/perfect-scrollbar.min.js"></script>
+    <script src="../../js/jquery.shuffle.min.js"></script>
+    <script src="../../js/masonry.pkgd.min.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/jquery.magnific-popup.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
+    <script src="../../js/jquery.googlemap.js"></script>
+    <script src="../../js/validator.js"></script>
+    <script src="../../js/main.js"></script>
+  </body>
+</html>
