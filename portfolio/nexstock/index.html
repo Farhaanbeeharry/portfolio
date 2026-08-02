@@ -1,173 +1,111 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>NexStock</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta
-      name="description"
-      content="NexStock — a multi-store inventory &amp; business management platform: products, stock adjustments, inter-store transfers, POS, quotations, invoicing, suppliers, reporting and audit logs. Laravel modular monolith API, React + TypeScript SPA and a Flutter companion app." />
-    <meta
-      name="keywords"
-      content="nexstock, inventory management, stock management, pos, point of sale, invoicing, quotations, multi-store, suppliers, saas, laravel, modular monolith, react, typescript, tanstack, flutter, jwt, 2fa" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NexStock — Farhaan Beeharry</title>
+    <meta name="description" content="NexStock — a multi-store inventory &amp; business management platform: products, stock adjustments, inter-store transfers, POS, quotations, invoicing, suppliers, reporting and audit logs. Laravel modular monolith API, React + TypeScript SPA and a Flutter companion app." />
+    <meta name="keywords" content="nexstock, inventory management, stock management, pos, point of sale, invoicing, quotations, multi-store, suppliers, saas, laravel, modular monolith, react, typescript, tanstack, flutter, jwt, 2fa" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
-
-    <link rel="stylesheet" href="../../css/reset.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+      rel="stylesheet" />
     <link
       rel="stylesheet"
-      href="../../css/bootstrap-grid.min.css"
-      type="text/css" />
-    <link rel="stylesheet" href="../../css/animations.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="../../css/perfect-scrollbar.css"
-      type="text/css" />
-    <link rel="stylesheet" href="../../css/owl.carousel.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="../../css/magnific-popup.css"
-      type="text/css" />
-    <link rel="stylesheet" href="../../css/main.css" type="text/css" />
-    <link rel="stylesheet" href="../../css/showcase.css" type="text/css" />
-
-    <script src="../../js/modernizr.custom.js"></script>
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../css/portfolio.css" />
+    <link rel="stylesheet" href="../../css/project.css" />
+    <link rel="stylesheet" href="../../css/showcase.css" />
+    <script>
+      (function () {
+        if (!("serviceWorker" in navigator)) return;
+        navigator.serviceWorker.getRegistrations().then(function (regs) {
+          regs.forEach(function (r) { r.unregister(); });
+          if (window.caches && caches.keys) {
+            caches.keys().then(function (keys) {
+              keys.forEach(function (k) { caches.delete(k); });
+            });
+          }
+          if (navigator.serviceWorker.controller && !sessionStorage.getItem("sw-evicted")) {
+            sessionStorage.setItem("sw-evicted", "1");
+            window.location.reload();
+          }
+        }).catch(function () {});
+      })();
+    </script>
   </head>
-
   <body>
-    <div
-      class="lm-animated-bg"
-      style="background-image: url(img/main_bg.png)"></div>
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <div class="preloader">
-      <div class="preloader-animation">
-        <div class="preloader-spinner"></div>
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="../../index.html#home" class="brand" aria-label="Farhaan Beeharry — home">
+          <span class="brand-mark">FB</span>
+          <span>
+            Farhaan Beeharry
+            <small>Software Engineer</small>
+          </span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="../../index.html#home">Home</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#skills">Skills</a>
+          <a href="../../index.html#resume">Resume</a>
+          <a href="../../index.html#certificates">Certificates</a>
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a href="../../assets/Farhaan Beeharry CV.pdf" target="_blank" class="btn btn-primary">
+            <i class="fa-solid fa-download"></i> Download CV
+          </a>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
-    </div>
+    </header>
 
-    <div class="page">
-      <div class="page-content">
-        <header id="site_header" class="header mobile-menu-hide">
-          <div class="header-content">
-            <div class="header-photo">
-              <img src="../../img/profile_picture.jpg" alt="Farhaan Beeharry" />
-            </div>
-            <div class="header-titles">
-              <h2>Farhaan Beeharry</h2>
-              <h4>Software Engineer</h4>
-            </div>
+    <main class="pp-main">
+      <section class="pp-hero">
+        <div class="container">
+          <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
+
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web &amp; Mobile</div>
+
+          <h1 class="pp-title reveal"><span class="g">NexStock</span></h1>
+
+          <div class="pp-meta reveal">
+            <span><i class="fa-regular fa-calendar"></i> July 2026</span>
+            <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
-          <ul class="main-menu">
-            <li class="active">
-              <a href="../../index.html#home" class="nav-anim">
-                <span class="menu-icon lnr lnr-home"></span>
-                <span class="link-text">Home</span>
-              </a>
-            </li>
-            <li>
-              <a href="../../index.html#about-me" class="nav-anim">
-                <span class="menu-icon lnr lnr-user"></span>
-                <span class="link-text">About Me</span>
-              </a>
-            </li>
-            <li>
-              <a href="../../index.html#resume" class="nav-anim">
-                <span class="menu-icon lnr lnr-graduation-hat"></span>
-                <span class="link-text">Resume</span>
-              </a>
-            </li>
-            <li>
-              <a href="../../index.html#portfolio" class="nav-anim">
-                <span class="menu-icon lnr lnr-briefcase"></span>
-                <span class="link-text">Portfolio</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="social-links">
-            <ul>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/farhaan-bms/"
-                  target="_blank"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
-              </li>
-              <li>
-                <a href="https://github.com/Farhaanbeeharry" target="_blank"
-                  ><i class="fab fa-github"></i
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="https://app.codesignal.com/profile/farhaan"
-                  target="_blank"
-                  ><i class="code-icon fa fa-code"></i
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="https://www.behance.net/farhaanbeeharry"
-                  target="_blank"
-                  ><i class="fab fa-behance"></i
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/farhaan_beeharry/"
-                  target="_blank"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-              </li>
-              <li>
-                <a href="https://wa.me/23057076881/" target="_blank"
-                  ><i class="fab fa-whatsapp"></i
-                ></a>
-              </li>
-            </ul>
+          <div class="pp-tags reveal">
+            <span>web app</span>
+            <span>mobile app</span>
+            <span>inventory</span>
+            <span>pos</span>
+            <span>laravel</span>
+            <span>react</span>
+            <span>flutter</span>
           </div>
 
-          <div class="header-buttons">
-            <a
-              href="../../assets/Farhaan Beeharry CV.pdf"
-              target="_blank"
-              class="btn btn-primary"
-              >Download CV</a
-            ><br />
-            <a
-              href="../../assets/Farhaan Beeharry CV_FRENCH.pdf"
-              target="_blank"
-              >Telecharger la version francaise</a
-            >
-          </div>
+          <figure class="pp-cover reveal"><img src="background.svg" alt="NexStock Project Cover" /></figure>
+        </div>
+      </section>
 
-          <div class="copyrights">© 2026 All rights reserved.</div>
-        </header>
-
-        <div class="menu-toggle"><span></span><span></span><span></span></div>
-
-        <div class="content-area single-page-area">
-          <div class="single-page-content">
-            <article class="post">
-              <div class="post-thumbnail">
-                <img src="background.svg" alt="NexStock Project Cover" />
-              </div>
-
-              <div class="post-content">
-                <header class="entry-header">
-                  <div class="entry-meta entry-meta-top">
-                    <span><a href="#" rel="category tag">Web &amp; Mobile</a></span>
-                  </div>
-                  <h2 class="entry-title">
-                    <strong>NexStock</strong>
-                  </h2>
-                </header>
-
-                <div class="entry-content">
+      <article class="pp-article">
+        <div class="container">
+          <div class="col-inner">
+            
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
@@ -494,50 +432,41 @@
                     </div>
                   </div>
                 </div>
+          </div>
+        </div>
+      </article>
 
-                <div class="entry-meta entry-meta-bottom">
-                  <div class="date-author">
-                    <span class="entry-date"
-                      ><i class="far fa-clock"></i>
-                      <span class="entry-date"> July 2026</span></span
-                    >
-                    <span class="author vcard"
-                      ><i class="fas fa-user"></i> Farhaan Beeharry</span
-                    >
-                  </div>
-                </div>
+      <section class="pp-more">
+        <div class="container">
+          <div class="pp-more-grid">
+            <a class="pp-more-card reveal" href="../../portfolio/fruitopia/index.html"><i class="fa-solid fa-arrow-left"></i><span><span class="dir">Previous</span><div class="nm">Fruitopia</div></span></a>
+            <a class="pp-more-card next reveal" href="../../portfolio/lokal/index.html"><span><span class="dir">Next</span><div class="nm">Lokal</div></span><i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-                <div class="post-tags">
-                  <div class="tags">
-                    <a href="#" rel="tag">web app</a>
-                    <a href="#" rel="tag">mobile app</a>
-                    <a href="#" rel="tag">inventory</a>
-                    <a href="#" rel="tag">pos</a>
-                    <a href="#" rel="tag">laravel</a>
-                    <a href="#" rel="tag">react</a>
-                    <a href="#" rel="tag">flutter</a>
-                  </div>
-                </div>
-              </div>
-            </article>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-cta">
+          <h2 class="reveal">Have a project in mind?</h2>
+          <p class="reveal">I'm always open to interesting work — let's build something great together.</p>
+          <a href="mailto:contact@farhaan.info" class="btn btn-primary reveal"><i class="fa-solid fa-envelope"></i> Contact me</a>
+        </div>
+        <div class="footer-bar">
+          <div class="copy">© 2026 All rights reserved. · Farhaan Beeharry</div>
+          <div class="socials">
+                        <a href="https://www.linkedin.com/in/farhaan-bms/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/Farhaanbeeharry" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://app.codesignal.com/profile/farhaan" target="_blank" aria-label="CodeSignal"><i class="fa-solid fa-code"></i></a>
+            <a href="https://www.behance.net/farhaanbeeharry" target="_blank" aria-label="Behance"><i class="fa-brands fa-behance"></i></a>
+            <a href="https://www.instagram.com/farhaan_beeharry/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/23057076881/" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
 
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/modernizr.custom.js"></script>
-    <script src="../../js/animating.js"></script>
-    <script src="../../js/imagesloaded.pkgd.min.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script src="../../js/perfect-scrollbar.min.js"></script>
-    <script src="../../js/jquery.shuffle.min.js"></script>
-    <script src="../../js/masonry.pkgd.min.js"></script>
-    <script src="../../js/owl.carousel.min.js"></script>
-    <script src="../../js/jquery.magnific-popup.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrDf32aQTCVENBhFJbMBKOUTiUAABtC2o"></script>
-    <script src="../../js/jquery.googlemap.js"></script>
-    <script src="../../js/validator.js"></script>
-    <script src="../../js/main.js"></script>
+    <script src="../../js/project.js"></script>
   </body>
 </html>

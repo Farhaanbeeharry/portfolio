@@ -1,0 +1,215 @@
+/* =============================================================
+   project.css — detail-page layer on top of portfolio.css
+   Cinematic-dark project write-up pages. Reuses the design
+   tokens (--bg-0, --grad, --line, --ease …) from portfolio.css.
+   ============================================================= */
+
+/* ---- page rhythm ---- */
+.pp-main { padding-top: 118px; }
+
+/* ---- back link ---- */
+.pp-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+    transform 0.25s var(--ease), background 0.25s var(--ease);
+}
+.pp-back:hover {
+  color: var(--text);
+  border-color: var(--line-2);
+  background: var(--card-2);
+  transform: translateX(-3px);
+}
+.pp-back i { font-size: 12px; }
+
+/* ---- hero ---- */
+.pp-hero { padding: 30px 0 8px; }
+.pp-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 26px 0 18px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, rgba(99, 102, 241, 0.22), rgba(34, 211, 238, 0.18));
+  border: 1px solid var(--line-2);
+}
+.pp-cat i { color: var(--cyan); font-size: 12px; }
+
+.pp-title {
+  font-family: "Sora", sans-serif;
+  font-weight: 800;
+  font-size: clamp(34px, 6vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 20px;
+  max-width: 16ch;
+}
+.pp-title .g {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pp-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px 26px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 14.5px;
+  margin-bottom: 22px;
+}
+.pp-meta span { display: inline-flex; align-items: center; gap: 9px; }
+.pp-meta i { color: var(--indigo); }
+.pp-meta a { color: var(--muted); }
+.pp-meta a:hover { color: var(--text); }
+
+.pp-tags { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 40px; }
+.pp-tags span {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+/* ---- cover ---- */
+.pp-cover {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+}
+.pp-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 55%, rgba(5, 7, 15, 0.55));
+}
+.pp-cover img { display: block; width: 100%; height: auto; }
+
+/* ---- article body ---- */
+.pp-article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 56px 0 40px;
+  font-size: 17px;
+  line-height: 1.78;
+  color: #c7d2e6;
+}
+.pp-article > .col-inner,
+.pp-article .row,
+.pp-article .col-xs-12,
+.pp-article .col-sm-12 { display: block; width: auto; }
+
+.pp-article strong { color: var(--text); font-weight: 700; }
+.pp-article em { color: #d9e2f2; font-style: italic; }
+.pp-article a:not(.pf-chip):not(.pf-btn):not(.pf-btn-outline) {
+  color: #a5b4fc;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(165, 180, 252, 0.35);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.pp-article a:not(.pf-chip):not(.pf-btn):not(.pf-btn-outline):hover {
+  color: #c7d2fe;
+  border-color: #a5b4fc;
+}
+
+.pp-article ul {
+  list-style: none;
+  margin: 14px 0 18px;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.pp-article ul li {
+  position: relative;
+  padding-left: 30px;
+  color: #b8c4dc;
+}
+.pp-article ul li::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 0.72em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--grad-2);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* section-lead <strong> used as mini headings in the bodies */
+.pp-article > .col-inner strong:only-child,
+.pp-article p > strong:first-child { color: var(--text); }
+
+/* the info callout boxes already inline-styled in the content —
+   normalise their radius to match */
+.pp-article div[style*="border-left"] { border-radius: 14px !important; }
+
+/* ---- showcase spacing inside article ---- */
+.pp-article .pf-wrap { margin-top: 40px; }
+
+/* ---- next / prev projects ---- */
+.pp-more { padding: 20px 0 10px; }
+.pp-more-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.pp-more-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+.pp-more-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-2);
+  background: var(--card-2);
+}
+.pp-more-card .dir {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.pp-more-card .nm { font-family: "Sora"; font-weight: 700; font-size: 18px; color: var(--text); }
+.pp-more-card.next { justify-content: flex-end; text-align: right; }
+.pp-more-card i { color: var(--indigo); font-size: 20px; }
+
+@media (max-width: 720px) {
+  .pp-main { padding-top: 96px; }
+  .pp-title { max-width: none; }
+  .pp-article { font-size: 16px; padding: 40px 0 30px; }
+  .pp-more-grid { grid-template-columns: 1fr; }
+  .pp-more-card.next { justify-content: flex-start; text-align: left; }
+}

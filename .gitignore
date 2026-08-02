@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Backup of pre-React static site (recoverable, not needed in VCS)
+_static_backup/
+
+# Local verification screenshots
+_shots/
+
+# Logs / editor
+*.log
+.DS_Store
