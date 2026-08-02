@@ -13,3 +13,11 @@ _shots/
 # Logs / editor
 *.log
 .DS_Store
+
+# Server-only motogate PHP backend (Firebase key, service account, logs).
+# Lives in public_html at runtime; must never enter version control.
+motogate/
+
+# Deploy artifacts containing secrets (root .htaccess template with the
+# Firebase private key / HMAC secret). Placed on the server by hand only.
+_deploy/

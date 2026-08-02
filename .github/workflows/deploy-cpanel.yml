@@ -1,0 +1,61 @@
+name: Deploy portfolio to cPanel
+
+# Pushing to master builds the Vite app and overlays dist/ onto the
+# farhaan.info public_html document root over SSH/SCP.
+#
+# public_html is a SHARED docroot: alongside the portfolio it also holds the
+# motogate PHP backend (verify_qr.php, issue_qr.php, ...), umbrella/,
+# oceana_code/, contact_form/, vendor/, fonts/ and a hand-managed root
+# .htaccess that carries both the SPA rewrite rules and the motogate SetEnv
+# secrets. This deploy therefore NEVER wipes the directory and NEVER ships an
+# .htaccess -- it only overlays the four paths the build owns
+# (index.html, assets/, img/, portfolio/) on top of whatever is already there.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# Never let two deploys race; a newer push supersedes an in-flight one.
+concurrency:
+  group: deploy-cpanel-portfolio
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The portfolio uses no VITE_* env vars, so no build-time secrets are
+      # needed here. (The motogate Firebase/HMAC secrets live only in the
+      # server's hand-managed root .htaccess, never in this repo or CI.)
+      - name: Build
+        run: npm run build
+
+      # Overlay-only upload: SCP the build ON TOP of the existing document
+      # root. appleboy/scp-action copies the contents of dist/ into the target
+      # without deleting anything already there, so motogate/, umbrella/,
+      # oceana_code/, the root .htaccess and every other sibling are untouched.
+      # Only index.html, assets/, img/ and portfolio/ are overwritten.
+      - name: Upload build to cPanel (overlay, no wipe)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          key: ${{ secrets.CPANEL_SSH_KEY }}
+          port: ${{ secrets.CPANEL_PORT }}
+          source: "dist/*"
+          target: "/home/${{ secrets.CPANEL_USERNAME }}/public_html"
+          strip_components: 1
+          overwrite: true
