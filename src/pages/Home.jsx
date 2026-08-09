@@ -7,9 +7,6 @@ import Skills from "../sections/Skills.jsx";
 import Resume from "../sections/Resume.jsx";
 import Certificates from "../sections/Certificates.jsx";
 import Work from "../sections/Work.jsx";
-import { useReveal } from "../hooks/useReveal.js";
-import { useCountUp } from "../hooks/useCountUp.js";
-import { useSkillBars } from "../hooks/useSkillBars.js";
 import { useScrollSpy } from "../hooks/useScrollSpy.js";
 
 const SECTION_IDS = [
@@ -24,9 +21,6 @@ const SECTION_IDS = [
 
 export default function Home() {
   const activeId = useScrollSpy(SECTION_IDS);
-  useReveal();
-  useCountUp();
-  useSkillBars();
 
   return (
     <>

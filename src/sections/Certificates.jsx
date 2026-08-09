@@ -1,24 +1,21 @@
 import { certificates } from "../data/site.js";
-
-const delay = ["", " d1", " d2"];
+import { Reveal } from "../components/Reveal.jsx";
 
 export default function Certificates() {
   return (
     <section className="section" id="certificates">
       <div className="container">
-        <div className="section-head reveal">
-          <span className="eyebrow">Certificates</span>
-          <h2 className="section-title">
-            Awards &amp; <span className="g">achievements</span>
-          </h2>
-          <p className="section-lead">
+        <Reveal className="sec-head">
+          <span className="sec-ref">D · Register</span>
+          <h2 className="sec-title">Awards &amp; achievements</h2>
+          <p className="sec-lead">
             Recognitions, competitions and training earned along the way.
           </p>
-        </div>
+        </Reveal>
 
         <div className="cert-grid">
           {certificates.map((c, i) => (
-            <div className={`cert reveal${delay[i % 3]}`} key={i}>
+            <Reveal className="cert" key={i} delay={(i % 2) * 0.05}>
               <div className="cert-logo">
                 <img src={c.logo} alt={c.alt} />
               </div>
@@ -49,7 +46,7 @@ export default function Certificates() {
                 </div>
                 <div className="date">{c.date}</div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

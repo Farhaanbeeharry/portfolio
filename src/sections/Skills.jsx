@@ -1,49 +1,57 @@
 import { codingSkills, otherSkills, chips } from "../data/site.js";
+import { Reveal } from "../components/Reveal.jsx";
+
+// Categorical proficiency from the source weighting (no fake-precise %):
+// 80+ core, 65+ proficient, else working. Ordered strongest-first.
+function rank(w) {
+  if (w >= 80) return ["Core", "rk core"];
+  if (w >= 65) return ["Proficient", "rk"];
+  return ["Working", "rk"];
+}
+const ordered = (list) => [...list].sort((a, b) => b[1] - a[1]);
+
+function SkillList({ items }) {
+  return (
+    <ul className="skill-list">
+      {ordered(items).map(([name, w]) => {
+        const [label, cls] = rank(w);
+        return (
+          <li key={name}>
+            <span className="nm">{name}</span>
+            <span className="lead-dot" aria-hidden="true"></span>
+            <span className={cls}>{label}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 export default function Skills() {
   return (
     <section className="section" id="skills">
       <div className="container">
-        <div className="section-head reveal">
-          <span className="eyebrow">Skills</span>
-          <h2 className="section-title">
-            Tools I use to <span className="g">ship</span>
-          </h2>
-          <p className="section-lead">
+        <Reveal className="sec-head">
+          <span className="sec-ref">B · Capability</span>
+          <h2 className="sec-title">Tools I use to ship</h2>
+          <p className="sec-lead">
             A blend of coding fluency, design sensibility and hands-on hardware
             experience.
           </p>
-        </div>
+        </Reveal>
 
         <div className="skills-grid">
-          <div className="reveal">
+          <Reveal>
             <h3 className="tl-sub"><i className="fa-solid fa-code"></i> Coding Skills</h3>
-            {codingSkills.map(([name, w]) => (
-              <div className="skill" key={name}>
-                <div className="skill-head">
-                  <span className="name">{name}</span>
-                  <span className="pct">{w}%</span>
-                </div>
-                <div className="bar"><i data-w={w}></i></div>
-              </div>
-            ))}
-          </div>
+            <SkillList items={codingSkills} />
+          </Reveal>
 
-          <div className="reveal d1">
+          <Reveal delay={0.08}>
             <h3 className="tl-sub"><i className="fa-solid fa-sliders"></i> Other Skills</h3>
-            {otherSkills.map(([name, w]) => (
-              <div className="skill" key={name}>
-                <div className="skill-head">
-                  <span className="name">{name}</span>
-                  <span className="pct">{w}%</span>
-                </div>
-                <div className="bar"><i data-w={w}></i></div>
-              </div>
-            ))}
+            <SkillList items={otherSkills} />
 
-            <h3 className="tl-sub" style={{ marginTop: "34px" }}>
-              <i className="fa-solid fa-lightbulb"></i> Knowledges &amp; Unrated
-              Skills
+            <h3 className="tl-sub" style={{ marginTop: "38px" }}>
+              <i className="fa-solid fa-lightbulb"></i> Knowledges &amp; Unrated Skills
             </h3>
             <div className="chips">
               {chips.map((c) =>
@@ -56,7 +64,7 @@ export default function Skills() {
                 )
               )}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

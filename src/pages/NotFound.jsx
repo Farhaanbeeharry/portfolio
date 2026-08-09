@@ -9,10 +9,8 @@ export default function NotFound() {
       <main className="pp-main">
         <section className="pp-hero">
           <div className="container">
-            <h1 className="pp-title">
-              <span className="g">Page not found</span>
-            </h1>
-            <p className="section-lead" style={{ marginTop: "16px" }}>
+            <h1 className="pp-title">Page not found</h1>
+            <p className="sec-lead" style={{ marginTop: "16px" }}>
               The page you're looking for doesn't exist.
             </p>
             <Link className="btn btn-primary" to="/" style={{ marginTop: "24px" }}>

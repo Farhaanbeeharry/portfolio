@@ -1,4 +1,5 @@
 import { testimonials } from "../data/site.js";
+import { Reveal } from "../components/Reveal.jsx";
 
 const experience = [
   {
@@ -174,19 +175,17 @@ export default function Resume() {
   return (
     <section className="section" id="resume">
       <div className="container">
-        <div className="section-head reveal">
-          <span className="eyebrow">Resume</span>
-          <h2 className="section-title">
-            My <span className="g">journey</span> so far
-          </h2>
-          <p className="section-lead">
+        <Reveal className="sec-head">
+          <span className="sec-ref">C · Track record</span>
+          <h2 className="sec-title">My journey so far</h2>
+          <p className="sec-lead">
             A track record across mobile, web and full-stack engineering roles.
           </p>
-        </div>
+        </Reveal>
 
         <div className="tl-cols">
           {/* Experience */}
-          <div className="reveal">
+          <Reveal>
             <h3 className="tl-sub"><i className="fa-solid fa-briefcase"></i> Experience</h3>
             <div className="timeline">
               {experience.map((e) => (
@@ -211,10 +210,10 @@ export default function Resume() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {/* Education */}
-          <div className="reveal d1">
+          <Reveal delay={0.08}>
             <h3 className="tl-sub"><i className="fa-solid fa-graduation-cap"></i> Education</h3>
             <div className="timeline">
               {education.map((e) => (
@@ -259,7 +258,7 @@ export default function Resume() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

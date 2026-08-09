@@ -3,11 +3,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 
-// Shared design system + detail-page chrome + showcase mockups — imported
-// verbatim from the original static site (these files carry all the design
-// tokens and component styles the markup relies on).
-import "../css/portfolio.css";
-import "../css/project.css";
+// Engineering Blueprint design system (homepage + project chrome + prose) and
+// the preserved project showcase mockups (pf-* device frames).
+import "../css/blueprint.css";
 import "../css/showcase.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

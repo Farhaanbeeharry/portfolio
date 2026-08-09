@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { filters, work } from "../data/site.js";
-
-const delay = ["", " d1", " d2"];
+import { Reveal } from "../components/Reveal.jsx";
 
 export default function Work() {
   const [active, setActive] = useState("all");
@@ -14,18 +13,16 @@ export default function Work() {
   return (
     <section className="section" id="work">
       <div className="container">
-        <div className="section-head reveal">
-          <span className="eyebrow">Portfolio</span>
-          <h2 className="section-title">
-            Selected <span className="g">work</span>
-          </h2>
-          <p className="section-lead">
+        <Reveal className="sec-head">
+          <span className="sec-ref">E · Index of work</span>
+          <h2 className="sec-title">Selected work</h2>
+          <p className="sec-lead">
             A selection of products across web, mobile, desktop, hardware and
             design.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="filters reveal">
+        <Reveal className="filters">
           {filters.map(([key, label]) => (
             <button
               key={key}
@@ -36,27 +33,24 @@ export default function Work() {
               {label}
             </button>
           ))}
-        </div>
+        </Reveal>
 
         <div className="work-grid">
           {visible.map((w, i) => (
-            <Link
-              key={w.slug}
-              className={`work reveal${delay[i % 3]}`}
-              data-cat={w.dataCat}
-              to={`/portfolio/${w.slug}`}
-            >
-              <div className="work-media">
-                <img src={w.thumb} alt={w.title} />
-                <div className="work-open">
-                  <span><i className="fa-solid fa-arrow-right"></i></span>
+            <Reveal key={w.slug} delay={(i % 3) * 0.06}>
+              <Link className="work" data-cat={w.dataCat} to={`/portfolio/${w.slug}`}>
+                <div className="work-media">
+                  <img src={w.thumb} alt={w.title} loading="lazy" />
+                  <div className="work-open">
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </div>
                 </div>
-              </div>
-              <div className="work-info">
-                <h4>{w.title}</h4>
-                <div className="cat">{w.cat}</div>
-              </div>
-            </Link>
+                <div className="work-info">
+                  <h4>{w.title}</h4>
+                  <div className="cat">{w.cat}</div>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </div>

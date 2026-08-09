@@ -33,7 +33,7 @@ export default function Nav({ variant = "home", activeId = "home" }) {
     <header className={cls} id="nav">
       <div className="nav-inner">
         {home ? (
-          <a href="#home" className="brand" aria-label="Farhaan Beeharry — home" onClick={close}>
+          <a href="#home" className="brand" aria-label="Farhaan Beeharry, home" onClick={close}>
             <span className="brand-mark">FB</span>
             <span>
               Farhaan Beeharry
@@ -41,7 +41,7 @@ export default function Nav({ variant = "home", activeId = "home" }) {
             </span>
           </a>
         ) : (
-          <Link to="/#home" className="brand" aria-label="Farhaan Beeharry — home" onClick={close}>
+          <Link to="/#home" className="brand" aria-label="Farhaan Beeharry, home" onClick={close}>
             <span className="brand-mark">FB</span>
             <span>
               Farhaan Beeharry

@@ -1,8 +1,8 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import Nav from "../components/Nav.jsx";
 import Footer from "../components/Footer.jsx";
+import { Reveal } from "../components/Reveal.jsx";
 import { projects } from "../data/projects.js";
-import { useReveal } from "../hooks/useReveal.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 
 export default function ProjectPage() {
@@ -11,10 +11,9 @@ export default function ProjectPage() {
   const project = projects[idx];
 
   usePageMeta(
-    project ? `${project.title} — Farhaan Beeharry` : undefined,
+    project ? `${project.title} · Farhaan Beeharry` : undefined,
     project ? project.desc : undefined
   );
-  useReveal();
 
   if (!project) return <Navigate to="/" replace />;
 
@@ -27,33 +26,35 @@ export default function ProjectPage() {
       <main className="pp-main">
         <section className="pp-hero">
           <div className="container">
-            <Link className="pp-back reveal" to="/#work">
-              <i className="fa-solid fa-arrow-left"></i> Back to work
-            </Link>
+            <Reveal as="div" y={0}>
+              <Link className="pp-back" to="/#work">
+                <i className="fa-solid fa-arrow-left"></i> Back to work
+              </Link>
+            </Reveal>
 
-            <div className="pp-cat reveal">
+            <Reveal className="pp-cat" delay={0.04}>
               <i className="fa-solid fa-layer-group"></i> {project.category}
-            </div>
+            </Reveal>
 
-            <h1 className="pp-title reveal">
-              <span className="g">{project.disp}</span>
-            </h1>
+            <Reveal as="h1" className="pp-title" delay={0.08}>
+              {project.disp}
+            </Reveal>
 
-            <div className="pp-meta reveal">
+            <Reveal className="pp-meta" delay={0.12}>
               <span><i className="fa-regular fa-calendar"></i> {project.date}</span>
               <span><i className="fa-solid fa-user"></i> Farhaan Beeharry</span>
-            </div>
+            </Reveal>
 
-            <div className="pp-tags reveal">
+            <Reveal className="pp-tags" delay={0.16}>
               {project.tags.map((t) => (
                 <span key={t}>{t}</span>
               ))}
-            </div>
+            </Reveal>
 
             {project.cover && (
-              <figure className="pp-cover reveal">
+              <Reveal as="figure" className="pp-cover" delay={0.2}>
                 <img src={project.cover} alt={project.coverAlt} />
-              </figure>
+              </Reveal>
             )}
           </div>
         </section>
@@ -68,22 +69,26 @@ export default function ProjectPage() {
             <div className="container">
               <div className="pp-more-grid">
                 {prev && (
-                  <Link className="pp-more-card reveal" to={`/portfolio/${prev.slug}`}>
-                    <i className="fa-solid fa-arrow-left"></i>
-                    <span>
-                      <span className="dir">Previous</span>
-                      <div className="nm">{prev.disp}</div>
-                    </span>
-                  </Link>
+                  <Reveal>
+                    <Link className="pp-more-card" to={`/portfolio/${prev.slug}`}>
+                      <i className="fa-solid fa-arrow-left"></i>
+                      <span>
+                        <span className="dir">Previous</span>
+                        <div className="nm">{prev.disp}</div>
+                      </span>
+                    </Link>
+                  </Reveal>
                 )}
                 {next && (
-                  <Link className="pp-more-card next reveal" to={`/portfolio/${next.slug}`}>
-                    <span>
-                      <span className="dir">Next</span>
-                      <div className="nm">{next.disp}</div>
-                    </span>
-                    <i className="fa-solid fa-arrow-right"></i>
-                  </Link>
+                  <Reveal delay={0.06}>
+                    <Link className="pp-more-card next" to={`/portfolio/${next.slug}`}>
+                      <span>
+                        <span className="dir">Next</span>
+                        <div className="nm">{next.disp}</div>
+                      </span>
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </Link>
+                  </Reveal>
                 )}
               </div>
             </div>

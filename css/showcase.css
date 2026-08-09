@@ -7,7 +7,7 @@
 
 .pf-wrap {
   /* default (dark) palette — override per project on the element */
-  --brand: #3b82f6;
+  --brand: #1f5bff;
   --brand-ink: #ffffff;      /* text/icon that sits on --brand */
   --stage: #0b1220;          /* the framed backdrop behind devices */
   --bg: #0f172a;             /* app screen background */

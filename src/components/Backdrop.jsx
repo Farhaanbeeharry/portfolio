@@ -1,9 +1,5 @@
-/** Aurora + grain backdrop divs (decorative), same as the static site. */
+/** Drafting-sheet backdrop: faint engineering grid + titleblock registration
+ *  frame, fixed behind all content. Decorative, aria-hidden. */
 export default function Backdrop() {
-  return (
-    <>
-      <div className="aurora" aria-hidden="true"></div>
-      <div className="grain" aria-hidden="true"></div>
-    </>
-  );
+  return <div className="sheet" aria-hidden="true"></div>;
 }

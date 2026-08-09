@@ -1,3 +1,5 @@
+import { Reveal } from "./Reveal.jsx";
+
 /** Site footer / contact section. Rendered as <footer id="contact"> on the
  *  homepage (so the Contact nav link + scroll-spy target it) and as a plain
  *  footer on project pages. */
@@ -6,19 +8,14 @@ export default function Footer({ withContact = true }) {
     <footer className="footer" id={withContact ? "contact" : undefined}>
       <div className="container">
         {withContact ? (
-          <div className="footer-cta reveal">
-            <span className="eyebrow" style={{ justifyContent: "center" }}>
-              Contact
-            </span>
-            <h2>
-              Let's build something <span className="gradient-text">great</span>{" "}
-              together.
-            </h2>
+          <Reveal className="footer-cta">
+            <span className="sec-ref">F · Contact</span>
+            <h2>Let's build something great together.</h2>
             <p>
               Have a project in mind, or just want to say hi? My inbox is always
               open.
             </p>
-            <div>
+            <div className="btn-row">
               <a href="mailto:contact@farhaan.info" className="btn btn-primary">
                 <i className="fa-solid fa-envelope"></i> contact@farhaan.info
               </a>
@@ -31,7 +28,7 @@ export default function Footer({ withContact = true }) {
                 <i className="fab fa-whatsapp"></i> +230 5707 6881
               </a>
             </div>
-            <div style={{ marginTop: "28px" }}>
+            <div className="btn-row">
               <a
                 href="/assets/Farhaan Beeharry CV.pdf"
                 target="_blank"
@@ -50,20 +47,19 @@ export default function Footer({ withContact = true }) {
                 française
               </a>
             </div>
-          </div>
+          </Reveal>
         ) : (
           <div className="footer-cta">
-            <h2 className="reveal">Have a project in mind?</h2>
-            <p className="reveal">
-              I'm always open to interesting work — let's build something great
+            <h2>Have a project in mind?</h2>
+            <p>
+              I'm always open to interesting work, let's build something great
               together.
             </p>
-            <a
-              href="mailto:contact@farhaan.info"
-              className="btn btn-primary reveal"
-            >
-              <i className="fa-solid fa-envelope"></i> Contact me
-            </a>
+            <div className="btn-row">
+              <a href="mailto:contact@farhaan.info" className="btn btn-primary">
+                <i className="fa-solid fa-envelope"></i> Contact me
+              </a>
+            </div>
           </div>
         )}
 
