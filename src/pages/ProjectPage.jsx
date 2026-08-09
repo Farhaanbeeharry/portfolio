@@ -2,6 +2,8 @@ import { useParams, Navigate, Link } from "react-router-dom";
 import Nav from "../components/Nav.jsx";
 import Footer from "../components/Footer.jsx";
 import { Reveal } from "../components/Reveal.jsx";
+import { ScrollProgress } from "../components/ScrollProgress.jsx";
+import { ParallaxCover } from "../components/ParallaxCover.jsx";
 import { projects } from "../data/projects.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 
@@ -22,6 +24,7 @@ export default function ProjectPage() {
 
   return (
     <>
+      <ScrollProgress />
       <Nav variant="project" />
       <main className="pp-main">
         <section className="pp-hero">
@@ -52,9 +55,7 @@ export default function ProjectPage() {
             </Reveal>
 
             {project.cover && (
-              <Reveal as="figure" className="pp-cover" delay={0.2}>
-                <img src={project.cover} alt={project.coverAlt} />
-              </Reveal>
+              <ParallaxCover src={project.cover} alt={project.coverAlt} />
             )}
           </div>
         </section>

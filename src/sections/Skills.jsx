@@ -32,8 +32,11 @@ export default function Skills() {
     <section className="section" id="skills">
       <div className="container">
         <Reveal className="sec-head">
-          <span className="sec-ref">B · Capability</span>
-          <h2 className="sec-title">Tools I use to ship</h2>
+          <span className="sec-index" aria-hidden="true">02</span>
+          <span className="sec-kicker">Capability</span>
+          <h2 className="sec-title">
+            Tools I use to <span className="em">ship</span>
+          </h2>
           <p className="sec-lead">
             A blend of coding fluency, design sensibility and hands-on hardware
             experience.

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { filters, work } from "../data/site.js";
 import { Reveal } from "../components/Reveal.jsx";
+import { TiltCard } from "../components/TiltCard.jsx";
 
 export default function Work() {
   const [active, setActive] = useState("all");
@@ -14,8 +15,11 @@ export default function Work() {
     <section className="section" id="work">
       <div className="container">
         <Reveal className="sec-head">
-          <span className="sec-ref">E · Index of work</span>
-          <h2 className="sec-title">Selected work</h2>
+          <span className="sec-index" aria-hidden="true">05</span>
+          <span className="sec-kicker">Index of work</span>
+          <h2 className="sec-title">
+            Selected <span className="em">work</span>
+          </h2>
           <p className="sec-lead">
             A selection of products across web, mobile, desktop, hardware and
             design.
@@ -38,7 +42,14 @@ export default function Work() {
         <div className="work-grid">
           {visible.map((w, i) => (
             <Reveal key={w.slug} delay={(i % 3) * 0.06}>
-              <Link className="work" data-cat={w.dataCat} to={`/portfolio/${w.slug}`}>
+              <TiltCard
+                className="work-cell"
+                innerClassName="work"
+                as={Link}
+                max={8}
+                to={`/portfolio/${w.slug}`}
+                data-cat={w.dataCat}
+              >
                 <div className="work-media">
                   <img src={w.thumb} alt={w.title} loading="lazy" />
                   <div className="work-open">
@@ -49,7 +60,7 @@ export default function Work() {
                   <h4>{w.title}</h4>
                   <div className="cat">{w.cat}</div>
                 </div>
-              </Link>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal.jsx";
+import { Magnetic } from "./Magnetic.jsx";
 
 /** Site footer / contact section. Rendered as <footer id="contact"> on the
  *  homepage (so the Contact nav link + scroll-spy target it) and as a plain
@@ -9,16 +10,18 @@ export default function Footer({ withContact = true }) {
       <div className="container">
         {withContact ? (
           <Reveal className="footer-cta">
-            <span className="sec-ref">F · Contact</span>
-            <h2>Let's build something great together.</h2>
+            <span className="sec-kicker">Contact</span>
+            <h2>Let's build something <span className="em">great</span> together.</h2>
             <p>
               Have a project in mind, or just want to say hi? My inbox is always
               open.
             </p>
             <div className="btn-row">
-              <a href="mailto:contact@farhaan.info" className="btn btn-primary">
-                <i className="fa-solid fa-envelope"></i> contact@farhaan.info
-              </a>
+              <Magnetic>
+                <a href="mailto:contact@farhaan.info" className="btn btn-primary">
+                  <i className="fa-solid fa-envelope"></i> contact@farhaan.info
+                </a>
+              </Magnetic>
               <a
                 href="https://wa.me/23057076881/"
                 target="_blank"

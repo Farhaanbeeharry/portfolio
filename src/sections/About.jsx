@@ -18,13 +18,22 @@ const capabilities = [
   },
 ];
 
+const facts = [
+  { icon: "fa-solid fa-star", num: "42", label: "Projects completed" },
+  { icon: "fa-solid fa-keyboard", num: "80+ WPM", label: "Fast typing speed" },
+  { icon: "fa-solid fa-mug-hot", num: "3", label: "Cups of coffee daily" },
+];
+
 export default function About() {
   return (
     <section className="section" id="about">
       <div className="container">
         <Reveal className="sec-head">
-          <span className="sec-ref">A · Profile</span>
-          <h2 className="sec-title">Turning ideas into real products</h2>
+          <span className="sec-index" aria-hidden="true">01</span>
+          <span className="sec-kicker">Profile</span>
+          <h2 className="sec-title">
+            Turning ideas into <span className="em">real products</span>
+          </h2>
           <p className="sec-lead">
             A responsible professional who loves clean code, thoughtful design
             and delivering high-quality work on time.
@@ -69,6 +78,16 @@ export default function About() {
                 <h3>{c.title}</h3>
                 <p>{c.body}</p>
               </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="facts">
+          {facts.map((f, i) => (
+            <Reveal className="fact" key={f.label} delay={i * 0.06}>
+              <i className={f.icon} aria-hidden="true"></i>
+              <div className="num">{f.num}</div>
+              <div className="lbl">{f.label}</div>
             </Reveal>
           ))}
         </div>

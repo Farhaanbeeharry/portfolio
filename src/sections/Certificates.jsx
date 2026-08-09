@@ -6,8 +6,11 @@ export default function Certificates() {
     <section className="section" id="certificates">
       <div className="container">
         <Reveal className="sec-head">
-          <span className="sec-ref">D · Register</span>
-          <h2 className="sec-title">Awards &amp; achievements</h2>
+          <span className="sec-index" aria-hidden="true">04</span>
+          <span className="sec-kicker">Register</span>
+          <h2 className="sec-title">
+            Awards &amp; <span className="em">achievements</span>
+          </h2>
           <p className="sec-lead">
             Recognitions, competitions and training earned along the way.
           </p>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavScroll } from "../hooks/useNavScroll.js";
+import { Magnetic } from "./Magnetic.jsx";
 
 const LINKS = [
   ["home", "Home"],
@@ -70,14 +71,16 @@ export default function Nav({ variant = "home", activeId = "home" }) {
         </nav>
 
         <div className="nav-cta">
-          <a
-            href="/assets/Farhaan Beeharry CV.pdf"
-            target="_blank"
-            rel="noopener"
-            className="btn btn-primary"
-          >
-            <i className="fa-solid fa-download"></i> Download CV
-          </a>
+          <Magnetic strength={0.25}>
+            <a
+              href="/assets/Farhaan Beeharry CV.pdf"
+              target="_blank"
+              rel="noopener"
+              className="btn btn-primary"
+            >
+              <i className="fa-solid fa-download"></i> Download CV
+            </a>
+          </Magnetic>
         </div>
 
         <button

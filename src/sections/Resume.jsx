@@ -1,5 +1,6 @@
 import { testimonials } from "../data/site.js";
 import { Reveal } from "../components/Reveal.jsx";
+import { TiltCard } from "../components/TiltCard.jsx";
 
 const experience = [
   {
@@ -176,8 +177,11 @@ export default function Resume() {
     <section className="section" id="resume">
       <div className="container">
         <Reveal className="sec-head">
-          <span className="sec-ref">C · Track record</span>
-          <h2 className="sec-title">My journey so far</h2>
+          <span className="sec-index" aria-hidden="true">03</span>
+          <span className="sec-kicker">Track record</span>
+          <h2 className="sec-title">
+            My <span className="em">journey</span> so far
+          </h2>
           <p className="sec-lead">
             A track record across mobile, web and full-stack engineering roles.
           </p>
@@ -243,9 +247,9 @@ export default function Resume() {
             <h3 className="tl-sub" style={{ marginTop: "44px" }}>
               <i className="fa-solid fa-quote-left"></i> Testimonials
             </h3>
-            <div className="tst-grid" style={{ gridTemplateColumns: "1fr" }}>
+            <div className="tst-grid">
               {testimonials.map((t) => (
-                <div className="tst" key={t.name}>
+                <TiltCard key={t.name} innerClassName="tst" max={5} perspective={1100}>
                   <span className="quote"><i className="fa-solid fa-quote-right"></i></span>
                   <p>{t.quote}</p>
                   <div className="tst-author">
@@ -255,7 +259,7 @@ export default function Resume() {
                       <div className="ac">{t.role}</div>
                     </div>
                   </div>
-                </div>
+                </TiltCard>
               ))}
             </div>
           </Reveal>
