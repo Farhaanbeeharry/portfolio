@@ -1,5 +1,5 @@
 import { work, certificates } from "./site.js";
-import { experience } from "./record.jsx";
+import { positionCount } from "./record.jsx";
 import { capabilities } from "./capabilities.js";
 
 /**
@@ -17,7 +17,7 @@ export const ROUTES = [
      than abbreviating it — "route /stack" under a rail reading "Capability" is a
      small lie in a world whose whole claim is that it reports what is true. */
   { id: "capability", label: "Capability", short: "Stack", icon: "cpu", count: capabilities.length },
-  { id: "service-log", label: "Service log", short: "Log", icon: "log", count: experience.length },
+  { id: "service-log", label: "Service log", short: "Log", icon: "log", count: positionCount },
   { id: "certification", label: "Certification", short: "Certs", icon: "award", count: certificates.length },
   { id: "contact", label: "Contact", short: "Contact", icon: "mail", count: null },
 ];

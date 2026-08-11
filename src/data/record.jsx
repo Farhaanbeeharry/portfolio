@@ -97,33 +97,42 @@ export const experience = [
       </>
     ),
   },
+  /**
+   * One employer, two positions. These were two sibling entries with the same
+   * org, which read as two unrelated jobs rather than as a promotion within one.
+   * `positions` are newest first, and the group's period spans both.
+   */
   {
-    period: "January – May 2023",
-    title: "Software Engineer",
-    dl: "assets/Testimonial From Elca.jpg",
+    period: "August 2021 – May 2023",
     org: "Information Technology ELCA Ltd",
-    body: (
-      <>
-        Developing and maintaining Angular and Java based application utilising
-        crucial design skills. Troubleshooting and solving technical issues in
-        the project. Writing clean, efficient and well-documented code.
-        Participate in code reviews and ensure the code is maintainable and
-        scalable.
-      </>
-    ),
-  },
-  {
-    period: "August 2021 – December 2022",
-    title: "Associate Software Engineer",
     dl: "assets/Testimonial From Elca.jpg",
-    org: "Information Technology ELCA Ltd",
-    body: (
-      <>
-        Working on 3rd Party Projects using Angular and Java. Utilized crucial
-        design software skills to assist with projects. Effective changes and
-        alterations based on specific design specifications.
-      </>
-    ),
+    positions: [
+      {
+        period: "January – May 2023",
+        title: "Software Engineer",
+        promotion: true,
+        body: (
+          <>
+            Developing and maintaining Angular and Java based application
+            utilising crucial design skills. Troubleshooting and solving
+            technical issues in the project. Writing clean, efficient and
+            well-documented code. Participate in code reviews and ensure the
+            code is maintainable and scalable.
+          </>
+        ),
+      },
+      {
+        period: "August 2021 – December 2022",
+        title: "Associate Software Engineer",
+        body: (
+          <>
+            Working on 3rd Party Projects using Angular and Java. Utilized
+            crucial design software skills to assist with projects. Effective
+            changes and alterations based on specific design specifications.
+          </>
+        ),
+      },
+    ],
   },
   {
     period: "May – August 2020",
@@ -152,6 +161,16 @@ export const experience = [
     ),
   },
 ];
+
+/**
+ * Positions actually held, flattening promotions back out. Used for the route
+ * badge and the log's own count, so merging two ELCA entries into one employer
+ * does not make it look like a role disappeared from the record. The career
+ * break is an entry on the timeline but it is not a position.
+ */
+export const positionCount = experience
+  .flatMap((e) => e.positions ?? [e])
+  .filter((p) => p.title !== "Career Break").length;
 
 export const education = [
   {

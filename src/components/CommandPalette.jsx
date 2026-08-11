@@ -36,9 +36,16 @@ const ACTIONS = [
   })),
 ];
 
-/** prefix (3) > substring (2) > subsequence (1) > no match (0) */
+/**
+ * prefix (3) > substring (2) > subsequence (1) > no match (0)
+ *
+ * Tolerates a missing haystack. An entry that arrived without a title once threw
+ * here and, because the palette renders inside the shell, took the entire page
+ * down with it — a search index is not worth a white screen.
+ */
 function score(haystack, needle) {
-  const h = haystack.toLowerCase();
+  if (!haystack) return 0;
+  const h = String(haystack).toLowerCase();
   const n = needle.toLowerCase();
   if (!n) return 1;
   if (h.startsWith(n)) return 3;
@@ -87,9 +94,22 @@ export default function CommandPalette({ open, onClose, onRoute }) {
         to: `/portfolio/${p.slug}`,
       })
     );
-    experience.forEach((e, i) =>
-      items.push({ kind: "Role", id: `role-${i}`, title: e.title, sub: [e.org, e.period].filter(Boolean).join(" · "), icon: "log", route: "service-log" })
-    );
+    /* Promotions are stored as one employer with several `positions`, so the
+       roles are flattened back out here — each position is separately findable
+       ("Associate Software Engineer" should be a hit), and the employer name
+       travels with it. */
+    experience
+      .flatMap((e) => (e.positions ?? [e]).map((p) => ({ ...p, org: e.org ?? p.org })))
+      .forEach((p, i) =>
+        items.push({
+          kind: "Role",
+          id: `role-${i}`,
+          title: p.title,
+          sub: [p.org, p.period].filter(Boolean).join(" · "),
+          icon: "log",
+          route: "service-log",
+        })
+      );
     education.forEach((e, i) =>
       items.push({ kind: "Education", id: `edu-${i}`, title: e.title, sub: `${e.org} · ${e.period}`, icon: "cap", route: "service-log" })
     );
@@ -126,18 +146,28 @@ export default function CommandPalette({ open, onClose, onRoute }) {
     scored.sort((a, b) => b.s - a.s);
     // With no query, show everything — slicing to 60 of 67 left the email,
     // WhatsApp and profile actions reachable only by typing.
-    return needle ? scored.slice(0, 40).map((r) => r.it) : scored.map((r) => r.it);
+    return needle ? scored.slice(0, 40) : scored;
   }, [q, index]);
 
-  // group in a stable order for display
+  /**
+   * Groups are ordered by their BEST match, not by a fixed list. With a fixed
+   * order, typing "associate" put eight loosely-matched case files above the
+   * role literally called "Associate Software Engineer", because Case file
+   * always came before Role. The fixed order is now only the tie-break, which is
+   * what keeps the empty-query view stable.
+   */
   const groups = useMemo(() => {
-    const order = ["Route", "Case file", "Role", "Education", "Certificate", "Action"];
+    const ORDER = ["Route", "Case file", "Role", "Education", "Certificate", "Action"];
     const map = new Map();
-    results.forEach((it) => {
-      if (!map.has(it.kind)) map.set(it.kind, []);
-      map.get(it.kind).push(it);
+    results.forEach(({ it, s }) => {
+      if (!map.has(it.kind)) map.set(it.kind, { items: [], best: -Infinity });
+      const g = map.get(it.kind);
+      g.items.push(it);
+      g.best = Math.max(g.best, s);
     });
-    return order.filter((k) => map.has(k)).map((k) => [k, map.get(k)]);
+    return [...map.entries()]
+      .sort((a, b) => b[1].best - a[1].best || ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]))
+      .map(([kind, g]) => [kind, g.items]);
   }, [results]);
 
   const flat = useMemo(() => groups.flatMap(([, items]) => items), [groups]);

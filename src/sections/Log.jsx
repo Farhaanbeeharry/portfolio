@@ -1,28 +1,55 @@
 import Icon from "../components/Icon.jsx";
 import { testimonials } from "../data/site.js";
-import { experience, education } from "../data/record.jsx";
+import { experience, education, positionCount } from "../data/record.jsx";
 
+/**
+ * An entry is either a single role, or one employer holding several positions —
+ * a promotion. In the grouped case the employer is the heading and the positions
+ * nest beneath it, so progression at one company does not read as two unrelated
+ * jobs.
+ */
 function Entry({ e, dlLabel }) {
+  const grouped = Array.isArray(e.positions);
+  const heading = grouped ? e.org : e.title;
+
   return (
     <article className={`entry${e.current ? " current" : ""}`}>
       <span className="when">{e.period}</span>
       <h4>
-        {e.title}
+        {heading}
         {e.dl && (
           <a
             className="dl"
             href={`/${e.dl}`}
             target="_blank"
             rel="noopener"
-            aria-label={`${dlLabel} for ${e.title}`}
+            aria-label={`${dlLabel} for ${heading}`}
             title={dlLabel}
           >
             <Icon name="download" size={12} />
           </a>
         )}
       </h4>
-      {e.org && <div className="org">{e.org}</div>}
-      {e.body && <p>{e.body}</p>}
+
+      {grouped ? (
+        <ol className="positions">
+          {e.positions.map((p) => (
+            <li key={p.period + p.title}>
+              <div className="pos-head">
+                <span className="pos-title">{p.title}</span>
+                {p.promotion && <span className="pos-tag">Promoted</span>}
+                <span className="pos-when">{p.period}</span>
+              </div>
+              {p.body && <p>{p.body}</p>}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <>
+          {e.org && <div className="org">{e.org}</div>}
+          {e.body && <p>{e.body}</p>}
+        </>
+      )}
     </article>
   );
 }
@@ -33,7 +60,7 @@ export default function Log() {
       <div className="view-head">
         <h2 className="view-title">Service log</h2>
         <span className="mono meta" style={{ color: "var(--fg-3)" }}>
-          2019 — present · {experience.length} entries
+          2019 — present · {positionCount} positions
         </span>
       </div>
 
