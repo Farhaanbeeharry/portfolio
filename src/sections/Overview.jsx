@@ -7,8 +7,14 @@ import { contact, work, stores } from "../data/site.js";
    The route renders complete without it; the lattice fades in when it lands. */
 const Field = lazy(() => import("../components/Field.jsx"));
 
-/** The three most recent case files, read from the work list rather than pinned. */
-const RECENT = work.slice(-3);
+/**
+ * Pinned by the owner, not derived. This was `work.slice(-3)`, which surfaced
+ * whatever happened to be last in the list (Fruitopia, NexStock, Lokal). These
+ * three are the chosen shop window: MotoGate ships on both app stores, Pryowl is
+ * the broadest SaaS build, Fruitopia the marketplace.
+ */
+const FEATURED = ["motogate", "pryowl", "fruitopia"];
+const RECENT = FEATURED.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
 
 export default function Overview() {
   return (
@@ -100,12 +106,16 @@ export default function Overview() {
               </div>
             </dl>
 
-            <div className="now-thumbs">
-              {RECENT.map((w) => (
-                <Link key={w.slug} to={`/portfolio/${w.slug}`} title={w.title} aria-label={w.title}>
-                  <img src={w.thumb} alt="" loading="lazy" />
-                </Link>
-              ))}
+            {/* Labelled, because unlabelled it read as part of the row above it. */}
+            <div className="now-strip">
+              <span className="now-strip-label">Selected builds</span>
+              <div className="now-thumbs">
+                {RECENT.map((w) => (
+                  <Link key={w.slug} to={`/portfolio/${w.slug}`} title={w.title} aria-label={w.title}>
+                    <img src={w.thumb} alt="" loading="lazy" />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>

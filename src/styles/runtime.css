@@ -731,7 +731,17 @@ a:hover > .chip, a.chip:hover { color: var(--fg); border-color: var(--line-3); }
 .now-row a { color: var(--fg); border-bottom: 1px solid var(--line-3); }
 .now-row a:hover { color: var(--accent); border-color: var(--accent-line); }
 
-.now-thumbs { display: flex; gap: 7px; padding: 0 15px 15px; }
+.now-strip { padding: 0 15px 15px; }
+.now-strip-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--f-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.now-thumbs { display: flex; gap: 7px; }
 .now-thumbs a {
   flex: 1;
   min-width: 0;
