@@ -12,9 +12,36 @@ export const socials = [
 ];
 
 /**
- * Live store listings. These are real, verifiable URLs taken from the project
- * write-ups — MotoGate ships under his own package id (info.farhaan.motogate)
- * and PTMA under com.ptma.app, both published on Apple and Google.
+ * Per-project store listings, keyed by project slug.
+ *
+ * Rule: a URL goes in here only when it is verified. `null` means "this app IS
+ * live on that store, but the link has not been supplied yet" — the UI skips
+ * nulls rather than guessing, so nothing ever renders a fabricated store URL.
+ *
+ * Everything downstream reads from this map: the Overview's "shipping to" line
+ * names whichever apps are listed, and each case page shows store buttons for
+ * the links it has. Adding a URL below is the only edit needed.
+ */
+export const listings = {
+  motogate: {
+    apple: "https://apps.apple.com/mu/app/motogate/id6759206166",
+    google: "https://play.google.com/store/apps/details?id=info.farhaan.motogate",
+  },
+  ptma: {
+    apple: "https://apps.apple.com/mu/app/ptma/id6743928652",
+    google: "https://play.google.com/store/apps/details?id=com.ptma.app",
+  },
+  // Live on both stores, confirmed by the owner. URLs to follow — drop them in
+  // here and the name, the buttons and the search terms all pick them up.
+  fruitopia: {
+    apple: null,
+    google: null,
+  },
+};
+
+/**
+ * The two representative store links used in the Overview panel, plus the
+ * employer account the XEFI apps ship under.
  */
 export const stores = {
   apple: {

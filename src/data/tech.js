@@ -91,7 +91,7 @@ export const TECH = {
   },
   fruitopia: {
     stack: ["Flutter", "Dart", "Supabase"],
-    domain: ["marketplace", "e-commerce", "farm to table"],
+    domain: ["marketplace", "e-commerce", "farm to table", "App Store", "Google Play"],
   },
   nexstock: {
     stack: ["Laravel", "PHP", "React", "TypeScript", "Flutter"],

@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
 import CvMenu from "../components/CvMenu.jsx";
-import { contact, work, stores } from "../data/site.js";
+import { contact, work, stores, listings } from "../data/site.js";
 
 /* three.js is ~119 kB gzipped and must never sit in front of the first paint.
    The route renders complete without it; the lattice fades in when it lands. */
@@ -16,6 +16,17 @@ const Field = lazy(() => import("../components/Field.jsx"));
  */
 const FEATURED = ["motogate", "pryowl", "fruitopia"];
 const RECENT = FEATURED.map((slug) => work.find((w) => w.slug === slug)).filter(Boolean);
+
+/**
+ * Named from the listings map, so an app added there appears here without this
+ * sentence being edited — the previous version hardcoded "MotoGate and PTMA" and
+ * went stale the moment Fruitopia shipped.
+ */
+const LIVE_APPS = new Intl.ListFormat("en-GB", { style: "long", type: "conjunction" }).format(
+  // en-GB, not en: "MotoGate, PTMA and Fruitopia" rather than the Oxford comma,
+  // matching the British spelling the rest of the copy already uses.
+  Object.keys(listings).map((slug) => work.find((w) => w.slug === slug)?.title ?? slug)
+);
 
 export default function Overview() {
   return (
@@ -92,7 +103,8 @@ export default function Overview() {
                     </a>
                   </span>
                   <span className="sub">
-                    MotoGate and PTMA are live on both; the XEFI apps ship under the{" "}
+                    {LIVE_APPS} {LIVE_APPS.includes(" and ") ? "are" : "is"} live on
+                    both; the XEFI apps ship under the{" "}
                     <a href={stores.xefi.href} target="_blank" rel="noopener">
                       XEFI Software
                     </a>{" "}

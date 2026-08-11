@@ -71,6 +71,9 @@
 /* the stack reads first; the domain terms sit back */
 .case-tags .chip.stack { color: var(--fg); border-color: var(--line-2); }
 
+.case-stores { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+.case-stores .btn svg:last-child { opacity: 0.6; }
+
 .case-cover {
   margin: 0 0 30px;
   border-radius: var(--r-lg);

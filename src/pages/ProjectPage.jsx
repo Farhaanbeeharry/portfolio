@@ -4,6 +4,7 @@ import Footer from "../components/Footer.jsx";
 import Contact from "../sections/Contact.jsx";
 import Icon from "../components/Icon.jsx";
 import { projects } from "../data/projects.js";
+import { listings } from "../data/site.js";
 import { TECH } from "../data/tech.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 
@@ -25,6 +26,7 @@ export default function ProjectPage() {
 
   const prev = idx > 0 ? projects[idx - 1] : null;
   const next = idx < projects.length - 1 ? projects[idx + 1] : null;
+  const store = listings[project.slug];
 
   return (
     <AppShell activeId="work" home={false} routeLabel={project.disp}>
@@ -62,6 +64,28 @@ export default function ProjectPage() {
               <span className="chip" key={t}>{t}</span>
             ))}
           </div>
+
+          {/* Store buttons for the apps that are actually published. Rendered per
+              verified URL, so a listing whose link has not been supplied yet
+              simply shows nothing rather than a guessed or dead link. */}
+          {store && (store.apple || store.google) && (
+            <div className="case-stores">
+              {store.apple && (
+                <a className="btn btn-sm" href={store.apple} target="_blank" rel="noopener">
+                  <Icon name="mobile" size={14} />
+                  App Store
+                  <Icon name="external" size={12} />
+                </a>
+              )}
+              {store.google && (
+                <a className="btn btn-sm" href={store.google} target="_blank" rel="noopener">
+                  <Icon name="mobile" size={14} />
+                  Google Play
+                  <Icon name="external" size={12} />
+                </a>
+              )}
+            </div>
+          )}
 
           {project.cover && (
             <figure className="case-cover">
