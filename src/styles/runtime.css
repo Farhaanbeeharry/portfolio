@@ -925,15 +925,19 @@ a:hover > .chip, a.chip:hover { color: var(--fg); border-color: var(--line-3); }
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.card-body .cat {
-  font-family: var(--f-mono);
-  font-size: 0.66rem;
-  color: var(--fg-3);
-  margin-top: 3px;
+/* The one-line description. Not mono — this is prose a visitor reads, and mono
+   here would be the "technical costume" the type rules exclude. Clamped to two
+   lines so a long blurb cannot make one card taller than its row. */
+.card-body .blurb {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--fg-2);
 }
 .card-body .go {
   flex: none;

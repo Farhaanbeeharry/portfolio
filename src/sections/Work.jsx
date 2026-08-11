@@ -105,7 +105,9 @@ export default function Work() {
             <div className="card-body">
               <span className="txt">
                 <h3>{w.title}</h3>
-                <span className="cat">{w.cat}</span>
+                {/* What it is, in one line — the category alone ("Web and UI/UX")
+                    said nothing about the project itself. */}
+                <span className="blurb">{TECH[w.slug]?.blurb ?? w.cat}</span>
               </span>
               <span className="go" aria-hidden="true">
                 <Icon name="arrowRight" size={14} />
