@@ -176,7 +176,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* --- CV menu ----------------------------------------------------------- */
 .cvmenu { position: relative; flex: none; }
-.cvmenu > .btn .caret { opacity: 0.75; margin-left: -2px; }
 .cvmenu-pop {
   position: absolute;
   z-index: 70;
@@ -1210,7 +1209,12 @@ a:hover > .chip, a.chip:hover { color: var(--fg); border-color: var(--line-3); }
   display: grid;
   place-items: center;
   border-radius: var(--r-sm);
-  background: #f4f6f8;
+  /* Light GREY, not near-white. Several issuer logos are white or very pale
+     (NPCC, Techwar, Digicup) and disappeared entirely on the previous #f4f6f8
+     plate. This is dark enough to hold a white mark and still light enough for
+     the dark logos (MCB, ELCA, FSC) to read. */
+  background: #ced5dd;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
   overflow: hidden;
 }
 .cert .logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }

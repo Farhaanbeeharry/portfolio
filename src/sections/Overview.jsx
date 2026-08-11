@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
+import CvMenu from "../components/CvMenu.jsx";
 import { contact, work, stores } from "../data/site.js";
 
 /* three.js is ~119 kB gzipped and must never sit in front of the first paint.
@@ -45,15 +46,10 @@ export default function Overview() {
               <Icon name="grid" size={15} />
               View the work
             </a>
-            <a
-              href="/assets/Farhaan Beeharry CV.pdf"
-              target="_blank"
-              rel="noopener"
-              className="btn"
-            >
-              <Icon name="download" size={15} />
-              Download CV
-            </a>
+            {/* Also a menu, so the hero does not silently hand out the English
+                edition when a French-speaking reader clicks it. Aligned to the
+                start edge because it sits at the left of the action row. */}
+            <CvMenu variant="default" size="md" label="Download CV" align="start" />
             <span className="tip">
               <span className="kbd">⌘</span>
               <span className="kbd">K</span>

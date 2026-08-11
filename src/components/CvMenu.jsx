@@ -93,7 +93,6 @@ export default function CvMenu({ variant = "primary", size = "sm", label = "CV",
       >
         <Icon name="download" size={size === "sm" ? 14 : 15} />
         {label}
-        <Icon name="arrowDown" size={12} className="caret" />
       </button>
 
       {open && (
