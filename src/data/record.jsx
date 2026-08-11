@@ -110,7 +110,6 @@ export const experience = [
       {
         period: "January – May 2023",
         title: "Software Engineer",
-        promotion: true,
         body: (
           <>
             Developing and maintaining Angular and Java based application

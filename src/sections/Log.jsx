@@ -37,7 +37,6 @@ function Entry({ e, dlLabel }) {
             <li key={p.period + p.title}>
               <div className="pos-head">
                 <span className="pos-title">{p.title}</span>
-                {p.promotion && <span className="pos-tag">Promoted</span>}
                 <span className="pos-when">{p.period}</span>
               </div>
               {p.body && <p>{p.body}</p>}
