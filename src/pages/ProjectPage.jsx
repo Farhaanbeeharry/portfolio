@@ -17,10 +17,10 @@ export default function ProjectPage() {
   const idx = projects.findIndex((p) => p.slug === slug);
   const project = projects[idx];
 
-  usePageMeta(
-    project ? `${project.title} — Farhaan Beeharry` : undefined,
-    project ? project.desc : undefined
-  );
+  /* `project.title` already ends with "— Farhaan Beeharry" (it was scraped from
+     the old page's own <title>), so appending the name again produced
+     "Umbrella Challenge — Farhaan Beeharry — Farhaan Beeharry". Use it as-is. */
+  usePageMeta(project?.title, project?.desc);
 
   if (!project) return <Navigate to="/" replace />;
 

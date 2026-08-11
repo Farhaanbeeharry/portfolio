@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import AppShell from "../components/AppShell.jsx";
 import Footer from "../components/Footer.jsx";
 import Icon from "../components/Icon.jsx";
+import { usePageMeta } from "../hooks/usePageMeta.js";
 
 export default function NotFound() {
+  usePageMeta("Not found — Farhaan Beeharry");
+
   return (
     <AppShell activeId="overview" home={false} routeLabel="404">
       <main className="main">
