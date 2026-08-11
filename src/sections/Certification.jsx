@@ -27,7 +27,8 @@ export default function Certification() {
       <div className="certs">
         {shown.map((c, i) => (
           <article
-            className={`cert${c.metaBadge ? " won" : ""} reveal${i % 3 ? ` d${i % 3}` : ""}`}
+            className={`cert${c.metaBadge ? " won" : ""}`}
+            style={{ "--i": Math.min(i, 8) }}
             key={`${c.title}-${c.date}`}
           >
             <span className="logo">

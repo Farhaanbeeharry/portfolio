@@ -20,8 +20,8 @@ export default function Capability() {
       </p>
 
       <div className="stack-grid">
-        {capabilities.map((c, i) => (
-          <div className={`stack-row reveal${i % 3 ? ` d${i % 3}` : ""}`} key={c.name}>
+        {capabilities.map((c) => (
+          <div className="stack-row" key={c.name}>
             <span className={`dot${c.builds ? "" : " off"}`} aria-hidden="true" />
             <span className="txt">
               <span className="nm">{c.name}</span>

@@ -1,4 +1,5 @@
 import Icon from "../components/Icon.jsx";
+import { CVS } from "../components/CvMenu.jsx";
 import { contact } from "../data/site.js";
 
 export default function Contact({ compact = false }) {
@@ -33,24 +34,21 @@ export default function Contact({ compact = false }) {
 
           {!compact && (
             <div className="contact-lines">
-              <a
-                href="/assets/Farhaan Beeharry CV.pdf"
-                target="_blank"
-                rel="noopener"
-                className="btn btn-ghost btn-sm"
-              >
-                <Icon name="download" size={13} />
-                CV — English
-              </a>
-              <a
-                href="/assets/Farhaan Beeharry CV_FRENCH.pdf"
-                target="_blank"
-                rel="noopener"
-                className="btn btn-ghost btn-sm"
-              >
-                <Icon name="download" size={13} />
-                CV — Français
-              </a>
+              {/* Both editions are one click away here rather than behind a
+                  menu — on the route whose whole job is contact, listing them
+                  costs nothing and saves an interaction. */}
+              {CVS.map((cv) => (
+                <a
+                  key={cv.code}
+                  href={cv.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="btn btn-ghost btn-sm"
+                >
+                  <Icon name="download" size={13} />
+                  CV — {cv.label}
+                </a>
+              ))}
               <a
                 href="https://www.linkedin.com/in/farhaan-bms/"
                 target="_blank"

@@ -11,11 +11,8 @@ const DOES = [
   {
     icon: "mobile",
     title: "Mobile applications",
-    body: "Flutter for iOS and Android, from state management and localisation through to store release.",
-    proof: {
-      label: "See them on the App Store",
-      href: "https://apps.apple.com/fr/developer/xefi-software/id1500721589?l=en-GB&see-all=i-phonei-pad-apps",
-    },
+    body: "Flutter for iOS and Android, from state management and localisation through to release on both the Apple App Store and Google Play.",
+    proof: { label: "See the mobile builds", href: "#work" },
   },
   {
     icon: "monitor",
@@ -42,7 +39,7 @@ export default function Profile() {
       </div>
 
       <div className="profile-grid">
-        <div className="prose reveal">
+        <div className="prose">
           <p>
             I'm a software engineer with five years in development, four of them
             building commercial applications people actually use. Most of that has
@@ -62,7 +59,7 @@ export default function Profile() {
           </p>
         </div>
 
-        <dl className="spec reveal d1">
+        <dl className="spec">
           <div>
             <dt>Based in</dt>
             <dd>Port-Louis, MU</dd>
@@ -91,8 +88,8 @@ export default function Profile() {
       </div>
 
       <div className="does">
-        {DOES.map((d, i) => (
-          <div className={`does-row reveal${i ? ` d${i}` : ""}`} key={d.title}>
+        {DOES.map((d) => (
+          <div className="does-row" key={d.title}>
             <h3>
               <Icon name={d.icon} size={17} />
               {d.title}

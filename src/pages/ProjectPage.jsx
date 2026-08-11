@@ -4,7 +4,7 @@ import Footer from "../components/Footer.jsx";
 import Contact from "../sections/Contact.jsx";
 import Icon from "../components/Icon.jsx";
 import { projects } from "../data/projects.js";
-import { useReveal } from "../hooks/useReveal.js";
+import { TECH } from "../data/tech.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 
 /**
@@ -20,7 +20,6 @@ export default function ProjectPage() {
     project ? `${project.title} — Farhaan Beeharry` : undefined,
     project ? project.desc : undefined
   );
-  useReveal();
 
   if (!project) return <Navigate to="/" replace />;
 
@@ -51,14 +50,21 @@ export default function ProjectPage() {
             </div>
           </div>
 
+          {/* Curated stack and domain, not the scraped keyword list. Those tags
+              were inaccurate — candidate_assessment_system carried "flutter,
+              umbrella, challenge" copied from another page — so showing them
+              here misdescribed the work to the one reader who checks. */}
           <div className="case-tags">
-            {project.tags.map((t) => (
+            {(TECH[project.slug]?.stack ?? project.tags).map((t) => (
+              <span className="chip stack" key={t}>{t}</span>
+            ))}
+            {TECH[project.slug]?.domain.map((t) => (
               <span className="chip" key={t}>{t}</span>
             ))}
           </div>
 
           {project.cover && (
-            <figure className="case-cover reveal">
+            <figure className="case-cover">
               <img src={project.cover} alt={project.coverAlt} />
             </figure>
           )}

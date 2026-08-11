@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "./Icon.jsx";
 import CommandPalette from "./CommandPalette.jsx";
+import CvMenu from "./CvMenu.jsx";
 import StatusBar from "./StatusBar.jsx";
 import { ROUTES, TABS } from "../data/routes.js";
 import { socials, contact } from "../data/site.js";
@@ -94,15 +95,9 @@ export default function AppShell({ children, activeId = "overview", home = true,
           </span>
         </button>
 
-        <a
-          className="btn btn-primary btn-sm topbar-cta"
-          href="/assets/Farhaan Beeharry CV.pdf"
-          target="_blank"
-          rel="noopener"
-        >
-          <Icon name="download" size={14} />
-          CV
-        </a>
+        <span className="topbar-cta">
+          <CvMenu variant="primary" size="sm" label="CV" />
+        </span>
       </header>
 
       <nav className="rail" aria-label="Primary">

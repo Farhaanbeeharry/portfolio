@@ -38,7 +38,7 @@ export default function Log() {
       </div>
 
       <div className="log-cols">
-        <div className="reveal">
+        <div >
           <div className="sub-head">
             <Icon name="log" size={15} />
             <h3>Experience</h3>
@@ -50,7 +50,7 @@ export default function Log() {
           </div>
         </div>
 
-        <div className="reveal d1">
+        <div >
           <div className="sub-head">
             <Icon name="cap" size={15} />
             <h3>Education</h3>

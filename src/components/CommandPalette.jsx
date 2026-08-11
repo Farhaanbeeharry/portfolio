@@ -4,6 +4,7 @@ import Icon from "./Icon.jsx";
 import { ROUTES } from "../data/routes.js";
 import { certificates, contact, socials } from "../data/site.js";
 import { projects } from "../data/projects.js";
+import { searchTerms } from "../data/tech.js";
 import { experience, education } from "../data/record.jsx";
 
 /**
@@ -79,7 +80,9 @@ export default function CommandPalette({ open, onClose, onRoute }) {
         id: `work-${p.slug}`,
         title: p.disp,
         sub: p.category,
-        terms: p.tags.join(" "),
+        // curated stack + domain, so "flutter", "supabase", "inventory" and
+        // "hotel" all reach the right case file
+        terms: searchTerms(p.slug) || p.tags.join(" "),
         icon: "grid",
         to: `/portfolio/${p.slug}`,
       })

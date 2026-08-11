@@ -1,7 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
-import { contact, work } from "../data/site.js";
+import { contact, work, stores } from "../data/site.js";
 
 /* three.js is ~119 kB gzipped and must never sit in front of the first paint.
    The route renders complete without it; the lattice fades in when it lands. */
@@ -77,14 +77,21 @@ export default function Overview() {
               <div className="now-row">
                 <dt>Shipping to</dt>
                 <dd>
-                  <a
-                    href="https://apps.apple.com/fr/developer/xefi-software/id1500721589?l=en-GB&see-all=i-phonei-pad-apps"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    The App Store
-                  </a>
-                  <span className="sub">under the XEFI Software developer account</span>
+                  <span className="stores">
+                    <a href={stores.apple.href} target="_blank" rel="noopener">
+                      {stores.apple.label}
+                    </a>
+                    <a href={stores.google.href} target="_blank" rel="noopener">
+                      {stores.google.label}
+                    </a>
+                  </span>
+                  <span className="sub">
+                    MotoGate and PTMA are live on both; the XEFI apps ship under the{" "}
+                    <a href={stores.xefi.href} target="_blank" rel="noopener">
+                      XEFI Software
+                    </a>{" "}
+                    account
+                  </span>
                 </dd>
               </div>
               <div className="now-row">

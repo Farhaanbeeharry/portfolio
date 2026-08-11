@@ -174,6 +174,42 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 .btn-sm { height: 32px; padding: 0 12px; font-size: 0.8rem; gap: 7px; }
 
+/* --- CV menu ----------------------------------------------------------- */
+.cvmenu { position: relative; flex: none; }
+.cvmenu > .btn .caret { opacity: 0.75; margin-left: -2px; }
+.cvmenu-pop {
+  position: absolute;
+  z-index: 70;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 180px;
+  padding: 5px;
+  background: var(--ink-700);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  box-shadow: var(--lift-3);
+  animation: pop-down 0.14s var(--ease-out);
+}
+.cvmenu.start .cvmenu-pop { right: auto; left: 0; }
+@keyframes pop-down {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+.cvmenu-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 9px 10px;
+  border-radius: var(--r-sm);
+  color: var(--fg-2);
+}
+.cvmenu-item .lang { font-size: 0.87rem; font-weight: 550; color: var(--fg); }
+.cvmenu-item .fmt { font-family: var(--f-mono); font-size: 0.62rem; color: var(--fg-3); }
+.cvmenu-item:hover,
+.cvmenu-item:focus-visible { background: var(--ink-500); outline: 0; }
+.cvmenu-item:focus-visible .lang { color: var(--accent); }
+
 /* --- keycap ------------------------------------------------------------ */
 .kbd {
   display: inline-flex;
@@ -735,11 +771,58 @@ a:hover > .chip, a.chip:hover { color: var(--fg); border-color: var(--line-3); }
    6 — work: the 3D card deck
    ========================================================================== */
 
+.deck-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-bottom: 20px;
+}
+
+.deck-search {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex: 1 1 320px;
+  min-width: 0;
+  height: 38px;
+  padding: 0 8px 0 12px;
+  border-radius: var(--r-sm);
+  background: var(--ink-700);
+  border: 1px solid var(--line-2);
+  transition: border-color 0.15s var(--ease);
+}
+.deck-search:focus-within { border-color: var(--accent); }
+.deck-search > svg { flex: none; color: var(--fg-3); }
+.deck-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.88rem;
+}
+.deck-search input::placeholder { color: var(--fg-3); }
+.deck-search input::-webkit-search-cancel-button { display: none; }
+.deck-search .clear {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px; height: 24px;
+  border-radius: var(--r-sm);
+  color: var(--fg-3);
+}
+.deck-search .clear:hover { color: var(--fg); background: var(--ink-500); }
+
+.deck-reset { margin-top: 16px; }
+
 .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 20px;
 }
 .filter {
   height: 30px;
@@ -852,11 +935,49 @@ a:hover > .chip, a.chip:hover { color: var(--fg); border-color: var(--line-3); }
 
 .deck-empty {
   grid-column: 1 / -1;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
   padding: 44px 20px;
   text-align: center;
   color: var(--fg-3);
   border: 1px dashed var(--line-2);
   border-radius: var(--r-lg);
+}
+
+/* The card's own mount animation. This REPLACES the scroll-reveal observer on
+   the deck: that observer ran a single pass per route, so any card mounted later
+   — every filter change, every search keystroke — was never observed and stayed
+   at opacity 0. Switching filters and back left all 21 cards invisible. A CSS
+   animation replays on mount by definition, and React's keyed reconciliation
+   means cards that survive a filter change keep their DOM and do not re-animate. */
+@media (prefers-reduced-motion: no-preference) {
+  .card,
+  .cert {
+    animation: card-in 0.4s var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 28ms);
+  }
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The stack chips on a work card — the technologies, not the scraped keywords. */
+.card-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 0 3px 3px;
+}
+.card-stack span {
+  font-family: var(--f-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.01em;
+  color: var(--fg-3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
 }
 
 /* ==========================================================================
@@ -1142,24 +1263,13 @@ a:hover > .chip, a.chip:hover { color: var(--fg); border-color: var(--line-3); }
    11 — reveal: content is visible by default; this only adds the settle
    ========================================================================== */
 
-/* The authored motion moment is the Overview's depth travel, plus the pointer
-   tilt on the deck. An identical 10px fade-up on all 48 revealable elements is
-   "one identical entrance on every section" — the category's machine-made
-   signature — so the entrance is now scoped to the two grids where a stagger
-   reads as content arriving, and is a no-op everywhere else. */
-.reveal { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: no-preference) {
-  .deck > .reveal,
-  .certs > .reveal {
-    opacity: 0;
-    transform: translateY(8px) scale(0.994);
-    transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
-  }
-  .deck > .reveal.in,
-  .certs > .reveal.in { opacity: 1; transform: none; }
-  .deck > .reveal.d1, .certs > .reveal.d1 { transition-delay: 0.05s; }
-  .deck > .reveal.d2, .certs > .reveal.d2 { transition-delay: 0.1s; }
-}
+/* Scroll-triggered reveal is gone entirely.
+   It was an identical fade-up on 48 elements — "one identical entrance on every
+   section", the category's machine-made signature — AND it was the cause of the
+   work deck's blank space, because its observer only ran once per route. The
+   authored motion is now the Overview's depth travel, the pointer tilt on the
+   deck, and the cards' own mount animation above. Content is never hidden
+   waiting for a script. */
 
 /* ==========================================================================
    12 — responsive: the chrome changes platform

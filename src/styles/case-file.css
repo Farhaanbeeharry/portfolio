@@ -68,6 +68,8 @@
 }
 
 .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 26px; }
+/* the stack reads first; the domain terms sit back */
+.case-tags .chip.stack { color: var(--fg); border-color: var(--line-2); }
 
 .case-cover {
   margin: 0 0 30px;

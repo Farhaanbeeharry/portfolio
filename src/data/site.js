@@ -11,6 +11,29 @@ export const socials = [
   { icon: "whatsapp", label: "WhatsApp", href: "https://wa.me/23057076881/" },
 ];
 
+/**
+ * Live store listings. These are real, verifiable URLs taken from the project
+ * write-ups — MotoGate ships under his own package id (info.farhaan.motogate)
+ * and PTMA under com.ptma.app, both published on Apple and Google.
+ */
+export const stores = {
+  apple: {
+    label: "Apple App Store",
+    icon: "mobile",
+    href: "https://apps.apple.com/mu/app/motogate/id6759206166",
+  },
+  google: {
+    label: "Google Play",
+    icon: "mobile",
+    href: "https://play.google.com/store/apps/details?id=info.farhaan.motogate",
+  },
+  /** The employer account the XEFI apps ship under. */
+  xefi: {
+    label: "XEFI Software on the App Store",
+    href: "https://apps.apple.com/fr/developer/xefi-software/id1500721589?l=en-GB&see-all=i-phonei-pad-apps",
+  },
+};
+
 export const contact = {
   email: "contact@farhaan.info",
   phone: "+230 5707 6881",
