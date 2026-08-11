@@ -4,6 +4,7 @@ import Icon from "./Icon.jsx";
 import CommandPalette from "./CommandPalette.jsx";
 import CvMenu from "./CvMenu.jsx";
 import StatusBar from "./StatusBar.jsx";
+import { MOD_KEY, MOD_NAME, isApple } from "../lib/platform.js";
 import { ROUTES, TABS } from "../data/routes.js";
 import { socials, contact } from "../data/site.js";
 
@@ -22,11 +23,6 @@ import { socials, contact } from "../data/site.js";
  */
 export default function AppShell({ children, activeId = "overview", home = true, routeLabel }) {
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const [mac, setMac] = useState(false);
-
-  useEffect(() => {
-    setMac(/Mac|iPod|iPhone|iPad/.test(navigator.platform || navigator.userAgent));
-  }, []);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -84,13 +80,13 @@ export default function AppShell({ children, activeId = "overview", home = true,
         <button
           className="omni"
           onClick={() => setPaletteOpen(true)}
-          aria-label="Open command palette"
-          aria-keyshortcuts="Meta+K Control+K"
+          aria-label={`Open command palette, ${MOD_NAME} K`}
+          aria-keyshortcuts={isApple ? "Meta+K" : "Control+K"}
         >
           <Icon name="search" size={15} />
           <span className="txt">Jump to…</span>
           <span className="keys" aria-hidden="true">
-            <span className="kbd">{mac ? "⌘" : "Ctrl"}</span>
+            <span className="kbd">{MOD_KEY}</span>
             <span className="kbd">K</span>
           </span>
         </button>

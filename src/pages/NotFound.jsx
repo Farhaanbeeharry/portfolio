@@ -3,9 +3,11 @@ import AppShell from "../components/AppShell.jsx";
 import Footer from "../components/Footer.jsx";
 import Icon from "../components/Icon.jsx";
 import { usePageMeta } from "../hooks/usePageMeta.js";
+import { MOD_KEY, useHasKeyboard } from "../lib/platform.js";
 
 export default function NotFound() {
   usePageMeta("Not found — Farhaan Beeharry");
+  const hasKeyboard = useHasKeyboard();
 
   return (
     <AppShell activeId="overview" home={false} routeLabel="404">
@@ -17,8 +19,15 @@ export default function NotFound() {
           </div>
           <p className="view-lead">
             That address isn't wired to anything. Everything is reachable from the
-            Overview — or press <span className="kbd">⌘</span>{" "}
-            <span className="kbd">K</span> and search for it.
+            Overview
+            {hasKeyboard ? (
+              <>
+                {" "}— or press <span className="kbd">{MOD_KEY}</span>{" "}
+                <span className="kbd">K</span> and search for it.
+              </>
+            ) : (
+              <> — or search from the top bar.</>
+            )}
           </p>
           <Link className="btn btn-primary" to="/">
             <Icon name="arrowLeft" size={15} />

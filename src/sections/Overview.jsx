@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "../components/Icon.jsx";
 import CvMenu from "../components/CvMenu.jsx";
 import { contact, work, stores, listings } from "../data/site.js";
+import { MOD_KEY, useHasKeyboard } from "../lib/platform.js";
 
 /* three.js is ~119 kB gzipped and must never sit in front of the first paint.
    The route renders complete without it; the lattice fades in when it lands. */
@@ -29,6 +30,8 @@ const LIVE_APPS = new Intl.ListFormat("en-GB", { style: "long", type: "conjuncti
 );
 
 export default function Overview() {
+  const hasKeyboard = useHasKeyboard();
+
   return (
     <section className="overview" id="overview" data-depth>
       <Suspense fallback={null}>
@@ -62,11 +65,16 @@ export default function Overview() {
                 edition when a French-speaking reader clicks it. Aligned to the
                 start edge because it sits at the left of the action row. */}
             <CvMenu variant="default" size="md" label="Download CV" align="start" />
-            <span className="tip">
-              <span className="kbd">⌘</span>
-              <span className="kbd">K</span>
-              to jump anywhere
-            </span>
+            {/* Hidden where there is no physical keyboard — a phone has neither
+                a Command nor a Ctrl key, so the hint would be instructions for
+                hardware the visitor does not have. */}
+            {hasKeyboard && (
+              <span className="tip">
+                <span className="kbd">{MOD_KEY}</span>
+                <span className="kbd">K</span>
+                to jump anywhere
+              </span>
+            )}
           </div>
         </div>
 
