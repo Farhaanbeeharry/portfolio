@@ -47,9 +47,10 @@ export default function Overview() {
 
           <p className="thesis">
             Five years shipping software that went live — <b>Flutter apps on the
-            App Store</b>, full-stack platforms for clients in Mauritius, the UAE
-            and France, and an irrigation system running on a NodeMCU. Everything
-            on this site links to something you can open and check.
+            App Store and Google Play</b>, full-stack platforms for clients in
+            Mauritius, the UAE and France, and an irrigation system running on a
+            NodeMCU. Everything on this site links to something you can open and
+            check.
           </p>
 
           <div className="ident-actions">

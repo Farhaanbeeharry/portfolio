@@ -21,7 +21,10 @@ export const experience = [
         by adding new widgets and improving existing ones. The apps are available
         on the{" "}
         <a href="https://apps.apple.com/fr/developer/xefi-software/id1500721589?l=en-GB&see-all=i-phonei-pad-apps" target="_blank" rel="noopener noreferrer">App Store</a>{" "}
-        and showcased on the{" "}
+        {/* Google Play is stated but not linked: the XEFI Apple developer page is
+            known, its Play Store equivalent is not, and a guessed store URL is
+            worse than an unlinked one. Link it here once the URL is to hand. */}
+        and Google Play, and showcased on the{" "}
         <a href="https://www.xefi.com/en/solutions-software/" target="_blank" rel="noopener noreferrer">XEFI Software Solutions</a>{" "}
         website.
       </>

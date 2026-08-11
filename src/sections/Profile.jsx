@@ -44,7 +44,8 @@ export default function Profile() {
             I'm a software engineer with five years in development, four of them
             building commercial applications people actually use. Most of that has
             been Flutter — I'm currently a mobile engineer at XEFI Mauritius
-            Center, where the apps I work on ship to the App Store.
+            Center, where the apps I work on ship to the App Store and Google
+            Play.
           </p>
           <p>
             The rest has been broader than the job title suggests. I've written
