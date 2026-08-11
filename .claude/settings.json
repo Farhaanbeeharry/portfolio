@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(magick -version)",
+      "Bash(python -c ' *)",
+      "Bash(python prep_logos.py)",
+      "Bash(python make_thumbs.py)",
+      "Bash(python -c \"import cairosvg; print\\('cairosvg ok'\\)\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --screenshot=\"C:\\\\Temp\\\\F2738~1.BEE\\\\claude\\\\c--Users-f-beeharry-Documents-my-projects-portfolio\\\\4a51bd55-f04f-41f7-a594-9670100f7028\\\\scratchpad\\\\shots\\\\grid.png\" --window-size=860,1000 \"file:///C:/Temp/F2738~1.BEE/claude/c--Users-f-beeharry-Documents-my-projects-portfolio/4a51bd55-f04f-41f7-a594-9670100f7028/scratchpad/preview.html\")",
+      "Bash(sed -n '1,158p' pryowl/index.html)",
+      "Bash(sed -n '376,421p' pryowl/index.html)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=9000 --screenshot=\"C:\\\\Temp\\\\F2738~1.BEE\\\\claude\\\\c--Users-f-beeharry-Documents-my-projects-portfolio\\\\4a51bd55-f04f-41f7-a594-9670100f7028\\\\scratchpad\\\\shots\\\\grid-page.png\" --window-size=1400,2600 \"file:///C:/Users/f.beeharry/Documents/my-projects/portfolio/index.html#portfolio\")",
+      "Bash(grep -n \"'\\\\\\([A-Z][a-zA-Z /&-]\\\\{2,30\\\\}\\\\\\)'\" lib/features/access_roles/view/access_roles_page.dart)",
+      "Bash(python -c \"import json;d=json.load\\(open\\('package.json'\\)\\);print\\(list\\(d['dependencies'].keys\\(\\)\\)\\)\")",
+      "Bash(python art.py)",
+      "Bash(grep -oE \"'[A-Z][a-zA-Z 0-9?!,'-]{6,60}'\" src/components/mathdown/MathdownLaunchModal.tsx)",
+      "Bash(grep -oE \"'[A-Z][a-zA-Z 0-9?!,'-]{6,60}'\" src/components/pinpoint/PinpointLaunchModal.tsx)"
+    ]
+  }
+}
