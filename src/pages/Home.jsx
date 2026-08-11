@@ -1,46 +1,35 @@
-import Nav from "../components/Nav.jsx";
+import AppShell from "../components/AppShell.jsx";
 import Footer from "../components/Footer.jsx";
-import Hero from "../sections/Hero.jsx";
-import Marquee from "../sections/Marquee.jsx";
-import About from "../sections/About.jsx";
-import Skills from "../sections/Skills.jsx";
-import Resume from "../sections/Resume.jsx";
-import Certificates from "../sections/Certificates.jsx";
+import Overview from "../sections/Overview.jsx";
+import Profile from "../sections/Profile.jsx";
 import Work from "../sections/Work.jsx";
+import Capability from "../sections/Capability.jsx";
+import Log from "../sections/Log.jsx";
+import Certification from "../sections/Certification.jsx";
+import Contact from "../sections/Contact.jsx";
 import { useReveal } from "../hooks/useReveal.js";
-import { useCountUp } from "../hooks/useCountUp.js";
-import { useSkillBars } from "../hooks/useSkillBars.js";
 import { useScrollSpy } from "../hooks/useScrollSpy.js";
-
-const SECTION_IDS = [
-  "home",
-  "about",
-  "skills",
-  "resume",
-  "certificates",
-  "work",
-  "contact",
-];
+import { useDepthScroll, useCardTilt } from "../hooks/useMotion.js";
+import { ROUTE_IDS } from "../data/routes.js";
 
 export default function Home() {
-  const activeId = useScrollSpy(SECTION_IDS);
+  const activeId = useScrollSpy(ROUTE_IDS);
   useReveal();
-  useCountUp();
-  useSkillBars();
+  useDepthScroll();
+  useCardTilt();
 
   return (
-    <>
-      <Nav variant="home" activeId={activeId} />
-      <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <Skills />
-        <Resume />
-        <Certificates />
+    <AppShell activeId={activeId} home>
+      <main className="main">
+        <Overview />
+        <Profile />
         <Work />
+        <Capability />
+        <Log />
+        <Certification />
+        <Contact />
+        <Footer />
       </main>
-      <Footer withContact />
-    </>
+    </AppShell>
   );
 }

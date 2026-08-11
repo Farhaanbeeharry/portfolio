@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import ScrollManager from "./components/ScrollManager.jsx";
-import Backdrop from "./components/Backdrop.jsx";
 import Home from "./pages/Home.jsx";
 import ProjectPage from "./pages/ProjectPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -8,7 +7,6 @@ import NotFound from "./pages/NotFound.jsx";
 export default function App() {
   return (
     <>
-      <Backdrop />
       <ScrollManager />
       <Routes>
         <Route path="/" element={<Home />} />

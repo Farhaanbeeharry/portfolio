@@ -1,0 +1,113 @@
+import { Suspense, lazy } from "react";
+import { Link } from "react-router-dom";
+import Icon from "../components/Icon.jsx";
+import { contact, work } from "../data/site.js";
+
+/* three.js is ~119 kB gzipped and must never sit in front of the first paint.
+   The route renders complete without it; the lattice fades in when it lands. */
+const Field = lazy(() => import("../components/Field.jsx"));
+
+/** The three most recent case files, read from the work list rather than pinned. */
+const RECENT = work.slice(-3);
+
+export default function Overview() {
+  return (
+    <section className="overview" id="overview" data-depth>
+      <Suspense fallback={null}>
+        <Field />
+      </Suspense>
+
+      <div className="overview-inner">
+        <div className="ident layer layer-near">
+          <span className="ident-status">
+            <span className="live" aria-hidden="true" />
+            Available for work · {contact.location}
+          </span>
+
+          <h1>Farhaan Beeharry</h1>
+          <span className="role">Software &amp; Mobile Engineer</span>
+
+          <p className="thesis">
+            Five years shipping software that went live — <b>Flutter apps on the
+            App Store</b>, full-stack platforms for clients in Mauritius, the UAE
+            and France, and an irrigation system running on a NodeMCU. Everything
+            on this site links to something you can open and check.
+          </p>
+
+          <div className="ident-actions">
+            <a href="#work" className="btn btn-primary">
+              <Icon name="grid" size={15} />
+              View the work
+            </a>
+            <a
+              href="/assets/Farhaan Beeharry CV.pdf"
+              target="_blank"
+              rel="noopener"
+              className="btn"
+            >
+              <Icon name="download" size={15} />
+              Download CV
+            </a>
+            <span className="tip">
+              <span className="kbd">⌘</span>
+              <span className="kbd">K</span>
+              to jump anywhere
+            </span>
+          </div>
+        </div>
+
+        <div className="layer layer-far">
+          <div className="now">
+            <div className="now-bar">
+              <span className="live" aria-hidden="true" />
+              <span className="label">Now</span>
+              <span className="mono" style={{ marginLeft: "auto", color: "var(--fg-3)" }}>
+                since oct 2024
+              </span>
+            </div>
+
+            <dl className="now-body">
+              <div className="now-row">
+                <dt>Current role</dt>
+                <dd>
+                  Mobile Engineer — Flutter
+                  <span className="sub">XEFI Mauritius Center</span>
+                </dd>
+              </div>
+              <div className="now-row">
+                <dt>Shipping to</dt>
+                <dd>
+                  <a
+                    href="https://apps.apple.com/fr/developer/xefi-software/id1500721589?l=en-GB&see-all=i-phonei-pad-apps"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    The App Store
+                  </a>
+                  <span className="sub">under the XEFI Software developer account</span>
+                </dd>
+              </div>
+              <div className="now-row">
+                <dt>Also open to</dt>
+                <dd>Freelance builds — web, mobile and design</dd>
+              </div>
+            </dl>
+
+            <div className="now-thumbs">
+              {RECENT.map((w) => (
+                <Link key={w.slug} to={`/portfolio/${w.slug}`} title={w.title} aria-label={w.title}>
+                  <img src={w.thumb} alt="" loading="lazy" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#work" className="scroll-hint">
+        Scroll
+        <Icon name="arrowDown" size={12} />
+      </a>
+    </section>
+  );
+}

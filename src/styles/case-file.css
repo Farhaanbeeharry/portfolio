@@ -1,0 +1,226 @@
+/* =============================================================================
+   case-file.css — the 21 project write-ups inside the runtime.
+
+   Two jobs:
+   1. Bridge the legacy token names that css/project.css and css/showcase.css
+      still consume onto the runtime palette. Those sheets were authored for a
+      dark page originally, so the mapping is close to natural now — do not
+      delete the bridge, or the article bodies and the device mockups lose every
+      colour they reference.
+   2. Style the case route itself. The write-ups are untouched; only the surface
+      they sit on is new.
+   ========================================================================== */
+
+:root {
+  /* --- legacy bridge --------------------------------------------------- */
+  --bg-0: var(--ink-900);
+  --bg-1: var(--ink-800);
+  --bg-2: var(--ink-700);
+  --card: var(--ink-700);
+  --card-2: var(--ink-600);
+  --glass: rgba(14, 20, 27, 0.72);
+  /* --line / --line-2 are already runtime tokens and mean the same thing here */
+
+  --indigo: var(--accent);
+  --violet: var(--fg-2);
+  --cyan: var(--accent);
+
+  --grad: none;
+  --grad-2: var(--accent);
+
+  --text: var(--fg);
+  --muted: var(--fg-2);
+  --faint: var(--fg-3);
+
+  --radius: var(--r);
+  --shadow: var(--lift-3);
+
+  /* showcase.css reads these per mockup; without defaults its color-mix()
+     declarations are invalid and the device frames lose their accents */
+  --brand: var(--accent);
+  --brand-ink: var(--accent-ink);
+  --ok: #4ea86f;
+  --warn: #c99a3a;
+}
+
+/* ==========================================================================
+   the case route
+   ========================================================================== */
+
+.case { max-width: 920px; }
+.case-back { margin-bottom: 22px; }
+
+.case-head { margin-bottom: 16px; }
+.case-title {
+  font-size: clamp(1.7rem, 4vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 9px;
+  margin-top: 12px;
+  color: var(--fg-3);
+}
+
+.case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 26px; }
+
+.case-cover {
+  margin: 0 0 30px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--ink-700);
+  box-shadow: var(--lift-3);
+}
+.case-cover img { width: 100%; height: auto; display: block; }
+
+/* ==========================================================================
+   the write-up
+   ========================================================================== */
+
+.pp-article {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--fg-2);
+}
+.pp-article > .container,
+.pp-article > .col-inner,
+.pp-article .row,
+.pp-article .col-xs-12,
+.pp-article .col-sm-12 { display: block; width: auto; max-width: none; padding: 0; margin: 0; }
+
+/* The bodies set paragraphs as raw text separated by <br>, not as <p>, so the
+   reading measure has to be held by the container that actually wraps the text —
+   which is .pp-article > .container > .col-inner, not a direct child. */
+.pp-article > .container > .col-inner,
+.pp-article > .col-inner { max-width: 74ch; }
+.pp-article p { max-width: 74ch; }
+
+.pp-article h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  color: var(--fg);
+  margin: 1.8em 0 0.5em;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--line);
+}
+.pp-article strong { color: var(--fg); font-weight: 650; }
+.pp-article em { font-style: italic; color: var(--fg); }
+
+.pp-article a:not(.pf-chip):not(.pf-btn):not(.pf-btn-outline) {
+  color: var(--fg);
+  font-weight: 550;
+  border-bottom: 1px solid var(--line-3);
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+.pp-article a:not(.pf-chip):not(.pf-btn):not(.pf-btn-outline):hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+}
+
+.pp-article ul,
+.pp-article ol { margin: 14px 0 20px; padding: 0; display: grid; gap: 9px; }
+.pp-article ol { padding-left: 1.3em; list-style: decimal; }
+/* project.css targets `.pp-article ul li`, which out-specifies a bare
+   `.pp-article li`; several bodies also use bare <li> outside any <ul>, so the
+   marker cannot hang off a `ul` ancestor either. */
+.pp-article ul li,
+.pp-article ol li,
+.pp-article li { position: relative; color: var(--fg-2); max-width: 72ch; }
+.pp-article ul li,
+.pp-article li:not(ol li) { padding-left: 22px; list-style: none; }
+.pp-article ul li::before,
+.pp-article li:not(ol li)::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0.68em;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-sm);
+  /* NOT the accent. Across 21 case files this put a dozen vermilion markers on a
+     single screen, which made the accent read as "bullet" rather than as
+     "primary action or live state". */
+  background: var(--ink-400);
+}
+.pp-article ol li::before { content: none; }
+
+/* The callout boxes inline-styled inside the bodies ship a 5px coloured left
+   border. A thick coloured side border on a callout is the most recognisable
+   tell of a generated interface, so it is REMOVED rather than recoloured — an
+   earlier pass here narrowed it to 3px and tinted it with the accent, which
+   kept the tell and spent the accent on decoration at the same time. These read
+   as callouts the way everything else in this system does: a hairline, a raised
+   surface, and a real shadow. */
+.pp-article div[style*="border-left"] {
+  border: 1px solid var(--line-2) !important;
+  border-radius: var(--r) !important;
+  background: var(--ink-600) !important;
+  color: var(--fg-2) !important;
+  box-shadow: var(--lift-2);
+}
+.pp-article div[style*="border-left"] a { color: var(--fg) !important; border-bottom: 1px solid var(--line-3); }
+.pp-article div[style*="border-left"] a:hover { color: var(--accent) !important; }
+.pp-article div[style*="border-left"] i { color: var(--fg-3) !important; }
+
+.pp-article .pf-wrap { margin-top: 38px; }
+
+/* ==========================================================================
+   adjacent case files
+   ========================================================================== */
+
+.case-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.case-step {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 17px;
+  border-radius: var(--r);
+  background: var(--ink-700);
+  border: 1px solid var(--line);
+  transition: border-color 0.16s, background 0.16s, transform 0.16s var(--ease);
+}
+.case-step:hover { border-color: var(--line-3); background: var(--ink-600); transform: translateY(-2px); }
+.case-step svg { flex: none; color: var(--fg-3); }
+.case-step:hover svg { color: var(--accent); }
+.case-step .dir {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.case-step .nm {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.95rem;
+  font-weight: 620;
+  letter-spacing: -0.018em;
+  color: var(--fg);
+}
+.case-step.next { justify-content: flex-end; text-align: right; }
+/* First and last case file have only one neighbour; a lone "Next" belongs in the
+   right-hand column, not left-placed with its text pushed right. */
+.case-step.next:only-child { grid-column: 2; }
+
+@media (max-width: 700px) {
+  .case-nav { grid-template-columns: 1fr; }
+  .case-step.next { justify-content: flex-start; text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-step { transition: border-color 0.16s, background 0.16s; }
+  .case-step:hover { transform: none; }
+}

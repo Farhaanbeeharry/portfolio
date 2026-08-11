@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-11T00:00:00Z",
+  "title": "Design System: Farhaan Beeharry — The Runtime",
+  "extensions": {
+    "colorMeta": {
+      "ink-900": {
+        "role": "neutral",
+        "displayName": "Ink Ground",
+        "canonical": "#0a0e13",
+        "purpose": "html/body background, the app floor; also a card's media well and the halo punched around timeline nodes.",
+        "tonalRamp": ["#05070a", "#0a0e13", "#0e141b", "#131a23", "#18212c", "#1f2937", "#2a3746", "#3a4a5c"]
+      },
+      "ink-800": {
+        "role": "neutral",
+        "displayName": "Ink Chrome",
+        "canonical": "#0e141b",
+        "purpose": "Top bar, rail, status bar, tab bar — one step above the ground so chrome reads as attached furniture, not a card.",
+        "tonalRamp": ["#05070a", "#0a0e13", "#0e141b", "#131a23", "#18212c", "#1f2937", "#2a3746", "#3a4a5c"]
+      },
+      "ink-700": {
+        "role": "neutral",
+        "displayName": "Ink Surface",
+        "canonical": "#131a23",
+        "purpose": "The default panel: cards at rest, NOW panel, spec rows, stack rows, certificates, quotes, palette body, case steps.",
+        "tonalRamp": ["#05070a", "#0a0e13", "#0e141b", "#131a23", "#18212c", "#1f2937", "#2a3746", "#3a4a5c"]
+      },
+      "ink-600": {
+        "role": "neutral",
+        "displayName": "Ink Raised",
+        "canonical": "#18212c",
+        "purpose": "A surface lifted by state or nesting: default button face, chip, keycap, NOW title bar, active rail route, hovered card.",
+        "tonalRamp": ["#05070a", "#0a0e13", "#0e141b", "#131a23", "#18212c", "#1f2937", "#2a3746", "#3a4a5c"]
+      },
+      "ink-500": {
+        "role": "neutral",
+        "displayName": "Ink Hover",
+        "canonical": "#1f2937",
+        "purpose": "Pointer or keyboard hover on a button, and the selected row in the command palette.",
+        "tonalRamp": ["#05070a", "#0a0e13", "#0e141b", "#131a23", "#18212c", "#1f2937", "#2a3746", "#3a4a5c"]
+      },
+      "ink-400": {
+        "role": "neutral",
+        "displayName": "Ink Edge",
+        "canonical": "#2a3746",
+        "purpose": "The strongest neutral, used as fill and never as text: scrollbar thumb, inactive capability dot, dormant timeline node.",
+        "tonalRamp": ["#05070a", "#0a0e13", "#0e141b", "#131a23", "#18212c", "#1f2937", "#2a3746", "#3a4a5c"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(255, 255, 255, 0.07)",
+        "purpose": "Every structural divider and resting border. Always 1px, never a filled bar."
+      },
+      "line-2": {
+        "role": "neutral",
+        "displayName": "Hairline 2",
+        "canonical": "rgba(255, 255, 255, 0.12)",
+        "purpose": "A control's own border (button, keycap, omni, palette shell) and the dashed empty state."
+      },
+      "line-3": {
+        "role": "neutral",
+        "displayName": "Hairline 3",
+        "canonical": "rgba(255, 255, 255, 0.2)",
+        "purpose": "Hover border on a control or card, and the underline under an inline link."
+      },
+      "fg": {
+        "role": "neutral",
+        "displayName": "Foreground",
+        "canonical": "#e7ecf3",
+        "purpose": "Primary text, headings, and any value the reader is meant to take away.",
+        "tonalRamp": ["#171c22", "#2c343d", "#434d59", "#5b6673", "#7b8896", "#9dabbb", "#c4ced9", "#e7ecf3"]
+      },
+      "fg-2": {
+        "role": "neutral",
+        "displayName": "Foreground 2",
+        "canonical": "#9dabbb",
+        "purpose": "Prose, leads, descriptions, resting rail labels. 5.9:1 on --ink-900.",
+        "tonalRamp": ["#171c22", "#2c343d", "#434d59", "#5b6673", "#7b8896", "#9dabbb", "#c4ced9", "#e7ecf3"]
+      },
+      "fg-3": {
+        "role": "neutral",
+        "displayName": "Foreground 3",
+        "canonical": "#7b8896",
+        "purpose": "Mono metadata, uppercase labels, timestamps, resting icon colour. 4.6:1 on --ink-900 — the documented floor for real text.",
+        "tonalRamp": ["#171c22", "#2c343d", "#434d59", "#5b6673", "#7b8896", "#9dabbb", "#c4ced9", "#e7ecf3"]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Vermilion",
+        "canonical": "#ff4d23",
+        "purpose": "The single accent. Primary action, active route, live state. Never decoration, never a large surface fill. Hover lightens to #ff6540.",
+        "tonalRamp": ["#2a0c04", "#4a1607", "#71220b", "#9c2f0e", "#c93c13", "#ff4d23", "#ff8a6b", "#ffd9cf"]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Vermilion Ink",
+        "canonical": "#1a0803",
+        "purpose": "Type and icons placed ON the accent. Nothing else uses it."
+      },
+      "accent-dim": {
+        "role": "primary",
+        "displayName": "Vermilion Wash",
+        "canonical": "rgba(255, 77, 35, 0.14)",
+        "purpose": "The 14% transparent fill behind the availability status pill. Never an opaque surface."
+      },
+      "accent-line": {
+        "role": "primary",
+        "displayName": "Vermilion Hairline",
+        "canonical": "rgba(255, 77, 35, 0.42)",
+        "purpose": "42% stroke: the status pill's border, the 'won' certificate border, and the underline on an accent link hover."
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate",
+        "canonical": "#f4f6f8",
+        "purpose": "The single light surface in the system — the 38px tile behind a certificate issuer's logo, because those marks are supplied for white grounds. Never a content surface."
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name on the Overview route. One occurrence per site; text-wrap: balance." },
+      "headline": { "displayName": "Headline", "purpose": ".view-title — the single h2 opening each route. The case route uses a larger sibling at clamp(1.7rem, 4vw, 2.9rem)." },
+      "title": { "displayName": "Title", "purpose": "Labels on objects: card headings, log entries, certificates, case steps. 620–650 weight, tight tracking." },
+      "body": { "displayName": "Body", "purpose": "Document default, 15.5px/1.6. Emphasis is weight 600 plus a step to --fg, never a colour change." },
+      "lead": { "displayName": "Lead", "purpose": "Route lead paragraph in --fg-2, capped at 72ch (prose 70ch, thesis 58ch, article 74ch)." },
+      "mono": { "displayName": "Mono", "purpose": "Machine data only: counts, keys, telemetry, timestamps, route paths, code. Tabular figures. 0.61–0.72rem band, never larger." },
+      "label": { "displayName": "Label", "purpose": "Uppercase group legends in the rail and palette, and panel titles. Mono, 0.66rem, +0.08em." }
+    },
+    "shadows": [
+      { "name": "lift-1", "value": "0 1px 2px rgba(0, 0, 0, 0.4)", "purpose": "A card at rest. Detaches it from the ground without reading as floating." },
+      { "name": "lift-2", "value": "0 4px 12px -2px rgba(0, 0, 0, 0.5)", "purpose": "A small raised element — the normalised callout boxes inside legacy article bodies." },
+      { "name": "lift-3", "value": "0 14px 34px -8px rgba(0, 0, 0, 0.62)", "purpose": "A genuinely raised panel: the NOW panel, a hovered work card, the case-file cover." },
+      { "name": "lift-4", "value": "0 30px 70px -16px rgba(0, 0, 0, 0.75)", "purpose": "Modal only. The command palette is the sole user." },
+      { "name": "focus-ring", "value": "outline: 2px solid var(--accent); outline-offset: 2px", "purpose": "Global :focus-visible treatment with --r-sm corners. Never removed." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "purpose": "Default easing for state transitions: background, border-color, colour, small transforms. 0.12–0.2s." },
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Arrivals and settles: the reveal (0.5s), palette pop (0.18s), card transform (0.4s), media scale (0.5s)." },
+      { "name": "fade", "value": "@keyframes fade { from { opacity: 0 } to { opacity: 1 } } — 0.16s var(--ease)", "purpose": "The palette scrim entering." },
+      { "name": "pop", "value": "@keyframes pop { from { opacity: 0; transform: translateX(-50%) translateY(-8px) scale(0.985) } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1) } } — 0.18s var(--ease-out)", "purpose": "The palette entering; redefined below 620px as a plain fade because the sheet is then full-screen." },
+      { "name": "ping", "value": "@keyframes ping { 0% { transform: scale(0.6); opacity: 0.9 } 70%, 100% { transform: scale(1.5); opacity: 0 } } — 2.8s var(--ease-out) infinite", "purpose": "The ring expanding off the live dot. Disabled under reduced motion." },
+      { "name": "nudge", "value": "@keyframes nudge { 0%, 100% { transform: translateY(0); opacity: 0.5 } 50% { transform: translateY(3px); opacity: 1 } } — 2.4s var(--ease-out) infinite", "purpose": "The Overview scroll hint's arrow. Disabled under reduced motion." },
+      { "name": "depth-scroll", "value": "--p written on [data-depth] by useDepthScroll; .layer-near translateZ(calc(var(--p) * -150px)), .layer-far translateZ(calc(var(--p) * -62px))", "purpose": "The Overview is a real perspective container (1000px, origin 42% 46%); its layers depart in Z at different rates. One rAF-batched read/write pass per scroll event. Disabled under reduced motion." },
+      { "name": "card-tilt", "value": "--rx/--ry written by useCardTilt, max 7deg; hover sets --cz: 26px", "purpose": "One delegated pointermove per [data-tilt] deck, cleared on leave or on moving to another card. Skipped for hover: none and reduced motion." },
+      { "name": "reveal", "value": ".reveal { opacity: 1 } by default; only inside @media (prefers-reduced-motion: no-preference) does it start at opacity 0 / translateY(10px) with .d1 0.06s and .d2 0.12s delays", "purpose": "Adds a settle, never gates content. Content is visible without the reveal completing." }
+    ],
+    "breakpoints": [
+      { "name": "wide", "value": "1080px", "purpose": "Two-column Overview, Log and Contact grids collapse to one; the NOW panel caps at 460px." },
+      { "name": "platform", "value": "900px", "purpose": "The platform boundary: rail and status bar hide, the bottom tab bar appears, .main loses its left margin and pads for the safe area, the omni collapses to its icon, the route crumb and CV button drop." },
+      { "name": "narrow", "value": "700px", "purpose": "Profile rows and case-file navigation stack." },
+      { "name": "phone", "value": "620px", "purpose": "Deck and tile grids become single-column; the command palette goes full-screen (100vw/100dvh, no radius, no border)." }
+    ],
+    "structure": [
+      { "name": "topbar-h", "value": "52px" },
+      { "name": "rail-w", "value": "250px" },
+      { "name": "status-h", "value": "30px" },
+      { "name": "tabbar-h", "value": "64px" },
+      { "name": "maxw", "value": "1180px" }
+    ],
+    "contrastAudit": {
+      "targets": 49,
+      "failures": 0,
+      "lowest": "4.84:1",
+      "floor": "--fg-3 #7b8896 at 4.6:1 on --ink-900 is the documented floor for real text",
+      "note": "49 text targets were measured against their actual surfaces, not against the ground by assumption."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The accent action. At most one per view — 'View the work', the CV button, 'show all certificates'.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z\"/></svg>View the work</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 9px; height: 40px; padding: 0 16px; border-radius: 4px; font-family: \"Schibsted Grotesk\", sans-serif; font-size: 0.87rem; font-weight: 600; letter-spacing: -0.005em; white-space: nowrap; text-decoration: none; color: var(--fg, #e7ecf3); background: var(--ink-600, #18212c); border: 1px solid var(--line-2, rgba(255,255,255,0.12)); transition: background 0.15s cubic-bezier(0.2,0.8,0.2,1), border-color 0.15s cubic-bezier(0.2,0.8,0.2,1), transform 0.12s cubic-bezier(0.2,0.8,0.2,1); } .ds-btn .ds-i { flex: none; } .ds-btn-primary { background: var(--accent, #ff4d23); border-color: var(--accent, #ff4d23); color: var(--accent-ink, #1a0803); font-weight: 700; } .ds-btn-primary:hover { background: #ff6540; border-color: #ff6540; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid var(--accent, #ff4d23); outline-offset: 2px; border-radius: 4px; }"
+    },
+    {
+      "name": "Default Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "The secondary action: raised ink face on a hairline, stepping one shade lighter on hover.",
+      "html": "<a class=\"ds-btn2\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M12 3v12m-5-5 5 5 5-5M4 20h16\"/></svg>Download CV</a>",
+      "css": ".ds-btn2 { display: inline-flex; align-items: center; gap: 9px; height: 40px; padding: 0 16px; border-radius: 4px; font-family: \"Schibsted Grotesk\", sans-serif; font-size: 0.87rem; font-weight: 600; letter-spacing: -0.005em; text-decoration: none; white-space: nowrap; color: var(--fg, #e7ecf3); background: var(--ink-600, #18212c); border: 1px solid var(--line-2, rgba(255,255,255,0.12)); box-shadow: none; transition: background 0.15s cubic-bezier(0.2,0.8,0.2,1), border-color 0.15s cubic-bezier(0.2,0.8,0.2,1), transform 0.12s cubic-bezier(0.2,0.8,0.2,1); } .ds-btn2 svg { flex: none; } .ds-btn2:hover { background: var(--ink-500, #1f2937); border-color: var(--line-3, rgba(255,255,255,0.2)); } .ds-btn2:active { transform: translateY(1px); } .ds-btn2:focus-visible { outline: 2px solid var(--accent, #ff4d23); outline-offset: 2px; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "A mono tag on a stack row or case file. A chip is a label, never a control — there is no selected state.",
+      "html": "<span class=\"ds-chip\">Flutter</span> <span class=\"ds-chip\">Supabase</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 4px; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.68rem; font-weight: 400; color: var(--fg-2, #9dabbb); background: var(--ink-600, #18212c); border: 1px solid var(--line, rgba(255,255,255,0.07)); transition: color 0.15s, border-color 0.15s; } .ds-chip:hover { color: var(--fg, #e7ecf3); border-color: var(--line-3, rgba(255,255,255,0.2)); }"
+    },
+    {
+      "name": "Filter",
+      "kind": "chip",
+      "refersTo": "filter",
+      "description": "The work deck's segmented control. Pressed state is one of the few sanctioned accent fills, because it is a selected control.",
+      "html": "<div class=\"ds-filters\" role=\"group\" aria-label=\"Filter work\"><button class=\"ds-filter\" aria-pressed=\"true\">All</button><button class=\"ds-filter\" aria-pressed=\"false\">Mobile</button><button class=\"ds-filter\" aria-pressed=\"false\">Hardware</button></div>",
+      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 6px; } .ds-filter { height: 30px; padding: 0 12px; border-radius: 4px; border: 1px solid var(--line, rgba(255,255,255,0.07)); background: transparent; cursor: pointer; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.7rem; color: var(--fg-3, #7b8896); transition: color 0.14s, border-color 0.14s, background 0.14s; } .ds-filter:hover { color: var(--fg, #e7ecf3); border-color: var(--line-3, rgba(255,255,255,0.2)); } .ds-filter[aria-pressed=\"true\"] { color: var(--accent-ink, #1a0803); background: var(--accent, #ff4d23); border-color: var(--accent, #ff4d23); font-weight: 600; } .ds-filter:focus-visible { outline: 2px solid var(--accent, #ff4d23); outline-offset: 2px; }"
+    },
+    {
+      "name": "Work Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A case file in the deck. A preserve-3d surface that composes pointer tilt with a hover Z-lift; rest lift-1, hover lift-3.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-media\"></span><span class=\"ds-card-body\"><span class=\"ds-card-txt\"><span class=\"ds-card-h\">NexStock</span><span class=\"ds-card-cat\">Flutter · Supabase · inventory</span></span><span class=\"ds-card-go\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\"><path d=\"M4 12h15m-6-7 7 7-7 7\"/></svg></span></span></a>",
+      "css": ".ds-card { position: relative; display: block; width: 280px; padding: 10px; border-radius: 11px; background: var(--ink-700, #131a23); border: 1px solid var(--line, rgba(255,255,255,0.07)); box-shadow: 0 1px 2px rgba(0,0,0,0.4); text-decoration: none; transform-style: preserve-3d; transform: perspective(900px) translateZ(var(--cz, 0px)); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, box-shadow 0.3s, background 0.2s; } .ds-card:hover { --cz: 26px; background: var(--ink-600, #18212c); border-color: var(--line-3, rgba(255,255,255,0.2)); box-shadow: 0 14px 34px -8px rgba(0,0,0,0.62); transition-duration: 0.08s, 0.2s, 0.3s, 0.2s; } .ds-card-media { display: block; aspect-ratio: 16 / 10; border-radius: 7px; background: var(--ink-900, #0a0e13); border: 1px solid var(--line, rgba(255,255,255,0.07)); } .ds-card-body { display: flex; align-items: center; gap: 12px; padding: 11px 3px 3px; transform: translateZ(1px); } .ds-card-txt { min-width: 0; flex: 1; } .ds-card-h { display: block; font-family: \"Schibsted Grotesk\", sans-serif; font-size: 0.94rem; font-weight: 650; letter-spacing: -0.017em; color: var(--fg, #e7ecf3); } .ds-card-cat { display: block; margin-top: 3px; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.66rem; color: var(--fg-3, #7b8896); } .ds-card-go { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 4px; color: var(--fg-3, #7b8896); border: 1px solid var(--line, rgba(255,255,255,0.07)); transition: color 0.16s, background 0.16s, border-color 0.16s; } .ds-card:hover .ds-card-go { color: var(--accent-ink, #1a0803); background: var(--accent, #ff4d23); border-color: var(--accent, #ff4d23); } .ds-card:focus-visible { outline: 2px solid var(--accent, #ff4d23); outline-offset: 2px; }"
+    },
+    {
+      "name": "Rail Route",
+      "kind": "nav",
+      "refersTo": "route-active",
+      "description": "Desktop chrome navigation. Real anchors with a mono count; the active row carries the only accent bar in the system.",
+      "html": "<nav class=\"ds-rail\" aria-label=\"Primary\"><span class=\"ds-label\">Routes</span><a class=\"ds-route ds-route-active\" href=\"#work\" aria-current=\"true\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z\"/></svg>Work<span class=\"ds-count\">21</span></a><a class=\"ds-route\" href=\"#log\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M5 3h11l3 3v15H5zM9 9h7M9 13h7M9 17h4\"/></svg>Service log<span class=\"ds-count\">9</span></a></nav>",
+      "css": ".ds-rail { width: 250px; padding: 14px 10px; background: var(--ink-800, #0e141b); border-right: 1px solid var(--line, rgba(255,255,255,0.07)); } .ds-label { display: block; padding: 0 8px 8px; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.66rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3, #7b8896); } .ds-route { position: relative; display: flex; align-items: center; gap: 10px; height: 34px; padding: 0 9px; border-radius: 4px; text-decoration: none; font-family: \"Schibsted Grotesk\", sans-serif; font-size: 0.865rem; font-weight: 500; color: var(--fg-2, #9dabbb); transition: background 0.14s cubic-bezier(0.2,0.8,0.2,1), color 0.14s cubic-bezier(0.2,0.8,0.2,1); } .ds-route svg { flex: none; opacity: 0.75; } .ds-route:hover { background: var(--ink-700, #131a23); color: var(--fg, #e7ecf3); } .ds-route:hover svg { opacity: 1; } .ds-count { margin-left: auto; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.68rem; color: var(--fg-3, #7b8896); font-variant-numeric: tabular-nums; } .ds-route-active { background: var(--ink-600, #18212c); color: var(--fg, #e7ecf3); font-weight: 600; } .ds-route-active svg { opacity: 1; color: var(--accent, #ff4d23); } .ds-route-active .ds-count { color: var(--fg-2, #9dabbb); } .ds-route-active::before { content: \"\"; position: absolute; left: -10px; top: 50%; transform: translateY(-50%); width: 2px; height: 18px; border-radius: 0 2px 2px 0; background: var(--accent, #ff4d23); } .ds-route:focus-visible { outline: 2px solid var(--accent, #ff4d23); outline-offset: 2px; }"
+    },
+    {
+      "name": "Command Palette Row",
+      "kind": "custom",
+      "refersTo": "palette-item-selected",
+      "description": "A row from the ⌘K listbox: icon, block title, mono subtitle, right-aligned mono kind. The selected row fills ink-hover and turns its icon and kind accent.",
+      "html": "<div class=\"ds-pal\"><div class=\"ds-pal-input\"><svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M10.5 3a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15zM16 16l5 5\"/></svg><input placeholder=\"Search projects, roles, certificates, actions…\" /><span class=\"ds-kbd\">esc</span></div><div class=\"ds-pal-list\" role=\"listbox\"><span class=\"ds-label\">Case file</span><button class=\"ds-pal-item\" role=\"option\" aria-selected=\"true\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z\"/></svg><span class=\"ds-pi-main\"><span class=\"ds-pi-title\">NexStock</span><span class=\"ds-pi-sub\">Flutter · Supabase</span></span><span class=\"ds-pi-kind\">open</span></button><button class=\"ds-pal-item\" role=\"option\" aria-selected=\"false\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"square\" stroke-linejoin=\"miter\" aria-hidden=\"true\"><path d=\"M12 3v12m-5-5 5 5 5-5M4 20h16\"/></svg><span class=\"ds-pi-main\"><span class=\"ds-pi-title\">Download CV (English)</span><span class=\"ds-pi-sub\">PDF</span></span><span class=\"ds-pi-kind\">external</span></button></div></div>",
+      "css": ".ds-pal { width: min(620px, 100%); display: flex; flex-direction: column; background: var(--ink-700, #131a23); border: 1px solid var(--line-2, rgba(255,255,255,0.12)); border-radius: 11px; box-shadow: 0 30px 70px -16px rgba(0,0,0,0.75); overflow: hidden; } .ds-pal-input { display: flex; align-items: center; gap: 11px; height: 52px; padding: 0 15px; border-bottom: 1px solid var(--line, rgba(255,255,255,0.07)); color: var(--fg-3, #7b8896); } .ds-pal-input svg { flex: none; } .ds-pal-input input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: none; color: var(--fg, #e7ecf3); font-family: \"Schibsted Grotesk\", sans-serif; font-size: 0.98rem; } .ds-pal-input input::placeholder { color: var(--fg-3, #7b8896); } .ds-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 3px; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.66rem; font-weight: 500; color: var(--fg-2, #9dabbb); background: var(--ink-600, #18212c); border: 1px solid var(--line-2, rgba(255,255,255,0.12)); border-bottom-width: 2px; } .ds-pal-list { padding: 7px; } .ds-pal-item { display: flex; align-items: center; gap: 11px; width: 100%; padding: 8px 10px; border: 0; border-radius: 4px; background: none; cursor: pointer; text-align: left; color: var(--fg-2, #9dabbb); font-family: \"Schibsted Grotesk\", sans-serif; font-size: 0.88rem; } .ds-pal-item svg { flex: none; opacity: 0.7; } .ds-pi-main { min-width: 0; flex: 1; } .ds-pi-title { display: block; color: var(--fg, #e7ecf3); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-pi-sub { display: block; margin-top: 2px; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.66rem; line-height: 1.4; color: var(--fg-3, #7b8896); } .ds-pi-kind { flex: none; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-3, #7b8896); } .ds-pal-item:hover { background: var(--ink-500, #1f2937); } .ds-pal-item[aria-selected=\"true\"] { background: var(--ink-500, #1f2937); } .ds-pal-item[aria-selected=\"true\"] svg { opacity: 1; color: var(--accent, #ff4d23); } .ds-pal-item[aria-selected=\"true\"] .ds-pi-kind { color: var(--accent, #ff4d23); } .ds-pal-item:focus-visible { outline: 2px solid var(--accent, #ff4d23); outline-offset: 2px; }"
+    },
+    {
+      "name": "Status Bar",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "30px of measured instrumentation: live state, active route, real viewport, sampled frame rate, stack, Mauritius local time. If a value cannot be read, its cell is not rendered.",
+      "html": "<div class=\"ds-status\" role=\"status\"><span class=\"ds-cell\"><span class=\"ds-live\" aria-hidden=\"true\"></span><b>ready</b></span><span class=\"ds-cell\">route <b>/work</b></span><span class=\"ds-cell\">viewport <b>1512×860</b></span><span class=\"ds-cell\"><b>60</b> fps</span><span class=\"ds-cell ds-push\">react 18 · vite 5 · three.js</span><span class=\"ds-cell\">Port&#8209;Louis <b>14:38</b></span></div>",
+      "css": ".ds-status { display: flex; align-items: center; gap: 18px; height: 30px; padding: 0 14px; background: var(--ink-800, #0e141b); border-top: 1px solid var(--line, rgba(255,255,255,0.07)); font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.66rem; color: var(--fg-3, #7b8896); font-variant-numeric: tabular-nums; } .ds-cell { display: flex; align-items: center; gap: 7px; white-space: nowrap; } .ds-push { margin-left: auto; } .ds-status b { color: var(--fg-2, #9dabbb); font-weight: 500; } .ds-live { position: relative; width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--accent, #ff4d23); } .ds-live::after { content: \"\"; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid var(--accent-line, rgba(255,77,35,0.42)); animation: ds-ping 2.8s cubic-bezier(0.16,1,0.3,1) infinite; } @keyframes ds-ping { 0% { transform: scale(0.6); opacity: 0.9; } 70%, 100% { transform: scale(1.5); opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-live::after { animation: none; } }"
+    },
+    {
+      "name": "Evidence Row",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "What replaced the self-rated percentage bars: a dot, a name, and mono evidence that resolves to something openable. Build counts are derived from the case-study tags at load.",
+      "html": "<div class=\"ds-ev\"><span class=\"ds-dot\" aria-hidden=\"true\"></span><span class=\"ds-nm\">Flutter / Dart</span><span class=\"ds-proof\">6 builds · XEFI · App Store</span></div><div class=\"ds-ev\"><span class=\"ds-dot ds-off\" aria-hidden=\"true\"></span><span class=\"ds-nm\">Java / Spring Boot</span><span class=\"ds-proof\">ELCA 2021–23 · ELCAdemy</span></div>",
+      "css": ".ds-ev { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; padding: 11px 13px; margin-bottom: 8px; border-radius: 7px; background: var(--ink-700, #131a23); border: 1px solid var(--line, rgba(255,255,255,0.07)); } .ds-dot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--accent, #ff4d23); } .ds-dot.ds-off { background: var(--ink-400, #2a3746); } .ds-nm { font-family: \"Schibsted Grotesk\", sans-serif; font-size: 0.87rem; font-weight: 550; letter-spacing: -0.012em; color: var(--fg, #e7ecf3); } .ds-proof { font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.66rem; color: var(--fg-3, #7b8896); text-align: right; white-space: nowrap; }"
+    },
+    {
+      "name": "Route Head",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The one heading a route is allowed: an h2 on the same baseline as a mono readout pushed right, over a single hairline. No label above it.",
+      "html": "<div class=\"ds-head\"><h2 class=\"ds-title\">Work</h2><span class=\"ds-meta\">21/21 shown</span></div><p class=\"ds-lead\">Twenty-one case files. Every one links to <b>something you can open</b>.</p>",
+      "css": ".ds-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; margin-bottom: clamp(22px, 3vw, 34px); border-bottom: 1px solid var(--line, rgba(255,255,255,0.07)); } .ds-title { margin: 0; font-family: \"Schibsted Grotesk\", sans-serif; font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--fg, #e7ecf3); } .ds-meta { margin-left: auto; font-family: \"Azeret Mono\", ui-monospace, monospace; font-size: 0.72rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; color: var(--fg-3, #7b8896); } .ds-lead { max-width: 72ch; margin: 0; font-family: \"Schibsted Grotesk\", sans-serif; font-size: 1rem; line-height: 1.6; color: var(--fg-2, #9dabbb); } .ds-lead b { color: var(--fg, #e7ecf3); font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Runtime",
+    "overview": "The portfolio is a running application, not a page about one. Everything in the visual system exists to hold that up: the chrome is real application chrome (a sticky rail with badged counts, a status bar reporting measured telemetry, a bottom tab bar when the viewport becomes a phone), the navigation is a ⌘K command palette over 67 indexed targets, and the surfaces behave like a product's surfaces — flat, matte, structured by hairlines, quiet enough that data and controls are the only things with visual voice. The visitor operating the thing IS the argument that the person who built it builds applications.\n\nDensity is high but never crowded. Deep ink carries the ground (--ink-900 #0a0e13) and every surface above it is one small step lighter on the same flat ramp; there is no gradient anywhere, no glow, no neon, no glass. Structure comes from 1px hairlines at three opacities and from four real shadow steps that all carry both an offset and a blur, so depth reads as light falling on stacked surfaces rather than as a coloured halo. Exactly one chromatic voice exists — a vermilion (--accent #ff4d23) — and it is rationed: primary action, active route, live state. Nothing else gets it.\n\nThis world is the second replacement on this project. It refuses the three category defaults explicitly: the gradient-glass dark portfolio, the white editorial one, and the retro-skeuomorphic instrument-console world that immediately preceded it (rejected by the owner on the grounds that hardware is not technology). Every device those worlds relied on — brushed metal, grain overlays, engraved bevels, phosphor screens, amber/green/red signal lamps, inset/raised edge pairs — is absent from this system and must not return. PRODUCT.md establishes that no colour or typeface commitment binds this project; that remains true, and the visual world has now changed twice under it, so treat DESIGN.md as the only current record of the visual system.",
+    "keyCharacteristics": [
+      "Flat matte deep-ink ramp; no gradient, glow, neon or glass on any surface.",
+      "Exactly one accent (vermilion), spent only on primary action, active route and live state.",
+      "Structure by 1px hairline, never by a filled divider or a coloured rule.",
+      "Application chrome that changes platform at 900px: rail + status bar → bottom tab bar.",
+      "Azeret Mono strictly on machine data; Schibsted Grotesk for everything a person reads as prose.",
+      "Authored SVG icons at one stroke weight; no icon font, no emoji.",
+      "Real depth: four shadow steps with offset and blur, plus two true CSS perspective containers.",
+      "Everything measured is measured; nothing telemetric is faked."
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Exactly one accent exists. It marks the primary action, the active route, and live state. It is never decoration and never a surface fill at size. If a second colour feels needed, the answer is weight or spacing. Precedent: an employer name in the service log (.entry .org) and the proof link on a profile row (.does-row .proof) were both accent-coloured; ten accent org names made the accent read as \"heading\" rather than \"primary action or live state\", so both were changed to --fg at weight 600 with the accent arriving only on hover.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Matte Rule",
+        "body": "Surfaces are flat and matte. No gradients, no glows, no neon, no glass — except where a modal genuinely needs to separate from what it covers. The command palette's scrim is the single backdrop-filter in the system (blur(3px) over rgba(4,7,10,0.72)), and it earns it by being a modal, not by being pretty.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Structure is carried by 1px hairlines and real offset-plus-blur shadows. A divider is --line at 1px; it is never a filled bar, never a coloured rule, never two-tone. Where a list needs internal rules, the container is given a --line background with gap: 1px between --ink-700 children so the rules are literally the gaps.",
+        "section": "colors"
+      },
+      {
+        "name": "The Bridge Is Load-Bearing Rule",
+        "body": "Do not delete or \"clean up\" the :root bridge in src/styles/case-file.css. --indigo and --cyan both resolve to --accent and --grad resolves to none deliberately — the old world's two-hue gradient is collapsed into this world's single accent on purpose, not by oversight. Removing the bridge strips every colour out of the legacy case-study bodies and the device frames.",
+        "section": "colors"
+      },
+      {
+        "name": "The Machine Data Rule",
+        "body": "Azeret Mono appears only on machine data: counts, keys, telemetry, timestamps, route paths, categories, code. Never on prose, never on a sentence, never on a heading a person reads for meaning. If it is language, it is Schibsted Grotesk.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Heading Per View Rule",
+        "body": "Each route carries exactly one heading, inside .view-head, paired on the same baseline with a mono data readout pushed right. There is deliberately no small label above a heading — no kickers, no eyebrows, no LABEL / Heading stack anywhere in this system.",
+        "section": "typography"
+      },
+      {
+        "name": "The Weight-Not-Colour Rule",
+        "body": "Emphasis inside text is weight (600–650) and a step up the foreground ramp to --fg. Colour is not an emphasis tool here, because the only colour available means something else.",
+        "section": "typography"
+      },
+      {
+        "name": "The Platform Chrome Rule",
+        "body": "Desktop wears desktop-app chrome; mobile wears mobile-app chrome. A mobile engineer's site adapting its own chrome to the platform it is running on is the thesis stated in the interface rather than in a paragraph. Never ship a hamburger drawer here, and never let the rail become a tab bar's cousin — they are two different chromes for two different platforms.",
+        "section": "layout"
+      },
+      {
+        "name": "The Real Depth Rule",
+        "body": "Every shadow has an offset and a blur. A shadow with zero blur (a hard offset block) and a shadow with zero offset (a centred halo) are both banned — the first belongs to a neobrutalist world this is not, the second is a glow, which the Flat Matte Rule already forbids.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Reduced Motion Rule",
+        "body": "prefers-reduced-motion: reduce disables the WebGL field entirely, sets .overview { perspective: none }, forces every .layer transform off, forces .card transform off and zeroes --cz, stops the ping on .live::after and the nudge on the scroll hint, drops the palette's fade/pop animations, removes smooth scroll, and clamps every remaining animation to 0.01ms. Both motion hooks and the frame sampler check the same query in JS. A new moving thing must be added to that block in the same commit that adds it.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Real Telemetry Rule",
+        "body": "Everything on the status bar is measured live. If a value cannot be read, its cell is not rendered — there is no placeholder, no fake CPU meter, no invented uptime. The frame sampler does not run at all under reduced motion, and the bar costs nothing measurable.",
+        "section": "components"
+      },
+      {
+        "name": "The Authored Icon Rule",
+        "body": "No icon font, no icon package, and no emoji in the shell or in any route. One stroke weight (1.9) and one geometry (square caps, miter joins) across the whole set — a stock icon set inside a committed form is the tell that breaks it. A new pictogram is added to LINE in Icon.jsx, drawn on the 24 grid, or it does not ship. Font Awesome remains loaded in index.html for the legacy project article bodies only.",
+        "section": "components"
+      },
+      {
+        "name": "The Evidence Rule",
+        "body": "No self-rated meter, percentage, star rating or proficiency bar may appear in this system. Every claim resolves to something a visitor can open — a case file, a certificate, a role in the log. A number that cannot be counted on the page does not get rendered.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do build a new surface from the ink ramp: --ink-700 fill, 1px --line border, --r or --r-lg corners, --lift-1 if it needs to detach.",
+      "Do spend the accent only on the primary action, the active route, or live state — and at most once per view.",
+      "Do reach for weight (600–650) and a step up the foreground ramp when you want emphasis, following the .entry .org and .does-row .proof precedent.",
+      "Do keep every text colour at or above --fg-3 (4.6:1 on --ink-900); it is the floor, not a starting point.",
+      "Do set counts, keys, timestamps, telemetry and route paths in Azeret Mono, and keep them inside the 0.61–0.72rem band.",
+      "Do open a route with exactly one .view-head heading, pairing it with a mono readout on the same baseline if it needs a number.",
+      "Do render content visible by default and let .reveal add only a settle — it is opacity: 1 outside prefers-reduced-motion: no-preference.",
+      "Do make new navigation a real anchor or <Link>, and register the route in src/data/routes.js so the rail, tab bar, scroll-spy and palette all learn it at once.",
+      "Do draw new icons into Icon.jsx on the 24 grid at 1.9 stroke with square caps and miter joins.",
+      "Do add any new motion to the prefers-reduced-motion: reduce block in the same commit.",
+      "Do give a new shadow both an offset and a blur, or use one of --lift-1..--lift-4."
+    ],
+    "donts": [
+      "Don't introduce a gradient, a glow, a neon edge, or a glass panel. The palette scrim's backdrop-filter is the one sanctioned exception and it is a modal, not a decoration.",
+      "Don't add a second accent, a semantic colour set, or a status palette. If a second colour feels needed, the answer is weight or spacing.",
+      "Don't fill a large surface with the accent, put it behind body text, or use it to mean \"heading\".",
+      "Don't set prose, a heading, or a sentence in Azeret Mono, and don't set mono above 0.72rem.",
+      "Don't put a small label, kicker or eyebrow above a heading.",
+      "Don't gate content behind scroll or animation, or ship a reveal that leaves content hidden when JS or motion is unavailable.",
+      "Don't use Font Awesome, any icon package, or an emoji in the shell or in a route; Font Awesome exists solely for the legacy article bodies.",
+      "Don't ship a self-rated meter, percentage bar or vanity counter, or a number that cannot be counted on the page.",
+      "Don't fake telemetry. If a value cannot be measured, omit the cell.",
+      "Don't ship a hard offset shadow with no blur, or a coloured/centred halo.",
+      "Don't collapse the platform chromes into one — no hamburger drawer on desktop, no rail on a phone.",
+      "Don't delete the :root legacy bridge in src/styles/case-file.css. --indigo and --cyan resolving to --accent and --grad resolving to none are deliberate.",
+      "Don't simplify .pp-article ul li, .pp-article ol li and .pp-article li:not(ol li) down to a bare .pp-article li: css/project.css out-specifies the bare selector, and several legacy bodies use bare <li> outside any <ul>. (.pp-tags needs no override in this world.)",
+      "Don't reintroduce anything from the two replaced worlds — brushed-metal or grain textures, engraved bevels, raised/inset edge pairs, phosphor screens, paper surfaces, amber/green/red signal lamps, or gradient-glass cards."
+    ]
+  }
+}

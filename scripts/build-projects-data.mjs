@@ -38,9 +38,24 @@ const PROJECTS = {
 };
 const ORDER = Object.keys(PROJECTS);
 
+// These fields are scraped out of HTML and then rendered as React text nodes,
+// so any entity that survives shows up literally on the page ("Web &amp;
+// Mobile"). Decode them here rather than at the render site: `desc` also feeds
+// the meta description, and `body` must keep its entities because it is injected
+// as raw HTML.
+const decodeEntities = (s) =>
+  s
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&"); // last, so &amp;lt; decodes to &lt; not <
+
 const grab = (s, pat) => {
   const m = s.match(pat);
-  return m ? m[1].trim() : "";
+  return m ? decodeEntities(m[1].trim()) : "";
 };
 
 // Rewrite relative asset references inside a body so they resolve from the SPA

@@ -1,10 +1,16 @@
 import { useParams, Navigate, Link } from "react-router-dom";
-import Nav from "../components/Nav.jsx";
+import AppShell from "../components/AppShell.jsx";
 import Footer from "../components/Footer.jsx";
+import Contact from "../sections/Contact.jsx";
+import Icon from "../components/Icon.jsx";
 import { projects } from "../data/projects.js";
 import { useReveal } from "../hooks/useReveal.js";
 import { usePageMeta } from "../hooks/usePageMeta.js";
 
+/**
+ * A case file, opened inside the same application shell. The write-ups are the
+ * existing ones, unchanged — only the surface they sit on is new.
+ */
 export default function ProjectPage() {
   const { slug } = useParams();
   const idx = projects.findIndex((p) => p.slug === slug);
@@ -22,75 +28,70 @@ export default function ProjectPage() {
   const next = idx < projects.length - 1 ? projects[idx + 1] : null;
 
   return (
-    <>
-      <Nav variant="project" />
-      <main className="pp-main">
-        <section className="pp-hero">
-          <div className="container">
-            <Link className="pp-back reveal" to="/#work">
-              <i className="fa-solid fa-arrow-left"></i> Back to work
-            </Link>
+    <AppShell activeId="work" home={false} routeLabel={project.disp}>
+      <main className="main">
+        <article className="view case">
+          <Link className="btn btn-ghost btn-sm case-back" to="/#work">
+            <Icon name="arrowLeft" size={14} />
+            All work
+          </Link>
 
-            <div className="pp-cat reveal">
-              <i className="fa-solid fa-layer-group"></i> {project.category}
+          <div className="case-head">
+            <h1 className="case-title">{project.disp}</h1>
+            {/* Separated by the middot the rest of the site uses; the gap alone
+                read as accidental double spacing. */}
+            <div className="case-meta mono">
+              <span>{project.category}</span>
+              <span aria-hidden="true">·</span>
+              <span>{project.date}</span>
+              <span aria-hidden="true">·</span>
+              <span>
+                file {idx + 1} of {projects.length}
+              </span>
             </div>
-
-            <h1 className="pp-title reveal">
-              <span className="g">{project.disp}</span>
-            </h1>
-
-            <div className="pp-meta reveal">
-              <span><i className="fa-regular fa-calendar"></i> {project.date}</span>
-              <span><i className="fa-solid fa-user"></i> Farhaan Beeharry</span>
-            </div>
-
-            <div className="pp-tags reveal">
-              {project.tags.map((t) => (
-                <span key={t}>{t}</span>
-              ))}
-            </div>
-
-            {project.cover && (
-              <figure className="pp-cover reveal">
-                <img src={project.cover} alt={project.coverAlt} />
-              </figure>
-            )}
           </div>
-        </section>
 
-        <article
-          className="pp-article"
-          dangerouslySetInnerHTML={{ __html: project.body }}
-        />
+          <div className="case-tags">
+            {project.tags.map((t) => (
+              <span className="chip" key={t}>{t}</span>
+            ))}
+          </div>
+
+          {project.cover && (
+            <figure className="case-cover reveal">
+              <img src={project.cover} alt={project.coverAlt} />
+            </figure>
+          )}
+
+          <div className="pp-article" dangerouslySetInnerHTML={{ __html: project.body }} />
+        </article>
 
         {(prev || next) && (
-          <section className="pp-more">
-            <div className="container">
-              <div className="pp-more-grid">
-                {prev && (
-                  <Link className="pp-more-card reveal" to={`/portfolio/${prev.slug}`}>
-                    <i className="fa-solid fa-arrow-left"></i>
-                    <span>
-                      <span className="dir">Previous</span>
-                      <div className="nm">{prev.disp}</div>
-                    </span>
-                  </Link>
-                )}
-                {next && (
-                  <Link className="pp-more-card next reveal" to={`/portfolio/${next.slug}`}>
-                    <span>
-                      <span className="dir">Next</span>
-                      <div className="nm">{next.disp}</div>
-                    </span>
-                    <i className="fa-solid fa-arrow-right"></i>
-                  </Link>
-                )}
-              </div>
-            </div>
-          </section>
+          <nav className="view case-nav" aria-label="Adjacent case files">
+            {prev && (
+              <Link className="case-step" to={`/portfolio/${prev.slug}`}>
+                <Icon name="arrowLeft" size={16} />
+                <span>
+                  <span className="dir">Previous</span>
+                  <span className="nm">{prev.disp}</span>
+                </span>
+              </Link>
+            )}
+            {next && (
+              <Link className="case-step next" to={`/portfolio/${next.slug}`}>
+                <span>
+                  <span className="dir">Next</span>
+                  <span className="nm">{next.disp}</span>
+                </span>
+                <Icon name="arrowRight" size={16} />
+              </Link>
+            )}
+          </nav>
         )}
+
+        <Contact compact />
+        <Footer />
       </main>
-      <Footer withContact={false} />
-    </>
+    </AppShell>
   );
 }

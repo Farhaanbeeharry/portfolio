@@ -33,19 +33,56 @@
 
     <link rel="shortcut icon" href="/img/logo.ico" />
 
-    <!-- Fonts -->
+    <!-- Fonts — Schibsted Grotesk is the product-UI and display voice (variable
+         400..900, so one family covers a 5.5rem headline and an 11px control
+         label); Azeret Mono carries real machine data only: counts, keys,
+         telemetry, timestamps, code. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..900&family=Azeret+Mono:wght@300..700&display=swap"
       rel="stylesheet" />
 
-    <!-- Font Awesome (icons) -->
+    <!-- Font Awesome — retained for the legacy project article bodies only.
+         The application shell and every view use authored SVG icons. -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   </head>
   <body>
+    <!--
+      THESIS: The portfolio is a running application, not a page about one. The
+        visitor operates a real product — command palette, keyboard routing, live
+        telemetry, view transitions — and that operation IS the proof he builds
+        applications. Refuses the three category defaults: the gradient-glass
+        dark portfolio, the white editorial one, and the retro-skeuomorphic
+        hardware world this replaced (user rejected: hardware is not technology).
+      OWN-WORLD: Flat matte deep ink (#0a0e13 ground, #0e141b chrome, #131a23 and
+        #18212c surfaces) with NO gradients, NO glows and NO neon. Structure is
+        carried by 1px hairlines (rgba(255,255,255,0.07)) and real offset+blur
+        shadows. Exactly ONE accent, vermilion #ff4d23, spent only on the primary
+        action, the focused/active route and live state — never as decoration.
+        Schibsted Grotesk for display and UI, Azeret Mono strictly for machine
+        data (counts, keys, telemetry, timestamps, code). Authored SVG icons at
+        one stroke weight. Desktop wears desktop-app chrome (sticky rail + status
+        bar); mobile wears mobile-app chrome (bottom tab bar) — a mobile
+        engineer's site adapting its own chrome per platform is the thesis literal.
+      STORY: The visitor lands inside a working product, operates it to reach 21
+        shipped case files and verifiable evidence, and makes contact.
+      FIRST VIEWPORT: The application's Overview route. Sticky rail at left with
+        badged counts; top bar carrying the brand and a live ⌘K affordance; status
+        bar pinned at the bottom reporting real viewport, frame rate, route and
+        Mauritius local time. Centre: FARHAAN BEEHARRY at display scale, role
+        beneath, one line of thesis, then two actions — VIEW THE WORK (vermilion)
+        and DOWNLOAD CV. A live WebGL lattice sits behind it all, matte and
+        low-contrast, reacting to pointer and scroll velocity. To the right, a
+        NOW panel: current role, App Store presence, availability.
+      FORM: Application runtime. User-pinned direction — it beats the roll; the
+        earlier roll (seed 08ee21aa) produced the instrument console the user
+        rejected, and the replacement world plus its palette were both chosen by
+        the user directly.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

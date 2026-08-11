@@ -1,46 +1,46 @@
 // Homepage content data (transcribed verbatim from the original index.html).
 
-export const marqueeItems = [
-  "Flutter", "Dart", "Angular", "Java", "Spring Boot", "TypeScript",
-  "Node.js", "NestJS", "Symfony", "UI / UX", "Firebase", "SQL",
+/** The one place the social links are defined; the masthead, console face and
+ *  footer all read from here. */
+export const socials = [
+  { icon: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/farhaan-bms/" },
+  { icon: "github", label: "GitHub", href: "https://github.com/Farhaanbeeharry" },
+  { icon: "codesignal", label: "CodeSignal", href: "https://app.codesignal.com/profile/farhaan" },
+  { icon: "behance", label: "Behance", href: "https://www.behance.net/farhaanbeeharry" },
+  { icon: "instagram", label: "Instagram", href: "https://www.instagram.com/farhaan_beeharry/" },
+  { icon: "whatsapp", label: "WhatsApp", href: "https://wa.me/23057076881/" },
 ];
 
-export const codingSkills = [
-  ["PHP (Symfony)", 40],
-  ["Java (Spring/Spring Boot)", 60],
-  ["Angular", 70],
-  ["JavaScript / TypeScript", 70],
-  ["Node.js (NestJS)", 70],
-  ["HTML/CSS", 80],
-  ["Flutter (Dart)", 90],
-];
+export const contact = {
+  email: "contact@farhaan.info",
+  phone: "+230 5707 6881",
+  phoneHref: "tel:+23057076881",
+  whatsapp: "https://wa.me/23057076881/",
+  location: "Port-Louis, Mauritius",
+};
 
-export const otherSkills = [
-  ["Database (SQL)", 65],
-  ["UI/UX Design", 70],
-  ["Teamwork", 70],
-  ["PC Assembly and Build", 75],
-  ["Electronics (Arduino)", 80],
-  ["Attention to details", 80],
-];
+// The self-rated percentage bars that used to live here were removed
+// deliberately: see src/data/capabilities.js, which derives evidence from the
+// published case studies instead.
 
 // chips: { label, href? }
+// Tools, not traits. The previous list mixed real software with
+// self-assessments ("Adaptability", "Fast Learner", "Fast Typer (80WPM)") — the
+// 80WPM figure being one the owner explicitly asked to drop, and all of them
+// sitting under a panel headed "countable rather than self-scored". Every entry
+// below is corroborated by the service log or by a case study's tags.
 export const chips = [
-  { label: "Ability to Multitask" },
-  { label: "Adaptability" },
+  { label: "Adobe XD" },
+  { label: "Amplitude" },
   { label: "Arduino", href: "https://www.arduino.cc/" },
-  { label: "Communication" },
-  { label: "Creativity" },
   { label: "Docker", href: "https://www.docker.com/" },
-  { label: "Effective Time Management" },
-  { label: "Fast Learner" },
-  { label: "Fast Typer (80WPM)" },
-  { label: "Leadership" },
+  { label: "GetX" },
+  { label: "Lokalise", href: "https://lokalise.com/" },
   { label: "Photoshop", href: "https://www.adobe.com/products/photoshop.html" },
-  { label: "Problem-Solving" },
   { label: "Python", href: "https://www.python.org/" },
   { label: "Raspberry Pi", href: "https://www.raspberrypi.com/" },
-  { label: "Responsibility" },
+  { label: "Shorebird", href: "https://shorebird.dev/" },
+  { label: "Tailwind CSS", href: "https://tailwindcss.com/" },
 ];
 
 export const testimonials = [
@@ -84,9 +84,11 @@ export const certificates = [
     titleHref: "https://inovapp.mu",
     links: [
       { href: "/assets/MCB InovApp.pdf", icon: "download", label: "Download certificate PDF" },
-      { href: "/img/inovapp_winner.jpg", icon: "image", label: "View winner photo" },
+      // The "View winner photo" link pointed at /img/inovapp_winner.jpg, which
+      // is not in the repo — a dead link on the strongest award on the page.
+      // Restore it here once the photo is added back to /img/.
     ],
-    meta: "🏆 First prize winner 🏆", metaBadge: true, date: "18 June 2023",
+    meta: "First prize winner", metaBadge: true, date: "18 June 2023",
   },
   {
     logo: "/img/certificates/npcc.png", alt: "NPCC logo",

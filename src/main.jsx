@@ -3,12 +3,13 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 
-// Shared design system + detail-page chrome + showcase mockups — imported
-// verbatim from the original static site (these files carry all the design
-// tokens and component styles the markup relies on).
-import "../css/portfolio.css";
+// The runtime design system. runtime.css owns the application shell and every
+// route; case-file.css restyles the legacy project write-ups and bridges the
+// token names the two remaining legacy stylesheets still reference.
+import "./styles/runtime.css";
 import "../css/project.css";
 import "../css/showcase.css";
+import "./styles/case-file.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

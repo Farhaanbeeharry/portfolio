@@ -1,8 +1,16 @@
-import { testimonials } from "../data/site.js";
+/**
+ * The service record. Lifted out of the Log view so the command palette can
+ * index it — a role has to be reachable by ⌘K, which means the data cannot live
+ * inside the component that renders it.
+ *
+ * `title`, `org` and `period` are plain strings for exactly that reason; `body`
+ * stays JSX because it carries real links.
+ */
 
-const experience = [
+export const experience = [
   {
     period: "October 2024 – Present",
+    current: true,
     title: "Mobile Engineer – Flutter",
     org: "XEFI Mauritius Center",
     body: (
@@ -142,7 +150,7 @@ const experience = [
   },
 ];
 
-const education = [
+export const education = [
   {
     period: "2021",
     title: "BSc Computer Science (Systems Engineering)",
@@ -169,99 +177,3 @@ const education = [
     body: <>Awarded by Cambridge International Examinations</>,
   },
 ];
-
-export default function Resume() {
-  return (
-    <section className="section" id="resume">
-      <div className="container">
-        <div className="section-head reveal">
-          <span className="eyebrow">Resume</span>
-          <h2 className="section-title">
-            My <span className="g">journey</span> so far
-          </h2>
-          <p className="section-lead">
-            A track record across mobile, web and full-stack engineering roles.
-          </p>
-        </div>
-
-        <div className="tl-cols">
-          {/* Experience */}
-          <div className="reveal">
-            <h3 className="tl-sub"><i className="fa-solid fa-briefcase"></i> Experience</h3>
-            <div className="timeline">
-              {experience.map((e) => (
-                <div className="tl-item" key={e.period + e.title}>
-                  <span className="tl-period">{e.period}</span>
-                  <h4>
-                    {e.title}
-                    {e.dl && (
-                      <a
-                        className="dl"
-                        href={`/${e.dl}`}
-                        target="_blank"
-                        rel="noopener"
-                        aria-label="Download testimonial"
-                      >
-                        <i className="fa-solid fa-download"></i>
-                      </a>
-                    )}
-                  </h4>
-                  {e.org && <div className="org">{e.org}</div>}
-                  {e.body && <p>{e.body}</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Education */}
-          <div className="reveal d1">
-            <h3 className="tl-sub"><i className="fa-solid fa-graduation-cap"></i> Education</h3>
-            <div className="timeline">
-              {education.map((e) => (
-                <div className="tl-item" key={e.period + e.title}>
-                  <span className="tl-period">{e.period}</span>
-                  <h4>
-                    {e.title}
-                    {e.dl && (
-                      <a
-                        className="dl"
-                        href={`/${e.dl}`}
-                        target="_blank"
-                        rel="noopener"
-                        aria-label="Download certificate"
-                      >
-                        <i className="fa-solid fa-download"></i>
-                      </a>
-                    )}
-                  </h4>
-                  <div className="org">{e.org}</div>
-                  <p>{e.body}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Testimonials */}
-            <h3 className="tl-sub" style={{ marginTop: "44px" }}>
-              <i className="fa-solid fa-quote-left"></i> Testimonials
-            </h3>
-            <div className="tst-grid" style={{ gridTemplateColumns: "1fr" }}>
-              {testimonials.map((t) => (
-                <div className="tst" key={t.name}>
-                  <span className="quote"><i className="fa-solid fa-quote-right"></i></span>
-                  <p>{t.quote}</p>
-                  <div className="tst-author">
-                    <img src={t.img} alt={t.name} />
-                    <div>
-                      <div className="an">{t.name}</div>
-                      <div className="ac">{t.role}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
