@@ -83,10 +83,14 @@ export default function Overview() {
               <div className="now-row">
                 <dt>Shipping to</dt>
                 <dd>
+                  {/* The separator is a real word, not whitespace: JSX collapses
+                      the newline between two elements, so these were rendering
+                      as "Apple App StoreGoogle Play". */}
                   <span className="stores">
                     <a href={stores.apple.href} target="_blank" rel="noopener">
                       {stores.apple.label}
                     </a>
+                    <span className="sep">and</span>
                     <a href={stores.google.href} target="_blank" rel="noopener">
                       {stores.google.label}
                     </a>

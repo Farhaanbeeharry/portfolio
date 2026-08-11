@@ -731,6 +731,11 @@ a:hover > .chip, a.chip:hover { color: var(--fg); border-color: var(--line-3); }
 .now-row a { color: var(--fg); border-bottom: 1px solid var(--line-3); }
 .now-row a:hover { color: var(--accent); border-color: var(--accent-line); }
 
+/* Both store listings on one line, wrapping as a unit. The "and" is a word in
+   the flow, so it must not inherit the link underline. */
+.now-row .stores { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 7px; }
+.now-row .stores .sep { color: var(--fg-3); font-weight: 400; border-bottom: 0; }
+
 .now-strip { padding: 0 15px 15px; }
 .now-strip-label {
   display: block;
