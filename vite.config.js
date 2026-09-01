@@ -28,10 +28,10 @@ const STATIC_DIRS = ["img", "assets", "portfolio"];
 // themselves were extracted from these files into src/data/projects.js, so
 // nothing is lost by leaving them out of the build.
 //
-// NOTE: the cPanel workflow is overlay-only and never deletes, so excluding
-// them here stops future deploys from shipping them but does NOT remove copies
-// already on the server. Those have to be deleted from public_html/portfolio/*
-// once, by hand.
+// NOTE: the cPanel upload is overlay-only and never deletes, so excluding them
+// here stops future deploys from shipping them but does NOT remove copies
+// already on the server. The deploy workflow therefore ends with an explicit
+// SSH step that deletes public_html/portfolio/*/index.html after every upload.
 const isLegacyProjectPage = (relPath) =>
   /^portfolio[\\/][^\\/]+[\\/]index\.html$/i.test(relPath);
 
@@ -104,7 +104,16 @@ function legacyStaticAssets() {
 }
 
 export default defineConfig({
-  base: "./",
+  // Absolute base, NOT "./". The app is a browser-history SPA served from the
+  // domain root, and Apache rewrites every unmatched URL to the root
+  // index.html without redirecting — so that one document is loaded under URLs
+  // at several depths (/, /work/, /portfolio/lokal/). Relative asset URLs
+  // resolve against whichever URL is showing, which sends /portfolio/lokal/ off
+  // to /portfolio/lokal/assets/index-*.css; the SPA rewrite then answers that
+  // with index.html, so the browser gets HTML where the stylesheet and the
+  // module should be and the page renders unstyled. "/" pins both to the one
+  // location they actually live at.
+  base: "/",
   publicDir: false,
   plugins: [react(), legacyStaticAssets()],
   server: {

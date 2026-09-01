@@ -59,3 +59,27 @@ jobs:
           target: "/home/${{ secrets.CPANEL_USERNAME }}/public_html"
           strip_components: 1
           overwrite: true
+
+      # Delete the 21 pre-React project pages left on the server.
+      #
+      # Apache serves a real file before it applies the SPA rewrite, so a
+      # surviving public_html/portfolio/<slug>/index.html wins over the React
+      # route: hard-loading /portfolio/lokal/ returned the superseded dark page,
+      # whose ../../css/*.css no longer exist in the docroot, so it rendered
+      # with no styling at all. The build already excludes these pages, but the
+      # overlay upload above never deletes, so they have to be removed here.
+      #
+      # Scoped to exactly portfolio/<slug>/index.html (mindepth/maxdepth 2) so
+      # the per-project media in those same directories, the root index.html
+      # and every sibling of the shared docroot are untouched. Idempotent:
+      # after the first successful run it finds nothing and prints nothing.
+      - name: Remove superseded legacy project pages
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          key: ${{ secrets.CPANEL_SSH_KEY }}
+          port: ${{ secrets.CPANEL_PORT }}
+          script: |
+            set -e
+            find "$HOME/public_html/portfolio" -mindepth 2 -maxdepth 2 -type f -iname 'index.html' -print -delete
