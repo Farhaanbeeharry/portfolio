@@ -1,5 +1,5 @@
 /* =============================================================================
-   case-file.css — the 21 project write-ups inside the runtime.
+   case-file.css — the 22 project write-ups inside the runtime.
 
    Two jobs:
    1. Bridge the legacy token names that css/project.css and css/showcase.css
@@ -150,7 +150,7 @@
   width: 6px;
   height: 6px;
   border-radius: var(--r-sm);
-  /* NOT the accent. Across 21 case files this put a dozen vermilion markers on a
+  /* NOT the accent. Across 22 case files this put a dozen vermilion markers on a
      single screen, which made the accent read as "bullet" rather than as
      "primary action or live state". */
   background: var(--ink-400);
@@ -164,18 +164,29 @@
    kept the tell and spent the accent on decoration at the same time. These read
    as callouts the way everything else in this system does: a hairline, a raised
    surface, and a real shadow. */
-.pp-article div[style*="border-left"] {
+.pp-article div[style*="border-left"],
+.pp-article .pp-note {
   border: 1px solid var(--line-2) !important;
   border-radius: var(--r) !important;
   background: var(--ink-600) !important;
   color: var(--fg-2) !important;
   box-shadow: var(--lift-2);
 }
-.pp-article div[style*="border-left"] a { color: var(--fg) !important; border-bottom: 1px solid var(--line-3); }
-.pp-article div[style*="border-left"] a:hover { color: var(--accent) !important; }
-.pp-article div[style*="border-left"] i { color: var(--fg-3) !important; }
+.pp-article div[style*="border-left"] a,
+.pp-article .pp-note a { color: var(--fg) !important; border-bottom: 1px solid var(--line-3); }
+.pp-article div[style*="border-left"] a:hover,
+.pp-article .pp-note a:hover { color: var(--accent) !important; }
+.pp-article div[style*="border-left"] i,
+.pp-article .pp-note i { color: var(--fg-3) !important; }
 
 .pp-article .pf-wrap { margin-top: 38px; }
+
+/* `.brand` is the masthead's own class here and in css/portfolio.css, and it is
+   display:flex — which silently turned every `pf-stat brand` tile into a row and
+   clipped the label off its own number ("11 Confirme"). showcase.css does not
+   guard the modifier, so the block box and the wrap's type are restored here,
+   for the six write-ups that highlight a stat this way. */
+.pp-article .pf-stat.brand { display: block; font: inherit; }
 
 /* ==========================================================================
    adjacent case files

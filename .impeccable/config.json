@@ -1,0 +1,32 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "inter",
+        "createdAt": "2026-09-02T04:55:14.330Z",
+        "reason": "Legacy page head: css/portfolio.css sets Inter/Sora/JetBrains Mono for the 22 pre-runtime source pages under portfolio/<slug>/, which vite excludes from the build. See DESIGN.md > Colors > Legacy bridge > Legacy typefaces."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "sora",
+        "createdAt": "2026-09-02T04:55:14.387Z",
+        "reason": "Legacy page head: css/portfolio.css sets Inter/Sora/JetBrains Mono for the 22 pre-runtime source pages under portfolio/<slug>/, which vite excludes from the build. See DESIGN.md > Colors > Legacy bridge > Legacy typefaces."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "jetbrains mono",
+        "createdAt": "2026-09-02T04:55:14.444Z",
+        "reason": "Legacy page head: css/portfolio.css sets Inter/Sora/JetBrains Mono for the 22 pre-runtime source pages under portfolio/<slug>/, which vite excludes from the build. See DESIGN.md > Colors > Legacy bridge > Legacy typefaces."
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-02T04:55:14.501Z",
+        "reason": "Same legacy head. Inter is what css/portfolio.css already sets on all 22 source pages; it never reaches the runtime, which uses Schibsted Grotesk."
+      }
+    ]
+  }
+}

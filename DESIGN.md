@@ -283,7 +283,7 @@ names (`--bg-0`, `--bg-1`, `--bg-2`, `--card`, `--card-2`, `--glass`, `--indigo`
 `--violet`, `--cyan`, `--grad`, `--grad-2`, `--text`, `--muted`, `--faint`,
 `--radius`, `--shadow`, `--brand`, `--brand-ink`, `--ok` #4ea86f, `--warn`
 #c99a3a) onto the runtime palette, because `css/project.css` and
-`css/showcase.css` still consume them for the 21 legacy article bodies and the
+`css/showcase.css` still consume them for the 22 legacy article bodies and the
 device mockups.
 
 **The Bridge Is Load-Bearing Rule.** Do not delete or "clean up" the `:root`
@@ -291,6 +291,24 @@ bridge in `case-file.css`. `--indigo` and `--cyan` both resolve to `--accent` an
 `--grad` resolves to `none` deliberately — the old world's two-hue gradient is
 collapsed into this world's single accent on purpose, not by oversight. Removing
 the bridge strips every colour out of the case-study bodies and the device frames.
+
+**Legacy typefaces.** The 22 files under `portfolio/<slug>/` are the pre-runtime
+source pages the write-ups are extracted from. They are authored against
+`css/portfolio.css`, which predates this system and sets **Inter** for body,
+**Sora** for display and **JetBrains Mono** for mono; each page loads that trio
+from one `css2` request in its own `<head>`. None of them reaches the runtime —
+`vite.config.js` excludes `portfolio/<slug>/index.html` from the build and
+overwrites the path with the app shell — so Schibsted Grotesk and Azeret Mono
+remain the only faces a visitor sees. Treat those three as *the legacy page's*
+typography, not as a second UI face in this system, and do not introduce them
+anywhere under `src/`.
+
+**Per-project mockup palettes.** A device frame inside a write-up sets `--brand`,
+`--bg`, `--surface`, `--text` and friends on its own `.pf-wrap` to the palette of
+the product it depicts — NexStock teal, Lokal orange, Perfect Garment navy. Those
+literals are the subject of the screenshot, not this system's colours, and they
+belong on the wrap where `showcase.css` can theme from them. Everything *around*
+a mockup — including the closing note under one — uses the bridge tokens above.
 
 ### Named Rules
 
