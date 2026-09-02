@@ -254,6 +254,7 @@ export const work = [
   { slug: "fruitopia", title: "Fruitopia", cat: "Mobile marketplace", dataCat: "mobile ui_ux", thumb: "/portfolio/fruitopia/thumbnail.svg" },
   { slug: "nexstock", title: "NexStock", cat: "Web, mobile & UI/UX", dataCat: "web mobile ui_ux", thumb: "/portfolio/nexstock/thumbnail.svg" },
   { slug: "lokal", title: "Lokal", cat: "Web app & UI/UX", dataCat: "web ui_ux", thumb: "/portfolio/lokal/thumbnail.svg" },
+  { slug: "perfect_garment", title: "Perfect Garment", cat: "Mobile app & UI/UX", dataCat: "mobile ui_ux", thumb: "/portfolio/perfect_garment/thumbnail.svg" },
 ];
 
 export const filters = [

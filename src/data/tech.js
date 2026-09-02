@@ -130,6 +130,22 @@ export const TECH = {
     stack: ["React", "Supabase"],
     domain: ["directory", "small business", "listings"],
   },
+  perfect_garment: {
+    blurb: "Takes a garment order to quotation, deposit, 3D mockup, delivery and invoice",
+    stack: ["Flutter", "Dart", "Supabase", "PostgreSQL", "Kotlin"],
+    domain: [
+      "manufacturing",
+      "garment workshop",
+      "orders",
+      "quotations",
+      "invoicing",
+      "payments",
+      "3D mockup",
+      "PDF",
+      "WhatsApp",
+      "internal tool",
+    ],
+  },
 };
 
 /** Everything searchable about a project, as one lowercase haystack. */

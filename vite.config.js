@@ -19,7 +19,7 @@ const STATIC_DIRS = ["img", "assets", "portfolio"];
 
 // `portfolio/<slug>/` holds BOTH the per-project media the app still needs
 // (thumbnail/background/logo/icon) and the pre-React static page for that
-// project, `index.html`. Those 21 stale pages must not ship.
+// project, `index.html`. Those 22 stale pages must not ship.
 //
 // They are the old dark design, and because Apache serves a real file before it
 // applies any SPA rewrite (the standard `!-f`/`!-d` conditions), a deployed

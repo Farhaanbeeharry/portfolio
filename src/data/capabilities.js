@@ -33,6 +33,7 @@ const ROWS = [
   ["Strapi", ["Strapi"], "WearTwice 2024"],
   ["PostgreSQL / SQL", ["PostgreSQL"], "Stratalis · Candidate Assessment"],
   ["Tailwind CSS", ["Tailwind CSS"], null],
+  ["Kotlin / Android", ["Kotlin"], "Perfect Garment · share intents"],
   ["Arduino / NodeMCU", ["Arduino", "NodeMCU"], "Mechatronics certificate"],
   ["UI / UX", ["UI/UX", "Adobe XD"], "FSC 3rd prize · Behance"],
   ["C#", [], "Event Store 2023"],

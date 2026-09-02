@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfect Garment — Farhaan Beeharry</title>
+    <meta name="description" content="Perfect Garment — an internal Android app for a Mauritian garment workshop: order capture, sequenced quotations and invoices, deposits and final payments, a turnable 3D garment mockup with the customer's own artwork applied, delivery tracking, tasks, expenses and finance. Flutter with feature-first Clean Architecture and BLoC on a Supabase backend where every write goes through a transactional, audited RPC." />
+    <meta name="keywords" content="perfect garment, perfect making, flutter, dart, supabase, postgresql, row level security, clean architecture, bloc, cubit, go_router, get_it, injectable, order management, quotations, invoicing, deposits, 3d mockup, glb, model-viewer, pdf, whatsapp, android, mauritius" />
+    <meta name="author" content="Farhaan Beeharry" />
+    <link rel="shortcut icon" href="../../img/logo.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../css/portfolio.css" />
+    <link rel="stylesheet" href="../../css/project.css" />
+    <link rel="stylesheet" href="../../css/showcase.css" />
+    <script>
+      (function () {
+        if (!("serviceWorker" in navigator)) return;
+        navigator.serviceWorker.getRegistrations().then(function (regs) {
+          regs.forEach(function (r) { r.unregister(); });
+          if (window.caches && caches.keys) {
+            caches.keys().then(function (keys) {
+              keys.forEach(function (k) { caches.delete(k); });
+            });
+          }
+          if (navigator.serviceWorker.controller && !sessionStorage.getItem("sw-evicted")) {
+            sessionStorage.setItem("sw-evicted", "1");
+            window.location.reload();
+          }
+        }).catch(function () {});
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="../../index.html#home" class="brand" aria-label="Farhaan Beeharry — home">
+          <span class="brand-mark">FB</span>
+          <span>
+            Farhaan Beeharry
+            <small>Software Engineer</small>
+          </span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="../../index.html#home">Home</a>
+          <a href="../../index.html#about">About</a>
+          <a href="../../index.html#skills">Skills</a>
+          <a href="../../index.html#resume">Resume</a>
+          <a href="../../index.html#certificates">Certificates</a>
+          <a href="../../index.html#work">Work</a>
+          <a href="../../index.html#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a href="../../assets/Farhaan Beeharry CV.pdf" target="_blank" class="btn btn-primary">
+            <i class="fa-solid fa-download"></i> Download CV
+          </a>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="pp-main">
+      <section class="pp-hero">
+        <div class="container">
+          <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
+
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Mobile app &amp; UI/UX</div>
+
+          <h1 class="pp-title reveal"><span class="g">Perfect Garment</span></h1>
+
+          <div class="pp-meta reveal">
+            <span><i class="fa-regular fa-calendar"></i> September 2026</span>
+            <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
+          </div>
+
+          <div class="pp-tags reveal">
+            <span>mobile app</span>
+            <span>flutter</span>
+            <span>supabase</span>
+            <span>postgresql</span>
+            <span>3d mockup</span>
+            <span>invoicing</span>
+            <span>manufacturing</span>
+          </div>
+
+          <figure class="pp-cover reveal"><img src="background.svg" alt="Perfect Garment Project Cover" /></figure>
+        </div>
+      </section>
+
+      <article class="pp-article">
+        <div class="container">
+          <div class="col-inner">
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                      <div class="col-inner">
+                        <strong>Perfect Garment</strong> is the internal Android
+                        application for <strong>Perfect Making</strong>, a
+                        Mauritian garment workshop that cuts, prints and
+                        embroiders custom clothing to order. Before it existed
+                        an order lived in a notebook, a quotation was retyped
+                        into Word, the deposit was remembered rather than
+                        recorded, and whether a job was late depended on who you
+                        asked. The app replaces that whole chain with one
+                        record: the order is taken in front of the customer, the
+                        quotation is generated and sent from the same screen,
+                        the deposit is receipted against it, the promised date
+                        is tracked, the invoice is raised on delivery, and the
+                        money is reported at the end of the month.
+
+                        <br /><br />
+                        It is built with <strong>Flutter</strong> in a
+                        feature-first Clean Architecture — BLoC/Cubit for state,
+                        <code>go_router</code> for navigation,
+                        <code>get_it</code> + <code>injectable</code> for wiring
+                        — on a <strong>Supabase</strong> backend: Auth,
+                        PostgreSQL with Row Level Security, and private Storage
+                        buckets. There is no server of my own in between. The
+                        database <em>is</em> the API, and every business rule
+                        that matters is enforced inside it.
+
+                        <br /><br />
+                        <strong>The order lifecycle</strong>
+                        <br />
+                        An order moves through eight named states, and the app
+                        never invents a ninth. <em>Draft</em> →
+                        <em>Quotation pending</em> →
+                        <em>Awaiting deposit</em> → <em>Confirmed</em> →
+                        <em>Delivered</em> → <em>Completed</em>, with
+                        <em>Rejected</em> and <em>Cancelled</em> as the two ways
+                        out. Each transition is one PostgreSQL function —
+                        <code>generate_quotation()</code>,
+                        <code>approve_quotation()</code>,
+                        <code>record_payment()</code>,
+                        <code>mark_delivered()</code>,
+                        <code>generate_invoice()</code>,
+                        <code>cancel_order()</code> — which validates the move,
+                        writes the new status and appends the audit entry in a
+                        single transaction. A half-applied transition is not
+                        something the app has to defend against, because the
+                        database will not produce one.
+
+                        <br /><br />
+                        <em>Delayed</em> is deliberately <strong>not</strong> a
+                        status. Lateness is derived from the promised date, so
+                        reporting a slip revises the date and files the reason
+                        in <code>delivery_changes</code> — it never overwrites
+                        where the order actually is. A confirmed order that is a
+                        week late is still confirmed; the operational flag sits
+                        beside the state rather than on top of it.
+
+                        <br /><br />
+                        <strong>Document numbering that cannot be argued with</strong>
+                        <br />
+                        Quotations are <code>PGQ001…</code> and invoices
+                        <code>PGI001…</code>, drawn from two independent
+                        PostgreSQL sequences allocated <em>inside</em> the
+                        generating function. Two devices raising a quotation at
+                        the same moment always receive distinct numbers, a
+                        number is never reused — not even when the quotation it
+                        belonged to is later rejected — and the sequences are
+                        not reachable from the client at all, so a document
+                        number cannot be spoofed or skipped from a phone. Past
+                        999 the format simply continues (<code>PGQ1000</code>).
+
+                        <br /><br />
+                        <strong>Artwork and the 3D mockup</strong>
+                        <br />
+                        Switching a placement on in the item editor gives it an
+                        <em>Upload</em> control. The picked file (gallery or
+                        camera, PNG/JPG/WEBP, up to 10&nbsp;MB) goes straight to
+                        a private <code>artwork</code> bucket under a random
+                        path, and the placement stores only that path — so the
+                        same file feeds the preview and the production floor
+                        without ever being duplicated. Replacing artwork deletes
+                        what it replaced; turning a placement off deletes its
+                        file too.
+
+                        <br /><br />
+                        Orders containing a t-shirt, polo or cap then gain an
+                        extra wizard step between Delivery and Review: a
+                        <strong>turnable 3D garment</strong> — the supplied
+                        <code>.glb</code> at full mesh resolution — rendered in
+                        the order's own main and contrast colours, with each
+                        uploaded artwork applied to the surface it will actually
+                        be printed on. Drag to rotate, pinch to zoom, or open it
+                        full screen, because a sleeve print is only a few
+                        hundred pixels inside a card.
+
+                        <br /><br />
+                        The details of that step are the whole point of it:
+                        <ul>
+                          <li>Colour is <em>reported</em>, not flattered — the viewer is pinned to <code>neutral</code> tone mapping at exposure 1.0, because the default filmic curve returns a chosen navy desaturated and lifted, and the customer is approving a colour</li>
+                          <li>Left and right are the <em>wearer's</em>, mirrored on the front view — the convention a print shop already uses</li>
+                          <li>A cap is decorated on the front panel only. The editor offers one switch for it and the entity refuses any other placement, so no code path can promise something the workshop cannot make</li>
+                          <li>The step is a check, not a gate: artwork often arrives after the price is approved, so a placement with no file is flagged in a banner and outlined with a dashed frame — it never blocks the quotation</li>
+                          <li>The mockup is an internal production aid. It does not appear on the quotation or the invoice, and neither does an artwork path or filename</li>
+                          <li>A build step (<code>tools/build_models.mjs</code>) prepares the raw exports losslessly and adds the one thing that makes the feature possible — a print surface per placement, since the source UVs are tiled fabric coordinates that cannot carry a logo</li>
+                          <li>The models render entirely offline; the viewer and its assets are served from inside the app, so a workshop with no signal still gets the preview</li>
+                        </ul>
+
+                        <br /><strong>One customer, however many orders</strong>
+                        <br />
+                        A customer is identified by <strong>phone number or
+                        email</strong>, never by name. Saving an order looks for
+                        an existing customer on either before inserting, so a
+                        returning customer is updated rather than duplicated and
+                        every order they have placed hangs off one record. Phone
+                        matching normalises first — digits only, compared on the
+                        last eight, the length of a Mauritian subscriber number
+                        — so <code>+230 5421 8890</code>,
+                        <code>5421 8890</code> and <code>230-5421-8890</code>
+                        are one person. The newest details win on a match, with
+                        one exception: a blank never overwrites something
+                        already on file, because an order taken without an email
+                        must not erase the address captured last time.
+
+                        <br /><br />
+                        <strong>Getting the document to the customer</strong>
+                        <br />
+                        Every generated PDF offers three routes, and the file
+                        and its message always travel together — a WhatsApp
+                        intent with the PDF attached, the staff member's own
+                        mail app pre-filled with recipient, subject, body and
+                        attachment, or the system share sheet as the fallback.
+                        No external mail provider, no API key, no server-side
+                        sending: the email leaves from the staff member's own
+                        address and stays in their Sent folder like any other
+                        message.
+
+                        <br /><br />
+                        The mail route is the part that needed real work.
+                        <code>MainActivity.kt</code> asks Android which apps can
+                        handle a <code>mailto:</code> address and restricts the
+                        intent to those, which is what makes it open a
+                        <em>mail</em> app instead of a generic share list. One
+                        mail app installed and it opens straight on the compose
+                        screen; several and the intent carries a
+                        <code>mailto:</code> selector so the system lists them
+                        all (<code>EXTRA_INITIAL_INTENTS</code> is deliberately
+                        avoided — Android 12 caps it at two entries, which would
+                        silently hide a third mail app); none and it falls back
+                        to the share sheet rather than failing. Each candidate
+                        is granted read access to the attachment through the
+                        app's <code>FileProvider</code> first, so the PDF always
+                        attaches. Every shared document is also copied to a
+                        private bucket in the background, so there is a record
+                        of exactly what the customer received — best-effort, and
+                        a storage hiccup never blocks a share.
+
+                        <br /><br />
+                        <strong>The security model</strong>
+                        <ul>
+                          <li>RLS is enabled <em>and forced</em> on every business table; anonymous access is denied at both the grant and the policy level</li>
+                          <li>Authenticated staff have <strong>read-only</strong> direct table access. Every write goes through a <code>SECURITY DEFINER</code> function that validates the transition, moves the status and writes the audit entry in the same transaction</li>
+                          <li>No privileged secret ships in the APK. <code>.env</code> carries only the project URL and the publishable key — a service-role key in a Flutter app would be a service-role key in every customer's hands</li>
+                          <li>There is no public sign-up. Staff accounts are created by an administrator, and a <code>profiles</code> row is bootstrapped by a trigger so the audit trail always has a name to print</li>
+                          <li>A note in the schema flags the trap for whoever comes next: new tables inherit Supabase's default privileges, which include <code>anon</code>, so every future table needs its own revoke</li>
+                        </ul>
+
+                        <br /><strong>What never reaches the customer</strong>
+                        <br />
+                        Payments carry an internal White / Black classification
+                        for the owner's own accounting. It — along with audit
+                        entries, staff identities, database ids and artwork
+                        storage paths — is excluded from every generated PDF:
+                        from the visible text, from the document metadata, and
+                        from the filename. The app says so on screen wherever
+                        the classification is captured, and the PDF builders
+                        read from the <em>saved order</em> rather than from form
+                        state, so a document can never disagree with the
+                        database.
+
+                        <br /><br />
+                        <strong>Configured by the business, not by the build</strong>
+                        <br />
+                        The company name, tagline, location, phone, email,
+                        trading address, BRN and bank details are not in
+                        <code>.env</code> — they belong to the business, not to
+                        the build. They live in a single-row
+                        <code>company_settings</code> table, edited in the app
+                        under Profile → Company details, so a correction reaches
+                        every device without a new APK. Document filenames
+                        follow the company name, so renaming the business
+                        renames the files. Bank lines print individually and
+                        each is omitted when blank — the IBAN is still to be
+                        issued, and an invoice reading <code>IBAN: —</code>
+                        invites a question nobody wants to field.
+
+                        <br /><br />
+                        <strong>Where a garment is configured</strong>
+                        <br />
+                        Each garment is worked through in one pass —
+                        <em>Specification → Quantities → Customisation →
+                        Pricing</em> — and the last tab hands the order on to
+                        the delivery date. Quantities sit beside the
+                        specification because that is where the size grid is
+                        chosen; two tabs away, choosing a grid looked like it
+                        did nothing. Pricing sits with the garment rather than
+                        in a step of its own, so a configuration is specified,
+                        counted, decorated and priced without being returned to.
+                        The domain then refuses the combinations the workshop
+                        cannot make: a t-shirt is cut from 160 or 180 GSM
+                        jersey and a polo from 220 GSM pique, a cap is bought
+                        made up and so has no fabric section at all, nobody
+                        orders a medium cap so caps are counted as a single
+                        total, and a contrast colour is offered only where there
+                        is a knitted collar or cuff to run it in. Female counts
+                        are capped at the total in three separate places — the
+                        stepper, the entity and <code>save_order</code> —
+                        because the male count is derived from the difference
+                        and an uncapped value would mean a negative number of
+                        men.
+
+                        <br /><br />
+                        <strong>Beyond the order</strong>
+                        <ul>
+                          <li><strong>Dashboard</strong> — pending quotations and what they are worth, orders awaiting a deposit, confirmed, late, due this week, the next delivery date, and the month's money in and out, all in one round trip</li>
+                          <li><strong>Calendar</strong> — a month view of every delivery-bearing order with a day agenda, so a promised date is looked at rather than remembered</li>
+                          <li><strong>Finance</strong> — received against expenses for any period, filterable by transaction type, with expense capture in the app</li>
+                          <li><strong>Tasks</strong> — three states and no more, grouped Overdue / Due today / This week / Later / No deadline / Finished, because a deadline list is read in one order and a flat list makes the reader work that order out themselves</li>
+                          <li><strong>Audit timeline</strong> — every privileged action, who did it and what it changed, readable per order</li>
+                        </ul>
+
+                        <br /><strong>Engineering</strong>
+                        <ul>
+                          <li>Feature-first Clean Architecture: each feature keeps <code>domain/</code> (entities, repository contracts), <code>data/</code> (Supabase implementations) and <code>presentation/</code> (cubits, pages, widgets) separate. Business rules live in the domain layer and in the database — never in widgets</li>
+                          <li>Money is <code>Decimal</code> end to end, never a double, because a rounding drift on a quotation is a rounding drift on a bill</li>
+                          <li>Adding an <code>@injectable</code> class means re-running <code>build_runner</code>, and forgetting is invisible to the analyzer — it only throws when that screen is opened. A dependency-graph test cross-checks every <code>getIt&lt;T&gt;()</code> call site against the generated registrations, so the suite fails instead of the user</li>
+                          <li>The whole schema is reproducible from versioned migrations, concatenated into one readable <code>schema.sql</code> by a script rather than by <code>supabase db dump</code>, so regenerating it does not depend on Docker being up</li>
+                          <li>A widget-test suite covers the parts that quietly rot: business rules, PDF generation, wizard flow and autosave, the mockup and its textures, model assets, stepper and keyboard layout, and a design-parity test that holds the theme to the design canvas</li>
+                          <li>Typography is Instrument Sans for prose and IBM Plex Mono for anything numeric or referential — money, document numbers, dates, quantities — both bundled, so rendering is identical offline and inside generated PDFs</li>
+                        </ul>
+
+                        <!-- ================= UI SHOWCASE ================= -->
+                        <div class="pf-wrap"
+                          style="--brand:#385088;--brand-ink:#ffffff;--stage:#1d2942;--bg:#f6f7f9;--surface:#ffffff;--card:#ffffff;--text:#151a26;--muted:#8b91a1;--line:#e6e8ed;--ok:#0f7052;--warn:#96660a;--danger:#c02030;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">One order, end to end</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            The dashboard, the order wizard with its 3D mockup
+                            step, the order file with its documents and
+                            payments, and the finance view — recreated from
+                            Perfect Garment's real screens and the navy palette
+                            transcribed from its design canvas.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Dashboard -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <img src="icon.png" alt="Perfect Garment" style="height:20px;width:auto" />
+                                        <span class="pf-t pf-strong">Today</span>
+                                      </div>
+                                      <span class="pf-muted"><i class="fas fa-user-circle"></i></span>
+                                    </div>
+
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat"><div class="n">6</div><div class="l">Quotations</div></div>
+                                      <div class="pf-stat"><div class="n">3</div><div class="l">Deposit due</div></div>
+                                    </div>
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat brand"><div class="n">11</div><div class="l">Confirmed</div></div>
+                                      <div class="pf-stat"><div class="n">2</div><div class="l">Late</div></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">This month · Sept</div>
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Received</span>
+                                        <span class="pf-t pf-strong">Rs 218,400</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Expenses</span>
+                                        <span class="pf-t pf-strong">Rs 63,150</span>
+                                      </div>
+                                    </div>
+
+                                    <span class="pf-badge warn"><i class="fas fa-truck"></i> Next delivery · Fri 11</span>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span class="active"><i class="fas fa-gauge-high"></i></span>
+                                    <span><i class="fas fa-file-invoice"></i></span>
+                                    <span><i class="fas fa-calendar-days"></i></span>
+                                    <span><i class="fas fa-wallet"></i></span>
+                                    <span><i class="fas fa-list-check"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Dashboard — one round trip</div>
+                            </div>
+
+                            <!-- Frame 2: Wizard — customisation & mockup -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <span class="pf-muted"><i class="fas fa-arrow-left"></i></span>
+                                        <span class="pf-t pf-strong">New order</span>
+                                      </div>
+                                      <span class="pf-badge ok"><i class="fas fa-cloud-arrow-up"></i> Saved</span>
+                                    </div>
+
+                                    <div class="pf-muted pf-mb">Step 4 of 5 · Mockup</div>
+                                    <div class="pf-bar pf-mb"><i style="width:80%"></i></div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-t pf-strong">Polo · Navy</span>
+                                        <span class="pf-badge"><i class="fas fa-cube"></i> 3D</span>
+                                      </div>
+                                      <div class="pf-input" style="height:64px;justify-content:center;background:#eef1f7;">
+                                        <i class="fas fa-shirt" style="font-size:38px;color:#385088;opacity:.85"></i>
+                                      </div>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-badge"><i class="fas fa-rotate"></i> Turn</span>
+                                        <span class="pf-badge"><i class="fas fa-expand"></i> Expand</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Heart</span>
+                                        <span class="pf-badge ok">Artwork</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Sleeve</span>
+                                        <span class="pf-badge warn">Awaiting file</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span><i class="fas fa-user"></i></span>
+                                    <span><i class="fas fa-shirt"></i></span>
+                                    <span><i class="fas fa-truck"></i></span>
+                                    <span class="active"><i class="fas fa-cube"></i></span>
+                                    <span><i class="fas fa-clipboard-check"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Mockup step — artwork on the real model</div>
+                            </div>
+
+                            <!-- Frame 3: Order file — documents, payments, share -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <span class="pf-muted"><i class="fas fa-arrow-left"></i></span>
+                                        <span class="pf-t pf-strong">Mediclinic</span>
+                                      </div>
+                                      <span class="pf-badge solid">Confirmed</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Order total</span>
+                                        <span class="pf-t-lg">Rs 96,000</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Paid</span>
+                                        <span class="pf-t pf-strong">Rs 28,800</span>
+                                      </div>
+                                      <div class="pf-bar ok pf-mt"><i style="width:30%"></i></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-file-lines"></i></span>
+                                        <span class="grow pf-t pf-strong">PGQ014</span>
+                                        <span class="pf-badge ok">Sent</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-file-invoice-dollar"></i></span>
+                                        <span class="grow pf-t pf-strong">PGI009</span>
+                                        <span class="pf-badge">Pending</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-row">
+                                      <span class="pf-btn"><i class="fab fa-whatsapp"></i> WhatsApp</span>
+                                      <span class="pf-btn-outline"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span><i class="fas fa-gauge-high"></i></span>
+                                    <span class="active"><i class="fas fa-file-invoice"></i></span>
+                                    <span><i class="fas fa-calendar-days"></i></span>
+                                    <span><i class="fas fa-wallet"></i></span>
+                                    <span><i class="fas fa-list-check"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Order file — documents, money, audit</div>
+                            </div>
+
+                            <!-- Frame 4: Finance -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <span class="pf-t-lg">Finance</span>
+                                      <span class="pf-muted"><i class="fas fa-sliders"></i></span>
+                                    </div>
+
+                                    <div class="pf-tabs pf-mb">
+                                      <b>Week</b><b class="active">Month</b><b>Year</b>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-muted">Net for September</div>
+                                      <div class="pf-t-lg">Rs 155,250</div>
+                                      <div class="pf-chart pf-mt">
+                                        <span class="b" style="height:38%"></span>
+                                        <span class="b" style="height:56%"></span>
+                                        <span class="b" style="height:44%"></span>
+                                        <span class="b hi" style="height:82%"></span>
+                                        <span class="b" style="height:61%"></span>
+                                        <span class="b" style="height:73%"></span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat"><div class="n">Rs 218k</div><div class="l">Received · 24</div></div>
+                                      <div class="pf-stat"><div class="n">Rs 63k</div><div class="l">Expenses · 17</div></div>
+                                    </div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span><i class="fas fa-gauge-high"></i></span>
+                                    <span><i class="fas fa-file-invoice"></i></span>
+                                    <span><i class="fas fa-calendar-days"></i></span>
+                                    <span class="active"><i class="fas fa-wallet"></i></span>
+                                    <span><i class="fas fa-list-check"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Finance — received against expenses</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">Flutter</span>
+                            <span class="pf-chip">Dart</span>
+                            <span class="pf-chip">Clean Architecture</span>
+                            <span class="pf-chip">BLoC / Cubit</span>
+                            <span class="pf-chip">go_router</span>
+                            <span class="pf-chip">get_it + injectable</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Row Level Security</span>
+                            <span class="pf-chip">SECURITY DEFINER RPCs</span>
+                            <span class="pf-chip">Supabase Storage</span>
+                            <span class="pf-chip">pdf + printing</span>
+                            <span class="pf-chip">model_viewer_plus</span>
+                            <span class="pf-chip">glTF / GLB</span>
+                            <span class="pf-chip">Kotlin (Android intents)</span>
+                            <span class="pf-chip">FileProvider</span>
+                            <span class="pf-chip">share_plus</span>
+                            <span class="pf-chip">image_picker</span>
+                            <span class="pf-chip">Decimal</span>
+                            <span class="pf-chip">flutter_test</span>
+                          </div>
+                        </div>
+                        <!-- =============== END UI SHOWCASE =============== -->
+
+                        <br />
+                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #385088; font-weight: 600; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #8fa2c6;"></i>
+                          Perfect Garment is an internal application — there is
+                          no public sign-up and it is not on a store. For a
+                          walkthrough of the order flow, the mockup step or the
+                          database design, contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: #8fa2c6; text-decoration: underline;">contact@farhaan.info</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </article>
+
+      <section class="pp-more">
+        <div class="container">
+          <div class="pp-more-grid">
+            <a class="pp-more-card reveal" href="../../portfolio/lokal/index.html"><i class="fa-solid fa-arrow-left"></i><span><span class="dir">Previous</span><div class="nm">Lokal</div></span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-cta">
+          <h2 class="reveal">Have a project in mind?</h2>
+          <p class="reveal">I'm always open to interesting work — let's build something great together.</p>
+          <a href="mailto:contact@farhaan.info" class="btn btn-primary reveal"><i class="fa-solid fa-envelope"></i> Contact me</a>
+        </div>
+        <div class="footer-bar">
+          <div class="copy">© 2026 All rights reserved. · Farhaan Beeharry</div>
+          <div class="socials">
+            <a href="https://www.linkedin.com/in/farhaan-bms/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/Farhaanbeeharry" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://app.codesignal.com/profile/farhaan" target="_blank" aria-label="CodeSignal"><i class="fa-solid fa-code"></i></a>
+            <a href="https://www.behance.net/farhaanbeeharry" target="_blank" aria-label="Behance"><i class="fa-brands fa-behance"></i></a>
+            <a href="https://www.instagram.com/farhaan_beeharry/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/23057076881/" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../js/project.js"></script>
+  </body>
+</html>

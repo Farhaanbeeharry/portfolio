@@ -1,5 +1,5 @@
 // Build script (run once with Node): extracts the article body + hero fields
-// from the 21 static project subpages and writes src/data/projects.js.
+// from the 22 static project subpages and writes src/data/projects.js.
 // The extracted bodies keep their original HTML/CSS classes (showcase.css,
 // project.css) so the React ProjectPage renders identically.
 //
@@ -35,6 +35,7 @@ const PROJECTS = {
   fruitopia: ["Fruitopia", "mobile ui_ux"],
   nexstock: ["NexStock", "web mobile ui_ux"],
   lokal: ["Lokal", "web ui_ux"],
+  perfect_garment: ["Perfect Garment", "mobile ui_ux"],
 };
 const ORDER = Object.keys(PROJECTS);
 
@@ -67,7 +68,11 @@ function rewriteAssets(html, slug) {
     /((?:src|href)=")((?:\.\.\/\.\.\/)?)([^"]+?)(")/g,
     (all, q, parent, rest, endq) => {
       if (/^(https?:|mailto:|tel:|#|\/|\$)/.test(rest)) return all;
-      const target = parent ? rest : `${slug}/${rest}`;
+      // `portfolio/` is part of the URL, not just of the repo path: only /img,
+      // /assets and /portfolio are served as static directories, so the bare
+      // `/<slug>/icon.png` this produced before fell through to the SPA and
+      // rendered as a broken image on every page whose showcase uses a logo.
+      const target = parent ? rest : `portfolio/${slug}/${rest}`;
       return `${q}/${target}${endq}`;
     }
   );
