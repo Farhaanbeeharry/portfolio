@@ -81,7 +81,10 @@ function rewriteAssets(html, slug) {
 const results = [];
 for (const slug of ORDER) {
   const file = path.join(PORTFOLIO, slug, "index.html");
-  const s = fs.readFileSync(file, "utf8");
+  // Normalise line endings on read: with core.autocrlf the pages check out
+  // CRLF on Windows, and each CR would land inside the JSON body strings as
+  // a literal \r, rewriting all 22 entries on an unrelated rerun.
+  const s = fs.readFileSync(file, "utf8").replace(/\r\n/g, "\n");
 
   const title = grab(s, /<title>(.*?)<\/title>/);
   const desc = grab(s, /name="description"\s+content="(.*?)"/);
