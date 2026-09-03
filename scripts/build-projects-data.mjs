@@ -28,7 +28,7 @@ const PROJECTS = {
   blaugrana: ["Blaugrana", "web ui_ux"],
   teamtoss: ["TeamToss", "web ui_ux"],
   staybleu: ["StayBleu", "web ui_ux"],
-  concept_habitat: ["Concept Habitat CRM", "web ui_ux"],
+  concept_habitat: ["Concept Habitat", "web mobile ui_ux"],
   motogate: ["MotoGate", "mobile"],
   pryowl: ["Pryowl", "web ui_ux"],
   "panda-pick": ["PandaPick", "web ui_ux"],

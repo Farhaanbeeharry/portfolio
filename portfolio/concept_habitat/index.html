@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Concept Habitat CRM — Farhaan Beeharry</title>
-    <meta name="description" content="Concept Habitat CRM — a staff-only CRM and visitor-registration system for an exclusive home &amp; lifestyle showroom event, built with React, Vite and Supabase with role-based access and a follow-up pipeline." />
-    <meta name="keywords" content="concept habitat, crm, visitor registration, react, vite, supabase, dashboard, lead pipeline, mauritius" />
+    <title>Concept Habitat — Farhaan Beeharry</title>
+    <meta name="description" content="Concept Habitat — three products for one Mauritian home &amp; lifestyle company: the public website with a hardened PHP contact form, the After Hours event CRM in React, Vite, Tailwind and Supabase with a conditional form builder and row-level security, and the internal Flutter field-operations app for seven roles — landed additively on the live database the CRM was already running on." />
+    <meta name="keywords" content="concept habitat, mauritius, rose hill, showroom, crm, visitor registration, event crm, react, vite, tailwind, supabase, postgresql, row level security, edge functions, realtime, flutter, dart, clean architecture, bloc, go_router, site survey, quotations, installations, php, phpmailer, static website, field operations" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,66 +79,403 @@
         <div class="container">
           <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
 
-          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web</div>
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web &amp; Mobile</div>
 
-          <h1 class="pp-title reveal"><span class="g">Concept Habitat CRM</span></h1>
+          <h1 class="pp-title reveal"><span class="g">Concept Habitat</span></h1>
 
           <div class="pp-meta reveal">
-            <span><i class="fa-regular fa-calendar"></i> June 2026</span>
+            <span><i class="fa-regular fa-calendar"></i> October 2025 — September 2026</span>
             <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
           <div class="pp-tags reveal">
-            <span>web app</span>
-            <span>crm</span>
+            <span>website</span>
+            <span>event crm</span>
+            <span>mobile app</span>
             <span>react</span>
+            <span>flutter</span>
             <span>supabase</span>
-            <span>dashboard</span>
+            <span>postgresql</span>
           </div>
 
-          <figure class="pp-cover reveal"><img src="background.svg" alt="Concept Habitat CRM Project Cover" /></figure>
+          <figure class="pp-cover reveal"><img src="background.svg" alt="Concept Habitat Project Cover" /></figure>
         </div>
       </section>
 
       <article class="pp-article">
         <div class="container">
           <div class="col-inner">
-            
+
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        <strong>Concept Habitat "After Hours"</strong> is a
-                        staff-only CRM and visitor-registration system built for
-                        an exclusive home &amp; lifestyle showroom event in
-                        Mauritius. A public form captures visitor profiles — with
-                        photo and PDF attachments — while staff log in to a dark,
-                        luxury dashboard to score leads, run a follow-up pipeline
-                        and export insights.
+                        <strong>Concept Habitat</strong> is a home &amp;
+                        lifestyle company trading since 1986 out of a showroom on
+                        Pasteur Avenue in Rose&nbsp;Hill, Mauritius. It sells and
+                        installs decorative surfaces and finishes — SPC flooring,
+                        wall cladding, bamboo charcoal board, decorative acrylic,
+                        aluminium profiles, faux stone, glass blocks, water
+                        features, artificial plants — for residential,
+                        commercial, industrial and corporate projects, with
+                        architects, interior designers, landscapers and builders
+                        in house.
 
                         <br /><br />
-                        Role-based access (Super Admin / Admin / Staff) is
-                        enforced with Supabase Row-Level Security, so every user
-                        sees only what their role allows. Built with React + Vite
-                        and deployed on Vercel, the tool turns a single evening of
-                        walk-in guests into a clean, measurable sales pipeline.
+                        I built three products for them across eleven months, and
+                        each one exists because the one before it was in use:
 
-                        <br /><br />
-                        Key features:
                         <ul>
-                          <li>Custom registration form builder with conditional field visibility</li>
-                          <li>Role-based access (RLS: Super Admin / Admin / Staff)</li>
-                          <li>Executive dashboard with live KPIs and 7-day trend</li>
-                          <li>Searchable / filterable visitors table with bulk CSV &amp; XLSX export</li>
-                          <li>Hot / warm high-priority leads board</li>
-                          <li>Kanban follow-up pipeline (Not Contacted → Contacted → Quotation Sent → Won / Lost)</li>
-                          <li>Visitor profiles with timestamped notes &amp; attachments</li>
-                          <li>Performance analytics (conversion rate, top products, staff ranking)</li>
-                          <li>Field-level audit log</li>
-                          <li>OTP password reset</li>
-                          <li>Soft-delete / archive with restore</li>
+                          <li><strong>The public website</strong> (October 2025) — the storefront: five pages, an eighteen-category catalogue, and a contact form that actually delivers</li>
+                          <li><strong>After Hours — the event CRM</strong> (June 2026) — a staff-only React&nbsp;+&nbsp;Supabase CRM with a public visitor-registration form, built for an invite-only evening at the showroom</li>
+                          <li><strong>The internal mobile app</strong> (September 2026) — a Flutter application covering the whole business: showroom, sales, design, survey, quotation and installation teams</li>
                         </ul>
 
-                        <!-- ================= UI SHOWCASE ================= -->
+                        The third is the reason this is one case file rather than
+                        three. The CRM was live, with real visitor records on it,
+                        when the mobile app's schema had to land on the
+                        <em>same</em> Supabase project — and the two applications
+                        do not describe a person the same way. That migration is
+                        the most interesting thing on this page, and it is
+                        section&nbsp;4.
+
+                        <br /><br />
+                        <strong>Common ground.</strong> All three carry the same
+                        brand: a single brass-gold accent over a warm neutral on
+                        the website (<code>#bb9a65</code>), copper over near-black
+                        in the CRM (<code>#c19a6b</code>), gold over deep green in
+                        the app (<code>#c4a452</code>). Two of the three run on
+                        Supabase, one Postgres project, one set of Row Level
+                        Security policies.
+
+                        <!-- ══════════════════════ 1 · WEBSITE ══════════════════════ -->
+                        <br /><br />
+                        <strong>1 · The public website</strong>
+                        <br />
+                        A hand-built static site on a Bootstrap&nbsp;5 theme —
+                        no CMS, no build step, deployed to shared cPanel hosting.
+                        Five pages: home, about us, products, contact us, and a
+                        coming-soon page holding the e-catalogue slot until the
+                        catalogue itself is ready.
+
+                        <br /><br />
+                        The home page runs a three-slide hero, each slide with
+                        its own line and its own <em>Book Consult</em> call to
+                        action (“Living spaces reinvented”, “Elevating every
+                        space”, “Greenery and serenity”); a
+                        <em>since&nbsp;1986</em> studio section that names the
+                        four segments the company works in — commercial,
+                        industrial, residential, corporate; the four-step process
+                        in the company's own words (Inquiry &amp; Advisory
+                        Meeting → Client orientation → Confirmation Notice →
+                        Delivery &amp; Installation); six reasons-to-choose
+                        cards; a founder's note from Jemilin&nbsp;E.&nbsp;William;
+                        and a newsletter sign-up.
+
+                        <br /><br />
+                        The products page carries eighteen categories, each
+                        photographed — aluminium profile, artificial plants,
+                        bamboo charcoal board, carpet tiles, decorative acrylic
+                        sheets, faux stone, flexible concrete stone, fluted bars,
+                        flower pots, foam blocks, glass blocks, pebbles &amp;
+                        stones, PU cladding, simulated fireplace, SPC flooring,
+                        wall dividers, wallpapers, water fountain — and the same
+                        eighteen are mirrored into the header's mega-menu, so a
+                        visitor can jump to a material from any page. The about
+                        page carries a draggable <strong>before/after
+                        comparison slider</strong> over a real installation,
+                        which is the single most persuasive thing on the site and
+                        cost about twenty lines of jQuery.
+
+                        <br /><br />
+                        Motion is deliberate rather than ambient: GSAP with
+                        ScrollTrigger and SplitText for the headline reveals, AOS
+                        for section entrances, Swiper for the sliders, Isotope for
+                        the filterable grids, Magnific Popup for lightboxes,
+                        Morphext for the rotating words. Contact details — Pasteur
+                        Avenue, <code>+230 490 6060</code>,
+                        <code>info@concepthabitat.mu</code> — sit in the
+                        pre-header on every page, alongside a maps embed,
+                        WhatsApp and Facebook on the contact page.
+
+                        <br /><br />
+                        <em>The contact form is the only server-side part of the
+                        site, and it is the part that had to be right:</em>
+                        <ul>
+                          <li><code>send.php</code> answers <strong>JSON only</strong>. Display errors are off and everything is written to a log file instead, because a single PHP warning printed above the payload breaks the response the page is parsing — and the visitor sees a form that failed for no reason</li>
+                          <li>Every field is validated twice: jQuery Validate in the browser, then again on the server — required, format, and a length cap per field (100 for names, 255 for email and subject, 30 for phone, 2,000 for the message)</li>
+                          <li>Input is normalised rather than trusted: tags stripped, whitespace collapsed, the phone reduced to digits and the handful of legal symbols, the message forced to plain text with normalised line breaks</li>
+                          <li>A <strong>honeypot</strong> field: if it comes back filled, the response is a cheerful success and nothing is sent — a bot is never told that it failed</li>
+                          <li>Delivery is authenticated SMTPS on port 465 through PHPMailer, from a dedicated <code>contact-form@</code> mailbox to the company inbox, with the sender's own address set as <strong>Reply-To</strong> — so replying from a phone answers the customer, not the form</li>
+                          <li>The notification email is a hand-built responsive HTML table in the brand's cream palette, carrying the submission plus the timestamp, IP and user agent</li>
+                          <li>Two production faults were found and fixed after launch, both worth naming: the form could send twice on a slow connection, and an unbounded SMTP timeout left the request hanging rather than failing</li>
+                        </ul>
+
+                        <!-- ================ UI SHOWCASE · WEBSITE ================ -->
+                        <div class="pf-wrap"
+                          style="--brand:#bb9a65;--brand-ink:#ffffff;--stage:#2d2a26;--bg:#f8f5f0;--surface:#ffffff;--card:#ffffff;--text:#2d2a26;--muted:#6e6a63;--line:#eee7db;--ok:#3f7d54;--warn:#8a6a1f;--danger:#a33b2f;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">The storefront</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            The home page and the eighteen-category catalogue —
+                            recreated from the live site and its single brass
+                            accent on a warm neutral ground.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: home -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar" style="background:#efeae1;border-bottom-color:#e3dbcd">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url" style="background:#ffffff;color:#8a857c">concepthabitat.mu</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-xs pf-mb" style="color:var(--muted)">
+                                      <span><i class="fas fa-envelope"></i> info@concepthabitat.mu</span>
+                                      <span><i class="fas fa-location-dot"></i> Pasteur Avenue, Rose Hill</span>
+                                      <span><i class="fas fa-phone"></i> +230 490 6060</span>
+                                    </div>
+
+                                    <div class="pf-between pf-mb" style="border-bottom:1px solid var(--line);padding-bottom:10px">
+                                      <span class="pf-row" style="gap:7px">
+                                        <i class="fas fa-house-chimney" style="color:var(--brand)"></i>
+                                        <span class="pf-t pf-strong" style="font-size:11.5px;letter-spacing:.07em;text-transform:uppercase">Concept Habitat</span>
+                                      </span>
+                                      <div class="pf-row pf-xs" style="color:var(--muted);gap:14px">
+                                        <span>Home</span>
+                                        <span style="color:var(--brand);font-weight:700">Products <i class="fas fa-chevron-down pf-xs"></i></span>
+                                        <span>About</span>
+                                        <span>E-Catalogue</span>
+                                      </div>
+                                      <span class="pf-btn pf-xs" style="padding:7px 13px">Book Consult</span>
+                                    </div>
+
+                                    <div class="pf-card" style="background:#efeae1;border-color:#e3dbcd">
+                                      <div class="pf-kicker" style="font-size:10px">Since 1986</div>
+                                      <div class="pf-t-lg pf-mt" style="font-size:22px;line-height:1.2">Living spaces<br />reinvented</div>
+                                      <div class="pf-muted pf-mt">Where design meets serenity and style.</div>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-btn">Book Consult</span>
+                                        <span class="pf-btn-outline">Our products</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-grid4">
+                                      <div class="pf-stat"><div class="n pf-xs" style="font-size:12px">Commercial</div></div>
+                                      <div class="pf-stat"><div class="n pf-xs" style="font-size:12px">Industrial</div></div>
+                                      <div class="pf-stat"><div class="n pf-xs" style="font-size:12px">Residential</div></div>
+                                      <div class="pf-stat brand"><div class="n pf-xs" style="font-size:12px">Corporate</div></div>
+                                    </div>
+
+                                    <div class="pf-row wrap pf-mt" style="gap:16px">
+                                      <span class="pf-muted pf-xs"><i class="fas fa-comments" style="color:var(--brand)"></i> Expert guidance</span>
+                                      <span class="pf-muted pf-xs"><i class="fas fa-truck-fast" style="color:var(--brand)"></i> On-time delivery</span>
+                                      <span class="pf-muted pf-xs"><i class="fas fa-heart" style="color:var(--brand)"></i> Customer care</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Home — three hero slides, four segments</div>
+                            </div>
+
+                            <!-- Frame 2: products + process -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar" style="background:#efeae1;border-bottom-color:#e3dbcd">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url" style="background:#ffffff;color:#8a857c">concepthabitat.mu/products</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-main">
+                                    <div class="pf-appbar">
+                                      <div class="pf-t-lg">Products</div>
+                                      <span class="pf-badge">18 categories</span>
+                                    </div>
+
+                                    <div class="pf-grid3 pf-mb">
+                                      <div class="pf-card" style="margin:0">
+                                        <div class="pf-iconbox pf-mb"><i class="fas fa-layer-group"></i></div>
+                                        <div class="pf-t pf-strong">SPC Flooring</div>
+                                        <div class="pf-muted pf-xs">Rigid core, click-lock</div>
+                                      </div>
+                                      <div class="pf-card" style="margin:0">
+                                        <div class="pf-iconbox pf-mb"><i class="fas fa-cubes"></i></div>
+                                        <div class="pf-t pf-strong">Faux Stone</div>
+                                        <div class="pf-muted pf-xs">Flexible concrete stone</div>
+                                      </div>
+                                      <div class="pf-card" style="margin:0">
+                                        <div class="pf-iconbox pf-mb"><i class="fas fa-leaf"></i></div>
+                                        <div class="pf-t pf-strong">Artificial Plants</div>
+                                        <div class="pf-muted pf-xs">Green walls, planters</div>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">How we work</div>
+                                      <div class="pf-row" style="align-items:stretch;gap:8px">
+                                        <div class="pf-stat" style="flex:1"><div class="l">01</div><div class="pf-t pf-strong pf-xs">Advisory</div></div>
+                                        <div class="pf-stat" style="flex:1"><div class="l">02</div><div class="pf-t pf-strong pf-xs">Orientation</div></div>
+                                        <div class="pf-stat" style="flex:1"><div class="l">03</div><div class="pf-t pf-strong pf-xs">Confirmation</div></div>
+                                        <div class="pf-stat brand" style="flex:1"><div class="l">04</div><div class="pf-t pf-strong pf-xs" style="color:var(--brand-ink)">Installation</div></div>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-input">
+                                      <i class="fas fa-envelope"></i> Subscribe for updates
+                                      <span class="pf-btn pf-xs" style="margin-left:auto;padding:6px 12px">Subscribe</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Catalogue &amp; process</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">HTML5</span>
+                            <span class="pf-chip">Bootstrap 5</span>
+                            <span class="pf-chip">jQuery</span>
+                            <span class="pf-chip">GSAP + ScrollTrigger</span>
+                            <span class="pf-chip">SplitText</span>
+                            <span class="pf-chip">AOS</span>
+                            <span class="pf-chip">Swiper</span>
+                            <span class="pf-chip">Isotope</span>
+                            <span class="pf-chip">TwentyTwenty</span>
+                            <span class="pf-chip">Magnific Popup</span>
+                            <span class="pf-chip">PHP</span>
+                            <span class="pf-chip">PHPMailer</span>
+                            <span class="pf-chip">SMTPS</span>
+                            <span class="pf-chip">cPanel</span>
+                          </div>
+                        </div>
+                        <!-- ============== END UI SHOWCASE · WEBSITE ============== -->
+
+                        <!-- ══════════════════════ 2 · EVENT CRM ══════════════════════ -->
+                        <br />
+                        <strong>2 · After Hours — the event CRM</strong>
+                        <br />
+                        In June 2026 Concept Habitat ran <em>After Hours</em>, an
+                        invite-only evening at the showroom. A guest list on paper
+                        is a guest list nobody follows up. The brief was two
+                        sentences long: capture every visitor at the door, and be
+                        able to work the leads the morning after.
+
+                        <br /><br />
+                        It is a React&nbsp;18 + Vite&nbsp;5 + React&nbsp;Router&nbsp;6
+                        single-page app on Tailwind CSS, backed by Supabase — Auth,
+                        Postgres, Row Level Security, Edge Functions, Realtime and
+                        Storage — deployed to Vercel with an SPA rewrite so
+                        <code>/register/:slug</code> and
+                        <code>/visitors/:id</code> resolve on a cold load. The
+                        “After Hours” look is near-black surfaces under a copper
+                        accent, and the whole token set — roughly fifty Material
+                        colour roles, the type scale, the spacing and radius
+                        scales — is lifted into <code>tailwind.config.js</code>,
+                        so the design system <em>is</em> the build rather than a
+                        stylesheet sitting next to it.
+
+                        <br /><br />
+                        <strong>The form is configured, not coded</strong>
+                        <br />
+                        <code>/register/:slug</code> is public and carries no app
+                        chrome at all — a guest at the door sees a form, not a
+                        product. What that form asks is edited in the app:
+                        <ul>
+                          <li>Nine field types: short and long text, email, phone, number, single and multiple choice, dropdown, yes/no, checkbox</li>
+                          <li>Each field takes a required toggle, an optional <strong>CRM mapping</strong> (“maps to” a real column, so the answer lands in the pipeline rather than in a blob), options typed by hand or sourced live from the Products / Project Stages / Lead Categories taxonomies, and <strong>conditional visibility</strong> — show this only when question X equals Y</li>
+                          <li>Every event has its own template or inherits the global one; a new event can inherit, copy the global as a starting point, or start from scratch</li>
+                          <li>Answers land <em>twice</em>: mapped fields into their real columns, and every answered question into a <code>form_data</code> JSONB snapshot. A question that existed on the night of the event is still readable months after the template moved on — which is the whole reason the snapshot is there</li>
+                          <li>Unmapped custom questions are not second-class: they appear on the visitor profile, in the CSV and Excel exports, and in Analytics as categorical breakdowns</li>
+                          <li>Each event gets a shareable link and a <strong>QR code</strong>, downloadable as PNG or JPG so it can go on a printed card at the entrance</li>
+                        </ul>
+
+                        <strong>Two triggers do the security work the UI cannot</strong>
+                        <br />
+                        Registration numbers are
+                        <code>CH-AH-2026-000001</code>, allocated from a Postgres
+                        sequence inside a <code>before insert</code> trigger — so
+                        two guests registering on two tablets at the same moment
+                        always get distinct numbers, and a number is never
+                        reachable from the client.
+
+                        <br /><br />
+                        The second trigger,
+                        <code>sanitize_public_visitor()</code>, is the one that
+                        matters. It runs on every insert and asks a single
+                        question: is <code>auth.uid()</code> null? If it is, the
+                        row came from the public form, and lead rating,
+                        follow-up status, assigned staff, assignment,
+                        follow-up date and <code>created_by</code> are all forced
+                        back to their defaults. The public form cannot post itself
+                        a hot rating or a staff owner, whatever a crafted request
+                        contains — and the frontend does not have to be trusted to
+                        prevent it.
+
+                        <br /><br />
+                        <strong>Three roles, enforced in the database</strong>
+                        <ul>
+                          <li><strong>Super Admin</strong> — everything, plus the only role that can add users, set roles, deactivate accounts and reset passwords</li>
+                          <li><strong>Admin</strong> — the full CRM: assignment, analytics, reports, exports, event links, settings and the staff performance view</li>
+                          <li><strong>Staff</strong> — register and work visitors, scoped by RLS to <em>only the visitors assigned to them</em></li>
+                          <li>Anonymous users may <strong>insert</strong> a visitor and only for an <em>active</em> event, and may read no visitor at all. <code>form_settings</code> and active <code>events</code> are publicly readable because the form needs its own configuration — configuration only, never PII</li>
+                          <li>The UI gates mirror the policies for a decent experience; the policies are what actually enforce them</li>
+                        </ul>
+
+                        Creating a staff account needs the service-role key, and a
+                        service-role key in a browser bundle is a service-role key
+                        in public. So “Add Staff” calls a Supabase
+                        <strong>Edge Function</strong> that verifies the caller is
+                        an active Super Admin before it touches the Admin API.
+                        Everything that <em>doesn't</em> need the elevated key —
+                        role changes, deactivation, password resets — keeps working
+                        whether or not that function is deployed, and the button
+                        says so rather than failing silently.
+
+                        <br /><br />
+                        Around that: new accounts are flagged
+                        <code>must_change_password</code> and routed to a Set
+                        Password screen on first sign-in; <em>Forgot password</em>
+                        is a six-digit OTP flow (email → code → new password)
+                        driven by the <code>{{ .Token }}</code> reset template;
+                        branded HTML templates for signup, invite, magic link,
+                        email change and reset all live in the repo rather than
+                        only in a dashboard nobody backs up; and the seeded Super
+                        Admin is protected — it cannot be deactivated or
+                        duplicated, because an event CRM locked out of its own
+                        admin account at 7&nbsp;pm is not recoverable.
+
+                        <br /><br />
+                        <strong>Working the leads</strong>
+                        <ul>
+                          <li><strong>Dashboard</strong> — total registrations, today's count, conversion, the hot/warm/cold split, follow-ups due and overdue, visitors by day for the last seven days, visitors by district, top interested products and project stage</li>
+                          <li><strong>Potential Leads</strong> — the hot and warm board, uncontacted first, because that is the only order that list is ever read in</li>
+                          <li><strong>Follow-Up</strong> — the pipeline: Not Contacted → Contacted → Quotation Sent → Site Visit → Closed Sale, with Won and Lost as the two ways out</li>
+                          <li><strong>Visitors</strong> — search plus a side-panel filter set, sortable columns, twenty-five per page, row selection with bulk export and, for admins, bulk archive</li>
+                          <li><strong>Visitor profile</strong> — the mapped CRM fields, every custom answer, and an append-only notes timeline where a note can carry a photo or a PDF up to 10&nbsp;MB</li>
+                          <li><strong>Analytics</strong> — total visitors, conversion rate, most requested product, districts covered, then breakdowns by day, staff, product, district, profession and project stage</li>
+                          <li><strong>Reports</strong> — filter by event plus date, district, staff, status and interest; exports are named per event so three downloads in a folder are still tellable apart</li>
+                          <li><strong>Audit log</strong> — database triggers record every insert, update, delete and archive on visitors, events, users and settings: who, when, and a <strong>field-level before/after diff</strong></li>
+                          <li><strong>Staff management, event links and settings</strong> — the taxonomy lists and the global form template</li>
+                        </ul>
+
+                        <strong>The operational details</strong>
+                        <ul>
+                          <li>CSV, Excel and PDF exports share <strong>one column definition</strong> — twenty-two columns, from registration number to follow-up date — so the three formats can never disagree about what an export contains</li>
+                          <li><code>xlsx</code> and <code>jsPDF</code> sit behind a dynamic <code>import()</code>: someone who only signs in and looks at the dashboard never downloads a spreadsheet engine</li>
+                          <li>Deleting is <strong>archiving</strong>. Archived visitors drop out of lists, dashboards, reports, analytics and the sidebar badges, and are restored from Records → Archived. Only an admin can delete for real</li>
+                          <li>The sidebar badges — due follow-ups, uncontacted hot and warm leads — run on Supabase <strong>Realtime</strong>, so a colleague's update on the showroom floor changes your count without a refresh</li>
+                          <li><code>setup.sql</code> is a single file that resets, recreates and seeds the entire database: schema, triggers, RLS policies, the registration sequence, the storage bucket, the realtime publication and the first Super Admin. A demo environment you cannot rebuild in one command is a demo environment nobody rebuilds</li>
+                          <li>One bug worth naming because it is the classic one: the visitors-by-day chart bucketed on UTC and pushed every late registration into the following day. An event that runs past 8&nbsp;pm in UTC+4 is exactly where that shows up. It buckets in local time now</li>
+                        </ul>
+
+                        <!-- ================== UI SHOWCASE · CRM ================== -->
                         <div class="pf-wrap"
                           style="--brand:#c19a6b;--brand-ink:#1a1512;--stage:#0b0d0d;--bg:#121414;--surface:#1e2020;--card:#1c1e1e;--text:#e2e2e2;--muted:#9a9a97;--line:#3a3536;--ok:#7bd88f;--warn:#eabf8d;--danger:#ffb4ab;">
                           <div class="pf-head">
@@ -146,13 +483,15 @@
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            From the executive dashboard to the follow-up board —
-                            recreated from the app's real screens and colour
-                            system.
+                            The executive dashboard, the follow-up board, the
+                            visitors table with its bulk export, and the public
+                            form a guest fills in at the door — recreated from
+                            the CRM's real screens and its copper-on-black
+                            colour system.
                           </p>
 
                           <div class="pf-stage">
-                            <!-- Screen 1: Executive dashboard -->
+                            <!-- Frame 1: Executive dashboard -->
                             <div class="pf-frame" style="flex:1 1 560px">
                               <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
@@ -171,6 +510,7 @@
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-fire"></i></span> Leads</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Follow-Ups</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-pie"></i></span> Analytics</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-clock-rotate-left"></i></span> Audit</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-cog"></i></span> Settings</div>
                                   </div>
                                   <div class="pf-main">
@@ -232,7 +572,10 @@
                               <div class="pf-cap">Live KPIs &amp; trends</div>
                             </div>
 
-                            <!-- Screen 2: Follow-up pipeline -->
+                            <!-- Frame 2: Follow-up pipeline. No sidebar here on
+                                 purpose: four kanban columns each need ~130px
+                                 for their badge row, and the 150px rail leaves
+                                 only 436px, which clips the fourth column. -->
                             <div class="pf-frame" style="flex:1 1 560px">
                               <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
@@ -242,17 +585,6 @@
                                   <span class="pf-url">concept-habitat.app/follow-ups</span>
                                 </div>
                                 <div class="pf-viewport">
-                                  <div class="pf-side">
-                                    <div class="pf-brandrow">
-                                      <img src="logo.png" alt="Concept Habitat" style="height:18px" />
-                                    </div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-line"></i></span> Dashboard</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Visitors</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-fire"></i></span> Leads</div>
-                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Follow-Ups</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-pie"></i></span> Analytics</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-cog"></i></span> Settings</div>
-                                  </div>
                                   <div class="pf-main">
                                     <div class="pf-appbar">
                                       <div class="pf-t-lg">Follow-up pipeline</div>
@@ -329,7 +661,7 @@
                                       </div>
 
                                       <div class="pf-kcol">
-                                        <div class="h">Won <span>1</span></div>
+                                        <div class="h">Closed Sale <span>1</span></div>
                                         <div class="pf-kcard">
                                           <div class="pf-t pf-strong">Rahul V.</div>
                                           <div class="pf-muted">Architect</div>
@@ -345,30 +677,578 @@
                               </div>
                               <div class="pf-cap">Lead follow-up board</div>
                             </div>
+
+                            <!-- Frame 3: Visitors table + bulk export -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">concept-habitat.app/visitors</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-main">
+                                    <div class="pf-appbar">
+                                      <div class="pf-t-lg">Visitors</div>
+                                      <span class="pf-badge">512 records</span>
+                                    </div>
+
+                                    <div class="pf-row pf-mb">
+                                      <div class="pf-input" style="flex:1"><i class="fas fa-magnifying-glass"></i> Search name, mobile, reg #…</div>
+                                      <span class="pf-btn-outline"><i class="fas fa-filter"></i> Filters</span>
+                                    </div>
+
+                                    <div class="pf-between pf-mb" style="background:color-mix(in srgb, var(--brand) 14%, transparent);border-radius:9px;padding:8px 11px">
+                                      <span class="pf-t"><strong>3 selected</strong></span>
+                                      <div class="pf-row" style="gap:7px">
+                                        <span class="pf-tag">CSV</span>
+                                        <span class="pf-tag">XLSX</span>
+                                        <span class="pf-tag">PDF</span>
+                                        <span class="pf-badge danger">Archive</span>
+                                      </div>
+                                    </div>
+
+                                    <table class="pf-table">
+                                      <thead>
+                                        <tr>
+                                          <th>Reg #</th><th>Name</th><th>Profession</th><th>Lead</th><th>Status</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>…000487</td><td>Aarav S.</td><td>Architect</td>
+                                          <td><span class="pf-badge danger">Hot</span></td><td class="pf-muted">Not contacted</td>
+                                        </tr>
+                                        <tr>
+                                          <td>…000488</td><td>Léa M.</td><td>Homeowner</td>
+                                          <td><span class="pf-badge warn">Warm</span></td><td class="pf-muted">Contacted</td>
+                                        </tr>
+                                        <tr>
+                                          <td>…000489</td><td>Noah B.</td><td>Designer</td>
+                                          <td><span class="pf-badge danger">Hot</span></td><td class="pf-muted">Quotation sent</td>
+                                        </tr>
+                                        <tr>
+                                          <td>…000490</td><td>Rahul V.</td><td>Architect</td>
+                                          <td><span class="pf-badge ok">Won</span></td><td class="pf-muted">Closed sale</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+
+                                    <div class="pf-between pf-mt pf-muted pf-xs">
+                                      <span>Showing 1–25 of 512</span>
+                                      <span>Page 1 of 21</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Visitors — filter, select, export</div>
+                            </div>
+
+                            <!-- Frame 4: Public registration form -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div style="text-align:center" class="pf-mb">
+                                      <img src="logo.png" alt="Concept Habitat" style="height:22px;width:auto" />
+                                      <div class="pf-kicker pf-mt" style="font-size:10px">After Hours 2026</div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Welcome — tell us about you</div>
+                                      <div class="pf-input pf-mb">Full name</div>
+                                      <div class="pf-input pf-mb">Mobile number</div>
+                                      <div class="pf-input">I am a… <i class="fas fa-chevron-down" style="margin-left:auto"></i></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-muted pf-xs pf-mb">Shown because “Do you have a project?” = Yes</div>
+                                      <div class="pf-row wrap" style="gap:6px">
+                                        <span class="pf-tag">SPC Flooring</span>
+                                        <span class="pf-tag">Wall Cladding</span>
+                                        <span class="pf-tag">Glass Blocks</span>
+                                        <span class="pf-tag">Water Features</span>
+                                      </div>
+                                    </div>
+
+                                    <span class="pf-btn block"><i class="fas fa-check"></i> Register</span>
+                                    <div class="pf-muted pf-xs pf-mt" style="text-align:center">CH-AH-2026-000512</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Public form — conditional fields</div>
+                            </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">React 18</span>
-                            <span class="pf-chip">Vite</span>
+                            <span class="pf-chip">Vite 5</span>
+                            <span class="pf-chip">React Router 6</span>
                             <span class="pf-chip">Tailwind CSS</span>
                             <span class="pf-chip">Supabase</span>
-                            <span class="pf-chip">Edge Functions</span>
+                            <span class="pf-chip">PostgreSQL</span>
                             <span class="pf-chip">Row-Level Security</span>
-                            <span class="pf-chip">XLSX</span>
-                            <span class="pf-chip">jsPDF</span>
+                            <span class="pf-chip">Edge Functions</span>
+                            <span class="pf-chip">Realtime</span>
+                            <span class="pf-chip">Supabase Storage</span>
+                            <span class="pf-chip">xlsx</span>
+                            <span class="pf-chip">jsPDF + autotable</span>
+                            <span class="pf-chip">qrcode.react</span>
                             <span class="pf-chip">Vercel</span>
                           </div>
                         </div>
-                        <!-- =============== END UI SHOWCASE =============== -->
+                        <!-- ================ END UI SHOWCASE · CRM ================ -->
 
+                        <!-- ══════════════════════ 3 · MOBILE APP ══════════════════════ -->
                         <br />
-                        This is a private, invite-only tool built for a single
-                        event — there are no public links or app-store listings.
+                        <strong>3 · The internal mobile app</strong>
+                        <br />
+                        The CRM answered one evening. The business runs every day,
+                        and the parts of it that were still on paper were the
+                        parts that happen away from a desk: the site survey in a
+                        half-built house, the installation crew's sign-off, the
+                        appointment nobody wrote down. The app is
+                        <strong>Flutter&nbsp;3.47 / Dart&nbsp;3.13</strong> on the
+                        same Supabase backend — Android and iOS, iOS&nbsp;15
+                        deployment target, application id
+                        <code>mu.concepthabitat.concept_habitat</code>. Seventeen
+                        features, thirty-six screens, twenty-two blocs and cubits,
+                        around 225 Dart files.
 
+                        <br /><br />
+                        <strong>What it covers</strong>
+                        <ul>
+                          <li><strong>Dashboard</strong> — role-aware landing: today's appointments, assigned jobs, live counters, quick actions</li>
+                          <li><strong>Visitors</strong> — showroom walk-ins and leads: capture, qualification, temperature, follow-up, and conversion into a customer</li>
+                          <li><strong>Customers &amp; Projects</strong> — customer records with multiple projects each, addresses, documents, notes and an activity timeline</li>
+                          <li><strong>Calendar</strong> — month and week views, appointments with attendees, attachments, reminders and completion outcomes</li>
+                          <li><strong>Site Surveys</strong> — the guided wizard: areas, measurements, conditions, risks, products, photos, GPS and sign-off</li>
+                          <li><strong>Product Library</strong> — categories, products, variants, images, documents, applications, properties, accessories and related items</li>
+                          <li><strong>Customer Selections</strong> — what a customer chose, per customer or per project, feeding the quotation</li>
+                          <li><strong>Quotations</strong> — line items, discount, VAT, totals, and a status path from draft through sent to accepted or declined</li>
+                          <li><strong>Installations</strong> — scheduling, crew assignment, start and complete workflow, before/during/after evidence photos and sign-off</li>
+                          <li><strong>Inspiration Gallery</strong> — field captures linked to a customer, a project or a product</li>
+                          <li><strong>Reports</strong> — revenue, conversion funnel, visitor analytics, operations, product selections and employee activity</li>
+                          <li><strong>Notifications</strong> — an in-app centre plus Firebase Cloud Messaging and local reminders</li>
+                          <li><strong>Administration</strong> — employees and roles, company settings, quotation defaults and the reference picklists</li>
+                        </ul>
+
+                        <strong>Seven roles, enforced twice</strong>
                         <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
-                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
+                        Administrator, executive, operations, sales, designer,
+                        technician, delivery. Around forty-five named capabilities
+                        live in one <code>AppPermission</code> enum, and
+                        <code>AppPermission.forRole</code> is the single table
+                        that grants them. <code>PermissionScope</code> exposes the
+                        set, <code>PermissionGate</code> hides or disables the
+                        widget, and — the part that matters — <strong>the router
+                        redirects off the same table</strong>. A capability moves
+                        between roles in one place, and the navigation, the
+                        buttons and the deep links all move with it. Row Level
+                        Security in Postgres is still the real boundary; the enum
+                        mirrors it rather than replacing it.
+
+                        <br /><br />
+                        Sign-up is disabled by design
+                        (<code>enable_signup = false</code>): employees are
+                        invited, never self-registered. A trigger promotes the
+                        <em>first</em> account to administrator and starts
+                        everyone after that as <code>sales</code>. Inviting needs
+                        the service-role key, so it lives in an
+                        <code>invite-employee</code> Edge Function that checks the
+                        caller is an active administrator first — and until that
+                        function is deployed, the Invite button explains exactly
+                        that instead of throwing, and an administrator can still
+                        invite from the Supabase dashboard. A separate role-guard
+                        trigger refuses a role change from anybody but an
+                        administrator, so the check exists even for a caller who
+                        never opens the app.
+
+                        <br /><br />
+                        <strong>The database is the API</strong>
+                        <ul>
+                          <li>Fourteen ordered migrations, roughly 5,000 lines, <strong>42 tables</strong>. Applied in filename order, because later files depend on earlier ones, and the last one is re-runnable reference data (<code>on conflict do nothing</code>)</li>
+                          <li>Thirty-odd enums, so the business vocabulary lives in the schema rather than in string comparisons: visit sources (walk-in, <em>After Hours</em>, Salon de la Maison, Facebook, Instagram, website, phone call, referral), project phases (lead → site survey → design meeting → quotation → installation → completed), thirteen appointment types, twelve measurement units from mm through m³, sqft, piece, set and kg</li>
+                          <li>Transactional workflows are database functions — <code>convert_visitor_to_customer</code>, <code>complete_site_survey</code>, <code>start_installation</code>, <code>complete_installation</code>, <code>complete_appointment</code>, <code>archive_record</code>, <code>restore_record</code> — so a dropped connection in a house with one bar of signal cannot leave a half-converted visitor behind</li>
+                          <li>Quotation money is computed <em>in the database</em>, on a trigger: subtotal summed from the items, discount applied by percent, VAT at a rate <strong>stored per quotation</strong> and defaulted to 0.15 rather than hard-coded — so a future rate change does not silently rewrite last year's documents — each step rounded to two decimals. The app never posts a total it worked out itself</li>
+                          <li><code>dashboard_summary</code> plus six report functions (revenue, conversion, visitors, operations, product selections, employee activity) do the aggregation in Postgres, so a report screen is one round trip rather than a fan-out of queries</li>
+                          <li>Soft deletes throughout (<code>deleted_at</code>), with partial unique indexes so deleting a quotation releases its reference number instead of reserving it forever</li>
+                          <li>An <code>activity_log</code> and an <code>audit_log</code>, both written by triggers and by a shared <code>log_activity</code> helper — never by the client</li>
+                        </ul>
+
+                        <strong>The eight-step survey wizard</strong>
+                        <br />
+                        Information → Site details → Areas → Measurements →
+                        Conditions → Risks → Products → Review. Measurements hang
+                        off areas, so the measurements step sends you back to
+                        Areas when there are none rather than presenting an empty
+                        sheet and letting you wonder what you did wrong. Photos
+                        and a GPS position are captured on site, access is rated
+                        easy / moderate / difficult, risks carry a priority,
+                        products are attached straight out of the Product Library,
+                        and completion goes through
+                        <code>complete_site_survey</code> so the survey, its
+                        media and its status change together. Progress is
+                        persisted locally by <code>DraftService</code>, because a
+                        survey is taken standing up, in a building site, on a
+                        battery.
+
+                        <br /><br />
+                        <strong>Storage, scoped by folder</strong>
+                        <br />
+                        Eight buckets: <code>product-media</code> and
+                        <code>profile-images</code> public;
+                        <code>product-documents</code>,
+                        <code>survey-media</code>,
+                        <code>inspiration-media</code>,
+                        <code>installation-evidence</code>,
+                        <code>appointment-files</code> and
+                        <code>project-documents</code> private. Objects are stored
+                        under a folder named after the owning record and the
+                        storage policies authorise on that folder — so a
+                        technician assigned to one job cannot read another job's
+                        evidence photos, which is the kind of thing a signed URL
+                        alone will not give you.
+
+                        <br /><br />
+                        <strong>Failing well</strong>
+                        <ul>
+                          <li>Every repository call returns <code>Result&lt;T&gt;</code> — <code>Success</code> or <code>FailureResult</code> — and never throws. <code>BaseRepository.guard()</code> checks connectivity, runs the call and maps Postgres error codes to typed <code>Failure</code>s, so a unique violation and a dropped connection arrive at the UI as two different messages instead of one “something went wrong”</li>
+                          <li>Online-first with local drafts: connectivity is watched, an offline banner appears when it drops, writes fail with a retryable message, form and survey progress survives, and media uploads queue for retry</li>
+                          <li>With <code>.env</code> still empty the app <strong>starts normally</strong> and shows a guided setup screen naming exactly what is missing — rather than crashing on a null client. It also says that <code>.env</code> is a bundled asset and needs a restart rather than a hot reload, which is the thing everybody gets wrong once</li>
+                          <li>Firebase Cloud Messaging is fully wired, but until the config files exist <code>NotificationService.pushAvailable</code> stays <code>false</code>, the in-app notification centre and the local appointment reminders keep working, and nothing crashes. The Gradle plugin is applied <em>only</em> when <code>google-services.json</code> is actually present, so a fresh clone builds</li>
+                        </ul>
+
+                        <strong>Architecture and design</strong>
+                        <ul>
+                          <li>Feature-first Clean Architecture: every feature owns <code>domain/</code> (entities, repository contracts), <code>data/</code> (freezed models, Supabase implementations) and <code>presentation/</code> (cubits, pages, widgets), and nothing reaches across a sibling's data layer. <code>AuthBloc</code> owns the session; every other screen is a Cubit</li>
+                          <li><code>go_router</code> with guards and a tab shell, <code>get_it</code> + <code>injectable</code> for wiring, <code>freezed</code> + <code>json_serializable</code> for the models</li>
+                          <li>The palette is transcribed from the React prototype — near-black greens from <code>#030806</code> to <code>#0D1E14</code> under a gold accent <code>#C4A452</code>. The prototype's muted greys were too dark to read on those surfaces, so the four text tones were <em>lifted</em> into a visible ladder measuring 14.7:1, 6.5:1, 5.0:1 and 4.0:1 against the lightest surface: four distinguishable steps where every step still clears 4:1. <code>text_contrast_test.dart</code> holds those floors, so a later colour tweak fails the suite instead of quietly failing a reader</li>
+                          <li>Raleway for headings, Nunito Sans for body, five weights each, both bundled</li>
+                          <li><code>Breakpoints.of(context)</code> classifies the window as phone or tablet, portrait or landscape: phones get a bottom navigation bar, tablets a navigation rail, grids change column count, and <code>ContentColumn</code> caps line length so a tablet in landscape does not render 140-character lines</li>
+                          <li>The test suite covers what rots silently rather than what is easy to test: the permission table, quotation totals, the <code>Result</code> type, validators, the calendar's month grid, design-system overflow, empty-state layout, the auth screen's brand layout, and those contrast floors</li>
+                          <li><code>react/</code> stays in the repository as the original design prototype — the reference for UI, wording, colours and flows. It is not built, not shipped, and not modified by the Flutter app</li>
+                        </ul>
+
+                        <!-- ================ UI SHOWCASE · MOBILE APP ================ -->
+                        <div class="pf-wrap"
+                          style="--brand:#c4a452;--brand-ink:#17120a;--stage:#030806;--bg:#06100c;--surface:#0b1813;--card:#0d1e14;--text:#f0ece4;--muted:#a0a092;--line:rgba(255,255,255,0.10);--ok:#40a060;--warn:#c47840;--danger:#c0544a;">
+                          <div class="pf-head">
+                            <span class="pf-kicker">From showroom to site</span>
+                            <span class="pf-line"></span>
+                          </div>
+                          <p class="pf-sub">
+                            The role-aware dashboard, the eight-step survey
+                            wizard, a quotation with its totals computed in
+                            Postgres, and the reports screen — recreated from the
+                            app's real screens and the gold-on-green palette its
+                            contrast test defends.
+                          </p>
+
+                          <div class="pf-stage">
+                            <!-- Frame 1: Dashboard -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <img src="logo.png" alt="Concept Habitat" style="height:18px;width:auto" />
+                                      </div>
+                                      <span class="pf-badge">Sales</span>
+                                    </div>
+
+                                    <div class="pf-muted pf-mb">Good morning, Ridwaan</div>
+
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat brand"><div class="n">4</div><div class="l">Today</div></div>
+                                      <div class="pf-stat"><div class="n">12</div><div class="l">My leads</div></div>
+                                    </div>
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat"><div class="n">3</div><div class="l">Surveys due</div></div>
+                                      <div class="pf-stat"><div class="n">2</div><div class="l">Quotes sent</div></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Next appointment</div>
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-ruler-combined"></i></span>
+                                        <span class="grow">
+                                          <span class="pf-t pf-strong">Site survey · Flic en Flac</span>
+                                          <div class="pf-muted pf-xs">10:30 · Villa · L. Marot</div>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <span class="pf-btn block"><i class="fas fa-user-plus"></i> New visitor</span>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span class="active"><i class="fas fa-gauge-high"></i></span>
+                                    <span><i class="fas fa-users"></i></span>
+                                    <span><i class="fas fa-calendar-days"></i></span>
+                                    <span><i class="fas fa-couch"></i></span>
+                                    <span><i class="fas fa-ellipsis"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Dashboard — role-aware</div>
+                            </div>
+
+                            <!-- Frame 2: Survey wizard -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <span class="pf-muted"><i class="fas fa-arrow-left"></i></span>
+                                        <span class="pf-t pf-strong">Site survey</span>
+                                      </div>
+                                      <span class="pf-badge ok"><i class="fas fa-cloud-arrow-up"></i> Draft</span>
+                                    </div>
+
+                                    <div class="pf-muted pf-mb">Step 4 of 8 · Measurements</div>
+                                    <div class="pf-bar pf-mb"><i style="width:50%"></i></div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-t pf-strong">Living room</span>
+                                        <span class="pf-badge">Area 1</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Feature wall</span>
+                                        <span class="pf-t pf-strong">12.40 m²</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Skirting</span>
+                                        <span class="pf-t pf-strong">18.60 m</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Ceiling drop</span>
+                                        <span class="pf-t pf-strong">2 400 mm</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-row wrap pf-mb" style="gap:6px">
+                                      <span class="pf-badge ok"><i class="fas fa-location-crosshairs"></i> GPS</span>
+                                      <span class="pf-badge"><i class="fas fa-camera"></i> 6 photos</span>
+                                      <span class="pf-badge warn">Access · moderate</span>
+                                    </div>
+
+                                    <span class="pf-btn block">Next <i class="fas fa-arrow-right"></i></span>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span><i class="fas fa-circle-info"></i></span>
+                                    <span><i class="fas fa-house"></i></span>
+                                    <span><i class="fas fa-vector-square"></i></span>
+                                    <span class="active"><i class="fas fa-ruler"></i></span>
+                                    <span><i class="fas fa-clipboard-check"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Survey wizard — areas &amp; measurements</div>
+                            </div>
+
+                            <!-- Frame 3: Quotation -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <div class="pf-row">
+                                        <span class="pf-muted"><i class="fas fa-arrow-left"></i></span>
+                                        <span class="pf-t pf-strong">CH-Q-0148</span>
+                                      </div>
+                                      <span class="pf-badge solid">Sent</span>
+                                    </div>
+
+                                    <div class="pf-muted pf-mb">L. Marot · Villa, Flic en Flac</div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-li">
+                                        <span class="grow">
+                                          <span class="pf-t">SPC Flooring · Oak</span>
+                                          <div class="pf-muted pf-xs">48 m² × Rs 1,150</div>
+                                        </span>
+                                        <span class="pf-t pf-strong">55,200</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow">
+                                          <span class="pf-t">Fluted bars · walnut</span>
+                                          <div class="pf-muted pf-xs">12.4 m² × Rs 2,400</div>
+                                        </span>
+                                        <span class="pf-t pf-strong">29,760</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-between"><span class="pf-muted">Subtotal</span><span class="pf-t">Rs 84,960</span></div>
+                                      <div class="pf-between pf-mt"><span class="pf-muted">Discount · 5%</span><span class="pf-t">− Rs 4,248</span></div>
+                                      <div class="pf-between pf-mt"><span class="pf-muted">VAT · 15%</span><span class="pf-t">Rs 12,107</span></div>
+                                      <div class="pf-between pf-mt" style="border-top:1px solid var(--line);padding-top:9px">
+                                        <span class="pf-t pf-strong">Total</span><span class="pf-t-lg">Rs 92,819</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-muted pf-xs">Computed by trigger · valid to 30 Sep</div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span><i class="fas fa-gauge-high"></i></span>
+                                    <span><i class="fas fa-users"></i></span>
+                                    <span><i class="fas fa-calendar-days"></i></span>
+                                    <span class="active"><i class="fas fa-file-invoice"></i></span>
+                                    <span><i class="fas fa-ellipsis"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Quotation — totals from Postgres</div>
+                            </div>
+
+                            <!-- Frame 4: Reports -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <span class="pf-t-lg">Reports</span>
+                                      <span class="pf-badge">Month · Sept</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-row">
+                                        <div class="pf-donut" style="--v:34%" data-v="34%"></div>
+                                        <span class="grow">
+                                          <div class="pf-h2" style="margin:0">Conversion</div>
+                                          <div class="pf-muted pf-xs">98 visitors → 33 customers</div>
+                                        </span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-h2">Revenue · quoted vs won</div>
+                                      <div class="pf-chart" style="height:68px">
+                                        <span class="b" style="height:44%"></span>
+                                        <span class="b" style="height:62%"></span>
+                                        <span class="b" style="height:51%"></span>
+                                        <span class="b" style="height:78%"></span>
+                                        <span class="b hi" style="height:96%"></span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-grid2">
+                                      <div class="pf-stat"><div class="n">17</div><div class="l">Installs done</div></div>
+                                      <div class="pf-stat"><div class="n">9</div><div class="l">Surveys</div></div>
+                                    </div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span><i class="fas fa-gauge-high"></i></span>
+                                    <span><i class="fas fa-users"></i></span>
+                                    <span><i class="fas fa-calendar-days"></i></span>
+                                    <span><i class="fas fa-couch"></i></span>
+                                    <span class="active"><i class="fas fa-chart-pie"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Reports — aggregated in Postgres</div>
+                            </div>
+                          </div>
+
+                          <div class="pf-stack">
+                            <span class="pf-chip">Flutter 3.47</span>
+                            <span class="pf-chip">Dart 3.13</span>
+                            <span class="pf-chip">Clean Architecture</span>
+                            <span class="pf-chip">BLoC / Cubit</span>
+                            <span class="pf-chip">go_router</span>
+                            <span class="pf-chip">get_it + injectable</span>
+                            <span class="pf-chip">freezed</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Row Level Security</span>
+                            <span class="pf-chip">SECURITY DEFINER RPCs</span>
+                            <span class="pf-chip">Supabase Storage</span>
+                            <span class="pf-chip">Firebase Cloud Messaging</span>
+                            <span class="pf-chip">flutter_local_notifications</span>
+                            <span class="pf-chip">geolocator</span>
+                            <span class="pf-chip">image_picker</span>
+                            <span class="pf-chip">connectivity_plus</span>
+                            <span class="pf-chip">flutter_test</span>
+                          </div>
+                        </div>
+                        <!-- ============== END UI SHOWCASE · MOBILE APP ============== -->
+
+                        <!-- ══════════════════ 4 · THE COEXISTENCE LAYER ══════════════════ -->
+                        <br />
+                        <strong>4 · One database, two vocabularies</strong>
+                        <br />
+                        This is the part of the project I would actually talk
+                        about in an interview.
+
+                        <br /><br />
+                        The CRM was <em>live</em>, with real visitor records from
+                        the event on it, when the mobile app's schema needed to
+                        land on the same Supabase project. Both applications
+                        describe a person and a member of staff, and neither
+                        describes them the same way. The CRM has
+                        <code>role</code> as free text
+                        (<code>super_admin</code> / <code>admin</code> /
+                        <code>staff</code>) and a boolean <code>active</code>; the
+                        app has <code>app_role</code> as an enum of seven and
+                        <code>is_active</code>. Same rows, two languages.
+
+                        <br /><br />
+                        The failure mode was quiet rather than loud, which is
+                        worse. The app's migrations declare
+                        <code>profiles</code> and <code>visitors</code> with
+                        <code>create table if not exists</code> — good practice
+                        against an empty project, and against <em>this</em>
+                        project it meant both statements did nothing at all. Every
+                        migration reported success and not one mobile column
+                        appeared. The app then failed later, on a screen, with a
+                        missing-column error that pointed nowhere near the cause.
+
+                        <br /><br />
+                        <code>20260101000150_crm_coexistence.sql</code> is the
+                        answer, and it drops, renames and retypes nothing:
+                        <ul>
+                          <li>The missing columns are added <strong>additively</strong> to <code>profiles</code> and <code>visitors</code> and backfilled from the CRM data already sitting there</li>
+                          <li>Two <code>immutable</code> mapping functions translate in both directions. <code>map_role_to_app_role</code> reads the CRM's role; <code>map_app_role_to_role</code> goes the other way and is deliberately conservative — only <code>administrator</code> and <code>executive</code> become the CRM's <code>admin</code>, and everything else lands on <code>staff</code>, because widening administrative rights is not a decision a mapping function should be making on its own</li>
+                          <li>Triggers keep the two vocabularies in sync from then on, in <em>both</em> directions — a role changed in the app is a role changed in the CRM, and neither application has to know the other exists</li>
+                          <li>The backfill runs under <code>session_replication_role = replica</code>, and this is the detail I am most pleased with. The CRM installs <code>set_updated_at</code> and <code>audit_trigger</code> on both tables. A plain <code>UPDATE</code> to backfill a column would therefore have stamped <em>every</em> historical <code>updated_at</code> with the migration's timestamp and written a phantom audit row for every visitor in the database — permanently corrupting the audit trail the CRM exists to provide, in the name of adding a column nobody had asked about. Replica mode suppresses those triggers for the migration only; the session role is restored at the end of the file</li>
+                          <li>It is ordered explicitly: after the enums migration (it needs the types) and before the one that adds indexes and a foreign key referencing the columns it creates</li>
+                          <li>Every added column carries a <code>comment on column</code> saying which application owns the vocabulary and what keeps it in sync, because the next person to read this schema will not have this page open</li>
+                        </ul>
+
+                        The result is unglamorous and exactly right: both
+                        applications still run, against one row per person, and
+                        neither had to be rewritten to accommodate the other.
+
+                        <br /><br />
+                        There is one more note in that schema worth repeating,
+                        because it is a Supabase-specific trap and it does not
+                        announce itself: new tables inherit the project's default
+                        privileges, and those include <code>anon</code>. Every
+                        future table needs its own explicit revoke. RLS being
+                        enabled is not the same as anonymous access being denied —
+                        so in this schema it is denied at both the grant and the
+                        policy level.
+
+                        <br /><br />
+                        <div class="pp-note" style="background: var(--card); color: var(--text); padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 500; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: var(--muted);"></i>
+                          The website is public at
+                          <a href="https://concepthabitat.mu" target="_blank" rel="noopener" style="color: var(--cyan); text-decoration: underline;">concepthabitat.mu</a>.
+                          The CRM and the mobile app are internal tools — there is
+                          no public sign-up and neither is on a store. For a demo
+                          account, a walkthrough of the survey wizard or the
+                          quotation pipeline, or a look at the coexistence
+                          migration, contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: var(--cyan); text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>
@@ -398,7 +1278,7 @@
         <div class="footer-bar">
           <div class="copy">© 2026 All rights reserved. · Farhaan Beeharry</div>
           <div class="socials">
-                        <a href="https://www.linkedin.com/in/farhaan-bms/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.linkedin.com/in/farhaan-bms/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             <a href="https://github.com/Farhaanbeeharry" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             <a href="https://app.codesignal.com/profile/farhaan" target="_blank" aria-label="CodeSignal"><i class="fa-solid fa-code"></i></a>
             <a href="https://www.behance.net/farhaanbeeharry" target="_blank" aria-label="Behance"><i class="fa-brands fa-behance"></i></a>

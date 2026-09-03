@@ -239,7 +239,19 @@
 }
 .pf-stat .n { font-size: 21px; font-weight: 700; color: var(--text); line-height: 1.1; }
 .pf-stat .l { font-size: 11px; color: var(--muted); margin-top: 3px; }
-.pf-stat.brand { background: var(--brand); border-color: transparent; }
+/* `.brand` is ALSO the site header's logo class (portfolio.css), and that rule
+   is unscoped: it sets display:flex, gap and Sora 17px, which turns this stat
+   tile into a row with the number beside its label. State what the tile needs
+   rather than inheriting whatever else on the page happens to own `.brand`. */
+.pf-stat.brand {
+  background: var(--brand);
+  border-color: transparent;
+  display: block;
+  gap: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
 .pf-stat.brand .n, .pf-stat.brand .l { color: var(--brand-ink); }
 
 /* badges */
