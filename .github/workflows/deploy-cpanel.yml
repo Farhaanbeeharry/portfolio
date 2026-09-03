@@ -48,7 +48,17 @@ jobs:
       # without deleting anything already there, so motogate/, umbrella/,
       # oceana_code/, the root .htaccess and every other sibling are untouched.
       # Only index.html, assets/, img/ and portfolio/ are overwritten.
+      #
+      # Every deploy ships the whole ~113 MB docroot (the certificate PDFs, the
+      # 20 MB .pptx and the project background PNGs dwarf the app bundle), and
+      # the far end is shared cPanel, so an occasional refused or throttled SSH
+      # dial is normal. Run 22 died exactly that way: 66s in the step -- about
+      # 35s tarring dist/, then the 30s default dial timeout -- and nothing
+      # reached the server. Hence a dial window wide enough for a slow host,
+      # and a second attempt, which is all a transient refusal needs.
       - name: Upload build to cPanel (overlay, no wipe)
+        id: upload
+        continue-on-error: true
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.CPANEL_HOST }}
@@ -59,3 +69,48 @@ jobs:
           target: "/home/${{ secrets.CPANEL_USERNAME }}/public_html"
           strip_components: 1
           overwrite: true
+          timeout: 120s
+          command_timeout: 20m
+
+      # Same overlay, second attempt. Retrying is safe because the upload is
+      # idempotent: it writes the same four paths over themselves.
+      - name: Upload build to cPanel (retry)
+        if: steps.upload.outcome == 'failure'
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          key: ${{ secrets.CPANEL_SSH_KEY }}
+          port: ${{ secrets.CPANEL_PORT }}
+          source: "dist/*"
+          target: "/home/${{ secrets.CPANEL_USERNAME }}/public_html"
+          strip_components: 1
+          overwrite: true
+          timeout: 120s
+          command_timeout: 20m
+
+      # A failed SCP can land nothing while still reporting little: run 22 left
+      # the live index.html pointing at the previous build's asset hashes and
+      # no step said so. Fail the job if the deployed index.html is not the one
+      # this run just built.
+      - name: Verify the deploy landed
+        run: |
+          expected="$(grep -oE 'assets/index-[A-Za-z0-9_-]+\.js' dist/index.html | head -1)"
+          if [ -z "$expected" ]; then
+            echo "Could not find the entry bundle in dist/index.html" >&2
+            exit 1
+          fi
+          echo "Expecting the live index.html to reference $expected"
+          for attempt in 1 2 3; do
+            live="$(curl -fsS --max-time 30 'https://farhaan.info/?cachebust='"$GITHUB_RUN_ID-$attempt" || true)"
+            case "$live" in
+              *"$expected"*)
+                echo "Deploy verified: farhaan.info is serving $expected"
+                exit 0
+                ;;
+            esac
+            echo "Attempt $attempt: live index.html does not reference $expected yet"
+            sleep 10
+          done
+          echo "Deploy did not land: farhaan.info is not serving $expected" >&2
+          exit 1
