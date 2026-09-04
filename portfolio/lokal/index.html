@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lokal — Farhaan Beeharry</title>
-    <meta name="description" content="Lokal — a local business directory that gives small businesses a professional digital profile: searchable listings, product catalogues, WhatsApp / phone / e-mail contact, a 7-step seller onboarding wizard and an admin CRM. Built with React 19, TypeScript, Vite and Supabase." />
-    <meta name="keywords" content="lokal, business directory, local business, small business, seller portal, onboarding wizard, admin crm, react, typescript, vite, supabase, row level security, tanstack query, i18next, mauritius" />
+    <meta name="description" content="Lokal — a Mauritian directory where customers search for what they need rather than for a business name, answered by a weighted Postgres tsvector built from the business and its catalogue. Live availability that is discarded rather than downgraded when it goes stale, a plan gate enforced in RLS as well as in the UI, direct-payment orders that snapshot their prices, and a seller preview that is literally the public profile component." />
+    <meta name="keywords" content="lokal, mauritius, local business directory, react 19, typescript, supabase, postgresql full text search, tsvector, row level security, tanstack query, zod, i18next, whatsapp, marketplace, subscriptions" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,21 +79,23 @@
         <div class="container">
           <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
 
-          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web</div>
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web app &amp; UI/UX</div>
 
           <h1 class="pp-title reveal"><span class="g">Lokal</span></h1>
 
           <div class="pp-meta reveal">
-            <span><i class="fa-regular fa-calendar"></i> July 2026</span>
+            <span><i class="fa-regular fa-calendar"></i> July — August 2026</span>
             <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
           <div class="pp-tags reveal">
             <span>web app</span>
             <span>directory</span>
-            <span>small business</span>
-            <span>react</span>
+            <span>react 19</span>
+            <span>typescript</span>
             <span>supabase</span>
+            <span>full-text search</span>
+            <span>mauritius</span>
           </div>
 
           <figure class="pp-cover reveal"><img src="background.svg" alt="Lokal Project Cover" /></figure>
@@ -103,113 +105,217 @@
       <article class="pp-article">
         <div class="container">
           <div class="col-inner">
-            
+
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        <strong>Lokal</strong> gives a small business or an
-                        independent entrepreneur a professional digital presence —
-                        discoverable, contactable, and theirs. Customers search the
-                        directory, browse a business profile with its products and
-                        services, and get in touch directly by
-                        <strong>WhatsApp, phone or e-mail</strong>.
+                        <strong>Lokal</strong> inverts the usual directory. A
+                        customer does not search for a business name — they
+                        search for the thing they need. <em>Brochette.
+                        Mechanic. Hardware.</em> Lokal answers with the
+                        businesses near them that actually have it, says whether
+                        each one can serve them <em>right now</em>, and gives
+                        them a way to reach it without making a phone call.
 
                         <br /><br />
-                        The scope is deliberately tight:
-                        <strong>Lokal is a directory, not an e-commerce
-                        platform</strong>. There is no cart, no checkout, no order
-                        and no customer payment anywhere in the product. The only
-                        money that changes hands is the seller's one-time
-                        activation fee, transferred out of band and verified
-                        manually by an administrator — which keeps the product
-                        honest about what it does and removes an entire class of
-                        payment and fulfilment complexity.
+                        For a small Mauritian business it is an affordable
+                        digital presence: a profile, a catalogue, a live
+                        availability status, direct chat with customers, and — on
+                        the higher plan — online orders and business insights.
 
                         <br /><br />
-                        The app has exactly four surfaces: a
-                        <strong>public website</strong> (landing, about, contact,
-                        FAQ, legal), a <strong>visitor</strong> experience for
-                        searching and viewing businesses, a
-                        <strong>seller portal</strong> with a 7-step onboarding
-                        wizard and a dashboard, and an <strong>admin CRM</strong>
-                        for metrics, moderation, activation verification and seller
-                        support.
+                        <strong>Lokal never handles money between a customer and
+                        a business.</strong> There is no payment gateway and no
+                        commission. A buyer settles directly with the seller;
+                        the platform records the order and its fulfilment state
+                        and nothing more. The only money Lokal collects is the
+                        seller's monthly subscription, transferred out of band by
+                        MCB&nbsp;Juice and verified by hand by an administrator.
+                        That decision is the reason the product is small enough
+                        to be trustworthy: an entire class of custody, refund and
+                        chargeback problems simply does not exist in it.
 
                         <br /><br />
-                        It is built on React 19 + TypeScript with a
-                        <strong>clean, feature-sliced architecture</strong> — each
-                        feature owning its <em>domain</em> (types, Zod schemas,
-                        pure rules), <em>application</em> (TanStack Query hooks),
-                        <em>infrastructure</em> (the only layer allowed to talk to
-                        Supabase) and <em>presentation</em> layers. Business rules
-                        such as "when may a seller submit for activation" live in
-                        plain, React-free, unit-tested domain code.
+                        The application is React&nbsp;19 and TypeScript on
+                        <strong>Supabase</strong>, in a clean, feature-sliced
+                        architecture: each feature owns its <em>domain</em>
+                        (types, Zod schemas, pure rules), <em>application</em>
+                        (TanStack Query hooks), <em>infrastructure</em> (the only
+                        layer permitted to talk to Supabase) and
+                        <em>presentation</em> layers. Rules such as "may this
+                        seller submit for activation" and "is this availability
+                        status still trustworthy" are plain, React-free,
+                        unit-tested functions. It has four surfaces: the public
+                        website, the visitor experience, the seller portal with
+                        its seven-step onboarding wizard, and the admin CRM.
 
                         <br /><br />
-                        Security sits in the database rather than the client: a
-                        business moves <code>draft → pending_activation →
-                        active</code>, and a seller <em>cannot</em> publish
-                        themselves — Row Level Security restricts them to the first
-                        two states, and publication only happens inside an
-                        admin-gated Postgres function.
+                        <strong>1 · Finding the thing, not the shop</strong>
+                        <br />
+                        Because the query has to reach further than the business
+                        row, every business carries a weighted
+                        <code>tsvector</code> that triggers rebuild from
+                        <em>both</em> the business and its products: weight
+                        <strong>A</strong> for the name and the seller's own
+                        tags, <strong>B</strong> for category, town and address,
+                        <strong>C</strong> for the description, and
+                        <strong>D</strong> for every product name and
+                        description. A shop called <em>Chez Ahmed</em> selling
+                        <em>brochette poulet</em> is therefore found by
+                        "brochette" — and a shop actually named <em>Brochette
+                        Express</em> still outranks it, because the name is
+                        weighted above the catalogue.
 
                         <br /><br />
-                        A small decision with a large payoff: the seller's preview
-                        step and the public profile page are rendered by the
-                        <em>same</em> component. What a seller previews therefore
-                        cannot drift from what visitors actually get — a whole class
-                        of "it looked fine in preview" bug simply cannot occur.
-
-                        <br /><br />
-                        <strong>For visitors</strong>
+                        Three details make that search behave the way a person
+                        expects:
                         <ul>
-                          <li>Directory search with filters kept in the URL — linkable, bookmarkable, back-button safe</li>
-                          <li>Category and location filtering</li>
-                          <li>Business profiles with photos, description and social links</li>
-                          <li>Opening hours parsed from untrusted JSON, including past-midnight spans and day-range grouping</li>
-                          <li>Map location via Leaflet</li>
-                          <li>Product and service catalogue with fixed, "as from" and price-on-request pricing</li>
-                          <li>One-tap WhatsApp, call, e-mail and website links, with the digits-only normalisation <code>wa.me</code> requires</li>
+                          <li>The query is built as a <strong>prefix</strong> match, so "brochet" finds "brochettes". Nobody finishes the word before the results should start being right</li>
+                          <li>The text-search configuration is <code>simple</code>, not <code>english</code>. The content is a mix of English, French and Kreol, and an English stemmer mangles the latter two — the prefix query recovers the partial matching the stemmer would otherwise have given</li>
+                          <li>The RPC returns the <em>unpaginated total</em> alongside each row, so a page of results and the count above it cost one round trip rather than two queries that can disagree</li>
                         </ul>
 
-                        <br /><strong>For sellers</strong>
+                        <br />
+                        Sellers add unlimited free-form <strong>tags</strong> —
+                        their own vocabulary, bridging a fixed category taxonomy
+                        and the words a customer actually types. Normalisation
+                        (trim, lowercase, de-duplicate, forty-character cap) is a
+                        Postgres trigger rather than a form validator, so an API
+                        caller cannot bypass it; the form applies the identical
+                        rule, so the chip a seller sees is the chip that gets
+                        stored.
+
+                        <br /><br />
+                        <strong>2 · Open now, and how much to trust it</strong>
+                        <br />
+                        Opening hours are a <em>schedule</em>. The availability
+                        status is what the seller says is true <em>now</em> —
+                        open, closing soon, busy, temporarily closed, delivering,
+                        available now — and the two are different kinds of claim.
+
+                        <br /><br />
+                        A seller-set status wins while it is fresh. After twelve
+                        hours it is <strong>discarded, not downgraded</strong>: a
+                        badge reading "open" that nobody has touched since
+                        yesterday evening sends someone across town to a locked
+                        door, which costs more trust than showing no badge at
+                        all. Past that window the profile falls back to the
+                        published hours, and the interface says which of the two
+                        it is showing — an inferred status is never presented as
+                        the business's own word. A test covers exactly that: that
+                        the provenance line cannot misattribute an inferred
+                        status to the seller, and that a stale note is dropped
+                        along with the status it belonged to.
+
+                        <br /><br />
+                        <strong>3 · The plan is a capability, not a label</strong>
+                        <br />
+                        Two monthly subscriptions, priced for small businesses:
+                        <strong>Basic at Rs&nbsp;390</strong> and
+                        <strong>Advanced at Rs&nbsp;590</strong>. Both carry the
+                        profile, catalogue, photos, hours, live availability,
+                        chat, reviews, promotions and GPS search; Advanced adds
+                        online orders, order management and business insights.
+
+                        <br /><br />
+                        The gate is enforced twice, independently. The client
+                        rule lives in <code>subscriptions/domain/plan.ts</code>;
+                        the database has its own, because hiding a button must
+                        never be the only thing standing in the way — the RLS
+                        insert policy on <code>orders</code> refuses an order
+                        placed against a business that is not on a live Advanced
+                        subscription. Prices are read from
+                        <code>platform_settings</code>, so an operator changes
+                        them without a deploy, with a constant as the fallback
+                        until that fetch resolves.
+
+                        <br /><br />
+                        <strong>4 · A seller cannot publish themselves</strong>
+                        <br />
+                        A business walks <code>draft → pending_activation →
+                        active</code>, with <code>suspended</code> as an admin
+                        action. The <code>WITH CHECK</code> clause restricts a
+                        seller to the first two states, and publication happens
+                        only inside <code>approve_activation_request()</code>,
+                        which is gated on <code>is_admin()</code>. There is no
+                        path from the seller portal to a published listing that
+                        does not pass through a person.
+
+                        <br /><br />
+                        Publication is not permanent either. Each verified
+                        payment rolls <code>subscription_expires_at</code>
+                        forward one month — and renewing early
+                        <em>extends</em> the period rather than truncating it,
+                        so paying ahead is never punished. A sweep unpublishes
+                        anything past its paid-through date. Because a sweep runs
+                        on a schedule and the truth changes on a timestamp, the
+                        capability gate reads the <em>expiry date</em> rather
+                        than the stored status, and so stays correct in the gap
+                        between the two.
+
+                        <br /><br />
+                        <strong>5 · Ordering without a payment processor</strong>
+                        <br />
+                        An order walks <em>pending → awaiting payment → payment
+                        verified → fulfilling → completed</em>, with
+                        <em>cancelled</em> reachable from any state before
+                        completion. Two modelling decisions matter more than the
+                        flow:
                         <ul>
-                          <li>7-step onboarding wizard with a stepper and progress tracking</li>
-                          <li>Image upload with in-browser cropping</li>
-                          <li>A completion gate that spells out exactly what is still missing before activation</li>
-                          <li>Live preview rendered by the same component visitors see</li>
-                          <li>Dashboard to manage profile, contacts, socials and opening hours</li>
-                          <li>Product catalogue CRUD</li>
-                          <li>Activation request submission and status tracking</li>
+                          <li>Line items <strong>snapshot</strong> the product name and unit price as they were at order time, and the product foreign key is <code>on delete set null</code>. Editing a price next week, or deleting the product entirely, cannot rewrite what a customer agreed to last week</li>
+                          <li>The total is recomputed <strong>server-side</strong> from those snapshots when the order is placed. The number the client sends is not the number that is stored</li>
                         </ul>
 
-                        <br /><strong>For administrators</strong>
-                        <ul>
-                          <li>Platform metrics dashboard</li>
-                          <li>Business moderation and suspension</li>
-                          <li>Activation request verification and approval</li>
-                          <li>Seller support tooling</li>
-                        </ul>
+                        <br />
+                        Messaging is one thread per <em>(business, buyer)</em>
+                        pair, enforced by a unique constraint — reaching out to
+                        the same business twice reuses the conversation rather
+                        than forking it. Unread state is two "last read"
+                        timestamps kept on the conversation itself, one per side,
+                        so an inbox badge is a single indexed read instead of a
+                        scan across messages; a trigger stamps the sort key and
+                        the sender's own read marker on every insert. There is no
+                        anonymous path into it — the public contact form remains
+                        the separate, unauthenticated channel.
 
-                        <br /><strong>Accounts</strong>
-                        <ul>
-                          <li>Sign-up, login, password recovery and reset</li>
-                          <li>Session handled push-based through Supabase's subscription rather than polling</li>
-                          <li>Route guards per surface — visitor, seller, admin</li>
-                          <li>A password policy defined once and derived by both the Zod schema and the on-screen checklist</li>
-                          <li>Login deliberately does <em>not</em> apply the strength rule, so existing accounts can still sign in</li>
-                        </ul>
+                        <br /><br />
+                        <strong>6 · The preview problem, solved by deletion</strong>
+                        <br />
+                        The seller's preview step and the public profile page are
+                        rendered by the <em>same component</em>. Not a shared
+                        design, not a synchronised pair — one file, two routes.
+                        What a seller previews therefore cannot drift from what
+                        visitors get, and the entire genre of "but it looked fine
+                        in preview" bug has nowhere to live.
 
-                        <br /><strong>Engineering</strong>
+                        <br /><br />
+                        <strong>7 · Two languages, enforced by the test suite</strong>
+                        <br />
+                        English and French across ten i18next namespaces, with no
+                        user-facing string hardcoded — including the legal
+                        documents, which are structured data rendered generically
+                        rather than prose in a component. A test fails the build
+                        if the two languages drift in key coverage, if a French
+                        string is left empty, or if the legal section ids stop
+                        matching between them, which would produce dead in-page
+                        anchors in one language only.
+
+                        <br /><br />
+                        Errors carry translation keys rather than sentences —
+                        a service throws <code>AppError('storage.file_too_large')</code>
+                        and the presentation layer resolves the copy — so a
+                        French-speaking user never sees a raw English Postgres
+                        message.
+
+                        <br /><br />
+                        <strong>Engineering</strong>
                         <ul>
-                          <li>English / French throughout, including the legal documents — which are structured data, not hardcoded prose</li>
-                          <li>A test fails the build if the two languages drift in key coverage, if a French string is empty, or if legal section ids stop matching (which would produce dead anchors in one language only)</li>
-                          <li>Errors carry translation keys, not sentences, so no raw Postgres message ever reaches a user</li>
-                          <li>Server state in TanStack Query, client state in Zustand, search filters in the URL — one home per kind of state</li>
-                          <li>One source of truth per concept: routes, query keys and design tokens each defined in exactly one file</li>
-                          <li>65 tests aimed at where a mistake would be silent: contact-link building, opening-hours parsing, the activation gate, price rendering, i18n parity</li>
-                          <li>Environment variables validated at startup so a bad value fails loudly instead of surfacing deep inside the Supabase client</li>
-                          <li>Accessibility built in: skip links, focus-visible rings, wired label / hint / error relationships, <code>role="alert"</code> and <code>role="status"</code>, aria-hidden skeletons with a single announcement, and <code>prefers-reduced-motion</code></li>
+                          <li>One home per kind of state: server state in TanStack Query, session in a push-based context fed by Supabase's own subscription, language and nav in Zustand, <strong>search filters in the URL</strong> so a result set is linkable, bookmarkable and back-button safe. Multi-select categories are repeated <code>?category=</code> params, not a comma-joined string that has to be re-parsed</li>
+                          <li>One source of truth per concept: routes, query keys, design tokens and prices are each defined in exactly one place</li>
+                          <li><strong>98 tests</strong> aimed at where a mistake would be silent — the staleness rule, the plan gate including the lapsed-but-not-yet-swept window, contact-link building and the digits-only normalisation <code>wa.me</code> requires, opening hours parsed from untrusted JSON including past-midnight spans, the activation gate, and "as from" versus fixed price rendering with a fallback that avoids showing "Rs&nbsp;0"</li>
+                          <li>Environment variables are validated at startup, so a bad value fails loudly instead of surfacing deep inside the Supabase client. Only the publishable key is ever in a <code>VITE_</code> variable — Vite inlines those into the bundle, and RLS rather than key secrecy is what protects the data</li>
+                          <li>Type generation writes through a script rather than a shell redirect. A redirect truncates the target <em>before</em> the CLI runs, so one failed generation destroyed the types and surfaced as hundreds of unrelated type errors; the script buffers, sanity-checks, then writes</li>
+                          <li>Accessibility is built in rather than audited afterwards: skip links, visible focus rings, wired label / hint / error relationships, a category filter that is a real <code>listbox</code> with <code>aria-multiselectable</code> instead of a menu, <code>role="alert"</code> and <code>role="status"</code>, skeletons hidden from screen readers behind a single announcement rather than a wall of empty boxes, and <code>prefers-reduced-motion</code> honoured globally</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
@@ -220,137 +326,80 @@
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            The visitor directory, a business profile and the seller
-                            onboarding wizard — recreated from Lokal's real screens
-                            and its orange brand palette.
+                            A product search answering with businesses rather
+                            than names, a public profile carrying a live
+                            availability badge that says where it came from, and
+                            the seller's onboarding wizard — recreated from
+                            Lokal's real React screens.
                           </p>
 
                           <div class="pf-stage">
-                            <!-- Frame 1: Browser — directory search -->
+                            <!-- Frame 1: search -->
                             <div class="pf-frame" style="flex:1 1 560px">
                               <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
                                   <span class="pf-dot r"></span>
                                   <span class="pf-dot y"></span>
                                   <span class="pf-dot g"></span>
-                                  <span class="pf-url">lokal.mu/search?category=bakery</span>
+                                  <span class="pf-url">lokal.mu/browse?q=brochet&amp;category=food</span>
                                 </div>
                                 <div class="pf-viewport">
-                                  <div class="pf-side">
-                                    <div class="pf-brandrow">
-                                      <img src="icon.png" alt="Lokal" style="height:20px" />
-                                      <span class="pf-strong">Lokal</span>
-                                    </div>
-                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-search"></i></span> Search</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-store"></i></span> Categories</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-map-marker-alt"></i></span> Near me</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-info-circle"></i></span> About</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-question-circle"></i></span> FAQ</div>
-                                  </div>
-
                                   <div class="pf-main">
-                                    <div class="pf-input pf-mb"><i class="fas fa-search"></i> Bakery in Quatre Bornes…</div>
-                                    <div class="pf-row wrap pf-mb">
-                                      <span class="pf-badge solid">Bakery</span>
+                                    <div class="pf-row pf-mb">
+                                      <img src="icon.png" alt="Lokal" style="height:20px" />
+                                      <div class="pf-input" style="flex:1">
+                                        <i class="fas fa-magnifying-glass"></i> brochet
+                                      </div>
+                                    </div>
+                                    <div class="pf-between pf-mb">
+                                      <span class="pf-muted pf-xs">14 businesses · Plaine Wilhems</span>
                                       <span class="pf-badge">Open now</span>
-                                      <span class="pf-badge">Delivers</span>
-                                      <span class="pf-muted">28 results</span>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-row">
-                                        <span class="pf-iconbox"><i class="fas fa-bread-slice"></i></span>
-                                        <span style="flex:1">
-                                          <span class="pf-t pf-strong">Boulangerie Bo Vallon</span><br />
-                                          <span class="pf-muted"><i class="fas fa-map-marker-alt"></i> Quatre Bornes · Bakery</span>
+                                      <div class="pf-li" style="border:0;padding-top:0">
+                                        <span class="pf-iconbox"><i class="fas fa-fire-burner"></i></span>
+                                        <span class="grow">
+                                          <div class="pf-t pf-strong">Brochette Express</div>
+                                          <div class="pf-muted pf-xs">Street food · Quatre Bornes · 1.2 km</div>
                                         </span>
                                         <span class="pf-badge ok"><span class="pf-dot-live"></span> Open</span>
                                       </div>
-                                      <div class="pf-row pf-mt" style="gap:6px">
-                                        <span class="pf-tag">Fresh bread</span>
-                                        <span class="pf-tag">Cakes</span>
-                                        <span class="pf-tag">Catering</span>
-                                      </div>
-                                      <div class="pf-row pf-mt">
-                                        <span class="pf-btn"><i class="fab fa-whatsapp"></i> WhatsApp</span>
-                                        <span class="pf-btn-outline"><i class="fas fa-phone"></i> Call</span>
-                                        <span class="pf-btn-ghost">View profile</span>
+                                      <div class="pf-row" style="gap:6px">
+                                        <span class="pf-tag">brochettes</span>
+                                        <span class="pf-tag">grillades</span>
+                                        <span class="pf-tag">halal</span>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-row">
-                                        <span class="pf-iconbox"><i class="fas fa-cookie-bite"></i></span>
-                                        <span style="flex:1">
-                                          <span class="pf-t pf-strong">Ti Gato Patisserie</span><br />
-                                          <span class="pf-muted"><i class="fas fa-map-marker-alt"></i> Vacoas · Bakery</span>
+                                      <div class="pf-li" style="border:0;padding-top:0">
+                                        <span class="pf-iconbox"><i class="fas fa-utensils"></i></span>
+                                        <span class="grow">
+                                          <div class="pf-t pf-strong">Chez Ahmed</div>
+                                          <div class="pf-muted pf-xs">Matched on <em>brochette poulet</em> in the catalogue</div>
                                         </span>
-                                        <span class="pf-badge warn">Closed</span>
+                                        <span class="pf-badge warn">Closing soon</span>
                                       </div>
-                                      <div class="pf-row pf-mt">
-                                        <span class="pf-muted">Wedding cakes</span>
-                                        <span class="pf-t pf-strong" style="margin-left:auto">as from Rs 1,500</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-li" style="border:0;padding-top:0">
+                                        <span class="pf-iconbox"><i class="fas fa-drumstick-bite"></i></span>
+                                        <span class="grow">
+                                          <div class="pf-t pf-strong">Snack Rose-Hill</div>
+                                          <div class="pf-muted pf-xs">Per its opening hours</div>
+                                        </span>
+                                        <span class="pf-badge">Closed</span>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Visitor directory &amp; search</div>
+                              <div class="pf-cap">Search — the name outranks the catalogue, but both match</div>
                             </div>
 
-                            <!-- Frame 2: Browser — public business profile -->
-                            <div class="pf-frame" style="flex:1 1 420px">
-                              <div class="pf-browser">
-                                <div class="pf-tabbar">
-                                  <span class="pf-dot r"></span>
-                                  <span class="pf-dot y"></span>
-                                  <span class="pf-dot g"></span>
-                                  <span class="pf-url">lokal.mu/businesses/bo-vallon</span>
-                                </div>
-                                <div class="pf-pad">
-                                  <div class="pf-row pf-mb">
-                                    <span class="pf-iconbox" style="width:44px;height:44px;font-size:18px"><i class="fas fa-bread-slice"></i></span>
-                                    <span class="grow">
-                                      <span class="pf-t-lg">Boulangerie Bo Vallon</span><br />
-                                      <span class="pf-muted">Bakery · Quatre Bornes</span>
-                                    </span>
-                                    <span class="pf-badge ok"><span class="pf-dot-live"></span> Open</span>
-                                  </div>
-
-                                  <div class="pf-card">
-                                    <div class="pf-h2">Opening hours</div>
-                                    <div class="pf-between"><span class="pf-muted">Mon – Fri</span><span class="pf-t">06:00 – 18:00</span></div>
-                                    <div class="pf-between pf-mt"><span class="pf-muted">Sat</span><span class="pf-t">06:00 – 13:00</span></div>
-                                    <div class="pf-between pf-mt"><span class="pf-muted">Sun</span><span class="pf-t">Closed</span></div>
-                                  </div>
-
-                                  <div class="pf-card">
-                                    <div class="pf-h2">Products &amp; services</div>
-                                    <div class="pf-li">
-                                      <span class="grow pf-t">Pain maison</span>
-                                      <span class="pf-t pf-strong">Rs 25</span>
-                                    </div>
-                                    <div class="pf-li">
-                                      <span class="grow pf-t">Gâteau anniversaire</span>
-                                      <span class="pf-t pf-strong">as from Rs 900</span>
-                                    </div>
-                                    <div class="pf-li">
-                                      <span class="grow pf-t">Catering</span>
-                                      <span class="pf-muted">On request</span>
-                                    </div>
-                                  </div>
-
-                                  <div class="pf-row">
-                                    <span class="pf-btn"><i class="fab fa-whatsapp"></i> WhatsApp</span>
-                                    <span class="pf-btn-outline"><i class="fas fa-phone"></i> Call</span>
-                                    <span class="pf-btn-ghost"><i class="fas fa-envelope"></i></span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="pf-cap">Public business profile</div>
-                            </div>
-
-                            <!-- Frame 3: Phone — seller onboarding -->
+                            <!-- Frame 2: profile -->
                             <div class="pf-frame">
                               <div class="pf-phone">
                                 <div class="pf-screen">
@@ -359,76 +408,137 @@
                                     <div class="pf-appbar">
                                       <div class="pf-row">
                                         <img src="icon.png" alt="Lokal" style="height:18px;width:auto" />
-                                        <span class="pf-t pf-strong">Set up</span>
-                                      </div>
-                                      <span class="pf-muted">4 / 7</span>
-                                    </div>
-
-                                    <div class="pf-bar" style="margin-bottom:6px"><i style="width:57%"></i></div>
-                                    <div class="pf-muted pf-mb">Products &amp; services</div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-t pf-strong pf-mb">Pain maison</div>
-                                      <div class="pf-between">
-                                        <span class="pf-muted">Price</span>
-                                        <span class="pf-t pf-strong">Rs 25</span>
-                                      </div>
-                                      <div class="pf-between pf-mt">
-                                        <span class="pf-muted">Type</span>
-                                        <span class="pf-badge solid">Fixed</span>
+                                        <span class="pf-t pf-strong">Brochette Express</span>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-h2">Before activation</div>
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-badge ok"><span class="pf-dot-live"></span> Open now</span>
+                                        <span class="pf-badge">Advanced</span>
+                                      </div>
+                                      <div class="pf-muted pf-xs">Set by the business · 40 minutes ago</div>
+                                    </div>
+
+                                    <div class="pf-card">
                                       <div class="pf-li">
-                                        <span class="pf-badge ok"><i class="fas fa-check"></i></span>
-                                        <span class="grow pf-t">Profile &amp; logo</span>
+                                        <span class="grow pf-t">Brochette poulet</span>
+                                        <span class="pf-t pf-strong">Rs 60</span>
                                       </div>
                                       <div class="pf-li">
-                                        <span class="pf-badge ok"><i class="fas fa-check"></i></span>
-                                        <span class="grow pf-t">Contact details</span>
+                                        <span class="grow pf-t">Brochette boeuf</span>
+                                        <span class="pf-t pf-strong">as from Rs 75</span>
                                       </div>
                                       <div class="pf-li">
-                                        <span class="pf-badge warn"><i class="fas fa-clock"></i></span>
-                                        <span class="grow pf-t">Opening hours</span>
+                                        <span class="grow pf-t">Plateau partage</span>
+                                        <span class="pf-muted">On request</span>
                                       </div>
                                     </div>
 
-                                    <div class="pf-btn block pf-mt">Continue</div>
+                                    <div class="pf-row">
+                                      <span class="pf-btn"><i class="fab fa-whatsapp"></i> WhatsApp</span>
+                                      <span class="pf-btn-outline"><i class="fas fa-phone"></i></span>
+                                      <span class="pf-btn-outline"><i class="fas fa-comment"></i></span>
+                                    </div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span class="active"><i class="fas fa-magnifying-glass"></i></span>
+                                    <span><i class="fas fa-heart"></i></span>
+                                    <span><i class="fas fa-comments"></i></span>
+                                    <span><i class="fas fa-receipt"></i></span>
+                                    <span><i class="fas fa-user"></i></span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Seller onboarding wizard</div>
+                              <div class="pf-cap">The badge names its own source</div>
+                            </div>
+
+                            <!-- Frame 3: seller onboarding -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">lokal.mu/seller/onboarding</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="logo.png" alt="Lokal" style="height:15px;width:auto" />
+                                    </div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-store"></i></span> Profile</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-box"></i></span> Catalogue</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-clock"></i></span> Hours</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-receipt"></i></span> Orders</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-comments"></i></span> Messages</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-h2" style="margin:0">Step 6 of 7 · Preview</div>
+                                      <span class="pf-badge">Draft</span>
+                                    </div>
+                                    <div class="pf-bar pf-mb"><i style="width:86%"></i></div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Before you can submit</div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Business photos</span>
+                                        <span class="pf-badge ok">Done</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">At least one product</span>
+                                        <span class="pf-badge ok">Done</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">A contact method</span>
+                                        <span class="pf-badge warn">Missing</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-muted pf-xs">This preview is the public profile component</div>
+                                      <div class="pf-t pf-strong pf-mt">Brochette Express</div>
+                                      <div class="pf-muted pf-xs">Street food · Quatre Bornes</div>
+                                    </div>
+
+                                    <div class="pf-btn block"><i class="fas fa-paper-plane"></i> Submit for activation</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">The gate names what is missing — and an admin still decides</div>
                             </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">React 19</span>
-                            <span class="pf-chip">TypeScript (strict)</span>
+                            <span class="pf-chip">TypeScript</span>
                             <span class="pf-chip">Vite</span>
-                            <span class="pf-chip">Tailwind CSS</span>
-                            <span class="pf-chip">shadcn/ui + Radix</span>
-                            <span class="pf-chip">React Router</span>
+                            <span class="pf-chip">Clean / feature-sliced architecture</span>
                             <span class="pf-chip">TanStack Query</span>
                             <span class="pf-chip">Zustand</span>
                             <span class="pf-chip">React Hook Form + Zod</span>
-                            <span class="pf-chip">i18next</span>
-                            <span class="pf-chip">Framer Motion</span>
-                            <span class="pf-chip">Leaflet</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Radix UI</span>
                             <span class="pf-chip">Supabase</span>
-                            <span class="pf-chip">Postgres RLS</span>
+                            <span class="pf-chip">PostgreSQL full-text search</span>
+                            <span class="pf-chip">Row Level Security</span>
+                            <span class="pf-chip">Realtime</span>
+                            <span class="pf-chip">i18next (EN / FR)</span>
+                            <span class="pf-chip">Leaflet</span>
+                            <span class="pf-chip">Recharts</span>
                             <span class="pf-chip">Vitest</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #f97316; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #fb923c;"></i>
-                          If you would like a walkthrough or a demo access account,
-                          please contact me on
-                          <a href="mailto:contact@farhaan.info" style="color: #fb923c; text-decoration: underline;">contact@farhaan.info</a>
+                        <div class="pp-note" style="background: var(--card); color: var(--text); padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 500; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: var(--muted);"></i>
+                          For a walkthrough of the search document, the
+                          availability staleness rule or the plan gate, contact
+                          me on
+                          <a href="mailto:contact@farhaan.info" style="color: var(--cyan); text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>

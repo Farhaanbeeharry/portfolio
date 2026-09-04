@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MoMento — Farhaan Beeharry</title>
-    <meta name="description" content="MoMento project collaboration and meeting minutes web app built with Angular and Supabase" />
-    <meta name="keywords" content="momento, meeting minutes, project management, action items, angular, supabase, collaboration, web app" />
+    <meta name="description" content="MoMento — an Angular 20 delivery platform that turns minutes of meeting into tickets: a Jira-shaped board with epics, sprints and story points, a live planning-poker table drawn by a hand-written WebGL renderer with no library, a block editor with per-block authorship and immutable versions, and project financing. On Supabase, where two security-definer helpers answer every access question." />
+    <meta name="keywords" content="momento, angular 20, signals, standalone components, supabase, postgresql, row level security, realtime, planning poker, webgl, editor.js, kanban, sprints, story points, minutes of meeting, project management" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,21 +79,23 @@
         <div class="container">
           <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
 
-          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web</div>
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web app &amp; UI/UX</div>
 
           <h1 class="pp-title reveal"><span class="g">MoMento</span></h1>
 
           <div class="pp-meta reveal">
-            <span><i class="fa-regular fa-calendar"></i> April 28, 2026</span>
+            <span><i class="fa-regular fa-calendar"></i> January — July 2026</span>
             <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
           <div class="pp-tags reveal">
             <span>web app</span>
-            <span>angular</span>
-            <span>project management</span>
+            <span>angular 20</span>
             <span>supabase</span>
-            <span>kanban</span>
+            <span>postgresql</span>
+            <span>webgl</span>
+            <span>planning poker</span>
+            <span>project delivery</span>
           </div>
 
           <figure class="pp-cover reveal"><img src="background.png" alt="MoMento Project Cover" /></figure>
@@ -103,33 +105,173 @@
       <article class="pp-article">
         <div class="container">
           <div class="col-inner">
-            
+
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        MoMento is a collaborative project-management platform
-                        that turns meeting minutes into action. Teams document
-                        minutes of meeting (attendees, decisions, notes), spin
-                        action items straight out of them, and drive delivery
-                        through a full Jira-style workflow — kanban and list
-                        boards, sprints with capacity planning, story points,
-                        test-case management and hierarchical project documents.
-                        Built with Angular 20 (standalone components, signals)
-                        on a Supabase backend.
+                        <strong>MoMento</strong> is a delivery platform built
+                        around the one artefact most teams already produce and
+                        then abandon: the minutes of a meeting. A meeting is
+                        written up with its agenda, attendees and decisions;
+                        the actions agreed in it become tickets that keep a link
+                        back to the meeting that created them; the tickets run
+                        through a Jira-shaped board with sprints, story points
+                        and a hierarchy; and the estimating itself happens inside
+                        the product, at a live planning-poker table.
 
                         <br /><br />
-                        Key features:
+                        It is an <strong>Angular&nbsp;20</strong> application —
+                        standalone components, signals, lazy routes, Angular
+                        Material and the CDK — on a <strong>Supabase</strong>
+                        backend. Everything is scoped to a project, and
+                        membership is the only key: two security-definer helpers,
+                        <code>is_project_member()</code> and
+                        <code>is_project_owner()</code>, are what nearly every
+                        Row Level Security policy in the schema actually calls,
+                        so "can this person see this" is answered in one place
+                        rather than restated per table.
+
+                        <br /><br />
+                        <strong>1 · From a meeting to a ticket</strong>
+                        <br />
+                        Minutes are structured, not a text box: an agenda whose
+                        items carry an order and a duration, a list of decisions,
+                        and attendees as real member rows rather than typed
+                        names. An action item can hold <code>mom_id</code>, so
+                        months later a ticket still answers "where did this come
+                        from" — and the foreign key is <code>on delete set
+                        null</code>, because deleting the write-up should not
+                        delete the work it produced.
+
+                        <br /><br />
+                        <strong>2 · The board</strong>
+                        <br />
+                        Action items are the largest surface in the application
+                        by a wide margin — one component of roughly
+                        7,700&nbsp;lines of TypeScript against 6,400 of template.
+                        An item carries a ticket key, an issue type
+                        (<em>Epic&nbsp;· User Story&nbsp;· Feature&nbsp;·
+                        Bugfix&nbsp;· Task</em>), a status
+                        (<em>Backlog&nbsp;· To&nbsp;Do&nbsp;· In&nbsp;Progress&nbsp;·
+                        Testing&nbsp;· Blocked&nbsp;· Done</em>), a priority, an
+                        assignee and a reporter, labels, story points, an hours
+                        estimate, start and due dates, an order index for manual
+                        ranking, and a parent — so an epic genuinely contains its
+                        stories rather than merely being tagged alongside them.
+                        Every one of those vocabularies is a <code>CHECK</code>
+                        constraint, so an unknown status cannot arrive through
+                        the API and quietly widen the board.
+
+                        <br /><br />
+                        Deletion is a timestamp and an author
+                        (<code>deleted_at</code>, <code>deleted_by</code>), never
+                        a <code>DELETE</code>. A ticket removed by mistake in a
+                        sprint-planning session is recoverable, and the audit of
+                        who removed it survives.
+
+                        <br /><br />
+                        <strong>The denormalised sprint name, and why it is safe</strong>
+                        <br />
+                        An item stores both <code>sprint_id</code> and the
+                        sprint's <code>name</code>. That is a duplication on
+                        purpose: the board groups, filters and exports by name
+                        constantly, and carrying the name means those paths never
+                        need the join. The usual cost of denormalisation — the
+                        copy going stale — is removed by two triggers rather than
+                        by discipline: one fills the name from the id on every
+                        insert and update, the other rewrites every affected item
+                        when a sprint is renamed. Renaming "Sprint 4" to
+                        "Hardening" is a single update, and no ticket is left
+                        pointing at a sprint that no longer goes by that name.
+
+                        <br /><br />
+                        <strong>3 · Planning poker, at a real table</strong>
+                        <br />
+                        Estimation is a live, project-scoped session anyone on
+                        the team can watch or join. A room owns its card scale
+                        (<code>0 1 2 3 5 8 13 21 ? coffee</code> by default, and
+                        editable), whether the cards flip automatically, and a
+                        reveal countdown of nought to thirty seconds. A round
+                        walks <em>Voting → Revealing → Revealed</em>, and every
+                        transition is a PostgreSQL function; the client asks, it
+                        never decides.
+
+                        <br /><br />
+                        The interesting rules are the ones about what a player is
+                        allowed to know and when:
                         <ul>
-                          <li>Minutes of meeting (draft/publish/archive) with attendees &amp; authorship</li>
-                          <li>Action items with issue types (Epic/Story/Bug/Task), priority &amp; status workflow</li>
-                          <li>Kanban board (drag &amp; drop) + list view</li>
-                          <li>Sprint planning with capacity &amp; goals</li>
-                          <li>Advanced multi-field filtering &amp; search</li>
-                          <li>Project documents in hierarchical folders (markdown + images)</li>
-                          <li>Test-case management with CSV/markdown import</li>
-                          <li>Team &amp; role management</li>
-                          <li>Project financing tracking</li>
+                          <li>Cards are unreadable until the round flips. The read policy is gated on <code>poker_round_is_revealed()</code>, so "don't render it yet" is not what is keeping your estimate private</li>
+                          <li>A seat still publishes <code>has_voted</code> — the fact that a card is down, never which card — which is what drives the face-down card at each seat and the waiting-on-N counter</li>
+                          <li>A vote can only be cast while the round is still collecting them. Once the reveal starts the table is final until the host calls a re-vote, so nobody can nudge their number after seeing everyone else's</li>
+                          <li>Only the host may flip early — but <em>anyone</em> may trigger the automatic reveal once every eligible seat has voted, so a round is not held hostage by a host whose tab has gone to sleep</li>
+                          <li>Spectators are a real role and are excluded from the "everyone has voted" count, so a watching manager cannot stall the table</li>
+                          <li>Averages ignore <code>?</code> and <code>coffee</code> rather than coercing them to zero, which would drag consensus down every time somebody admitted they did not know</li>
+                          <li>Agreeing a number pushes it onto the linked ticket — the estimate lands on the work, not in a chat log</li>
                         </ul>
+
+                        <br />
+                        Two performance details keep the room quiet: recomputing
+                        the <code>has_voted</code> flags only touches rows that
+                        actually change, so realtime subscribers are not woken
+                        for nothing; and a trigger touches the room row whenever
+                        one of its children changes, so every lobby and dashboard
+                        watching the room updates from one small write rather
+                        than by re-reading the session.
+
+                        <br /><br />
+                        <strong>The table itself is hand-written WebGL</strong>
+                        <br />
+                        The seats, the cards and the buttons stay in the DOM —
+                        crisp text, real focus rings, screen-reader-navigable.
+                        Everything <em>underneath</em> them is a
+                        thousand-line WebGL&nbsp;1 renderer with no external
+                        dependency at all: the felt and its padded rail lit by a
+                        single overhead lamp, the ripple every vote drops into
+                        the surface, a radar sweep while the table is still
+                        waiting, arcs that tighten into the countdown, a
+                        shockwave on the flip, consensus confetti, and emoji that
+                        players throw at each other along a bezier arc — swelling
+                        as they cross the middle so the throw reads as height
+                        rather than a slide. The felt warms toward red as
+                        disagreement across the revealed cards widens. If a
+                        WebGL context cannot be created, the component falls back
+                        to the painted CSS table and the room carries on.
+
+                        <br /><br />
+                        <strong>4 · Documents</strong>
+                        <br />
+                        Project documents are a block editor with the full tool
+                        set — headings, lists, checklists, tables, quotes,
+                        warnings, code, embeds, images, attachments, toggles and
+                        undo — organised into folders. Two things lift it above
+                        a wrapper around a library:
+                        <ul>
+                          <li>A custom block tune records <strong>who last edited each block, and when</strong>, showing the recent authors with their avatars in the block's own menu. Attribution is per paragraph, not per document</li>
+                          <li>Versions are immutable snapshots of the title and content. The table has no <code>UPDATE</code> policy at all — a version cannot be edited into saying something it never said — and only its own author may delete one</li>
+                          <li>Markdown pasted in is parsed to blocks with a pre-pass that repairs the most common real-world defect: an unindented continuation paragraph after a list item, which every naïve parser turns into a separate paragraph and which is re-merged into the list item it belongs to</li>
+                        </ul>
+
+                        <br /><strong>5 · Money, and the rest</strong>
+                        <ul>
+                          <li><strong>Financing</strong> — a project has a price per percentage point, each member a contribution percentage and a start date, and monthly payment rows unique per member per month. Members read; only the owner writes</li>
+                          <li><strong>Expenses</strong> — dated project expenses with a non-negative constraint, on the same read-all / owner-writes split</li>
+                          <li><strong>Calendar</strong> — the delivery dates the board implies, as a month view</li>
+                          <li><strong>Team and invitations</strong> — invite by e-mail, inspect the invitation before accepting, and accept it, all through security-definer RPCs rather than direct table writes</li>
+                          <li><strong>Settings and theme</strong> — light and dark throughout, with the logo swapped per theme rather than recoloured by a filter</li>
+                        </ul>
+
+                        <br /><strong>What "recently active" actually means</strong>
+                        <br />
+                        A project's <code>updated_at</code> is maintained by
+                        triggers on everything that belongs to it — minutes,
+                        action items, documents, sprints, labels, members,
+                        payments — and a meeting's <code>updated_at</code> the
+                        same way from its agenda, decisions and attendees. So
+                        sorting the project list by activity reflects the last
+                        thing anybody did in it, not the last time somebody
+                        happened to edit the project's own name. It is a small
+                        amount of trigger plumbing that makes an ordinary list
+                        stop lying.
 
                         <!-- ================= UI SHOWCASE ================= -->
                         <div class="pf-wrap"
@@ -139,222 +281,202 @@
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            From documented meetings to a Jira-style delivery
-                            board — recreated from the app's real Angular screens
-                            and colour system.
+                            The delivery board, a live planning-poker round with
+                            the cards still face down, and the block editor with
+                            its per-block authorship — recreated from MoMento's
+                            real Angular screens.
                           </p>
 
                           <div class="pf-stage">
-                            <!-- Frame 1: Dashboard -->
+                            <!-- Frame 1: Board -->
                             <div class="pf-frame" style="flex:1 1 560px">
                               <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
                                   <span class="pf-dot r"></span>
                                   <span class="pf-dot y"></span>
                                   <span class="pf-dot g"></span>
-                                  <span class="pf-url">momento.app/board</span>
+                                  <span class="pf-url">momento.app/projects/atlas/action-items</span>
                                 </div>
                                 <div class="pf-viewport">
                                   <div class="pf-side">
                                     <div class="pf-brandrow">
-                                      <span class="pf-t-lg" style="font-size:15px">MoMento</span>
+                                      <img src="logo.png" alt="MoMento" style="height:16px;width:auto" />
                                     </div>
-                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-tachometer-alt"></i></span> Dashboard</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-alt"></i></span> Minutes</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Action Items</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-bolt"></i></span> Sprints</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-gauge-high"></i></span> Dashboard</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-lines"></i></span> Minutes</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-list-check"></i></span> Action items</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-diagram-project"></i></span> Poker</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-folder"></i></span> Documents</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-coins"></i></span> Financing</div>
                                   </div>
                                   <div class="pf-main">
-                                    <div class="pf-grid3 pf-mb">
-                                      <div class="pf-stat brand">
-                                        <div class="n">42</div>
-                                        <div class="l">Total MoMs</div>
-                                      </div>
-                                      <div class="pf-stat">
-                                        <div class="n">17</div>
-                                        <div class="l">Open Items</div>
-                                      </div>
-                                      <div class="pf-stat">
-                                        <div class="n">8</div>
-                                        <div class="l">This Sprint</div>
-                                      </div>
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-h2" style="margin:0">Sprint 4 · Hardening</div>
+                                      <span class="pf-badge solid">34 pts</span>
                                     </div>
-                                    <div class="pf-card">
-                                      <div class="pf-h2">Recent minutes</div>
-                                      <div class="pf-li">
-                                        <div class="grow">
-                                          <div class="pf-t pf-strong">Sprint 12 planning</div>
-                                          <div class="pf-avs pf-mt">
-                                            <span class="pf-av">AS</span>
-                                            <span class="pf-av">RK</span>
-                                            <span class="pf-av">MJ</span>
-                                          </div>
-                                        </div>
-                                        <span class="pf-badge ok">Published</span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <div class="grow">
-                                          <div class="pf-t pf-strong">Design review</div>
-                                          <div class="pf-avs pf-mt">
-                                            <span class="pf-av">LM</span>
-                                            <span class="pf-av">RK</span>
-                                          </div>
-                                        </div>
-                                        <span class="pf-badge warn">Draft</span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <div class="grow">
-                                          <div class="pf-t pf-strong">Client kickoff</div>
-                                          <div class="pf-avs pf-mt">
-                                            <span class="pf-av">AS</span>
-                                            <span class="pf-av">MJ</span>
-                                            <span class="pf-av">TC</span>
-                                          </div>
-                                        </div>
-                                        <span class="pf-badge ok">Published</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="pf-cap">Meetings hub</div>
-                            </div>
-
-                            <!-- Frame 2: Action Items board -->
-                            <div class="pf-frame" style="flex:1 1 560px">
-                              <div class="pf-browser pf-wide">
-                                <div class="pf-tabbar">
-                                  <span class="pf-dot r"></span>
-                                  <span class="pf-dot y"></span>
-                                  <span class="pf-dot g"></span>
-                                  <span class="pf-url">momento.app/board/items</span>
-                                </div>
-                                <div class="pf-viewport">
-                                  <div class="pf-side">
-                                    <div class="pf-brandrow">
-                                      <span class="pf-t-lg" style="font-size:15px">MoMento</span>
-                                    </div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-tachometer-alt"></i></span> Dashboard</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-alt"></i></span> Minutes</div>
-                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-tasks"></i></span> Action Items</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-bolt"></i></span> Sprints</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-folder"></i></span> Documents</div>
-                                  </div>
-                                  <div class="pf-main">
                                     <div class="pf-kanban">
                                       <div class="pf-kcol">
-                                        <div class="h"><span>To Do</span><span>2</span></div>
+                                        <div class="h"><span>To do</span><span>3</span></div>
                                         <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-142</span>
-                                          <div class="pf-t pf-mt">Draft onboarding flow</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">AS</span>
-                                            <span class="pf-badge danger">High</span>
-                                            <span class="pf-muted">5 pts</span>
-                                          </div>
+                                          <div class="pf-xs pf-muted">ATL-118</div>
+                                          <div class="pf-t">Rate-limit the invite RPC</div>
+                                          <div class="pf-row pf-mt"><span class="pf-tag">Task</span><span class="pf-badge">5</span></div>
                                         </div>
                                         <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-148</span>
-                                          <div class="pf-t pf-mt">Export MoM to PDF</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">RK</span>
-                                            <span class="pf-badge">Med</span>
-                                            <span class="pf-muted">3 pts</span>
-                                          </div>
+                                          <div class="pf-xs pf-muted">ATL-121</div>
+                                          <div class="pf-t">Sprint rename regression</div>
+                                          <div class="pf-row pf-mt"><span class="pf-tag">Bugfix</span><span class="pf-badge">3</span></div>
                                         </div>
                                       </div>
                                       <div class="pf-kcol">
-                                        <div class="h"><span>In Progress</span><span>2</span></div>
+                                        <div class="h"><span>In progress</span><span>2</span></div>
                                         <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-131</span>
-                                          <div class="pf-t pf-mt">Sprint capacity planner</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">MJ</span>
-                                            <span class="pf-badge danger">High</span>
-                                            <span class="pf-muted">8 pts</span>
-                                          </div>
-                                        </div>
-                                        <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-137</span>
-                                          <div class="pf-t pf-mt">Filter by assignee</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">LM</span>
-                                            <span class="pf-badge">Med</span>
-                                            <span class="pf-muted">2 pts</span>
-                                          </div>
+                                          <div class="pf-xs pf-muted">ATL-104</div>
+                                          <div class="pf-t">Block-level authorship</div>
+                                          <div class="pf-row pf-mt"><span class="pf-tag">Feature</span><span class="pf-badge">8</span></div>
                                         </div>
                                       </div>
                                       <div class="pf-kcol">
                                         <div class="h"><span>Testing</span><span>1</span></div>
                                         <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-125</span>
-                                          <div class="pf-t pf-mt">CSV test-case import</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">TC</span>
-                                            <span class="pf-badge warn">Low</span>
-                                            <span class="pf-muted">5 pts</span>
-                                          </div>
+                                          <div class="pf-xs pf-muted">ATL-097</div>
+                                          <div class="pf-t">Poker re-vote lock</div>
+                                          <div class="pf-row pf-mt"><span class="pf-tag">Task</span><span class="pf-badge">2</span></div>
                                         </div>
                                       </div>
-                                      <div class="pf-kcol">
-                                        <div class="h"><span>Done</span><span>3</span></div>
-                                        <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-118</span>
-                                          <div class="pf-t pf-mt">Kanban drag &amp; drop</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">AS</span>
-                                            <span class="pf-badge">Med</span>
-                                            <span class="pf-muted">5 pts</span>
-                                          </div>
-                                        </div>
-                                        <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-120</span>
-                                          <div class="pf-t pf-mt">Story point field</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">RK</span>
-                                            <span class="pf-badge warn">Low</span>
-                                            <span class="pf-muted">2 pts</span>
-                                          </div>
-                                        </div>
-                                        <div class="pf-kcard">
-                                          <span class="pf-tag">MOM-122</span>
-                                          <div class="pf-t pf-mt">Attendee picker</div>
-                                          <div class="pf-row pf-mt">
-                                            <span class="pf-av">MJ</span>
-                                            <span class="pf-badge">Med</span>
-                                            <span class="pf-muted">3 pts</span>
-                                          </div>
-                                        </div>
-                                      </div>
+                                    </div>
+                                    <div class="pf-muted pf-mt pf-xs">
+                                      ATL-104 was raised from the minutes of 12 June — the link is on the ticket.
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Kanban &amp; sprints</div>
+                              <div class="pf-cap">Board — epics, sprints and story points</div>
+                            </div>
+
+                            <!-- Frame 2: Poker room -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">momento.app/projects/atlas/poker/estimation-friday</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-main" style="background:#0e2a1e">
+                                    <div class="pf-between pf-mb">
+                                      <span class="pf-t-lg" style="color:#eaf4ee">ATL-118 · Rate-limit the invite RPC</span>
+                                      <span class="pf-badge warn"><span class="pf-dot-live"></span> Voting</span>
+                                    </div>
+                                    <div style="background:radial-gradient(circle at 40% 25%, #1d6b48, #0d3a27 70%);border:6px solid #6b4a2a;border-radius:120px/70px;padding:26px 18px;text-align:center">
+                                      <div class="pf-avs" style="justify-content:center">
+                                        <span class="pf-av">RB</span>
+                                        <span class="pf-av">SF</span>
+                                        <span class="pf-av">AK</span>
+                                        <span class="pf-av">LC</span>
+                                        <span class="pf-av">PN</span>
+                                      </div>
+                                      <div style="color:#eaf4ee;font-size:15px;font-weight:700;margin-top:12px">Waiting on 1 of 5</div>
+                                      <div style="color:#a9c9b8;font-size:11.5px;margin-top:4px">Cards flip automatically · 3s countdown</div>
+                                      <div class="pf-row" style="justify-content:center;margin-top:12px">
+                                        <span style="width:24px;height:34px;border-radius:5px;background:#123f2c;border:1px solid #2f7d5b"></span>
+                                        <span style="width:24px;height:34px;border-radius:5px;background:#123f2c;border:1px solid #2f7d5b"></span>
+                                        <span style="width:24px;height:34px;border-radius:5px;background:#123f2c;border:1px solid #2f7d5b"></span>
+                                        <span style="width:24px;height:34px;border-radius:5px;background:#123f2c;border:1px solid #2f7d5b"></span>
+                                        <span style="width:24px;height:34px;border-radius:5px;border:1px dashed #4f8f72"></span>
+                                      </div>
+                                    </div>
+                                    <div class="pf-row" style="justify-content:center;margin-top:14px;flex-wrap:wrap">
+                                      <span class="pf-badge">1</span>
+                                      <span class="pf-badge">2</span>
+                                      <span class="pf-badge">3</span>
+                                      <span class="pf-badge solid">5</span>
+                                      <span class="pf-badge">8</span>
+                                      <span class="pf-badge">13</span>
+                                      <span class="pf-badge">?</span>
+                                      <span class="pf-badge"><i class="fas fa-mug-hot"></i></span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">A round in progress — four cards down, none readable</div>
+                            </div>
+
+                            <!-- Frame 3: Document editor -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">momento.app/projects/atlas/documents/api-contract</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-side">
+                                    <div class="pf-brandrow">
+                                      <img src="logo.png" alt="MoMento" style="height:16px;width:auto" />
+                                    </div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-folder"></i></span> Architecture</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-file-lines"></i></span> API contract</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-lines"></i></span> Release notes</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-folder"></i></span> Research</div>
+                                  </div>
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-h2" style="margin:0">API contract</div>
+                                      <span class="pf-badge"><i class="fas fa-clock-rotate-left"></i> 14 versions</span>
+                                    </div>
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Error envelope</div>
+                                      <div class="pf-t">Every failure returns a stable key, never a sentence…</div>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-av" style="width:20px;height:20px;font-size:9px">SF</span>
+                                        <span class="pf-muted pf-xs">edited this block · today 14:02</span>
+                                      </div>
+                                    </div>
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Pagination</div>
+                                      <div class="pf-t">Cursor-based, opaque, forward-only…</div>
+                                      <div class="pf-row pf-mt">
+                                        <span class="pf-av" style="width:20px;height:20px;font-size:9px">RB</span>
+                                        <span class="pf-muted pf-xs">edited this block · 3 Sep</span>
+                                      </div>
+                                    </div>
+                                    <div class="pf-btn-ghost"><i class="fas fa-plus"></i> Add a block</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Documents — attribution per block, versions immutable</div>
                             </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">Angular 20</span>
-                            <span class="pf-chip">Tailwind CSS</span>
-                            <span class="pf-chip">Angular Material</span>
-                            <span class="pf-chip">CDK Drag-Drop</span>
-                            <span class="pf-chip">Editor.js</span>
-                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">Standalone components</span>
+                            <span class="pf-chip">Signals</span>
+                            <span class="pf-chip">TypeScript</span>
+                            <span class="pf-chip">Angular Material + CDK</span>
                             <span class="pf-chip">RxJS</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">Supabase</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Row Level Security</span>
+                            <span class="pf-chip">Realtime</span>
+                            <span class="pf-chip">WebGL 1 (no library)</span>
+                            <span class="pf-chip">Editor.js</span>
+                            <span class="pf-chip">marked</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
-                        MoMento is currently an in-development internal tool —
-                        there is no public demo link at this time.
-
-                        <br /><br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
-                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
+                        <div class="pp-note" style="background: var(--card); color: var(--text); padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 500; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: var(--muted);"></i>
+                          For a walkthrough of the poker table's renderer, the
+                          sprint-name triggers or the document version model,
+                          contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: var(--cyan); text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>
@@ -367,8 +489,8 @@
       <section class="pp-more">
         <div class="container">
           <div class="pp-more-grid">
-            <a class="pp-more-card reveal" href="../../portfolio/weartwice/index.html"><i class="fa-solid fa-arrow-left"></i><span><span class="dir">Previous</span><div class="nm">WearTwice</div></span></a>
-            <a class="pp-more-card next reveal" href="../../portfolio/blaugrana/index.html"><span><span class="dir">Next</span><div class="nm">Blaugrana</div></span><i class="fa-solid fa-arrow-right"></i></a>
+            <a class="pp-more-card reveal" href="../../portfolio/teamtoss/index.html"><i class="fa-solid fa-arrow-left"></i><span><span class="dir">Previous</span><div class="nm">TeamToss</div></span></a>
+            <a class="pp-more-card next reveal" href="../../portfolio/staybleu/index.html"><span><span class="dir">Next</span><div class="nm">StayBleu</div></span><i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
       </section>

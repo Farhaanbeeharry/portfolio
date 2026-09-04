@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>StayBleu - Enterprise Hospitality OS — Farhaan Beeharry</title>
-    <meta name="description" content="StayBleu is an enterprise-grade hospitality management system designed for luxury hotels and property groups." />
-    <meta name="keywords" content="staybleu, hospitality management, hotel pms, enterprise dashboard, nextjs, supabase, hotel software" />
+    <title>StayBleu — Farhaan Beeharry</title>
+    <meta name="description" content="StayBleu — a property-management system for Mauritian short-stay properties: six stay types derived from the check-in and check-out clock rather than chosen, overstay charged as a calculation instead of stored as a status, per-adult on-screen signatures, a role table that RLS reads through one check_permission() call, and a sign-out that is a cash-up. Next.js 16 and React 19 on Supabase, every mutation a typed Server Action." />
+    <meta name="keywords" content="staybleu, hotel pms, property management system, next.js 16, react 19, supabase, postgresql, row level security, server actions, next-intl, leaflet, day use, evening use, overstay, housekeeping, audit log, mauritius" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,21 +79,23 @@
         <div class="container">
           <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
 
-          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web</div>
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web app &amp; UI/UX</div>
 
           <h1 class="pp-title reveal"><span class="g">StayBleu</span></h1>
 
           <div class="pp-meta reveal">
-            <span><i class="fa-regular fa-calendar"></i> April 28, 2026</span>
+            <span><i class="fa-regular fa-calendar"></i> April — July 2026</span>
             <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
           <div class="pp-tags reveal">
             <span>web app</span>
             <span>hotel pms</span>
-            <span>next.js</span>
+            <span>next.js 16</span>
+            <span>react 19</span>
             <span>supabase</span>
-            <span>dashboard</span>
+            <span>postgresql</span>
+            <span>multi-property</span>
           </div>
 
           <figure class="pp-cover reveal"><img src="background.png" alt="StayBleu Project Cover" /></figure>
@@ -103,34 +105,193 @@
       <article class="pp-article">
         <div class="container">
           <div class="col-inner">
-            
+
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        StayBleu is an enterprise-grade property-management
-                        system (PMS) for hotels and guesthouses. From one
-                        real-time dashboard, staff process check-ins/outs, track
-                        occupancy, flag pending payments and manage housekeeping
-                        — with flexible pricing for day-use, evening and full
-                        stays, automatic overstay charges, multi-property support
-                        with an interactive map, and thorough guest records
-                        (national ID, passport, family links, banning). Built on
-                        Next.js 16 / React 19 with a Supabase backend and live
-                        database subscriptions.
+                        <strong>StayBleu</strong> is the property-management
+                        system a front desk actually stands at. One screen holds
+                        the live state of every room across every property: who
+                        is in, who is due out, who has not paid, which rooms are
+                        dirty, and what the day has taken. It is built for the
+                        Mauritian short-stay market, where a room is not only
+                        sold by the night — the same room is sold for a day, for
+                        an evening, for a day <em>and</em> an evening, or for
+                        several nights with a day tacked on either end.
 
                         <br /><br />
-                        Key features:
+                        The stack is <strong>Next.js&nbsp;16</strong> /
+                        React&nbsp;19 with Tailwind&nbsp;CSS&nbsp;4 on
+                        <strong>Supabase</strong> — Auth, PostgreSQL with Row
+                        Level Security, and nothing else in between. Every
+                        mutation is a typed Server Action
+                        (<code>src/app/actions/</code>, ten files and roughly
+                        three thousand lines), so the browser never holds a
+                        privileged key and the audit entry is written on the same
+                        code path as the change it describes.
+
+                        <br /><br />
+                        <strong>The stay type is derived, not chosen</strong>
+                        <br />
+                        A receptionist enters a check-in and a check-out. They
+                        never pick a tariff. The six stay types — <em>day
+                        use</em>, <em>evening use</em>,
+                        <em>day&nbsp;+&nbsp;evening</em>, <em>full stay</em>,
+                        <em>full stay&nbsp;+&nbsp;evening use</em>,
+                        <em>full stay&nbsp;+&nbsp;day use</em> — are computed
+                        from the two timestamps against the day window
+                        (08:00–17:00): a same-day booking that starts before five
+                        and ends after eight touches the day, one that runs past
+                        five also touches the evening, and one that opens before
+                        eight has already touched the evening before it. The
+                        price follows from the type, and the type follows from
+                        the clock. A desk under pressure cannot pick the wrong
+                        rate, because it is not offered one.
+
+                        <br /><br />
+                        Room pricing is stored the way it is quoted:
+                        <code>day_use_price</code> and
+                        <code>evening_use_price</code> are the two real numbers,
+                        and <code>full_day_price</code> is their sum, recomputed
+                        rather than entered — a third editable number is a third
+                        number that can disagree with the other two, and a full
+                        day that does not equal its own halves is an argument at
+                        the desk. Birthday rates are a separate, nullable
+                        set: <code>NULL</code> means this room has no birthday
+                        tariff at all, which is a different statement from
+                        <em>zero</em>, and clearing the amenity clears all three
+                        birthday columns with it.
+
+                        <br /><br />
+                        <strong>Overstaying is charged, and it is still not a status</strong>
+                        <br />
+                        Nothing in the schema records that a guest is late. The
+                        extra charge is derived at the moment somebody looks: a
+                        day use that has crossed 17:00 attracts the evening
+                        price, an evening use still in the room after 08:00 the
+                        next morning attracts the day price, and a full stay
+                        attracts a further day either past noon on its checkout
+                        day or four hours past its planned checkout on any other
+                        day. Because it is derived, an overstay resolves itself
+                        the moment the guest leaves, and it can never be left
+                        behind as a stale flag on a room that has since been
+                        cleaned and re-let.
+
+                        <br /><br />
+                        Check-out is then <em>intercepted</em> rather than
+                        blocked. If payment is still pending, or the stay has
+                        crossed into a chargeable range, the action stops and
+                        raises the payment sheet with the extra already
+                        calculated. The member of staff can still complete the
+                        check-out — they simply cannot complete it without having
+                        been shown the number.
+
+                        <br /><br />
+                        <strong>What a booking will not let you do</strong>
                         <ul>
-                          <li>Real-time dashboard (active stays, checkout alerts, occupancy %)</li>
-                          <li>Multi-location management with Leaflet map &amp; table views</li>
-                          <li>Flexible bookings (day-use / evening / full / hybrid) with auto price calc</li>
-                          <li>Guest management with ID verification, family linking &amp; banning</li>
-                          <li>Phone-booking modal for rapid manual reservations</li>
-                          <li>Overstay detection &amp; auto extra-charge</li>
-                          <li>Role-based access + full audit logging</li>
-                          <li>Finance tracking (income / expense by method)</li>
-                          <li>Housekeeping tasks with auto-cleanup</li>
-                          <li>Multi-language (next-intl) + user preferences</li>
+                          <li>Double-book a room. The overlap check ignores cancelled and checked-out rows, and treats a checked-in stay with no <code>actual_check_out</code> as occupying the room indefinitely — the guest is <em>in there</em>, and a planned departure that has passed is not evidence that they left</li>
+                          <li>Cancel a stay that has already happened. A <em>Confirmed</em> booking cancels freely; a <em>Checked-in</em> one only within fifteen minutes of arrival, which covers the mis-scan and excludes the rewrite; a <em>Checked-out</em> one never</li>
+                          <li>Check in without settling how the money is being handled — a pending payment raises the same interception on the way in as on the way out</li>
+                          <li>Reach a property that is not yours. <code>profiles.locations</code> scopes every list, and asking for a location you are not assigned to returns an empty set rather than an error, so the filter cannot be used to enumerate the estate</li>
+                        </ul>
+
+                        <br /><strong>Who sees which bookings</strong>
+                        <br />
+                        Booking visibility is three-valued rather than boolean:
+                        <em>none</em>, <em>today</em>, <em>anytime</em>. A
+                        <em>today</em> scope is deliberately not "bookings whose
+                        check-in date is today" — that hides the guest who
+                        arrived yesterday and is leaving this morning, who is
+                        precisely the person a morning shift needs. It is every
+                        stay whose window <em>overlaps</em> today, measured
+                        against the actual check-out where one exists and the
+                        planned one where it does not.
+
+                        <br /><br />
+                        <strong>Guests are people, not rows on a reservation</strong>
+                        <br />
+                        A guest record carries a national ID, a passport number
+                        and a driving licence, each independently unique, so the
+                        same person checking in on a different document is still
+                        the same person. Guests link to one another as parent and
+                        child — a constraint refuses a guest as their own parent,
+                        and the pair is unique, so a family cannot be recorded
+                        twice. A ban carries its reason. Addresses typed at the
+                        desk are normalised into a shared suggestion table, so
+                        the fourth guest from the same block of flats does not
+                        arrive with a fourth spelling of it.
+
+                        <br /><br />
+                        At booking creation each adult signs on the screen. The
+                        signatures are stored as a JSON object on the booking
+                        keyed by guest id, so a party of four produces four
+                        attributable signatures on one reservation rather than
+                        one signature standing in for everybody.
+
+                        <br /><br />
+                        <strong>Two things the database refused to leave to the interface</strong>
+                        <br />
+                        Roles are rows, not an enum. A role holds a JSONB
+                        permission map, and one function —
+                        <code>check_permission(module, action)</code>, security
+                        definer — resolves the caller's role from their profile
+                        and asks whether that module's array contains that
+                        action. Nearly every write policy in the schema is that
+                        call and nothing else, which is why adding a role is a
+                        row rather than a migration.
+
+                        <br /><br />
+                        A later hardening pass closed two holes the interface had
+                        been quietly covering:
+                        <ul>
+                          <li>The finance ledger <em>had</em> policies, but RLS had never been enabled on the table — so the policies were inert, and the blanket <code>authenticated</code> grant let any signed-in user read and write the whole ledger. The policies looked right in a diff and did nothing at runtime</li>
+                          <li>RLS cannot restrict individual columns, so the "you may edit your own profile" policy also let a user set their own <code>role</code> to Admin. A <code>BEFORE UPDATE</code> trigger now rejects any change to <code>role</code>, <code>super_admin</code> or <code>is_revoked</code> unless the caller holds <code>users.edit</code> — with an explicit <code>service_role</code> bypass, so the trusted server paths still work</li>
+                        </ul>
+
+                        <br /><strong>Two factors, and a session that can be taken away</strong>
+                        <br />
+                        A password gets you an e-mail OTP, and only verifying it
+                        sets the second-factor cookie the middleware demands
+                        alongside a valid session. Two details make it behave: an
+                        authenticated, verified user is redirected away from the
+                        auth screens <em>in the middleware</em>, so the login page
+                        never flashes on a hard refresh; and every request
+                        re-reads <code>is_revoked</code> with the service-role
+                        client, so disabling an account ends its session on the
+                        next navigation rather than whenever its token happened
+                        to expire.
+
+                        <br /><br />
+                        <strong>Signing out is a cash-up</strong>
+                        <br />
+                        Pressing sign out does not sign you out. It shows the
+                        shift you just worked — bookings created, income,
+                        expenses, refunds, the net, and the split across cash,
+                        card and MCB&nbsp;Juice — and only then ends the session,
+                        writing that summary to <code>cashier_sessions</code>
+                        against the session token it belonged to. The handover
+                        conversation at the end of a shift now has a number in
+                        it, and the number was not typed by the person handing
+                        over.
+
+                        <br /><br />
+                        <strong>Around the desk</strong>
+                        <ul>
+                          <li><strong>Dashboard</strong> — active stays, checkouts due, occupancy and pending payments, per property or across all of them</li>
+                          <li><strong>Locations</strong> — a Leaflet map and a table view, each property carrying its own amenities, policies and accepted payment methods, with the room count maintained by a trigger rather than by whoever last edited a room</li>
+                          <li><strong>Finance</strong> — one ledger for income, expenses and refunds, numbered and attributable, with booking payments landing in it on the same code path that takes them</li>
+                          <li><strong>Housekeeping</strong> — tasks by type and priority, and a trigger that moves the room's own status as the task moves</li>
+                          <li><strong>Reports</strong> — revenue, occupancy, and an estimate of the unpaid overstays sitting in rooms right now</li>
+                          <li><strong>Audit log</strong> — every privileged action, with a field-level before/after diff rendered as a sentence rather than a JSON blob</li>
+                        </ul>
+
+                        <br /><strong>Engineering</strong>
+                        <ul>
+                          <li>The audit table deliberately keeps <code>user_id</code> and <code>location_id</code> as plain columns with no foreign keys. An audit trail that cascades away when you delete the user it accuses is not an audit trail</li>
+                          <li>The diff summariser ignores <code>id</code>, <code>created_at</code> and <code>updated_at</code>, and phrases a cleared field as "was removed" rather than "changed to empty" — to the person reading the log those are two different events</li>
+                          <li>"Today" is a start-of-day / end-of-day pair built once and passed down rather than recomputed per row, so a list cannot disagree with itself about which day it is halfway through rendering</li>
+                          <li>English and French throughout via <code>next-intl</code>, with the language stored on the profile — the same shared terminal serves a French and an English receptionist on consecutive shifts</li>
+                          <li>Room photos and avatars are cropped in the browser before upload, so the desk is not pushing a 12&nbsp;MP phone photo up a hotel's connection</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
@@ -141,9 +302,11 @@
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            A look at the operations dashboard and booking desk —
-                            recreated from the app's real Next.js screens and
-                            colour system.
+                            The operations dashboard, the reservation list with
+                            its derived overstay charge, and the booking form
+                            turning two timestamps into a tariff — recreated from
+                            StayBleu's real Next.js screens and its navy and
+                            brass palette.
                           </p>
 
                           <div class="pf-stage">
@@ -167,11 +330,12 @@
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Guests</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-wallet"></i></span> Finance</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-broom"></i></span> Housekeeping</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-clipboard-list"></i></span> Audit log</div>
                                   </div>
                                   <div class="pf-main">
                                     <div class="pf-grid3">
-                                      <div class="pf-stat"><div class="n">38</div><div class="l">Active Stays</div></div>
-                                      <div class="pf-stat"><div class="n">12</div><div class="l">Due Today</div></div>
+                                      <div class="pf-stat"><div class="n">38</div><div class="l">Active stays</div></div>
+                                      <div class="pf-stat"><div class="n">12</div><div class="l">Due today</div></div>
                                       <div class="pf-stat"><div class="n">Rs 24,500</div><div class="l">Pending</div></div>
                                     </div>
                                     <div class="pf-row pf-mt" style="align-items:flex-start">
@@ -182,11 +346,11 @@
                                       <div class="pf-card" style="flex:1">
                                         <div class="pf-h2">Checkouts today</div>
                                         <div class="pf-li">
-                                          <div class="grow"><div class="pf-t pf-strong">Room 204</div><div class="pf-muted">11:00</div></div>
+                                          <div class="grow"><div class="pf-t pf-strong">Room 204</div><div class="pf-muted">11:00 · full stay</div></div>
                                           <span class="pf-badge warn">Due</span>
                                         </div>
                                         <div class="pf-li">
-                                          <div class="grow"><div class="pf-t pf-strong">Room 118</div><div class="pf-muted">checked-out</div></div>
+                                          <div class="grow"><div class="pf-t pf-strong">Room 118</div><div class="pf-muted">checked out 10:12</div></div>
                                           <span class="pf-badge ok">Paid</span>
                                         </div>
                                       </div>
@@ -194,7 +358,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Operations dashboard</div>
+                              <div class="pf-cap">Dashboard — one property, or all of them</div>
                             </div>
 
                             <!-- Frame 2: Bookings -->
@@ -217,66 +381,135 @@
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users"></i></span> Guests</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-wallet"></i></span> Finance</div>
                                     <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-broom"></i></span> Housekeeping</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-clipboard-list"></i></span> Audit log</div>
                                   </div>
                                   <div class="pf-main">
                                     <div class="pf-between pf-mb">
-                                      <div class="pf-h2" style="margin:0">Reservations</div>
+                                      <div class="pf-h2" style="margin:0">Reservations · today</div>
                                       <span class="pf-btn"><i class="fas fa-phone"></i> Phone booking</span>
                                     </div>
                                     <table class="pf-table">
                                       <thead>
                                         <tr>
-                                          <th>Room</th><th>Guest</th><th>Check-out</th><th>Status</th><th>Payment</th>
+                                          <th>Room</th><th>Guest</th><th>Stay type</th><th>Status</th><th>Payment</th>
                                         </tr>
                                       </thead>
                                       <tbody>
                                         <tr>
-                                          <td>204</td><td>A. Ramdin</td><td>11:00</td>
-                                          <td><span class="pf-badge warn">Due</span></td><td>Rs 3,200</td>
+                                          <td>204</td><td>A. Ramdin</td><td>Full stay</td>
+                                          <td><span class="pf-badge warn">Due 11:00</span></td><td>Rs 3,200</td>
                                         </tr>
                                         <tr>
-                                          <td>118</td><td>L. Chan</td><td>—</td>
+                                          <td>118</td><td>L. Chan</td><td>Day use</td>
                                           <td><span class="pf-badge ok">Out</span></td>
                                           <td><span class="pf-badge ok">Paid</span></td>
                                         </tr>
                                         <tr>
-                                          <td>301</td><td>P. Naik</td><td>12:00</td>
-                                          <td><span class="pf-badge danger">Overstay</span></td>
+                                          <td>301</td><td>P. Naik</td><td>Evening use</td>
+                                          <td><span class="pf-badge danger">+ Rs 1,000</span></td>
                                           <td><span class="pf-badge warn">Partial</span></td>
                                         </tr>
                                         <tr>
-                                          <td>227</td><td>S. Fokeer</td><td>10:30</td>
+                                          <td>227</td><td>S. Fokeer</td><td>Day + evening</td>
                                           <td><span class="pf-badge">In-house</span></td><td>Rs 5,400</td>
                                         </tr>
                                       </tbody>
                                     </table>
+                                    <div class="pf-muted pf-mt pf-xs">
+                                      Room 301 crossed 08:00 this morning. The day rate is added on the way out — it is not written onto the row.
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Bookings &amp; overstay alerts</div>
+                              <div class="pf-cap">Reservations — overstay is a calculation</div>
+                            </div>
+
+                            <!-- Frame 3: New booking -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">staybleu.app/bookings/new</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-h2" style="margin:0">New booking</div>
+                                      <span class="pf-badge solid">Step 2 of 4</span>
+                                    </div>
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-card" style="margin:0">
+                                        <div class="pf-muted pf-xs">Check-in</div>
+                                        <div class="pf-t pf-strong">Fri 11 Sep · 14:00</div>
+                                      </div>
+                                      <div class="pf-card" style="margin:0">
+                                        <div class="pf-muted pf-xs">Check-out</div>
+                                        <div class="pf-t pf-strong">Fri 11 Sep · 22:00</div>
+                                      </div>
+                                    </div>
+                                    <div class="pf-card">
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Derived stay type</span>
+                                        <span class="pf-badge solid">Day + evening</span>
+                                      </div>
+                                      <div class="pf-li pf-mt">
+                                        <span class="grow pf-t">Day use · Room 204</span>
+                                        <span class="pf-t pf-strong">Rs 1,800</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Evening use · Room 204</span>
+                                        <span class="pf-t pf-strong">Rs 2,000</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-t pf-strong">Total</span>
+                                        <span class="pf-t-lg">Rs 3,800</span>
+                                      </div>
+                                    </div>
+                                    <div class="pf-card">
+                                      <div class="pf-between pf-mb">
+                                        <span class="pf-t pf-strong">Guest signatures</span>
+                                        <span class="pf-badge ok">2 of 2</span>
+                                      </div>
+                                      <div class="pf-row">
+                                        <span class="pf-badge"><i class="fas fa-signature"></i> A. Ramdin</span>
+                                        <span class="pf-badge"><i class="fas fa-signature"></i> K. Ramdin</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">Two timestamps in, one tariff out</div>
                             </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">Next.js 16</span>
                             <span class="pf-chip">React 19</span>
+                            <span class="pf-chip">TypeScript</span>
+                            <span class="pf-chip">Server Actions</span>
                             <span class="pf-chip">Tailwind CSS 4</span>
                             <span class="pf-chip">Supabase</span>
-                            <span class="pf-chip">Leaflet</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Row Level Security</span>
+                            <span class="pf-chip">SECURITY DEFINER triggers</span>
                             <span class="pf-chip">next-intl</span>
-                            <span class="pf-chip">dnd-kit</span>
+                            <span class="pf-chip">Leaflet</span>
+                            <span class="pf-chip">date-fns</span>
+                            <span class="pf-chip">react-easy-crop</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
-                        Deployment: StayBleu is a self-hosted deployment — there
-                        is no public URL available.
-
-                        <br /><br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #3b82f6; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #60a5fa;"></i>
-                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #60a5fa; text-decoration: underline;">contact@farhaan.info</a>
+                        <div class="pp-note" style="background: var(--card); color: var(--text); padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 500; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: var(--muted);"></i>
+                          StayBleu is a self-hosted deployment with no public
+                          sign-up. For a demo account, or a walkthrough of the
+                          tariff derivation, the permission model or the audit
+                          trail, contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: var(--cyan); text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>
@@ -289,8 +522,8 @@
       <section class="pp-more">
         <div class="container">
           <div class="pp-more-grid">
-            <a class="pp-more-card reveal" href="../../portfolio/teamtoss/index.html"><i class="fa-solid fa-arrow-left"></i><span><span class="dir">Previous</span><div class="nm">TeamToss</div></span></a>
-            <a class="pp-more-card next reveal" href="../../portfolio/concept_habitat/index.html"><span><span class="dir">Next</span><div class="nm">Concept Habitat CRM</div></span><i class="fa-solid fa-arrow-right"></i></a>
+            <a class="pp-more-card reveal" href="../../portfolio/momento/index.html"><i class="fa-solid fa-arrow-left"></i><span><span class="dir">Previous</span><div class="nm">MoMento</div></span></a>
+            <a class="pp-more-card next reveal" href="../../portfolio/concept_habitat/index.html"><span><span class="dir">Next</span><div class="nm">Concept Habitat</div></span><i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
       </section>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pryowl — Farhaan Beeharry</title>
-    <meta name="description" content="Pryowl — a survey, quiz and e-signature platform: a visual builder with 21 question types, conditional and skip logic, matrix grids, an AI copilot (Hoot), server-side quiz grading, nine chart types, PDF e-signature and workspace RBAC with 24 scoped permissions. React + Vite + Supabase." />
-    <meta name="keywords" content="pryowl, survey builder, form builder, quiz platform, e-signature, esign, ai survey builder, conditional logic, skip logic, matrix questions, workspace rbac, row level security, react, vite, supabase, recharts, pdf-lib" />
+    <meta name="description" content="Pryowl — a survey, quiz and e-signature platform. Twenty-one question types with conditional logic, branching and sections; quiz answers that never leave the server; four per-question grading modes with human marking; a 24-permission tri-state RBAC whose implications are enforced and whose rules are re-checked by database triggers; and Hoot, an AI copilot whose change log is diffed rather than narrated." />
+    <meta name="keywords" content="pryowl, survey builder, online quiz, e-signature, react, supabase, postgresql, row level security, deno edge functions, gemini, structured output, pdf-lib, pdf.js, rbac, recharts, saas, mauritius" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,23 +79,23 @@
         <div class="container">
           <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
 
-          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web</div>
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web app &amp; UI/UX</div>
 
           <h1 class="pp-title reveal"><span class="g">Pryowl</span></h1>
 
           <div class="pp-meta reveal">
-            <span><i class="fa-regular fa-calendar"></i> June 2026</span>
+            <span><i class="fa-regular fa-calendar"></i> June — July 2026</span>
             <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
           <div class="pp-tags reveal">
             <span>web app</span>
             <span>saas</span>
-            <span>survey builder</span>
-            <span>quiz</span>
-            <span>e-signature</span>
             <span>react</span>
             <span>supabase</span>
+            <span>postgresql</span>
+            <span>e-signature</span>
+            <span>ai copilot</span>
           </div>
 
           <figure class="pp-cover reveal"><img src="background.svg" alt="Pryowl Project Cover" /></figure>
@@ -105,222 +105,298 @@
       <article class="pp-article">
         <div class="container">
           <div class="col-inner">
-            
+
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
                         <strong>Pryowl</strong> started as a survey builder and
-                        grew into a full data-collection and document platform.
+                        grew into a data-collection and document platform.
                         Authors design forms in a visual builder with genuinely
                         advanced logic, publish them with intelligent gating,
-                        auto-mark them as quizzes, analyse the results across nine
-                        chart types — and, in the same workspace, send PDFs out for
-                        legally-structured <strong>e-signature</strong>.
+                        auto-mark them as quizzes, analyse the results across
+                        nine chart types — and, in the same workspace, send PDFs
+                        out for e-signature. It is React on Supabase, with the
+                        rules that matter living in Postgres rather than in the
+                        screen that happens to be showing them.
 
                         <br /><br />
-                        Inside it lives <strong>Hoot</strong>, the owl — an AI
-                        copilot you talk to in a chat. Describe what you want to
-                        ask and Hoot returns a complete survey (title, questions,
-                        options, settings), then keeps editing as you refine, and
-                        names exactly what it changed each turn. It knows every
-                        question type in the builder and answers in one of eight
-                        selectable tones, in English or French.
+                        <strong>1 · Hoot, the owl in the corner</strong>
+                        <br />
+                        Hoot is an AI copilot you talk to in a chat. Describe
+                        what you want to ask and it returns a complete survey —
+                        title, questions, options, settings — then keeps editing
+                        as you refine, and names exactly what it changed each
+                        turn.
 
                         <br /><br />
-                        The builder covers <strong>21 question types</strong> —
-                        short and long answer, e-mail, number, phone, date, time,
-                        single and multiple choice, dropdown, yes/no, consent,
-                        star rating, linear scale, NPS, matrix grids, section
-                        breaks, image upload, image URL, link and file upload.
-                        Questions can show or hide on earlier answers
-                        (<em>conditional logic</em>), jump respondents forward
-                        (<em>skip logic / branching</em>), and be grouped into
-                        sections with their own progress.
-
-                        <br /><br />
-                        Turning a survey into a <strong>quiz</strong> is a
-                        setting, not a different product. Correct answers are
-                        stored per question and — critically — never sent to the
-                        browser: the public fetch omits the column entirely and
-                        grading happens inside a server-side function, so the
-                        answer key cannot be scraped from the page. Authors can
-                        optionally show respondents their score with a pass mark,
-                        and mark free-text answers by hand afterwards.
-
-                        <br /><br />
-                        A workspace model with fine-grained
-                        <strong>RBAC (24 permissions)</strong> lets teams
-                        collaborate, and the scoped permissions are tri-state
-                        rather than boolean — <em>None / Own / All</em> — so a
-                        member can be allowed to edit their own surveys but only
-                        view everyone else's. The permission engine also enforces
-                        implications: granting "publish own surveys" silently
-                        raises "view own surveys", because the first is meaningless
-                        without the second. Every rule is re-enforced in Postgres
-                        Row Level Security and database triggers, not just in the UI.
-
-                        <br /><br />
-                        Every response is stored as an
-                        <strong>immutable snapshot</strong> of the survey at
-                        submission time, so editing a question later never
-                        rewrites history or corrupts old analytics.
-
-                        <br /><br />
-                        <strong>Building</strong>
+                        The interesting part is what surrounds the model rather
+                        than the prompt:
                         <ul>
-                          <li>Visual builder with instant preview and drag-ordered questions</li>
-                          <li>21 question types, including matrix grids, NPS, consent and file upload</li>
-                          <li>Conditional logic — show / hide a question by earlier answers</li>
-                          <li>Skip logic and branching</li>
-                          <li>Sections with their own titles and progress</li>
-                          <li>Hoot, the AI copilot — builds and edits a whole survey in chat</li>
-                          <li>Eight selectable Hoot reply tones</li>
-                          <li>Reusable survey templates</li>
-                          <li>Per-workspace branding — colours, logos, custom start screen</li>
+                          <li>The reply is produced under a <strong>structured-output schema</strong>, so a valid survey shape comes back or the call fails — the client never parses prose hoping for JSON</li>
+                          <li>The schema enum is deliberately a <em>superset</em> of what the model is asked to generate. It also accepts display-only elements the author added by hand, because constrained decoding would otherwise coerce an image or a link into some answerable type and destroy it on the round trip</li>
+                          <li>Every reply is <strong>diffed deterministically</strong> against the previous survey by stable question id, and the chat shows that diff — "Q3: added", "Q5: changed" — prefixed with real question numbers. What the user is told changed is computed, not narrated by the model</li>
+                          <li>A guard re-inserts any question the model silently dropped, at its original relative position, matching by id or by exact text so a legitimately reworded question is not duplicated. Losing a question you did not ask to remove is the failure that makes an AI editor untrustworthy</li>
+                          <li>The API key is a server-side secret in an edge function, the function runs under the caller's JWT, and the monthly allowance is checked there — so the free tier's zero-Hoot limit is enforced where the spending happens rather than by hiding a button</li>
+                          <li>The whole conversation is persisted per survey in its own workspace-scoped table, so the next person to open the builder sees the history and can continue it — and that table is never reachable from the public fill page</li>
+                          <li>Hoot's <em>tone</em> is a per-user setting — hilarious, professional, sarcastic and others — and it changes only how Hoot talks, never the survey it writes</li>
                         </ul>
 
-                        <br /><strong>Publishing &amp; responding</strong>
+                        <br /><strong>2 · The builder</strong>
+                        <br />
+                        Twenty-one question types: short and long answer,
+                        e-mail, number, phone, date, time, single and multiple
+                        choice, dropdown, yes/no, consent, star rating, linear
+                        scale, NPS, matrix grids, section breaks, image upload,
+                        image URL, link and file upload.
+
+                        <br /><br />
+                        On top of them, three layers of structure that most
+                        builders treat as one:
                         <ul>
-                          <li>Response caps that close a survey automatically</li>
-                          <li>One-per-browser and one-per-e-mail submission limits</li>
-                          <li>Save &amp; resume a part-finished response from the browser</li>
-                          <li>Invite respondents by e-mail from inside the app</li>
-                          <li>Anonymous responses when the survey allows it</li>
-                          <li>Attempt timers, with a clear notice when time is capped</li>
-                          <li>Cancel a live survey without destroying its responses</li>
-                          <li>A "my responses" area where a respondent can find their own submissions</li>
+                          <li><strong>Conditional logic</strong> — show or hide a question on an earlier answer, stored as a small object rather than as code</li>
+                          <li><strong>Skip logic and branching</strong> — an answer can jump the respondent to a named question, to the next one, or to the end</li>
+                          <li><strong>Sections and paging</strong> — a survey is a freely-ordered mix of standalone questions and sections containing questions, and sections and questions share <em>one</em> global position sequence, so the interleaved order the author sees is the order that is stored. The survey then renders all on one page, one question per page, or one section per page, and a timer can hang off whichever of the two is the paging unit</li>
                         </ul>
 
-                        <br /><strong>Quizzes &amp; marking</strong>
+                        <br /><strong>3 · A quiz is a setting, not a second product</strong>
+                        <br />
+                        Correct answers are stored per question, and —
+                        critically — <strong>never sent to the browser</strong>:
+                        the public fetch omits the column entirely, and grading
+                        happens inside a server-side function. The answer key
+                        cannot be scraped from the page, because it was never on
+                        it.
+
+                        <br /><br />
+                        Grading is then configurable per question rather than
+                        globally: <em>normal</em>, <em>scheme</em> (with an
+                        optional penalty for wrong answers), <em>formula</em>, or
+                        <em>manual</em>. Anything non-objective is left pending
+                        for a human marker with a <code>responses.mark</code>
+                        permission, each answer carrying its own maximum,
+                        automatic marks, awarded marks, who graded it and when.
+                        A respondent's score comes back with the number of
+                        answers still pending attached, so "you scored 6" and
+                        "we have not finished marking you" are never confused
+                        for each other.
+
+                        <br /><br />
+                        A respondent can opt in to receive their result by
+                        e-mail, and chooses between a score and a full
+                        per-question breakdown — which is generated by a
+                        marker-gated function rather than assembled in the
+                        browser.
+
+                        <br /><br />
+                        <strong>4 · Publishing, and the honest cases</strong>
                         <ul>
-                          <li>Per-question correct answers, never exposed to the client</li>
-                          <li>Server-side auto-grading with score and max score</li>
-                          <li>Optional score reveal with a configurable pass mark</li>
-                          <li>Manual marking of free-text answers, with custom mark values</li>
-                          <li>Detailed per-question results and a results message per outcome</li>
+                          <li><strong>Response caps</strong> close a survey automatically. "Completed" means the response actually ended, and an in-progress attempt is allowed to finish once the cap is reached — only <em>new</em> opens are blocked. Kicking somebody out mid-form to enforce a quota loses their answers and teaches them not to start one again</li>
+                          <li><strong>Save and continue later</strong> keeps a part-finished response on the respondent's own device. It is client-side by design: a half-answered form is the respondent's, and storing it server-side would mean collecting answers from somebody who has not submitted anything</li>
+                          <li>One-per-browser and one-per-e-mail submission limits, anonymous responses where the survey allows them, and attempt timers with a clear notice when time is capped</li>
+                          <li>A live survey can be <strong>cancelled without destroying its responses</strong> — closing a survey and deleting its data are different intentions</li>
+                          <li>Every response is stored as an <strong>immutable snapshot</strong> of the survey at submission time, so editing a question next month never rewrites history or corrupts old analytics</li>
                         </ul>
 
-                        <br /><strong>E-signature</strong>
+                        <br /><strong>5 · Sign — a second product on the same foundations</strong>
+                        <br />
+                        An owner uploads a PDF and places, per signer, exactly
+                        where each person must sign: signature, initials, date
+                        and free-text fields, with coordinates normalised 0..1
+                        against each page so the placement survives any render
+                        scale. Multiple signers each fill only their own fields,
+                        and the owner downloads the finished, flattened PDF.
+
+                        <br /><br />
+                        It deliberately mirrors the survey architecture —
+                        workspace scoping and RBAC through the same helpers,
+                        atomic writes through a security-definer RPC, private
+                        storage buckets guarded by policies on
+                        <code>storage.objects</code> — and then makes one
+                        decision of its own worth stating:
+
+                        <br /><br />
+                        <strong>A signer does not need an account.</strong> The
+                        64-hex token in the signing link <em>is</em> the
+                        capability: unguessable, issued per signer, and revoked
+                        by voiding the document. Storage nevertheless stays
+                        closed to anonymous callers — the signing page reaches
+                        the original PDF and uploads its signature images through
+                        an edge function that validates the token with the
+                        service role and hands back short-lived signed URLs. No
+                        anonymous policy was added to storage to make signing
+                        work.
+
+                        <br /><br />
+                        Signers still get a history: matching is done by e-mail,
+                        so somebody who signed anonymously today and creates an
+                        account months later still finds every document they
+                        signed — and the same call claims those rows, so the link
+                        survives a later change of address.
+
+                        <br /><br />
+                        <strong>6 · Workspaces and a permission system that cannot be incoherent</strong>
+                        <br />
+                        Teams collaborate in workspaces with fine-grained
+                        <strong>RBAC across 24 permissions</strong>, and the
+                        scoped ones are tri-state rather than boolean —
+                        <em>None / Own / All</em> — so a member can be allowed to
+                        edit their own surveys while only viewing everyone
+                        else's.
+
+                        <br /><br />
+                        Two properties make it hold up:
                         <ul>
-                          <li>Upload a PDF and place signature, text and date fields on it</li>
-                          <li>Visual document builder rendering the real PDF on canvas</li>
-                          <li>Draw-to-sign signature pad</li>
-                          <li>Send a document out for signing and track its status</li>
-                          <li>A signed copy written back into the PDF with pdf-lib</li>
-                          <li>Document library with view / update / delete permissions</li>
+                          <li><strong>Implications are enforced.</strong> Granting "publish own surveys" silently raises "view own surveys", because the first is meaningless without the second. A role cannot be saved in a state that describes a person who can publish something they cannot see</li>
+                          <li><strong>The database re-checks it.</strong> A status change on a survey fires a trigger that demands the publish permission through the same <code>can_act_on_resource()</code> helper the UI uses — and because the trigger is <code>SECURITY INVOKER</code>, it still sees the real caller even when the change arrives through a security-definer RPC. Ordinary content edits are untouched, since it only acts when the status actually changes</li>
                         </ul>
 
-                        <br /><strong>Analysis</strong>
-                        <ul>
-                          <li>Nine chart types — bar, stacked bar, line, pie, polar area, radar, gauge, data table and a chart-type picker per question</li>
-                          <li>Per-question summaries and cross-response analytics</li>
-                          <li>Individual response inspection</li>
-                          <li>CSV and PDF export</li>
-                        </ul>
+                        <br />
+                        Plan tiers cap workspaces per account and surveys per
+                        workspace — one and one on Free, rising through Pro and
+                        Business — and the caps are functions in the database
+                        with the client gating the UI on the same numbers, not
+                        instead of them.
 
-                        <br /><strong>Workspaces, accounts &amp; platform</strong>
+                        <br /><br />
+                        <strong>The rest</strong>
                         <ul>
-                          <li>Team workspaces with e-mail invitations and an accept-invite flow</li>
-                          <li>Custom roles built from 24 permissions, scoped None / Own / All</li>
-                          <li>Permission implications enforced so a role can never be incoherent</li>
-                          <li>Ownership transfer, workspace icon / colour / logo picker</li>
-                          <li>Two-factor authentication, OTP verification and OTP password reset</li>
-                          <li>Plan tiers (Free / Pro / Business) with workspace and survey limits enforced by database triggers</li>
-                          <li>In-app notifications</li>
-                          <li>Marketing site — features, pricing, comparison, e-signature and Hoot pages</li>
-                          <li>Multi-language (EN / FR) and dark mode, both driven by CSS custom properties</li>
+                          <li><strong>Analysis</strong> — nine chart types (bar, stacked bar, line, pie, polar area, radar, gauge, a data table and a per-question chart picker), per-question summaries, individual response inspection, and CSV and PDF export</li>
+                          <li><strong>An AI summary</strong> of free-text responses, on the same edge-function pattern as Hoot</li>
+                          <li><strong>Respondents</strong> — invite by e-mail from inside the app, and a "my responses" area where somebody can find their own submissions</li>
+                          <li><strong>Branding</strong> — per-workspace colours, logos and a custom start screen; reusable templates</li>
+                          <li><strong>Accounts</strong> — two-factor authentication, OTP verification and OTP password reset, ownership transfer, workspace icon and colour</li>
+                          <li><strong>Platform</strong> — in-app notifications, a marketing site with features, pricing, comparison, e-signature and Hoot pages, EN/FR and dark mode, both driven by CSS custom properties rather than a component-level theme</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
                         <div class="pf-wrap"
                           style="--brand:#4fdbc8;--brand-ink:#04211d;--stage:#06120f;--bg:#0e1513;--surface:#1a211f;--card:#141b19;--text:#e6f0ed;--muted:#8fa39d;--line:#31403c;--ok:#6dd58c;--warn:#ffb95f;--danger:#ffb4ab;">
                           <div class="pf-head">
-                            <span class="pf-kicker">Surveys with real logic</span>
+                            <span class="pf-kicker">Ask, mark, sign</span>
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            The visual builder, Hoot the AI copilot, the branded
-                            public response page and the e-signature canvas —
-                            recreated from Pryowl's real screens and colour system.
+                            Hoot editing a survey and reporting the diff it made,
+                            the builder's logic panel, and a PDF being prepared
+                            for signature — recreated from Pryowl's real React
+                            screens.
                           </p>
 
                           <div class="pf-stage">
-                            <!-- Frame 1: Browser — Survey builder -->
+                            <!-- Frame 1: Hoot -->
                             <div class="pf-frame" style="flex:1 1 560px">
                               <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
                                   <span class="pf-dot r"></span>
                                   <span class="pf-dot y"></span>
                                   <span class="pf-dot g"></span>
-                                  <span class="pf-url">pryowl.farhaan.info/build</span>
+                                  <span class="pf-url">pryowl.com/surveys/onboarding/edit</span>
                                 </div>
                                 <div class="pf-viewport">
                                   <div class="pf-side">
                                     <div class="pf-brandrow">
-                                      <img src="icon.png" alt="Pryowl" style="height:20px" />
-                                      <span class="pf-strong">Pryowl</span>
+                                      <img src="logo_dark.png" alt="Pryowl" style="height:17px;width:auto" />
                                     </div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-font"></i></span> Short text</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-list-ul"></i></span> Multiple choice</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-star"></i></span> Rating</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-th"></i></span> Matrix</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-gauge-high"></i></span> NPS</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-arrow-up"></i></span> File upload</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-pen-ruler"></i></span> Builder</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-sliders"></i></span> Settings</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-column"></i></span> Responses</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-signature"></i></span> Documents</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-users-gear"></i></span> Members</div>
                                   </div>
-
                                   <div class="pf-main">
                                     <div class="pf-between pf-mb">
-                                      <div class="pf-t-lg">Customer feedback</div>
-                                      <div class="pf-row">
-                                        <span class="pf-btn-outline">Preview</span>
-                                        <span class="pf-btn">Publish</span>
+                                      <div class="pf-h2" style="margin:0">Hoot</div>
+                                      <span class="pf-badge">Tone · professional</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-muted pf-xs">You</div>
+                                      <div class="pf-t">Add an NPS question and make the e-mail optional.</div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-row pf-mb">
+                                        <span class="pf-iconbox"><i class="fas fa-feather"></i></span>
+                                        <span class="pf-t">Done — one question added, one relaxed.</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Q6: How likely are you to recommend us?</span>
+                                        <span class="pf-badge ok">Added</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Q2: Work e-mail</span>
+                                        <span class="pf-badge warn">Changed</span>
+                                      </div>
+                                      <div class="pf-muted pf-xs pf-mt">This list is diffed from the survey, not written by the model.</div>
+                                    </div>
+
+                                    <div class="pf-input"><i class="fas fa-message"></i> Ask Hoot to change something…</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">The change log is computed, not narrated</div>
+                            </div>
+
+                            <!-- Frame 2: logic -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
+                                <div class="pf-tabbar">
+                                  <span class="pf-dot r"></span>
+                                  <span class="pf-dot y"></span>
+                                  <span class="pf-dot g"></span>
+                                  <span class="pf-url">pryowl.com/surveys/onboarding/edit#q4</span>
+                                </div>
+                                <div class="pf-viewport">
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-h2" style="margin:0">Section 2 · Your setup</div>
+                                      <span class="pf-badge solid">Quiz mode</span>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-t pf-strong pf-mb">Q4 · Which plan are you on?</div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Show only if</span>
+                                        <span class="pf-badge">Q3 equals "Yes"</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Answer "Free"</span>
+                                        <span class="pf-badge">jump to Q7</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Answer "Business"</span>
+                                        <span class="pf-badge">jump to end</span>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
                                       <div class="pf-between">
-                                        <div class="pf-t pf-strong">Q1 · How satisfied are you?</div>
-                                        <span class="pf-badge ok">1 pt</span>
+                                        <span class="pf-muted">Grading</span>
+                                        <span class="pf-badge">Scheme · penalise wrong</span>
                                       </div>
-                                      <div class="pf-row pf-mt" style="gap:6px;color:var(--brand)">
-                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                                        <i class="fas fa-star" style="color:var(--muted)"></i>
-                                        <i class="fas fa-star" style="color:var(--muted)"></i>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Correct answer</span>
+                                        <span class="pf-badge warn"><i class="fas fa-lock"></i> Server only</span>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-t pf-strong">Q2 · Which plan are you on?</div>
-                                      <div class="pf-row pf-mt">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--brand);flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span></span>
-                                        <span class="pf-t">Pro</span>
+                                      <div class="pf-between">
+                                        <span class="pf-muted">Section timer</span>
+                                        <span class="pf-t pf-strong">04:00</span>
                                       </div>
-                                      <div class="pf-row pf-mt">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
-                                        <span class="pf-t">Free</span>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Paging</span>
+                                        <span class="pf-t pf-strong">One section per page</span>
                                       </div>
                                     </div>
-
-                                    <!-- Hoot chat -->
-                                    <div class="pf-card" style="border-color:var(--brand)">
-                                      <div class="pf-row">
-                                        <span class="pf-iconbox"><i class="fas fa-feather"></i></span>
-                                        <span class="grow">
-                                          <span class="pf-t pf-strong">Hoot 🦉</span><br />
-                                          <span class="pf-muted">Added Q3 and a skip rule to Q2.</span>
-                                        </span>
-                                      </div>
-                                      <div class="pf-input pf-mt"><i class="fas fa-wand-magic-sparkles"></i> Ask Hoot to change something…</div>
-                                    </div>
-
-                                    <span class="pf-badge">Logic: show Q3 if 'Pro'</span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Visual builder, logic &amp; Hoot</div>
+                              <div class="pf-cap">Logic, branching and grading on one question</div>
                             </div>
 
-                            <!-- Frame 2: Phone — Public survey -->
+                            <!-- Frame 3: sign -->
                             <div class="pf-frame">
                               <div class="pf-phone">
                                 <div class="pf-screen">
@@ -328,153 +404,70 @@
                                   <div class="pf-body">
                                     <div class="pf-appbar">
                                       <div class="pf-row">
-                                        <img src="icon.png" alt="Acme" style="height:18px;width:auto" />
-                                        <span class="pf-t pf-strong">Acme Feedback</span>
+                                        <img src="icon.png" alt="Pryowl" style="height:18px;width:auto" />
+                                        <span class="pf-t pf-strong">Sign</span>
                                       </div>
+                                      <span class="pf-badge warn">Awaiting you</span>
                                     </div>
 
-                                    <div class="pf-bar" style="margin-bottom:6px"><i style="width:40%"></i></div>
-                                    <div class="pf-muted pf-mb">2 of 5 · Section 1</div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-t pf-strong">How likely are you to recommend us?</div>
-                                      <div class="pf-row wrap pf-mt" style="gap:5px">
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">6</span>
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">7</span>
-                                        <span class="pf-xs pf-strong" style="width:20px;height:20px;border-radius:6px;background:var(--brand);color:var(--brand-ink);display:inline-flex;align-items:center;justify-content:center">8</span>
-                                        <span class="pf-xs" style="width:20px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">9</span>
-                                        <span class="pf-xs" style="width:24px;height:20px;border-radius:6px;background:color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);display:inline-flex;align-items:center;justify-content:center">10</span>
-                                      </div>
-                                    </div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-t pf-strong pf-mb">Rate the following</div>
-                                      <div class="pf-between">
-                                        <span class="pf-muted">Speed</span>
-                                        <span class="pf-row" style="gap:8px">
-                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
-                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--brand);background:var(--brand)"></span>
-                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
-                                        </span>
-                                      </div>
-                                      <div class="pf-between pf-mt">
-                                        <span class="pf-muted">Support</span>
-                                        <span class="pf-row" style="gap:8px">
-                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
-                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--muted)"></span>
-                                          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--brand);background:var(--brand)"></span>
-                                        </span>
-                                      </div>
-                                    </div>
-
-                                    <div class="pf-btn block pf-mt">Next</div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="pf-cap">Branded response page</div>
-                            </div>
-
-                            <!-- Frame 3: Browser — e-signature + analytics -->
-                            <div class="pf-frame" style="flex:1 1 460px">
-                              <div class="pf-browser">
-                                <div class="pf-tabbar">
-                                  <span class="pf-dot r"></span>
-                                  <span class="pf-dot y"></span>
-                                  <span class="pf-dot g"></span>
-                                  <span class="pf-url">pryowl.farhaan.info/documents/sign</span>
-                                </div>
-                                <div class="pf-pad">
-                                  <div class="pf-between pf-mb">
-                                    <div class="pf-t-lg">Service agreement</div>
-                                    <span class="pf-badge warn">Awaiting signature</span>
-                                  </div>
-
-                                  <div class="pf-card">
-                                    <div class="pf-row" style="align-items:flex-start;gap:12px">
-                                      <span style="flex:0 0 96px;height:120px;border-radius:8px;background:#fff;display:block;position:relative">
-                                        <span style="position:absolute;left:10px;top:12px;right:10px;height:5px;border-radius:3px;background:#c9d3d1;display:block"></span>
-                                        <span style="position:absolute;left:10px;top:24px;right:26px;height:5px;border-radius:3px;background:#dde5e3;display:block"></span>
-                                        <span style="position:absolute;left:10px;top:36px;right:16px;height:5px;border-radius:3px;background:#dde5e3;display:block"></span>
-                                        <span style="position:absolute;left:10px;bottom:16px;width:56px;height:22px;border-radius:5px;border:2px dashed #4fdbc8;display:block"></span>
-                                      </span>
-                                      <span class="grow">
-                                        <span class="pf-t pf-strong">Drop fields on the PDF</span><br />
-                                        <span class="pf-muted">Signature · Full name · Date</span>
-                                        <span class="pf-row pf-mt" style="gap:6px">
-                                          <span class="pf-tag">SIGNATURE</span>
-                                          <span class="pf-tag">DATE</span>
-                                          <span class="pf-tag">TEXT</span>
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </div>
-
-                                  <div class="pf-card">
-                                    <div class="pf-h2">Draw to sign</div>
-                                    <div style="height:52px;border-radius:8px;border:1px solid var(--line);background:color-mix(in srgb,var(--text) 5%,transparent);position:relative">
-                                      <svg viewBox="0 0 220 52" style="position:absolute;inset:0;width:100%;height:100%">
-                                        <path d="M14 38c10-18 16-22 22-8s10 18 16 4 8-22 14-10 6 20 12 12 8-20 14-14 8 18 14 10 10-20 18-16 10 14 20 12" fill="none" stroke="#4fdbc8" stroke-width="2.6" stroke-linecap="round"/>
-                                      </svg>
-                                    </div>
-                                    <div class="pf-row pf-mt">
-                                      <span class="pf-btn">Sign &amp; send</span>
-                                      <span class="pf-btn-ghost">Clear</span>
-                                    </div>
-                                  </div>
-
-                                  <div class="pf-card">
-                                    <div class="pf-h2">Q1 · Satisfaction</div>
-                                    <div class="pf-row" style="gap:14px">
-                                      <span class="pf-donut" style="--v:78%" data-v="78%"></span>
-                                      <span class="grow">
-                                        <div class="pf-chart">
-                                          <span class="b" style="height:40%"></span>
-                                          <span class="b" style="height:62%"></span>
-                                          <span class="b hi" style="height:100%"></span>
-                                          <span class="b" style="height:74%"></span>
-                                          <span class="b" style="height:48%"></span>
+                                    <div class="pf-card" style="padding:0;overflow:hidden">
+                                      <div style="background:#eef2f1;padding:14px 12px">
+                                        <div style="height:5px;background:#cfdad7;border-radius:3px;margin-bottom:7px;width:80%"></div>
+                                        <div style="height:5px;background:#cfdad7;border-radius:3px;margin-bottom:7px"></div>
+                                        <div style="height:5px;background:#cfdad7;border-radius:3px;margin-bottom:7px;width:64%"></div>
+                                        <div style="border:1.5px dashed var(--brand);border-radius:7px;padding:12px;text-align:center;color:var(--brand);font-size:11.5px;font-weight:700;margin-top:12px">
+                                          Sign here
                                         </div>
-                                      </span>
+                                      </div>
                                     </div>
-                                    <div class="pf-row pf-mt" style="gap:6px">
-                                      <span class="pf-badge">CSV</span>
-                                      <span class="pf-badge">PDF</span>
-                                      <span class="pf-badge ok">Pass mark 60%</span>
+
+                                    <div class="pf-card">
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">A. Ramdin</span>
+                                        <span class="pf-badge ok">Signed</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">You</span>
+                                        <span class="pf-badge warn">Pending</span>
+                                      </div>
                                     </div>
+
+                                    <div class="pf-btn block"><i class="fas fa-pen-nib"></i> Draw signature</div>
+                                    <div class="pf-muted pf-xs pf-mt">No account needed — the link is the capability.</div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">E-signature &amp; analytics</div>
+                              <div class="pf-cap">Token-scoped signing, storage still closed</div>
                             </div>
                           </div>
 
                           <div class="pf-stack">
-                            <span class="pf-chip">React 18</span>
+                            <span class="pf-chip">React</span>
                             <span class="pf-chip">Vite</span>
                             <span class="pf-chip">React Router</span>
-                            <span class="pf-chip">Tailwind CSS</span>
                             <span class="pf-chip">Supabase</span>
-                            <span class="pf-chip">Postgres RLS</span>
-                            <span class="pf-chip">Recharts</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Row Level Security</span>
+                            <span class="pf-chip">SECURITY DEFINER RPCs</span>
+                            <span class="pf-chip">Deno edge functions</span>
+                            <span class="pf-chip">Gemini (structured output)</span>
                             <span class="pf-chip">pdf-lib</span>
-                            <span class="pf-chip">pdfjs-dist</span>
-                            <span class="pf-chip">react-easy-crop</span>
-                            <span class="pf-chip">Lucide</span>
+                            <span class="pf-chip">pdf.js</span>
+                            <span class="pf-chip">Recharts</span>
+                            <span class="pf-chip">Tailwind CSS</span>
+                            <span class="pf-chip">CSS custom properties</span>
                             <span class="pf-chip">Vitest</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
-                        Live website:
-                        <a href="https://pryowl.farhaan.info/" target="_blank"
-                          >https://pryowl.farhaan.info/</a
-                        >
-
-                        <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #14b8a6; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #4fdbc8;"></i>
-                          If you need a demo access account, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #4fdbc8; text-decoration: underline;">contact@farhaan.info</a>
+                        <div class="pp-note" style="background: var(--card); color: var(--text); padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 500; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: var(--muted);"></i>
+                          For an account to try, or a walkthrough of the
+                          permission engine, the grading modes or the signing
+                          token model, contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: var(--cyan); text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fruitopia — Farhaan Beeharry</title>
-    <meta name="description" content="Fruitopia — a two-sided farm-to-table marketplace in one Flutter binary: a customer storefront with favourites, pre-orders and order tracking, and a vendor workspace with inventory, daily lists, delivery-route planning and analytics. Office/home delivery regions with building pickers. flutter_bloc, get_it, go_router, Supabase." />
-    <meta name="keywords" content="fruitopia, farm to table, marketplace app, two-sided marketplace, seller dashboard, delivery regions, pre-orders, delivery routes, flutter, dart, flutter_bloc, get_it, go_router, supabase, material 3, clean architecture" />
+    <meta name="description" content="Fruitopia — a Mauritian farm-to-table marketplace in one Flutter binary: a customer storefront built around the seller's daily list, and a seller workspace with inventory, the order queue, live route tracking and broadcasts. Checkout is a merge-or-create Postgres function under an advisory lock, so one customer on one day is one bag; push notifications are rows claimed once so a replay cannot buzz twice." />
+    <meta name="keywords" content="fruitopia, flutter, dart, clean architecture, bloc, cubit, get_it, go_router, supabase, postgresql, row level security, pg_cron, pg_net, firebase cloud messaging, flutter_map, marketplace, delivery tracking, mauritius, app store, google play" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,21 +79,23 @@
         <div class="container">
           <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
 
-          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Mobile</div>
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Mobile app &amp; UI/UX</div>
 
           <h1 class="pp-title reveal"><span class="g">Fruitopia</span></h1>
 
           <div class="pp-meta reveal">
-            <span><i class="fa-regular fa-calendar"></i> June 2026</span>
+            <span><i class="fa-regular fa-calendar"></i> July — August 2026</span>
             <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
           <div class="pp-tags reveal">
             <span>mobile app</span>
             <span>flutter</span>
-            <span>marketplace</span>
+            <span>dart</span>
             <span>supabase</span>
-            <span>ecommerce</span>
+            <span>postgresql</span>
+            <span>marketplace</span>
+            <span>delivery tracking</span>
           </div>
 
           <figure class="pp-cover reveal"><img src="background.svg" alt="Fruitopia Project Cover" /></figure>
@@ -103,120 +105,185 @@
       <article class="pp-article">
         <div class="container">
           <div class="col-inner">
-            
+
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
-                        <strong>Fruitopia</strong> is a two-sided farm-to-table
-                        marketplace built with Flutter — one binary, two entirely
-                        different apps. Customers browse fresh produce, add to
-                        cart and track their delivery; vendors get a seller
-                        workspace to manage inventory, fulfil orders, plan
-                        delivery routes and read sales analytics. Which app you
-                        get is decided by your account, and each side has its own
-                        navigation shell.
+                        <strong>Fruitopia</strong> is a farm-to-table marketplace
+                        for Mauritius — one Flutter binary containing two
+                        entirely different applications. Customers browse what a
+                        seller has picked <em>today</em>, order it, and watch the
+                        van approach their building. Sellers get a workspace:
+                        inventory, the day's list, the order queue, a delivery
+                        route they drive with the app open, broadcasts and
+                        analytics. Which application you get is decided by your
+                        account, and each side has its own navigation shell.
 
                         <br /><br />
-                        For customers, Fruitopia is a focused storefront: a home
-                        feed of fresh picks, category browsing, product pages with
-                        ratings, stock status and unit / quantity selection, a
-                        favourites list, a cart with a live order summary and
-                        delivery fee, and order tracking that moves from pending to
-                        confirmed to delivered.
+                        It is a feature-first <strong>Clean Architecture</strong>
+                        build — domain (pure Dart: entities, repository
+                        contracts, use cases), data (models and Supabase data
+                        sources), presentation (Cubits, pages, widgets), and a
+                        per-feature DI module — with <code>flutter_bloc</code>
+                        for state, <code>get_it</code> for wiring and
+                        <code>go_router</code> driving two
+                        <code>StatefulShellRoute</code> trees. Repositories
+                        return a <code>Result&lt;T&gt;</code> and never throw
+                        across the boundary; the presentation layer maps failures
+                        to localised messages. There is no mock data source: the
+                        backend is Supabase and it has to be reachable to boot,
+                        which keeps the seams honest.
 
                         <br /><br />
-                        The delivery model is the part most marketplaces get
-                        wrong, and it is modelled properly here. The seller defines
-                        <strong>delivery regions</strong>, each one either
-                        <em>office</em> or <em>home</em>. An office region contains
-                        a list of <strong>buildings</strong>, so a customer
-                        ordering to work simply picks their building from a list
-                        instead of typing an address that a driver then has to
-                        interpret; a home region falls back to a typed street
-                        address. Only active regions are offered, and every region
-                        name is bilingual.
+                        <strong>1 · The daily list is the product</strong>
+                        <br />
+                        A greengrocer does not have a catalogue, they have a
+                        morning. The seller publishes one <strong>daily
+                        list</strong> per delivery date — a unique index enforces
+                        exactly that, so the list is upserted rather than
+                        duplicated — carrying the items, the regions it delivers
+                        to, and the delivery fee <em>as it was at publication</em>.
 
                         <br /><br />
-                        For vendors, the same app flips into a seller workspace. A
-                        dashboard surfaces daily revenue, order counts and stock
-                        levels; inventory screens create and update products and
-                        publish a <strong>daily list</strong> of what is actually
-                        available today; each incoming order shows the customer's
-                        delivery address or building; and dedicated views handle
-                        delivery-route planning, seasonal pre-orders, sales
-                        analytics and broadcast notifications back to customers.
+                        That fee snapshot matters more than it looks. The
+                        seller's own profile is not publicly readable, so a
+                        customer could not be shown a fee that lived only there;
+                        and a fee change tomorrow must not silently reprice a
+                        list customers are already ordering from today. Per-item
+                        stock is deliberately three-valued in the same spirit:
+                        <code>NULL</code> means "as much as you want",
+                        an integer is a real count that decrements as orders come
+                        in, and zero is sold out. "Unlimited" and "none left" are
+                        different statements and are stored differently.
 
                         <br /><br />
-                        The codebase reflects production discipline: a clean
-                        domain / data / presentation split per feature, each with
-                        its own dependency-injection module;
-                        <strong>flutter_bloc</strong> for state and
-                        <strong>get_it</strong> for injection;
-                        <strong>go_router</strong> shells for the two navigation
-                        trees; and a mock-data layer that swaps to a live Supabase
-                        backend without touching UI code. It is fully localised in
-                        English and French with no hardcoded strings, on a
-                        Material 3 design system with content-shaped skeleton
-                        loaders rather than spinners.
+                        <strong>2 · One customer, one bag</strong>
+                        <br />
+                        A customer who checks out twice for the same delivery day
+                        gets <strong>one order, not two</strong>. The seller packs
+                        one bag per customer per day and the route groups by
+                        stop, so a second row described a hand-over that never
+                        happened in real life — and split the same person's fruit
+                        across two receipts.
 
                         <br /><br />
-                        <strong>Customer app</strong>
+                        Placing an order is therefore a merge-or-create function,
+                        and the details are where it earns its keep:
                         <ul>
-                          <li>Home feed of fresh picks with category browsing</li>
-                          <li>Product detail with ratings, stock status and unit / quantity selection</li>
-                          <li>Cart with live order summary and delivery fee</li>
-                          <li>Favourites list</li>
-                          <li>Order summary and confirmation</li>
-                          <li>Order tracking — pending → confirmed → delivered</li>
-                          <li>Delivery address picker: building list for office regions, typed street for home</li>
-                          <li>Seasonal pre-orders</li>
-                          <li>Customer notification inbox, with push via Firebase Messaging</li>
-                          <li>Account settings with avatar upload and in-app cropping</li>
+                          <li>It takes a <strong>transaction-level advisory lock</strong> on the customer and the delivery date. Two checkouts racing each other would otherwise both see "no open order" and insert one each — precisely the split the function exists to prevent</li>
+                          <li>Only a <em>pending, unpaid</em> order for that day is joined. Anything delivered or settled is closed business, and a later order starts a fresh one</li>
+                          <li>A new order is inserted with the cart's totals already on it rather than as zeroes patched afterwards, because the "new order" notification fires on that insert and would otherwise announce an order worth Rs&nbsp;0.00</li>
+                          <li>A merge grows an order the seller has already been told about, so the insert trigger does not fire again — a second trigger announces the top-up instead, and fruit added after the first checkout still reaches the packing list</li>
+                          <li>The delivery point follows the latest checkout: the customer has just said again where they want it, and one merged order is one drop-off</li>
+                          <li>The buyer is read from <code>auth.uid()</code> rather than trusted from the caller, so a security-definer function that must update an existing order still cannot write anybody else's</li>
                         </ul>
 
-                        <br /><strong>Seller workspace</strong>
+                        <br />
+                        Orders carry a short human reference —
+                        <code>FR01000</code> and upward from a sequence — because
+                        nobody reads a UUID down a phone line.
+
+                        <br /><br />
+                        <strong>3 · Delivery, modelled the way it is driven</strong>
+                        <br />
+                        The seller defines <strong>regions</strong>, each one
+                        either <em>office</em> or <em>home</em>. An office region
+                        holds a list of <strong>buildings</strong>, so a customer
+                        ordering to work picks their building from a list instead
+                        of typing an address a driver then has to interpret; a
+                        home region falls back to a typed street address. Only
+                        active regions are offered, and each is named in both
+                        languages.
+
+                        <br /><br />
+                        On delivery day the seller works a route of stops, and two
+                        public-read tables turn that into something the customer
+                        can watch: a per-seller, per-date
+                        <code>delivery_progress</code> row holding the ordered
+                        stops and which one is current, and a
+                        <code>seller_locations</code> row updated as the van
+                        moves. The customer's tracking screen therefore says
+                        "three stops before yours" rather than "out for
+                        delivery", on a live map. Only the seller may write
+                        either table; anyone may read them, which is what makes
+                        the tracking work without an account-by-account fan-out.
+
+                        <br /><br />
+                        <strong>4 · Notifications that survive a replay</strong>
+                        <br />
+                        Every notification is a row first. A trigger then posts
+                        it to the push transport, and the row is
+                        <em>claimed</em> by stamping <code>pushed_at</code> — so a
+                        webhook delivered twice is a no-op the second time rather
+                        than a duplicate buzz, and a partial index over the
+                        unpushed rows keeps that lookup cheap. The customer's
+                        in-app inbox and the push notification are the same
+                        record, which is why they cannot disagree.
+
+                        <br /><br />
+                        A seller broadcasting to a region hits a wall the
+                        interface cannot climb: profiles are self-read only, so
+                        the seller genuinely cannot select the customers in a
+                        region. Resolving "who is in these regions" and inserting
+                        their notifications is a security-definer function — and
+                        each row it inserts still fires the same push trigger, so
+                        the broadcast path and the ordinary path stay identical.
+
+                        <br /><br />
+                        An abandoned-cart reminder runs on the same rails: a
+                        <code>pending_carts</code> row per customer per list, a
+                        scheduled job that turns the ones about to expire into
+                        notifications, and a per-customer opt-out on the profile.
+                        Both the scheduler and the HTTP extension are installed
+                        <em>non-fatally</em> — a project whose plan refuses them
+                        still applies the whole schema and simply logs that
+                        reminders will not be scheduled, rather than failing the
+                        migration at line 1,150.
+
+                        <br /><br />
+                        <strong>5 · Preferences belong to the person</strong>
+                        <br />
+                        Small thing, deliberately done: the customer chooses
+                        where the cart button lives — a floating button, the
+                        bottom bar, or the app bar — and that choice is stored on
+                        the <em>profile</em>, not the device, because signing in
+                        on a new phone should put the cart back where you put it.
+                        When the default later moved from the bottom bar to the
+                        floating button, only the column default changed;
+                        everyone who had already chosen kept their choice.
+
+                        <br /><br />
+                        <strong>What each side gets</strong>
                         <ul>
-                          <li>Dashboard — daily revenue, order counts, stock levels</li>
-                          <li>Inventory management: create, edit and stock products</li>
-                          <li>Daily availability lists, published per day</li>
-                          <li>Order queue with per-order detail and the customer's delivery point</li>
-                          <li>Delivery route planning</li>
-                          <li>Pre-order management</li>
-                          <li>Sales analytics</li>
-                          <li>Broadcast notifications to customers</li>
-                          <li>Delivery region and building administration, office or home per region</li>
-                          <li>Category management</li>
+                          <li><strong>Customer</strong> — today's list and category browsing, product detail with unit and quantity, favourites, a cart with a live summary and the snapshotted delivery fee, checkout against a building or a street address, order history with a short reference, live route tracking on a map, a notification inbox with push, and an account with avatar upload and in-app cropping</li>
+                          <li><strong>Seller</strong> — a dashboard of the day's revenue and orders, inventory with images, publishing and editing the daily list with per-item stock and a cost snapshot, the order queue with each customer's delivery point, route planning and live progress, region and building management, broadcasts by region, analytics, and settings for working days, delivery fee, contact channels and notification toggles</li>
                         </ul>
 
-                        <br /><strong>Accounts &amp; platform</strong>
+                        <br /><strong>Engineering</strong>
                         <ul>
-                          <li>Welcome, register and login flows</li>
-                          <li>OTP verification and password recovery</li>
-                          <li>Splash and session restore</li>
-                          <li>Role-driven app shell — customer or vendor from one binary</li>
-                          <li>Clean architecture: domain / data / presentation per feature</li>
-                          <li>flutter_bloc + get_it, with a DI module per feature</li>
-                          <li>go_router shells for the two navigation trees</li>
-                          <li>Mock data layer interchangeable with live Supabase</li>
-                          <li>Full EN / FR localisation with no hardcoded strings</li>
-                          <li>Material 3 theming, skeleton loaders, cached network images and Lottie</li>
+                          <li>English and French fully externalised in ARB files, generated with <code>flutter gen-l10n</code>; no user-facing string is hardcoded</li>
+                          <li>Skeleton loaders shaped like the content they replace rather than spinners, so a list does not jump when it arrives</li>
+                          <li>The schema file is safe to re-run against a live database — every statement is <code>if not exists</code>, <code>create or replace</code> or an idempotent seed. The destructive reset that once lived at the bottom of it, a <code>delete from auth.users</code> included, was moved into its own file: it was one editor paste away from erasing production</li>
+                          <li>iOS ships to TestFlight from Codemagic, which rebuilds the git-ignored <code>.env</code> from a secret group and then <strong>fails the build if any required key is empty</strong>. That check exists because a missing map key once produced a build that ran perfectly and drew a blank tracking map on device, while local builds with the real file looked fine</li>
+                          <li>Twenty-six test files with <code>bloc_test</code> and <code>mocktail</code>, and <code>flutter analyze</code> clean</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
                         <div class="pf-wrap"
-                          style="--brand:#fd9d1a;--brand-ink:#3a2500;--stage:#0a1f08;--bg:#12300f;--surface:#173d13;--card:#14360f;--text:#eef7ea;--muted:#8fae86;--line:#2d5a27;--ok:#9dd090;--warn:#ffb86b;--danger:#ffb4ab;">
+                          style="--brand:#154212;--brand-ink:#ffffff;--stage:#0a1a09;--bg:#fbfaf5;--surface:#ffffff;--card:#ffffff;--text:#16210f;--muted:#6f7a63;--line:#e6e6dc;--ok:#2f7a3f;--warn:#fd9d1a;--danger:#b3352b;">
                           <div class="pf-head">
-                            <span class="pf-kicker">One binary, two apps</span>
+                            <span class="pf-kicker">Today's list, then the van</span>
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            The customer storefront, the delivery-address picker and
-                            the seller workspace — recreated from Fruitopia's real
-                            screens and its farm-green / CTA-orange palette.
+                            The customer's list for the day, live route tracking
+                            counting the stops before yours, and the seller's
+                            order queue — recreated from Fruitopia's real Flutter
+                            screens and its deep-green and orange palette.
                           </p>
 
                           <div class="pf-stage">
-                            <!-- Frame 1: Phone — customer storefront -->
+                            <!-- Frame 1: daily list -->
                             <div class="pf-frame">
                               <div class="pf-phone">
                                 <div class="pf-screen">
@@ -224,202 +291,185 @@
                                   <div class="pf-body">
                                     <div class="pf-appbar">
                                       <div class="pf-row">
-                                        <img src="icon.png" alt="Fruitopia" style="height:22px;width:auto" />
-                                        <span class="pf-t pf-strong">Fresh today</span>
+                                        <img src="icon.png" alt="Fruitopia" style="height:20px;width:auto" />
+                                        <span class="pf-t pf-strong">Today</span>
                                       </div>
-                                      <span class="pf-muted"><i class="fas fa-heart"></i></span>
+                                      <span class="pf-muted"><i class="fas fa-bell"></i></span>
                                     </div>
 
-                                    <div class="pf-input pf-mb"><i class="fas fa-search"></i> Search produce…</div>
-                                    <div class="pf-row wrap pf-mb" style="gap:6px">
-                                      <span class="pf-badge solid">All</span>
-                                      <span class="pf-badge">Fruit</span>
-                                      <span class="pf-badge">Veg</span>
-                                      <span class="pf-badge">Herbs</span>
+                                    <div class="pf-card">
+                                      <div class="pf-between">
+                                        <span class="pf-t pf-strong">Delivery Fri 11</span>
+                                        <span class="pf-badge warn">Order by 14:00</span>
+                                      </div>
+                                      <div class="pf-muted pf-xs pf-mt">Ebene · office · Cyber Tower 1</div>
                                     </div>
 
-                                    <div class="pf-grid2 pf-mb">
-                                      <div class="pf-card" style="margin:0">
-                                        <div style="height:44px;border-radius:8px;background:color-mix(in srgb,var(--brand) 30%,transparent);display:flex;align-items:center;justify-content:center;color:var(--brand)"><i class="fas fa-lemon" style="font-size:20px"></i></div>
-                                        <div class="pf-t pf-strong" style="margin-top:6px">Mango</div>
-                                        <div class="pf-between">
-                                          <span class="pf-muted pf-xs">Rs 90 / kg</span>
-                                          <span class="pf-badge ok pf-xs">In stock</span>
-                                        </div>
+                                    <div class="pf-card">
+                                      <div class="pf-li">
+                                        <span class="grow"><div class="pf-t pf-strong">Mangoes</div><div class="pf-muted pf-xs">Rs 120 / kg</div></span>
+                                        <span class="pf-badge ok">In stock</span>
                                       </div>
-                                      <div class="pf-card" style="margin:0">
-                                        <div style="height:44px;border-radius:8px;background:color-mix(in srgb,var(--danger) 30%,transparent);display:flex;align-items:center;justify-content:center;color:var(--danger)"><i class="fas fa-apple-whole" style="font-size:20px"></i></div>
-                                        <div class="pf-t pf-strong" style="margin-top:6px">Tomato</div>
-                                        <div class="pf-between">
-                                          <span class="pf-muted pf-xs">Rs 45 / kg</span>
-                                          <span class="pf-badge warn pf-xs">Low</span>
-                                        </div>
+                                      <div class="pf-li">
+                                        <span class="grow"><div class="pf-t pf-strong">Lychees</div><div class="pf-muted pf-xs">Rs 250 / kg</div></span>
+                                        <span class="pf-badge warn">4 left</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow"><div class="pf-t pf-strong">Pineapple</div><div class="pf-muted pf-xs">Rs 90 each</div></span>
+                                        <span class="pf-badge danger">Sold out</span>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
                                       <div class="pf-between">
-                                        <span class="pf-t pf-strong">Cart · 3 items</span>
-                                        <span class="pf-t pf-strong">Rs 265</span>
+                                        <span class="pf-muted">Delivery</span>
+                                        <span class="pf-t pf-strong">Rs 40</span>
                                       </div>
                                       <div class="pf-between pf-mt">
-                                        <span class="pf-muted pf-xs">Delivery fee</span>
-                                        <span class="pf-muted pf-xs">Rs 40</span>
+                                        <span class="pf-t pf-strong">Total</span>
+                                        <span class="pf-t-lg">Rs 610</span>
                                       </div>
                                     </div>
-
-                                    <div class="pf-btn block">Checkout</div>
                                   </div>
+                                  <div class="pf-fab"><i class="fas fa-basket-shopping"></i></div>
                                   <div class="pf-tabbarbtm">
                                     <span class="active"><i class="fas fa-house"></i></span>
                                     <span><i class="fas fa-heart"></i></span>
-                                    <span><i class="fas fa-basket-shopping"></i></span>
+                                    <span><i class="fas fa-receipt"></i></span>
                                     <span><i class="fas fa-user"></i></span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Customer storefront</div>
+                              <div class="pf-cap">Unlimited, four left, sold out — three states</div>
                             </div>
 
-                            <!-- Frame 2: Phone — delivery address + tracking -->
+                            <!-- Frame 2: tracking -->
                             <div class="pf-frame">
                               <div class="pf-phone">
                                 <div class="pf-screen">
                                   <div class="pf-notch"></div>
                                   <div class="pf-body">
                                     <div class="pf-appbar">
-                                      <span class="pf-t pf-strong">Delivery</span>
-                                      <span class="pf-muted pf-xs">Step 2 of 3</span>
+                                      <div class="pf-row">
+                                        <span class="pf-muted"><i class="fas fa-arrow-left"></i></span>
+                                        <span class="pf-t pf-strong">FR01042</span>
+                                      </div>
+                                      <span class="pf-badge ok"><span class="pf-dot-live"></span> On the way</span>
                                     </div>
 
-                                    <div class="pf-card">
-                                      <div class="pf-h2">Region</div>
-                                      <div class="pf-row pf-mb">
-                                        <span class="pf-badge solid">Ebène</span>
-                                        <span class="pf-badge">Office</span>
-                                      </div>
-                                      <div class="pf-h2">Building</div>
-                                      <div class="pf-li">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--brand);flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span></span>
-                                        <span class="grow pf-t">Cyber Tower 1</span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
-                                        <span class="grow pf-t">Cyber Tower 2</span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto"></span>
-                                        <span class="grow pf-t">NG Tower</span>
+                                    <div class="pf-card" style="padding:0;overflow:hidden">
+                                      <div style="height:120px;background:linear-gradient(160deg,#dfe9d8,#c7dbc0);position:relative">
+                                        <span style="position:absolute;left:22%;top:34%;color:var(--brand)"><i class="fas fa-truck-fast"></i></span>
+                                        <span style="position:absolute;left:64%;top:64%;color:var(--warn)"><i class="fas fa-location-dot"></i></span>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-h2">Order #1042</div>
-                                      <div class="pf-li">
-                                        <span class="pf-badge ok"><i class="fas fa-check"></i></span>
-                                        <span class="grow pf-t">Pending</span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <span class="pf-badge ok"><i class="fas fa-check"></i></span>
-                                        <span class="grow pf-t">Confirmed</span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <span class="pf-badge warn"><i class="fas fa-truck"></i></span>
-                                        <span class="grow pf-t">Out for delivery</span>
-                                      </div>
-                                    </div>
-
-                                    <div class="pf-btn block">Confirm order</div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="pf-cap">Region → building picker</div>
-                            </div>
-
-                            <!-- Frame 3: Phone — seller workspace -->
-                            <div class="pf-frame">
-                              <div class="pf-phone">
-                                <div class="pf-screen">
-                                  <div class="pf-notch"></div>
-                                  <div class="pf-body">
-                                    <div class="pf-appbar">
-                                      <span class="pf-t pf-strong">Seller</span>
-                                      <span class="pf-badge"><span class="pf-dot-live"></span> Open</span>
-                                    </div>
-
-                                    <div class="pf-grid2 pf-mb">
-                                      <div class="pf-stat"><div class="n">Rs 14k</div><div class="l">Today</div></div>
-                                      <div class="pf-stat brand"><div class="n">32</div><div class="l">Orders</div></div>
+                                      <div class="pf-t-lg">3 stops before yours</div>
+                                      <div class="pf-muted pf-xs pf-mt">Currently at NeXTeracom Tower 2</div>
+                                      <div class="pf-bar ok pf-mt"><i style="width:62%"></i></div>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-h2">Sales this week</div>
-                                      <div class="pf-chart">
-                                        <span class="b" style="height:38%"></span>
-                                        <span class="b" style="height:56%"></span>
-                                        <span class="b" style="height:46%"></span>
-                                        <span class="b hi" style="height:100%"></span>
-                                        <span class="b" style="height:72%"></span>
-                                        <span class="b" style="height:60%"></span>
-                                      </div>
-                                    </div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-between pf-mb">
-                                        <span class="pf-t pf-strong">Today's list</span>
-                                        <span class="pf-badge solid">Published</span>
+                                      <div class="pf-li">
+                                        <span class="grow pf-t">Mangoes · 2 kg</span>
+                                        <span class="pf-t pf-strong">Rs 240</span>
                                       </div>
                                       <div class="pf-li">
-                                        <span class="grow pf-t">Mango · 40 kg</span>
-                                        <span class="pf-badge ok pf-xs">Live</span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <span class="grow pf-t">Tomato · 8 kg</span>
-                                        <span class="pf-badge warn pf-xs">Low</span>
-                                      </div>
-                                    </div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-between">
-                                        <span class="pf-muted">Route · Ebène</span>
-                                        <span class="pf-badge">9 stops</span>
+                                        <span class="grow pf-t">Lychees · 1 kg</span>
+                                        <span class="pf-t pf-strong">Rs 250</span>
                                       </div>
                                     </div>
                                   </div>
                                   <div class="pf-tabbarbtm">
-                                    <span class="active"><i class="fas fa-chart-line"></i></span>
-                                    <span><i class="fas fa-boxes-stacked"></i></span>
-                                    <span><i class="fas fa-receipt"></i></span>
-                                    <span><i class="fas fa-route"></i></span>
+                                    <span><i class="fas fa-house"></i></span>
+                                    <span><i class="fas fa-heart"></i></span>
+                                    <span class="active"><i class="fas fa-receipt"></i></span>
+                                    <span><i class="fas fa-user"></i></span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Seller workspace</div>
+                              <div class="pf-cap">Stops, not a status</div>
+                            </div>
+
+                            <!-- Frame 3: seller -->
+                            <div class="pf-frame">
+                              <div class="pf-phone">
+                                <div class="pf-screen">
+                                  <div class="pf-notch"></div>
+                                  <div class="pf-body">
+                                    <div class="pf-appbar">
+                                      <span class="pf-t-lg">Orders</span>
+                                      <span class="pf-badge solid">Fri 11</span>
+                                    </div>
+
+                                    <div class="pf-grid2 pf-mb">
+                                      <div class="pf-stat"><div class="n">18</div><div class="l">Bags to pack</div></div>
+                                      <div class="pf-stat"><div class="n">Rs 9,840</div><div class="l">Day total</div></div>
+                                    </div>
+
+                                    <div class="pf-card">
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-building"></i></span>
+                                        <span class="grow"><div class="pf-t pf-strong">S. Fokeer</div><div class="pf-muted pf-xs">Cyber Tower 1 · Ebene</div></span>
+                                        <span class="pf-badge warn">Topped up</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-house"></i></span>
+                                        <span class="grow"><div class="pf-t pf-strong">A. Ramdin</div><div class="pf-muted pf-xs">Av. des Manguiers, Vacoas</div></span>
+                                        <span class="pf-badge">Pending</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="pf-iconbox"><i class="fas fa-building"></i></span>
+                                        <span class="grow"><div class="pf-t pf-strong">L. Chan</div><div class="pf-muted pf-xs">NeXTeracom 2 · Ebene</div></span>
+                                        <span class="pf-badge ok">Delivered</span>
+                                      </div>
+                                    </div>
+
+                                    <div class="pf-btn block"><i class="fas fa-route"></i> Start the route</div>
+                                  </div>
+                                  <div class="pf-tabbarbtm">
+                                    <span><i class="fas fa-gauge-high"></i></span>
+                                    <span><i class="fas fa-boxes-stacked"></i></span>
+                                    <span class="active"><i class="fas fa-receipt"></i></span>
+                                    <span><i class="fas fa-chart-simple"></i></span>
+                                    <span><i class="fas fa-gear"></i></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pf-cap">One customer, one bag — merged, not doubled</div>
                             </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">Flutter</span>
                             <span class="pf-chip">Dart</span>
-                            <span class="pf-chip">flutter_bloc</span>
+                            <span class="pf-chip">Clean Architecture</span>
+                            <span class="pf-chip">flutter_bloc / Cubit</span>
                             <span class="pf-chip">get_it</span>
                             <span class="pf-chip">go_router</span>
                             <span class="pf-chip">Supabase</span>
-                            <span class="pf-chip">Firebase Messaging</span>
-                            <span class="pf-chip">Material 3</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Row Level Security</span>
+                            <span class="pf-chip">SECURITY DEFINER RPCs</span>
+                            <span class="pf-chip">pg_cron + pg_net</span>
+                            <span class="pf-chip">Firebase Cloud Messaging</span>
+                            <span class="pf-chip">flutter_map</span>
+                            <span class="pf-chip">geolocator</span>
                             <span class="pf-chip">skeletonizer</span>
-                            <span class="pf-chip">cached_network_image</span>
-                            <span class="pf-chip">Lottie</span>
-                            <span class="pf-chip">crop_your_image</span>
-                            <span class="pf-chip">intl (EN / FR)</span>
+                            <span class="pf-chip">bloc_test + mocktail</span>
+                            <span class="pf-chip">Codemagic</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #fd9d1a; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #ffc069;"></i>
-                          If you would like a walkthrough or a demo build, please contact me on my email <a href="mailto:contact@farhaan.info" style="color: #ffc069; text-decoration: underline;">contact@farhaan.info</a>
+                        <div class="pp-note" style="background: var(--card); color: var(--text); padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 500; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: var(--muted);"></i>
+                          Fruitopia is live on the App Store and Google Play. For
+                          a walkthrough of the merge-or-create checkout, the
+                          delivery model or the push claim, contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: var(--cyan); text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>

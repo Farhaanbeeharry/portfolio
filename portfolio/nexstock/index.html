@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NexStock — Farhaan Beeharry</title>
-    <meta name="description" content="NexStock — a multi-store inventory &amp; business management platform: products, stock adjustments, inter-store transfers, POS, quotations, invoicing, suppliers, reporting and audit logs. Laravel modular monolith API, React + TypeScript SPA and a Flutter companion app." />
-    <meta name="keywords" content="nexstock, inventory management, stock management, pos, point of sale, invoicing, quotations, multi-store, suppliers, saas, laravel, modular monolith, react, typescript, tanstack, flutter, jwt, 2fa" />
+    <meta name="description" content="NexStock — a business operating system for SMEs: multi-branch inventory, POS, quotations and invoicing, purchasing, accounting and reporting. A Laravel 12 modular monolith of sixteen tiered modules whose dependency DAG is enforced by Deptrac in CI, with a React SPA, a Flutter shop-floor app, JWT and TOTP two-factor auth, and a brand palette chosen by contrast measurement rather than by eye." />
+    <meta name="keywords" content="nexstock, inventory management, point of sale, invoicing, laravel 12, modular monolith, deptrac, larastan, php, react, typescript, flutter, postgresql, jwt, 2fa, totp, msw, openapi, multi-branch, mauritius" />
     <meta name="author" content="Farhaan Beeharry" />
     <link rel="shortcut icon" href="../../img/logo.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -79,23 +79,23 @@
         <div class="container">
           <a class="pp-back reveal" href="../../index.html#work"><i class="fa-solid fa-arrow-left"></i> Back to work</a>
 
-          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web &amp; Mobile</div>
+          <div class="pp-cat reveal"><i class="fa-solid fa-layer-group"></i> Web, mobile &amp; UI/UX</div>
 
           <h1 class="pp-title reveal"><span class="g">NexStock</span></h1>
 
           <div class="pp-meta reveal">
-            <span><i class="fa-regular fa-calendar"></i> July 2026</span>
+            <span><i class="fa-regular fa-calendar"></i> July — September 2026</span>
             <span><i class="fa-solid fa-user"></i> Farhaan Beeharry</span>
           </div>
 
           <div class="pp-tags reveal">
             <span>web app</span>
             <span>mobile app</span>
-            <span>inventory</span>
-            <span>pos</span>
-            <span>laravel</span>
+            <span>laravel 12</span>
             <span>react</span>
             <span>flutter</span>
+            <span>postgresql</span>
+            <span>modular monolith</span>
           </div>
 
           <figure class="pp-cover reveal"><img src="background.svg" alt="NexStock Project Cover" /></figure>
@@ -105,247 +105,321 @@
       <article class="pp-article">
         <div class="container">
           <div class="col-inner">
-            
+
                   <div class="row">
                     <div class="col-xs-12 col-sm-12">
                       <div class="col-inner">
                         <strong>NexStock</strong> is a business operating system
-                        for small and medium businesses — one platform in place of
-                        the usual pile of disconnected tools. It brings
-                        <strong>multi-store inventory</strong>, a
-                        <strong>point of sale</strong>, quotations and invoicing,
-                        customers and suppliers, reporting and audit logs into a
-                        single system, configurable enough to fit a retail shop, a
-                        wholesaler, a workshop, a garage, a printer or a repair
-                        business.
+                        for small and medium enterprises — one platform in place
+                        of the usual pile of disconnected tools. Multi-branch
+                        inventory, a point of sale, quotations and invoicing,
+                        customers and suppliers, purchasing, accounting,
+                        reporting and audit sit in a single system, configurable
+                        enough to fit a retail shop, a wholesaler, a workshop, a
+                        garage, a printer or a repair business. It is built for
+                        Mauritius and francophone markets first — Rupees,
+                        UTC+4, French as a first-class language — without being
+                        unable to leave them.
 
                         <br /><br />
-                        Architecturally it is a <strong>modular monolith</strong>:
-                        a Laravel 12 API where every bounded context —
-                        <em>Inventory, Products, Sales, Purchasing, Customers,
-                        Suppliers, Accounting, Reporting, Users, Notifications,
-                        Settings, Support</em> — is its own module with its own
-                        domain, application, infrastructure and routes layers, and
-                        a dependency linter (Deptrac) that fails the build when a
-                        module reaches into a neighbour it has no business knowing
-                        about. The composition root wires modules together; it
-                        contains no business logic of its own.
+                        There are three deliverables: a
+                        <strong>Laravel&nbsp;12 API</strong>, a
+                        <strong>React&nbsp;+&nbsp;TypeScript SPA</strong> for the
+                        back office and the POS, and a <strong>Flutter
+                        companion app</strong> for the shop floor. The mobile app
+                        is not a shrunk-down dashboard: it is designed for one
+                        hand while standing, a camera instead of a keyboard, and
+                        a stockroom with poor light and a worse connection.
 
                         <br /><br />
-                        On top of that API sit two clients: a
-                        <strong>React + TypeScript SPA</strong> for the back
-                        office and the POS, and a <strong>Flutter companion
-                        app</strong> for the shop floor — stock lookups, movements
-                        and dashboards from a phone. Both are fully bilingual
-                        (EN / FR) with light and dark themes, and — a detail that
-                        matters on shared hardware — the theme and language follow
-                        the <em>account</em> rather than the device, carried in a
-                        JWT claim so a fresh device adopts the right settings on
-                        first login.
+                        <strong>1 · A modular monolith, with the boundaries enforced</strong>
+                        <br />
+                        The API is a single deployable application partitioned
+                        into fifteen business modules, each owning its domain end
+                        to end — HTTP, rules, persistence, migrations, events,
+                        tests — behind a small published surface. Inside each
+                        one, a light <em>Domain / Application / Infrastructure</em>
+                        split: entities, value objects and contracts that know
+                        nothing of the framework; use-case actions that
+                        orchestrate them; Eloquent models, controllers, policies
+                        and gateways underneath. <code>api/app/</code> is a
+                        composition root and nothing else — business logic
+                        arriving there means it is in the wrong directory.
 
                         <br /><br />
-                        The brand palette is derived from the logo rather than
-                        picked by eye, and it is documented as a contrast argument:
-                        interactive surfaces run teal → cyan, and the exact shades
-                        were chosen because they clear 3:1 against both white and
-                        near-black, with the 700 shades reserved for anything
-                        carrying white text so it clears the 4.5:1 AA threshold.
-                        Blue was retired from the brand entirely and now means
+                        The modules are tiered, and the tiers <em>are</em> the
+                        dependency policy: a shared kernel of primitives; a
+                        platform tier (Auth, Users, Settings, Notifications);
+                        master data (Products, Customers, Suppliers) that
+                        consumers may read but only its owner may write; the
+                        transactional core (Inventory, Purchasing, Sales/POS);
+                        and downstream modules (Accounting, Reporting) that
+                        declare <strong>no dependency on an operational module
+                        at all</strong> and subscribe to domain events instead.
+                        That last rule is what makes a new report addable — and
+                        the accounting module removable — with zero edits to
+                        Sales or Inventory.
+
+                        <br /><br />
+                        The graph is a DAG and it is checked rather than trusted:
+                        <strong>Deptrac</strong> fails the build on any violation
+                        or cycle. It also excludes test scaffolding and factories
+                        on purpose — a factory reaching for another module's
+                        entity to build a fixture says nothing about the
+                        production dependency graph, and quietly widening
+                        <code>deptrac.yaml</code> to accommodate a test would
+                        cost the boundary its meaning. Contracts speak in DTOs
+                        and value objects, never Eloquent models: a model leaking
+                        across a module boundary would recreate exactly the
+                        coupling the structure exists to avoid.
+
+                        <br /><br />
+                        Four gates run as one command — <strong>Pint</strong> for
+                        formatting, <strong>Larastan at level 6</strong>,
+                        <strong>Deptrac</strong> for boundaries and
+                        <strong>PHPUnit</strong>, with the suite split into a
+                        thin App shell and per-module tests. All four pass, and the
+                        repository's working agreement is explicit that if you
+                        cannot keep them passing you say so rather than leaving a
+                        gate red without comment.
+
+                        <br /><br />
+                        <strong>2 · What the platform actually does</strong>
+                        <br />
+                        Roughly eighty-six migrations, owned by the module that
+                        needs them rather than pooled centrally:
+                        <ul>
+                          <li><strong>Inventory</strong> — branches and per-branch stock, stock movements, adjustments with reason codes, inter-branch transfers with their own line items and a cancellation reason, and expiry batches</li>
+                          <li><strong>Products</strong> — categories, units of measure, variants and variant attributes, images, tags, and customer-definable custom fields as definitions plus values rather than as columns</li>
+                          <li><strong>Sales</strong> — quotations that convert into invoices, invoice items with their own status, payments, credit and debit notes, a processing queue for workshop and repair jobs, and held POS orders so a sale can be parked and resumed</li>
+                          <li><strong>Purchasing</strong> — purchase orders and goods receipts, each with line items, so what was ordered and what arrived are separate facts</li>
+                          <li><strong>Accounting</strong> — a chart of accounts with journal entries and journal lines, fed by events from the operational modules</li>
+                          <li><strong>Users</strong> — roles, permissions and their pivots, login histories, trusted devices, invitations, and per-user theme and language</li>
+                          <li><strong>Settings</strong> — payment methods, API keys, webhook endpoints, an activity log with batch UUIDs, and asynchronous data export and import requests</li>
+                          <li><strong>Support</strong> — document templates and generated documents, plus the audit log</li>
+                        </ul>
+
+                        <br /><strong>3 · The two halves have contracts nothing enforces at build time</strong>
+                        <br />
+                        The frontend and backend share rules that no compiler
+                        checks, so they are written down as non-negotiables:
+                        <ul>
+                          <li><strong>Clients branch on <code>error_key</code>, never on message text.</strong> A client that matches on prose breaks the first time the copy is improved or translated</li>
+                          <li>The password policy is defined <em>once</em> on the client — both the Zod schema and the on-screen checklist derive from the same constant — so keeping it in step with the API rule is a one-line change rather than a hunt</li>
+                          <li>Removing a form field means removing its validation rule too. Dropping <code>password_confirmation</code> from the UI while leaving Laravel's <code>confirmed</code> rule in place produces a silent 422 that looks like nothing happened</li>
+                          <li>The two-factor branch returns <strong>202 with a session token, not an error</strong>. The client has to treat it as a success shape, which is exactly the sort of thing a contract document exists to say out loud</li>
+                        </ul>
+
+                        <br />
+                        Authentication is JWT with two-factor by e-mail OTP or an
+                        authenticator app, trusted devices so a returning phone
+                        is not challenged again, and account lockout. There are
+                        seven auth screens, and one deliberately unfashionable
+                        detail on the sign-up form: the password requirements box
+                        is <strong>always visible</strong> rather than revealed on
+                        focus. A checklist that only appears while the field is
+                        focused cannot be read while you are typing into it,
+                        which is the only moment it is useful.
+
+                        <br /><br />
+                        <strong>4 · Two test blind spots, written down because they cost real time</strong>
+                        <br />
+                        Green tests are necessary and not sufficient here, and
+                        both structural blind spots are documented in the
+                        repository rather than rediscovered:
+                        <ul>
+                          <li><code>actingAs()</code> <strong>bypasses the auth user provider</strong>. A broken <code>auth.providers.users.model</code> passes every test in the suite and returns 401 on every authenticated HTTP request in production. One real request has to be smoke-tested</li>
+                          <li><code>Notification::fake()</code> <strong>never renders the mail template</strong>. A Blade error or a missing translation key is invisible to it. The view gets rendered, or read in Mailpit, before the change is called done</li>
+                        </ul>
+
+                        <br />
+                        A third, smaller one earns its place beside them: after
+                        editing a queued job, listener, notification or mail view,
+                        the queue worker has to be restarted. It is long-running
+                        and holds classes in memory, so skipping that means
+                        debugging the previous version of your own file.
+
+                        <br /><br />
+                        <strong>5 · Transactional e-mail is 2003 on purpose</strong>
+                        <br />
+                        Templates use table-based layouts, <code>bgcolor</code>
+                        and inline styles, with a plain-text alternative
+                        generated for every message. Modernising them with
+                        flexbox, grid or <code>&lt;picture&gt;</code> breaks
+                        Outlook and the Gmail app, and forcing a white logo onto
+                        a dark background through a <code>prefers-color-scheme</code>
+                        media query produces invisible white-on-white in Apple
+                        Mail. The logo is therefore a universal teal that needs
+                        no dark-mode variant at all — which is the same argument
+                        the whole palette is built on.
+
+                        <br /><br />
+                        <strong>6 · The palette is an accessibility argument, not a mood board</strong>
+                        <br />
+                        The brand comes from the mark: a cyan accent
+                        (<code>#04dde2</code>) over a teal ink
+                        (<code>#0d9488</code>), with interactive surfaces running
+                        teal&nbsp;→&nbsp;cyan. Blue appears nowhere in the logo,
+                        so it was retired from the brand entirely and now means
                         <em>status</em>.
 
                         <br /><br />
-                        <strong>Inventory &amp; stock</strong>
-                        <ul>
-                          <li>Product catalogue with variants, barcodes and unit pricing</li>
-                          <li>Per-store stock levels with low-stock thresholds</li>
-                          <li>Stock adjustments with reason codes and a full audit trail</li>
-                          <li>Inter-store transfers with request / dispatch / receive states</li>
-                          <li>Bulk import and export of products</li>
-                          <li>Barcode scanner input on product and POS screens</li>
-                          <li>Product detail pages with per-store breakdown and movement history</li>
-                          <li>Store management for single-branch or multi-branch businesses</li>
-                        </ul>
+                        The shades were then chosen by measurement. There is a
+                        narrow band of relative luminance — roughly 0.118 to 0.30
+                        — inside which a colour clears 3:1 against
+                        <em>both</em> white and near-black, and so can be used on
+                        either ground. Teal&nbsp;600 sits in it with the best
+                        worst case of the candidates (3.74:1 on white, 5.39:1 on
+                        slate&nbsp;950). But 3.74:1 does not reach the 4.5:1 that
+                        text needs, so anything carrying white <em>text</em> —
+                        buttons, the active nav pill, badges, tab triggers — uses
+                        the 700 shades at 5.4:1, and 800 on hover. Teal&nbsp;600
+                        stays correct where only 3:1 applies: checkbox ticks,
+                        switch thumbs, progress fills, and large bold headings.
 
-                        <br /><strong>Selling</strong>
-                        <ul>
-                          <li>Touch-friendly POS with keyboard shortcuts</li>
-                          <li>Held orders — park a sale and come back to it</li>
-                          <li>In-POS sales history</li>
-                          <li>Product customisation at the point of sale, for custom-order businesses</li>
-                          <li>Quotations that convert into invoices</li>
-                          <li>Invoices with status transitions, part payments and mark-as-paid</li>
-                          <li>Follow-up flow for unpaid invoices</li>
-                          <li>Printable / thermal receipts</li>
-                          <li>Orders queue for workshops and repair jobs</li>
-                          <li>Accounts receivable with reminder flows</li>
-                        </ul>
+                        <br /><br />
+                        One CSS rule is banned outright. A bare
+                        <code>[data-state=…]</code> selector once existed, and
+                        because it was unscoped it made every closed Radix
+                        component in the application
+                        <strong>invisible but still clickable</strong> — which is
+                        a far worse failure than a visibly broken one, and took
+                        three attempts to diagnose from static reading before
+                        somebody reproduced it in a browser.
 
-                        <br /><strong>Contacts &amp; purchasing</strong>
-                        <ul>
-                          <li>Customers with per-customer history and balances</li>
-                          <li>Suppliers with their own product catalogues</li>
-                          <li>Supplier orders raised from a supplier's catalogue</li>
-                          <li>Contact detail pages tying documents, orders and payments together</li>
-                        </ul>
+                        <br /><br />
+                        <strong>7 · The account, not the device</strong>
+                        <br />
+                        Theme and language follow the <em>account</em>, carried
+                        in a JWT claim, so a fresh device adopts the right
+                        settings on first login and shared shop hardware does not
+                        force the next person to reset it. On the API side the
+                        user model implements Laravel's locale preference, which
+                        is what makes a background notification or a queued
+                        e-mail arrive in the language the recipient chose rather
+                        than the language of whoever triggered it; anonymous
+                        mail, such as a signup OTP, passes its locale explicitly
+                        because there is no user yet to ask.
 
-                        <br /><strong>Business &amp; platform</strong>
+                        <br /><br />
+                        <strong>Engineering</strong>
                         <ul>
-                          <li>Multi-business workspaces with a business switcher</li>
-                          <li>Guided onboarding wizard with logo upload and in-browser cropping</li>
-                          <li>Users, roles and granular permissions</li>
-                          <li>Drag-and-drop customisable dashboard widgets</li>
-                          <li>Reports with charts (Recharts) and data tables</li>
-                          <li>Searchable audit log of every privileged action</li>
-                          <li>In-app notifications</li>
-                          <li>JWT authentication with 2FA (TOTP, QR enrolment) and OTP e-mail flows</li>
-                          <li>Password policy defined once and shared by the API rule and the on-screen checklist</li>
-                          <li>Documented REST API with a generated OpenAPI spec, plus an integrations page</li>
-                          <li>Billing and plan management</li>
-                          <li>Help centre, changelog and credits pages</li>
-                          <li>EN / FR throughout, light and dark themes that follow the account</li>
-                        </ul>
-
-                        <br /><strong>Engineering</strong>
-                        <ul>
-                          <li>Laravel modules with enforced boundaries — Deptrac fails the build on a violation</li>
-                          <li>Larastan static analysis and a PHPUnit suite</li>
-                          <li>Errors carry stable <code>error_key</code> values; clients never match on prose</li>
-                          <li>A mock server (MSW) so the SPA can be developed against the real response envelope</li>
-                          <li>Playwright end-to-end coverage</li>
-                          <li>Documented conventions for the traps that bite: <code>actingAs()</code> bypassing the auth provider, and <code>Notification::fake()</code> never rendering the mail template</li>
+                          <li>The SPA develops against a Mock Service Worker layer that mirrors the real response envelope, so a screen can be finished before its endpoint exists without hard-coding a shape the API will not send</li>
+                          <li>API boundaries are validated with Zod schemas in <code>features/*/api/contracts/</code>, so a shape change is caught where it enters the client rather than three components later</li>
+                          <li>Eloquent models carry <code>@property</code> docblocks generated from the <em>live schema</em> rather than hand-written, because Larastan at level 6 requires them and a hand-written one drifts</li>
+                          <li><code>$fillable</code> has to mirror the table in both directions: a missing column is silently dropped, and a phantom column fails at the database</li>
+                          <li>Every document in <code>api/docs/</code> and <code>web/docs/</code> carries a "known gaps" section, and the working agreement is explicit — if the code and a document disagree, trust the code, fix the document in the same change, and say so. Documentation that lies is worse than none, because it gets trusted</li>
                         </ul>
 
                         <!-- ================= UI SHOWCASE ================= -->
                         <div class="pf-wrap"
-                          style="--brand:#04dde2;--brand-ink:#04211f;--stage:#04120f;--bg:#0b1614;--surface:#132322;--card:#0e1c1a;--text:#e7fdfb;--muted:#8fb2ae;--line:#274441;--ok:#5fd39a;--warn:#ffc069;--danger:#ff9f9a;">
+                          style="--brand:#0d9488;--brand-ink:#ffffff;--stage:#03211f;--bg:#f7fafa;--surface:#ffffff;--card:#ffffff;--text:#0f1c1b;--muted:#5f7a78;--line:#dde8e7;--ok:#0f7052;--warn:#96660a;--danger:#c02030;">
                           <div class="pf-head">
-                            <span class="pf-kicker">One system, every counter</span>
+                            <span class="pf-kicker">Back office, counter, shop floor</span>
                             <span class="pf-line"></span>
                           </div>
                           <p class="pf-sub">
-                            The back-office stock table, the point of sale and the
-                            Flutter shop-floor app — recreated from NexStock's real
-                            screens and its teal / cyan brand palette.
+                            The inventory view across branches, the point of sale
+                            with a held order, and the Flutter companion app used
+                            standing in the stockroom — recreated from NexStock's
+                            real screens and the teal-to-cyan palette taken from
+                            its mark.
                           </p>
 
                           <div class="pf-stage">
-                            <!-- Frame 1: Browser — Inventory -->
+                            <!-- Frame 1: inventory -->
                             <div class="pf-frame" style="flex:1 1 560px">
                               <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
                                   <span class="pf-dot r"></span>
                                   <span class="pf-dot y"></span>
                                   <span class="pf-dot g"></span>
-                                  <span class="pf-url">nexstock.app/inventory/products</span>
+                                  <span class="pf-url">app.nexstock.io/inventory</span>
                                 </div>
                                 <div class="pf-viewport">
                                   <div class="pf-side">
                                     <div class="pf-brandrow">
-                                      <img src="icon.png" alt="NexStock" style="height:20px" />
-                                      <span class="pf-strong">NexStock</span>
+                                      <img src="logo.png" alt="NexStock" style="height:15px;width:auto" />
                                     </div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-th-large"></i></span> Dashboard</div>
-                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-boxes"></i></span> Products</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-warehouse"></i></span> Stores</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-exchange-alt"></i></span> Transfers</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-cash-register"></i></span> POS</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-invoice"></i></span> Invoices</div>
-                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-bar"></i></span> Reports</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-gauge-high"></i></span> Dashboard</div>
+                                    <div class="pf-navitem active"><span class="pf-ic"><i class="fas fa-boxes-stacked"></i></span> Inventory</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-cash-register"></i></span> Point of sale</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-file-invoice"></i></span> Sales</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-truck-ramp-box"></i></span> Purchasing</div>
+                                    <div class="pf-navitem"><span class="pf-ic"><i class="fas fa-chart-line"></i></span> Reports</div>
                                   </div>
-
                                   <div class="pf-main">
-                                    <div class="pf-between pf-mb">
-                                      <div class="pf-t-lg">Products</div>
-                                      <div class="pf-row">
-                                        <span class="pf-btn-outline">Import</span>
-                                        <span class="pf-btn">Add product</span>
-                                      </div>
-                                    </div>
-
                                     <div class="pf-grid3 pf-mb">
-                                      <div class="pf-stat"><div class="n">1,284</div><div class="l">SKUs</div></div>
+                                      <div class="pf-stat brand"><div class="n">1,284</div><div class="l">SKUs</div></div>
                                       <div class="pf-stat"><div class="n">17</div><div class="l">Low stock</div></div>
-                                      <div class="pf-stat brand"><div class="n">4</div><div class="l">Stores</div></div>
+                                      <div class="pf-stat"><div class="n">3</div><div class="l">Transfers open</div></div>
                                     </div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-input pf-mb"><i class="fas fa-barcode"></i> Scan or search a barcode…</div>
-                                      <table class="pf-table">
-                                        <tr><th>Product</th><th>Store</th><th>Qty</th><th>Status</th></tr>
-                                        <tr><td>Alu Profile 40×40</td><td>Port Louis</td><td>212</td><td><span class="pf-badge ok">In stock</span></td></tr>
-                                        <tr><td>Hinge Kit — Soft close</td><td>Curepipe</td><td>14</td><td><span class="pf-badge warn">Low</span></td></tr>
-                                        <tr><td>Melamine Board 18mm</td><td>Quatre Bornes</td><td>0</td><td><span class="pf-badge danger">Out</span></td></tr>
-                                        <tr><td>LED Strip 5m — Warm</td><td>Port Louis</td><td>96</td><td><span class="pf-badge ok">In stock</span></td></tr>
-                                      </table>
+                                    <table class="pf-table">
+                                      <thead>
+                                        <tr><th>Product</th><th>Rose Hill</th><th>Curepipe</th><th>Status</th></tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr><td>Cable 2.5mm · 100m</td><td>42</td><td>6</td><td><span class="pf-badge warn">Low · Curepipe</span></td></tr>
+                                        <tr><td>LED panel 36W</td><td>118</td><td>94</td><td><span class="pf-badge ok">OK</span></td></tr>
+                                        <tr><td>Breaker 32A</td><td>0</td><td>23</td><td><span class="pf-badge danger">Out · Rose Hill</span></td></tr>
+                                        <tr><td>Trunking 40×25</td><td>67</td><td>51</td><td><span class="pf-badge ok">OK</span></td></tr>
+                                      </tbody>
+                                    </table>
+                                    <div class="pf-muted pf-mt pf-xs">
+                                      Every movement carries a reason code and lands in the activity log.
                                     </div>
-
-                                    <span class="pf-badge solid">Transfer requested · Curepipe → Port Louis</span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Multi-store product &amp; stock table</div>
+                              <div class="pf-cap">Stock is per branch, not per company</div>
                             </div>
 
-                            <!-- Frame 2: Browser — POS -->
-                            <div class="pf-frame" style="flex:1 1 440px">
-                              <div class="pf-browser">
+                            <!-- Frame 2: POS -->
+                            <div class="pf-frame" style="flex:1 1 560px">
+                              <div class="pf-browser pf-wide">
                                 <div class="pf-tabbar">
                                   <span class="pf-dot r"></span>
                                   <span class="pf-dot y"></span>
                                   <span class="pf-dot g"></span>
-                                  <span class="pf-url">nexstock.app/sales/pos</span>
+                                  <span class="pf-url">app.nexstock.io/pos</span>
                                 </div>
-                                <div class="pf-pad">
-                                  <div class="pf-between pf-mb">
-                                    <div class="pf-t-lg">Point of sale</div>
-                                    <span class="pf-badge"><i class="fas fa-keyboard"></i> F2 hold</span>
-                                  </div>
-
-                                  <div class="pf-grid3 pf-mb">
-                                    <span class="pf-btn-outline">Alu Profile</span>
-                                    <span class="pf-btn-outline">Hinge Kit</span>
-                                    <span class="pf-btn-outline">LED Strip</span>
-                                  </div>
-
-                                  <div class="pf-card">
-                                    <table class="pf-table">
-                                      <tr><th>Item</th><th>Qty</th><th>Total</th></tr>
-                                      <tr><td>Alu Profile 40×40</td><td>4</td><td>Rs 1,240</td></tr>
-                                      <tr><td>Hinge Kit</td><td>2</td><td>Rs 460</td></tr>
-                                      <tr><td>LED Strip 5m</td><td>1</td><td>Rs 590</td></tr>
-                                    </table>
-                                    <div class="pf-between pf-mt">
-                                      <span class="pf-muted">Subtotal</span><span class="pf-t">Rs 2,290</span>
+                                <div class="pf-viewport">
+                                  <div class="pf-main">
+                                    <div class="pf-between pf-mb">
+                                      <div class="pf-h2" style="margin:0">Counter · Rose Hill</div>
+                                      <span class="pf-badge"><i class="fas fa-pause"></i> 2 held orders</span>
                                     </div>
-                                    <div class="pf-between pf-mt">
-                                      <span class="pf-t pf-strong">Due</span>
-                                      <span class="pf-t-lg">Rs 2,633</span>
+                                    <div class="pf-input pf-mb"><i class="fas fa-barcode"></i> Scan or type a code…</div>
+                                    <div class="pf-card">
+                                      <div class="pf-li">
+                                        <span class="grow"><div class="pf-t pf-strong">LED panel 36W</div><div class="pf-muted pf-xs">2 × Rs 890</div></span>
+                                        <span class="pf-t pf-strong">Rs 1,780</span>
+                                      </div>
+                                      <div class="pf-li">
+                                        <span class="grow"><div class="pf-t pf-strong">Cable 2.5mm · 100m</div><div class="pf-muted pf-xs">1 × Rs 2,450</div></span>
+                                        <span class="pf-t pf-strong">Rs 2,450</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">VAT 15%</span>
+                                        <span class="pf-t">Rs 634</span>
+                                      </div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-t pf-strong">Total</span>
+                                        <span class="pf-t-lg">Rs 4,864</span>
+                                      </div>
                                     </div>
-                                  </div>
-
-                                  <div class="pf-row pf-mb">
-                                    <span class="pf-btn">Charge</span>
-                                    <span class="pf-btn-outline">Hold</span>
-                                    <span class="pf-btn-ghost">Quotation</span>
-                                  </div>
-
-                                  <div class="pf-card">
-                                    <div class="pf-h2">Held orders</div>
-                                    <div class="pf-li">
-                                      <span class="grow pf-t">#H-207 · walk-in</span>
-                                      <span class="pf-badge warn">2 items</span>
-                                    </div>
-                                    <div class="pf-li">
-                                      <span class="grow pf-t">#H-206 · Mr Ramjan</span>
-                                      <span class="pf-badge warn">5 items</span>
+                                    <div class="pf-row">
+                                      <span class="pf-btn"><i class="fas fa-money-bill"></i> Take payment</span>
+                                      <span class="pf-btn-outline"><i class="fas fa-pause"></i> Hold</span>
+                                      <span class="pf-btn-outline"><i class="fas fa-print"></i></span>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">POS with held orders</div>
+                              <div class="pf-cap">POS — park a sale, serve the next customer</div>
                             </div>
 
-                            <!-- Frame 3: Phone — Flutter companion -->
+                            <!-- Frame 3: mobile -->
                             <div class="pf-frame">
                               <div class="pf-phone">
                                 <div class="pf-screen">
@@ -354,79 +428,79 @@
                                     <div class="pf-appbar">
                                       <div class="pf-row">
                                         <img src="icon.png" alt="NexStock" style="height:18px;width:auto" />
-                                        <span class="pf-t pf-strong">Port Louis</span>
+                                        <span class="pf-t pf-strong">Stockroom</span>
                                       </div>
                                       <span class="pf-muted"><i class="fas fa-bell"></i></span>
                                     </div>
 
-                                    <div class="pf-grid2 pf-mb">
-                                      <div class="pf-stat"><div class="n">Rs 48k</div><div class="l">Today</div></div>
-                                      <div class="pf-stat"><div class="n">32</div><div class="l">Sales</div></div>
-                                    </div>
-
-                                    <div class="pf-card">
-                                      <div class="pf-h2">Stock movements</div>
-                                      <div class="pf-li">
-                                        <span class="pf-iconbox"><i class="fas fa-arrow-down"></i></span>
-                                        <span class="grow"><span class="pf-t pf-strong">Received · 40 pcs</span><br /><span class="pf-muted">Hinge Kit</span></span>
-                                      </div>
-                                      <div class="pf-li">
-                                        <span class="pf-iconbox"><i class="fas fa-arrow-up"></i></span>
-                                        <span class="grow"><span class="pf-t pf-strong">Sold · 6 pcs</span><br /><span class="pf-muted">LED Strip 5m</span></span>
+                                    <div class="pf-card" style="text-align:center">
+                                      <div style="border:2px dashed var(--line);border-radius:12px;padding:22px 10px">
+                                        <i class="fas fa-barcode" style="font-size:30px;color:var(--brand)"></i>
+                                        <div class="pf-muted pf-mt pf-xs">Point at the label</div>
                                       </div>
                                     </div>
 
                                     <div class="pf-card">
-                                      <div class="pf-between pf-mb">
-                                        <span class="pf-t pf-strong">Low stock</span>
-                                        <span class="pf-badge warn">17</span>
+                                      <div class="pf-t pf-strong">Breaker 32A</div>
+                                      <div class="pf-muted pf-xs pf-mb">SKU BRK-32 · Rose Hill</div>
+                                      <div class="pf-between">
+                                        <span class="pf-muted">On hand</span>
+                                        <span class="pf-badge danger">0</span>
                                       </div>
-                                      <div class="pf-bar warn"><i style="width:18%"></i></div>
+                                      <div class="pf-between pf-mt">
+                                        <span class="pf-muted">Curepipe</span>
+                                        <span class="pf-t pf-strong">23</span>
+                                      </div>
                                     </div>
+
+                                    <div class="pf-btn block"><i class="fas fa-right-left"></i> Request a transfer</div>
                                   </div>
                                   <div class="pf-tabbarbtm">
-                                    <span class="active"><i class="fas fa-th-large"></i></span>
-                                    <span><i class="fas fa-boxes"></i></span>
-                                    <span><i class="fas fa-exchange-alt"></i></span>
-                                    <span><i class="fas fa-cog"></i></span>
+                                    <span><i class="fas fa-gauge-high"></i></span>
+                                    <span class="active"><i class="fas fa-boxes-stacked"></i></span>
+                                    <span><i class="fas fa-barcode"></i></span>
+                                    <span><i class="fas fa-cash-register"></i></span>
+                                    <span><i class="fas fa-chart-line"></i></span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="pf-cap">Flutter shop-floor app</div>
+                              <div class="pf-cap">One hand, standing, camera first</div>
                             </div>
                           </div>
 
                           <div class="pf-stack">
                             <span class="pf-chip">Laravel 12</span>
-                            <span class="pf-chip">PHP 8.3</span>
+                            <span class="pf-chip">PHP 8</span>
                             <span class="pf-chip">Modular monolith</span>
-                            <span class="pf-chip">JWT + 2FA</span>
-                            <span class="pf-chip">React 18</span>
+                            <span class="pf-chip">Deptrac</span>
+                            <span class="pf-chip">Larastan (level 6)</span>
+                            <span class="pf-chip">Pint</span>
+                            <span class="pf-chip">PHPUnit</span>
+                            <span class="pf-chip">PostgreSQL</span>
+                            <span class="pf-chip">Redis</span>
+                            <span class="pf-chip">JWT + TOTP 2FA</span>
+                            <span class="pf-chip">React</span>
                             <span class="pf-chip">TypeScript</span>
-                            <span class="pf-chip">Vite</span>
-                            <span class="pf-chip">TanStack Router</span>
-                            <span class="pf-chip">TanStack Query</span>
-                            <span class="pf-chip">TanStack Table</span>
                             <span class="pf-chip">Tailwind CSS</span>
                             <span class="pf-chip">Radix UI</span>
-                            <span class="pf-chip">Recharts</span>
-                            <span class="pf-chip">dnd-kit</span>
-                            <span class="pf-chip">Flutter</span>
-                            <span class="pf-chip">flutter_bloc</span>
-                            <span class="pf-chip">Larastan</span>
-                            <span class="pf-chip">Deptrac</span>
-                            <span class="pf-chip">Playwright</span>
+                            <span class="pf-chip">Zod</span>
                             <span class="pf-chip">MSW</span>
+                            <span class="pf-chip">Recharts</span>
+                            <span class="pf-chip">Flutter</span>
+                            <span class="pf-chip">go_router + flutter_bloc</span>
+                            <span class="pf-chip">OpenAPI</span>
+                            <span class="pf-chip">Docker</span>
                           </div>
                         </div>
                         <!-- =============== END UI SHOWCASE =============== -->
 
                         <br />
-                        <div style="background: #1e293b; color: #f8fafc; padding: 20px; border-radius: 12px; border-left: 5px solid #14b8a6; font-weight: 600; margin-top: 20px;">
-                          <i class="fas fa-info-circle" style="margin-right: 10px; color: #2dd4bf;"></i>
-                          NexStock is in active development. If you would like a
-                          walkthrough or a demo access account, contact me on
-                          <a href="mailto:contact@farhaan.info" style="color: #2dd4bf; text-decoration: underline;">contact@farhaan.info</a>
+                        <div class="pp-note" style="background: var(--card); color: var(--text); padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius); font-weight: 500; margin-top: 20px;">
+                          <i class="fas fa-info-circle" style="margin-right: 10px; color: var(--muted);"></i>
+                          For a walkthrough of the module boundaries, the
+                          Deptrac ruleset or the contrast argument behind the
+                          palette, contact me on
+                          <a href="mailto:contact@farhaan.info" style="color: var(--cyan); text-decoration: underline;">contact@farhaan.info</a>
                         </div>
                       </div>
                     </div>

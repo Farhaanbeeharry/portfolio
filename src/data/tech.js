@@ -76,9 +76,9 @@ export const TECH = {
     domain: ["marketplace", "e-commerce", "fashion", "UAE", "payments", "sustainability"],
   },
   momento: {
-    blurb: "Project collaboration and meeting minutes for small teams",
-    stack: ["Angular", "Supabase", "TypeScript"],
-    domain: ["project management", "kanban", "meeting minutes"],
+    blurb: "Turns meeting minutes into tickets, with a live planning-poker table drawn in WebGL",
+    stack: ["Angular", "TypeScript", "Supabase", "PostgreSQL", "WebGL"],
+    domain: ["project management", "kanban", "sprints", "meeting minutes", "planning poker"],
   },
   blaugrana: {
     blurb: "Football club management: attendance, members, payments and finances",
@@ -91,9 +91,9 @@ export const TECH = {
     domain: ["football", "team organiser"],
   },
   staybleu: {
-    blurb: "Hospitality management for luxury hotels and property groups",
-    stack: ["Next.js", "React", "TypeScript", "Supabase"],
-    domain: ["hotel PMS", "dashboard", "bookings", "hospitality"],
+    blurb: "A property-management system that derives the tariff from the clock, not from a dropdown",
+    stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL"],
+    domain: ["hotel PMS", "dashboard", "bookings", "hospitality", "multi-property"],
   },
   concept_habitat: {
     blurb:
@@ -123,34 +123,34 @@ export const TECH = {
     ],
   },
   motogate: {
-    blurb: "QR event ticketing and live gate scanning for MotoClub Mauritius",
-    stack: ["Flutter", "Dart", "Firebase"],
-    domain: ["QR access", "access control", "events", "ticketing", "App Store", "Google Play"],
+    blurb: "Signed QR passes, live gate scanning and racing licences for MotoClub Mauritius",
+    stack: ["Flutter", "Dart", "Supabase", "PostgreSQL", "Deno"],
+    domain: ["QR access", "access control", "events", "ticketing", "motorsport", "App Store", "Google Play"],
   },
   pryowl: {
     blurb: "Surveys, quizzes and e-signatures, with 21 question types and PDF signing",
-    stack: ["React", "Supabase"],
-    domain: ["SaaS", "survey builder", "quiz", "e-signature"],
+    stack: ["React", "Supabase", "PostgreSQL", "Deno"],
+    domain: ["SaaS", "survey builder", "quiz", "e-signature", "AI copilot"],
   },
   "panda-pick": {
     blurb: "Office prediction games: challenges, a live leaderboard and daily mini-games",
-    stack: ["React", "Supabase"],
+    stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "Deno"],
     domain: ["SaaS", "team games", "leaderboard", "multi-tenant"],
   },
   fruitopia: {
     blurb: "A farm-to-table marketplace: customer storefront and vendor workspace in one app",
-    stack: ["Flutter", "Dart", "Supabase"],
-    domain: ["marketplace", "e-commerce", "farm to table", "App Store", "Google Play"],
+    stack: ["Flutter", "Dart", "Supabase", "PostgreSQL"],
+    domain: ["marketplace", "e-commerce", "farm to table", "delivery tracking", "App Store", "Google Play"],
   },
   nexstock: {
     blurb: "Multi-store inventory, POS and invoicing, with a Flutter app for the shop floor",
-    stack: ["Laravel", "PHP", "React", "TypeScript", "Flutter"],
-    domain: ["inventory", "POS", "invoicing", "multi-store", "reporting"],
+    stack: ["Laravel", "PHP", "React", "TypeScript", "Flutter", "PostgreSQL"],
+    domain: ["inventory", "POS", "invoicing", "multi-store", "reporting", "modular monolith"],
   },
   lokal: {
-    blurb: "A local business directory with listings, catalogues and WhatsApp contact",
-    stack: ["React", "Supabase"],
-    domain: ["directory", "small business", "listings"],
+    blurb: "Search Mauritius for what you need, not for a shop name — and see who is open now",
+    stack: ["React", "TypeScript", "Supabase", "PostgreSQL"],
+    domain: ["directory", "marketplace", "small business", "listings", "full-text search"],
   },
   perfect_garment: {
     blurb: "Takes a garment order to quotation, deposit, 3D mockup, delivery and invoice",
