@@ -12,7 +12,7 @@ const Field = lazy(() => import("../components/Field.jsx"));
 /**
  * Pinned by the owner, not derived. This was `work.slice(-3)`, which surfaced
  * whatever happened to be last in the list (Fruitopia, NexStock, Lokal). These
- * three are the chosen shop window: MotoGate ships on both app stores, Pryowl is
+ * three are the chosen shop window: My Motoclub ships on both app stores, Pryowl is
  * the broadest SaaS build, Fruitopia the marketplace.
  */
 const FEATURED = ["motogate", "pryowl", "fruitopia"];
@@ -20,11 +20,11 @@ const RECENT = FEATURED.map((slug) => work.find((w) => w.slug === slug)).filter(
 
 /**
  * Named from the listings map, so an app added there appears here without this
- * sentence being edited — the previous version hardcoded "MotoGate and PTMA" and
+ * sentence being edited — the previous version hardcoded "My Motoclub and PTMA" and
  * went stale the moment Fruitopia shipped.
  */
 const LIVE_APPS = new Intl.ListFormat("en-GB", { style: "long", type: "conjunction" }).format(
-  // en-GB, not en: "MotoGate, PTMA and Fruitopia" rather than the Oxford comma,
+  // en-GB, not en: "My Motoclub, PTMA and Fruitopia" rather than the Oxford comma,
   // matching the British spelling the rest of the copy already uses.
   Object.keys(listings).map((slug) => work.find((w) => w.slug === slug)?.title ?? slug)
 );

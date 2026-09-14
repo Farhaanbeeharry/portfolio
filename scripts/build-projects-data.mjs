@@ -29,7 +29,7 @@ const PROJECTS = {
   momento: ["MoMento", "web ui_ux"],
   staybleu: ["StayBleu", "web ui_ux"],
   concept_habitat: ["Concept Habitat", "web mobile ui_ux"],
-  motogate: ["MotoGate", "mobile ui_ux"],
+  motogate: ["My Motoclub", "mobile ui_ux"],
   pryowl: ["Pryowl", "web ui_ux"],
   "panda-pick": ["PandaPick", "web ui_ux"],
   fruitopia: ["Fruitopia", "mobile ui_ux"],

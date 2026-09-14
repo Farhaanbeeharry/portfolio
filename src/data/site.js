@@ -248,7 +248,7 @@ export const work = [
   { slug: "momento", title: "MoMento", cat: "Web app & UI/UX", dataCat: "web ui_ux", thumb: "/portfolio/momento/thumbnail.png" },
   { slug: "staybleu", title: "StayBleu", cat: "Web app & UI/UX", dataCat: "web ui_ux", thumb: "/portfolio/staybleu/thumbnail.png" },
   { slug: "concept_habitat", title: "Concept Habitat", cat: "Web, mobile & UI/UX", dataCat: "web mobile ui_ux", thumb: "/portfolio/concept_habitat/thumbnail.svg" },
-  { slug: "motogate", title: "MotoGate", cat: "Mobile app & UI/UX", dataCat: "mobile ui_ux", thumb: "/portfolio/motogate/thumbnail.svg" },
+  { slug: "motogate", title: "My Motoclub", cat: "Mobile app & UI/UX", dataCat: "mobile ui_ux", thumb: "/portfolio/motogate/thumbnail.svg" },
   { slug: "pryowl", title: "Pryowl", cat: "Web app & UI/UX", dataCat: "web ui_ux", thumb: "/portfolio/pryowl/thumbnail.svg" },
   { slug: "panda-pick", title: "PandaPick", cat: "Web app & UI/UX", dataCat: "web ui_ux", thumb: "/portfolio/panda-pick/thumbnail.svg" },
   { slug: "fruitopia", title: "Fruitopia", cat: "Mobile app & UI/UX", dataCat: "mobile ui_ux", thumb: "/portfolio/fruitopia/thumbnail.svg" },
